@@ -1,5 +1,18 @@
 # CSE291A: To-Err-Is-to-LLM
 
+## Contributors
+
+*All contributors contributed equally. Each is pursuing an MS in Computer Science at UC San Diego.*
+
+| Contributor | Affiliation | Email |
+| --- | --- | --- |
+| Hrithik Mhatre | UC San Diego · MS in Computer Science | [hmhatre@ucsd.edu](mailto:hmhatre@ucsd.edu) |
+| Khushi Jain | UC San Diego · MS in Computer Science | [khj002@ucsd.edu](mailto:khj002@ucsd.edu) |
+| Anagha Krishnakumar | UC San Diego · MS in Computer Science | [ankrishnakumar@ucsd.edu](mailto:ankrishnakumar@ucsd.edu) |
+| Hamsini Karanth | UC San Diego · MS in Computer Science | [hkaranth@ucsd.edu](mailto:hkaranth@ucsd.edu) |
+
+**Final results are stored in [`mixed-model-baseline-v1/runs/final_project_comparison.html`](mixed-model-baseline-v1/runs/final_project_comparison.html).**
+
 ### Error propagation and recovery in multi-agent LLM systems
 
 A five-agent coding study that measures how a faulty Project Manager message affects downstream code, whether review corrects it, and how restoring the message and handling faulty history changes recovery.
