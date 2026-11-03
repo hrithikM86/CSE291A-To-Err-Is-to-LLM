@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef will_it_fly(q,w):\n    '''\n    Write a function that returns True if the object q will fly, and False otherwise.\n    The object q will fly if it's balanced (it is a palindromic list) and the sum of its elements is less than or equal the maximum possible weight w.\n\n    Example:\n    will_it_fly([1, 2], 5) \u279e False \n    # 1+2 is less than the maximum possible weight, but it's unbalanced.\n\n    will_it_fly([3, 2, 3], 1) \u279e False\n    # it's balanced, but 3+2+3 is more than the maximum possible weight.\n\n    will_it_fly([3, 2, 3], 9) \u279e True\n    # 3+2+3 is less than the maximum possible weight, and it's balanced.\n\n    will_it_fly([3], 5) \u279e True\n    # 3 is less than the maximum possible weight, and it's balanced.\n    '''\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `will_it_fly(q, w)`:\n\n1. Check if `q` is empty. If yes, return `False`.\n2. Check if `q` is a palindromic list:\n   - Use a loop or a two-pointer technique to compare elements from start and end moving towards the center.\n   - If any elements do not match, return `False`.\n3. Calculate the sum of elements in `q`.\n4. Check if the sum is less than or equal to `w`:\n   - If yes, return `True`.\n   - If no, return `False`.\n\nEdge Cases:\n- Handle an empty list by returning `False`.\n- Single-element lists should be checked for the sum condition.\n- Ensure the sum calculation is accurate for all list lengths.\n\nComplexity:\n- Palindrome check: O(n)\n- Sum calculation: O(n)\n- Overall complexity: O(n)"
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

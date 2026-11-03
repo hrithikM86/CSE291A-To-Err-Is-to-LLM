@@ -1,0 +1,15 @@
+def specialFilter(nums: list) -> int:
+    if not nums:
+        return 0
+    
+    count = 0
+    for num in nums:
+        if num <= 10:
+            continue
+        num = abs(num)
+        first_digit = int(str(num)[0])
+        last_digit = int(str(num)[-1])
+        if first_digit in {1, 3, 5, 7, 9} and last_digit in {1, 3, 5, 7, 9}:
+            count += 1
+    
+    return count

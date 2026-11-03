@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef even_odd_count(num):\n    \"\"\"Given an integer. return a tuple that has the number of even and odd digits respectively.\n\n     Example:\n        even_odd_count(-12) ==> (1, 1)\n        even_odd_count(123) ==> (1, 2)\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. Define the function `even_odd_count(num)`.\n\n2. Handle edge cases:\n   - If `num` is `0`, return `(1, 0)`.\n   - If `num` is negative, convert `num` to a string and check if the first character is a minus sign. If so, initialize even and odd counts to 1 and 0 respectively.\n\n3. Convert `num` to a string to easily iterate over each digit.\n\n4. Initialize two counters: `even_count` and `odd_count` to 0.\n\n5. Iterate over each character in the string:\n   - If the character is '0' to '9':\n     - Convert the character to an integer.\n     - If the integer is even, increment `even_count`.\n     - If the integer is odd, increment `odd_count`.\n   - If the character is a minus sign and `num` is negative, continue to the next iteration.\n\n6. Return a tuple `(even_count, odd_count)`.\n\nComplexity:\n- Time: O(d), where d is the number of digits in `num`.\n- Space: O(1), as only a few variables are used.\n\nThis algorithm efficiently handles the given requirements and edge cases."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

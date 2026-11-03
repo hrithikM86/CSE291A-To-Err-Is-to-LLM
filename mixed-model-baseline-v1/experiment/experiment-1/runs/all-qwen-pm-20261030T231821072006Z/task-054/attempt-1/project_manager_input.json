@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef same_chars(s0: str, s1: str):\n    \"\"\"\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `same_chars(s0: str, s1: str)`:\n\n1. Convert both strings to lowercase to ensure case insensitivity.\n2. Remove all spaces from both strings.\n3. Check if the lengths of the processed strings are different. If so, return `False`.\n4. Create a set from each string to remove duplicates and ignore order.\n5. Compare the two sets for equality. If they are equal, return `True`. Otherwise, return `False`.\n\nEdge Cases:\n- Both strings are empty: Return `True`.\n- One string is empty and the other is not: Return `False`.\n- Strings have different lengths: Return `False`.\n- Special characters and numbers are included: Handle as part of the comparison.\n\nComplexity:\n- Time: O(n + m), where n and m are the lengths of the strings.\n- Space: O(n + m) for storing the sets of unique characters."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

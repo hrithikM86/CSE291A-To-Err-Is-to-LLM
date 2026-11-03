@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef is_nested(string):\n    '''\n    Create a function that takes a string as input which contains only square brackets.\n    The function should return True if and only if there is a valid subsequence of brackets \n    where at least one bracket in the subsequence is nested.\n\n    is_nested('[[]]') \u279e True\n    is_nested('[]]]]]]][[[[[]') \u279e False\n    is_nested('[][]') \u279e False\n    is_nested('[]') \u279e False\n    is_nested('[[][]]') \u279e True\n    is_nested('[[]][[') \u279e True\n    '''\n",
+    "previous_stage": "project_manager",
+    "previous_artifact": "### Implementation Checklist for `is_nested` Function\n\n1. **Function Signature**\n   ```python\n   def is_nested(string: str) -> bool:\n       pass\n   ```\n\n2. **Algorithm Steps**\n   - **Step 1:** Initialize `depth` to 0 and `has_nested` to False.\n   - **Step 2:** Iterate through each character `c` in the string:\n     - If `c` is '[', increment `depth` by 1.\n     - If `c` is ']', decrement `depth` by 1.\n     - If `depth` is greater than 0 at any point, set `has_nested` to True.\n   - **Step 3:** After the loop, check if `has_nested` is True and `depth` is 0.\n   - **Step 4:** Return `True` if `has_nested` is True and `depth` is 0, otherwise return `False`.\n\n3. **Boundary Conditions**\n   - Handle an empty string by returning `False`.\n   - Ensure the string is balanced by checking `depth` is 0 at the end.\n   - A string with only one pair of brackets should return `False` as it is not nested.\n\n4. **Edge Cases**\n   - Test with an empty string.\n   - Test with a string that has only one pair of brackets.\n   - Test with a string that has nested brackets.\n   - Test with a string that has unbalanced brackets.\n\n5. **Complexity**\n   - Time: O(n), where n is the length of the string.\n   - Space: O(1), constant space used.\n\n6. **Example Test Cases**\n   ```python\n   assert is_nested('[[]]') == True\n   assert is_nested('[]]]]]]][[[[[]') == False\n   assert is_nested('[][]') == False\n   assert is_nested('[]') == False\n   assert is_nested('[[][]]') == True\n   assert is_nested('[[]][[') == True\n   ```"
+  },
+  "system_messages": [
+    "You are a Code Engineer, named coder, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5-coder:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

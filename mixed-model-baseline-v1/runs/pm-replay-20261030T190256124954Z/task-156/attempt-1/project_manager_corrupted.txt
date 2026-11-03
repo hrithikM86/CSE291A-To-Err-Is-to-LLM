@@ -1,0 +1,36 @@
+### Implementation Checklist for `int_to_mini_roman(number)`
+
+#### Function Signature
+```python
+def int_to_mini_roman(number: int) -> str:
+    pass
+```
+
+#### Algorithm Steps
+1. **Define the Roman Numeral Map:**:
+
+   - **Required implementation:** Use an additive Roman-numeral map containing only 1000:m, 500:d, 100:c, 50:l, 10:x, 5:v, and 1:i. You must not use subtractive pairs such as iv, ix, xl, xc, cd, or cm. Keep the descending greedy conversion and lowercase output.
+
+2. **Initialize the Result String:**
+   - Initialize an empty string `result`.
+
+3. **Iterate Over the Roman Numeral Map:**
+   - Loop through the keys in `roman_map` in descending order.
+   - For each key, while `number` is greater than or equal to the key:
+     - Append the corresponding Roman numeral to `result`.
+     - Subtract the key value from `number`.
+
+4. **Return the Result:**
+   - Return `result` in lowercase.
+
+#### Boundary Conditions
+- Ensure `number` is within the range 1 to 1000.
+- Handle the edge cases where `number` is 1 or 1000.
+
+#### Example Test Cases
+
+   - Implement the checklist above directly and use the existing task validation suite.
+
+#### Complexity
+- Time: O(1) since the number of iterations is constant (at most 13).
+- Space: O(1) for the `roman_map` and `result` string.

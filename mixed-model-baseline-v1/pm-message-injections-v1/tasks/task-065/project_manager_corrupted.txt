@@ -1,0 +1,39 @@
+### Implementation Checklist for `circular_shift(x, shift)`
+
+1. **Function Signature**:
+   ```python
+   def circular_shift(x: int, shift: int) -> str:
+       pass
+   ```
+
+2. **Input Validation**:
+   - Check if `x` is 0 or `shift` is 0. If true, return `"0"`.
+   - Check if `x` is negative. If true, store the sign and convert `x` to its absolute value.
+
+3. **Digit Count**:
+   - Calculate the number of digits in `x` using `len(str(abs(x)))`.
+
+4. **Shift Handling**:
+
+   - **Required implementation:** For shift greater than the digit count, reduce shift modulo the digit count and apply the ordinary circular shift. You must not reverse all digits in this branch. Retain the other existing branches.
+
+5. **Result Construction**:
+   - If `x` was originally negative, append the '-' sign to the result.
+   - Return the result as a string.
+
+6. **Edge Cases**:
+
+   - Retain the existing zero and sign branches. When shift exceeds the digit count, use modulo reduction followed by the ordinary circular shift.
+
+7. **Complexity**:
+   - Time: O(n), where n is the number of digits in `x`.
+   - Space: O(n), for storing the string representation of `x`.
+
+8. **Test Cases**:
+
+   - Implement the checklist above directly and use the existing task validation suite.
+
+9. **Code Snippet**:
+
+   - Implement the checklist above directly and use the existing task validation suite.
+

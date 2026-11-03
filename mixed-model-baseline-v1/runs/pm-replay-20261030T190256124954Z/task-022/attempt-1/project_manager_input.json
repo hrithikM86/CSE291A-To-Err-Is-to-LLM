@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List, Any\n\n\ndef filter_integers(values: List[Any]) -> List[int]:\n    \"\"\" Filter given list of any python values only for integers\n    >>> filter_integers(['a', 3.14, 5])\n    [5]\n    >>> filter_integers([1, 2, 3, 'abc', {}, []])\n    [1, 2, 3]\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. Define the function `filter_integers(values: List[Any]) -> List[int]`.\n2. Initialize an empty list `integers` to store the filtered integers.\n3. Iterate through each element `value` in the input list `values`:\n   - Check if `value` is an instance of `int` using `isinstance(value, int)`.\n   - If true, append `value` to the `integers` list.\n4. Return the `integers` list.\n\nEdge Cases:\n- An empty input list should return an empty list.\n- Non-integer values should be ignored.\n- Mixed types (e.g., strings, floats, dictionaries) should not be included in the output.\n- Ensure the function handles large lists efficiently, aiming for O(n) complexity where n is the length of the input list.\n\nComplexity:\n- Time Complexity: O(n), where n is the number of elements in the input list.\n- Space Complexity: O(m), where m is the number of integers in the input list."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

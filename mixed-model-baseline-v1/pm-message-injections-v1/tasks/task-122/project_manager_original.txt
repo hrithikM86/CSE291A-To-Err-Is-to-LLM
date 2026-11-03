@@ -1,0 +1,44 @@
+### Implementation Checklist for `add_elements(arr, k)`
+
+1. **Function Signature**
+   ```python
+   def add_elements(arr, k):
+       pass
+   ```
+
+2. **Algorithm Steps**
+   - **Step 1:** Initialize `sum` to 0.
+   - **Step 2:** Iterate through the first `k` elements of `arr`.
+     - For each element, check if it has at most two digits.
+     - If it does, add it to `sum`.
+   - **Step 3:** Return `sum`.
+
+3. **Boundary Conditions and Edge Cases**
+   - If `k` is 1, return the first element if it has at most two digits.
+   - If no elements with at most two digits are found in the first `k` elements, return 0.
+   - If `arr` contains only elements with more than two digits, return 0.
+
+4. **Example Test Cases**
+   - `arr = [111, 21, 3, 4000, 5, 6, 7, 8, 9], k = 4` → Expected Output: 24
+   - `arr = [100, 200, 300, 400], k = 2` → Expected Output: 0
+   - `arr = [1, 2, 3, 4, 5], k = 5` → Expected Output: 15
+   - `arr = [111, 21, 3, 4000, 5, 6, 7, 8, 9], k = 1` → Expected Output: 21 (if the first element has at most two digits, otherwise 0)
+   - `arr = [1000, 2000, 3000], k = 3` → Expected Output: 0
+
+5. **Complexity**
+   - Time: O(k), where k is the number of elements considered.
+   - Space: O(1), as only a few variables are used.
+
+6. **Code Structure**
+   ```python
+   def add_elements(arr, k):
+       sum = 0
+       for i in range(k):
+           if 0 <= arr[i] < 100:  # Check if the number has at most two digits
+               sum += arr[i]
+       return sum
+   ```
+
+7. **Testing**
+   - Ensure all edge cases and examples are covered.
+   - Test with different values of `k` and various input arrays.

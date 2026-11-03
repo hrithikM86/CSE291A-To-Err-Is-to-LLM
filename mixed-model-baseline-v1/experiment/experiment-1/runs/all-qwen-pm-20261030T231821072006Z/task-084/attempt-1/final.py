@@ -1,0 +1,15 @@
+def solve(N: int) -> str:
+    """
+    Given a positive integer N, return the total sum of its digits in binary.
+    """
+    if N == 0:
+        return "0"
+    sum_of_digits = sum(int(digit) for digit in str(N))
+    return bin(sum_of_digits)[2:]
+
+# Testing the function
+print(solve(0))        # Expected output: "0"
+print(solve(1000))     # Expected output: "1"
+print(solve(150))      # Expected output: "110"
+print(solve(147))      # Expected output: "1110"
+print(solve(10000))    # Expected output: "10011100010000"

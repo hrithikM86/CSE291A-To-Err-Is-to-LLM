@@ -1,0 +1,28 @@
+from typing import Optional
+
+def fib(n: int) -> Optional[int]:
+    """
+    Return n-th Fibonacci number.
+    >>> fib(10)
+    55
+    >>> fib(1)
+    1
+    >>> fib(8)
+    21
+    """
+    if n < 1:
+        return None
+    
+    # Memoization dictionary to store previously computed Fibonacci numbers
+    memo = {1: 1, 2: 1}
+    
+    def fib_memo(n: int) -> int:
+        if n not in memo:
+            memo[n] = fib_memo(n - 1) + fib_memo(n - 2)
+        return memo[n]
+    
+    # Limit the computation to n = 50
+    if n > 50:
+        raise ValueError("Input value is too large. Please provide n <= 50.")
+    
+    return fib_memo(n)

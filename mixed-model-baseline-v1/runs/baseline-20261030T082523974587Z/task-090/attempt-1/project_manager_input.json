@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef next_smallest(lst):\n    \"\"\"\n    You are given a list of integers.\n    Write a function next_smallest() that returns the 2nd smallest element of the list.\n    Return None if there is no such element.\n    \n    next_smallest([1, 2, 3, 4, 5]) == 2\n    next_smallest([5, 1, 4, 3, 2]) == 2\n    next_smallest([]) == None\n    next_smallest([1, 1]) == None\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `next_smallest(lst)`:\n\n1. **Check for Edge Cases**:\n   - If `lst` is empty, return `None`.\n   - If `lst` has fewer than 2 unique elements, return `None`.\n\n2. **Sort the List**:\n   - Sort the list in ascending order.\n\n3. **Identify the Second Smallest Element**:\n   - Iterate through the sorted list to find the second smallest unique element.\n\n4. **Return the Result**:\n   - Return the second smallest element found.\n   - If no second smallest element exists, return `None`.\n\n**Complexity Analysis**:\n- **Time Complexity**: O(n log n) due to sorting.\n- **Space Complexity**: O(1) if sorting is done in place, otherwise O(n) for additional space.\n\n**Edge Cases**:\n- Empty list: Return `None`.\n- List with one unique element: Return `None`.\n- List with all elements the same: Return `None`.\n\nThis algorithm ensures that all specified requirements and edge cases are handled correctly."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

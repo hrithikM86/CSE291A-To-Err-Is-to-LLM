@@ -1,0 +1,56 @@
+
+TASK: HumanEval/18 attempt 1
+Running coder: qwen2.5:7b
+```python
+def how_many_times(string: str, substring: str) -> int:
+    """
+    Find how many times a given substring can be found in the original string. Count overlapping cases.
+    >>> how_many_times('', 'a')
+    0
+    >>> how_many_times('aaa', 'a')
+    3
+    >>> how_many_times('aaaa', 'aa')
+    3
+    """
+    if not substring or len(substring) > len(string):
+        return 0
+    
+    count = 0
+    start = 0
+    while start <= len(string) - len(substring):
+        index = string.find(substring, start)
+        if index == -1:
+            break
+        count += 1
+        start = index + 1
+    
+    return count
+```
+Running test_engineer: qwen2.5:7b
+```python
+def how_many_times(string: str, substring: str) -> int:
+    """
+    Find how many times a given substring can be found in the original string. Count overlapping cases.
+    >>> how_many_times('', 'a')
+    0
+    >>> how_many_times('aaa', 'a')
+    3
+    >>> how_many_times('aaaa', 'aa')
+    3
+    """
+    if not substring or len(substring) > len(string):
+        return 0
+
+    count = 0
+    start = 0
+    while start <= len(string) - len(substring):
+        index = string.find(substring, start)
+        if index == -1:
+            break
+        count += 1
+        start = index + 1
+
+    return count
+```
+attacked_coder official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

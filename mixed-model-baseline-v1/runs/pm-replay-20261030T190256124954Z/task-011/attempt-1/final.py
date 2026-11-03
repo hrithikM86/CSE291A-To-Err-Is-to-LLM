@@ -1,0 +1,18 @@
+from typing import List
+
+def string_xor(a: str, b: str) -> str:
+    if not a or not b:
+        return ""
+    
+    if not all(char in '01' for char in a) or not all(char in '01' for char in b):
+        raise ValueError("Input strings must contain only '0' and '1'")
+    
+    max_len = max(len(a), len(b))
+    result = []
+    
+    for i in range(max_len):
+        bit_a = a[i] if i < len(a) else '0'
+        bit_b = b[i] if i < len(b) else '0'
+        result.append('1' if bit_a != bit_b else '0')
+    
+    return ''.join(result)

@@ -1,0 +1,18 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -11,8 +11,13 @@
+     seen = {}
+     
+     for number in numbers:
+-        if number not in seen:
++        if number in seen:
++            seen[number] += 1
++        else:
++            seen[number] = 1
++    
++    for number in numbers:
++        if seen[number] > 1 and number not in result:
+             result.append(number)
+-            seen[number] = True
+     
+     return result

@@ -1,0 +1,331 @@
+{
+  "schema": "call-graph/v5",
+  "nodes": [
+    {
+      "id": "specification",
+      "kind": "external_input",
+      "seq": 0,
+      "status": "completed",
+      "inputs": [],
+      "output_sha256": "1eb46648867a6e499ee7e4fa6500b594937f325209204606d7391c8cad9df9c4",
+      "output_chars": 219
+    },
+    {
+      "id": "model_config:product_manager",
+      "kind": "configuration",
+      "seq": 1,
+      "status": "completed",
+      "inputs": [],
+      "output_sha256": "5b6eeda0875fe5da6f1b58fd6b2e656f7085f32a5ee05654a72654c2a006a990",
+      "output_chars": 136
+    },
+    {
+      "id": "model_config:architect",
+      "kind": "configuration",
+      "seq": 2,
+      "status": "completed",
+      "inputs": [],
+      "output_sha256": "5b6eeda0875fe5da6f1b58fd6b2e656f7085f32a5ee05654a72654c2a006a990",
+      "output_chars": 136
+    },
+    {
+      "id": "model_config:project_manager",
+      "kind": "configuration",
+      "seq": 3,
+      "status": "completed",
+      "inputs": [],
+      "output_sha256": "5b6eeda0875fe5da6f1b58fd6b2e656f7085f32a5ee05654a72654c2a006a990",
+      "output_chars": 136
+    },
+    {
+      "id": "model_config:coder",
+      "kind": "configuration",
+      "seq": 4,
+      "status": "completed",
+      "inputs": [],
+      "output_sha256": "1b31f11cc4052d8b07e462fec8eb7fc7efaca52417b588e9d58fe2e178384c3c",
+      "output_chars": 142
+    },
+    {
+      "id": "model_config:test_engineer",
+      "kind": "configuration",
+      "seq": 5,
+      "status": "completed",
+      "inputs": [],
+      "output_sha256": "5b6eeda0875fe5da6f1b58fd6b2e656f7085f32a5ee05654a72654c2a006a990",
+      "output_chars": 136
+    },
+    {
+      "id": "instructions:product_manager",
+      "kind": "configuration",
+      "seq": 6,
+      "status": "completed",
+      "inputs": [],
+      "output_sha256": "d98ab816d960ae2a59d17a25987a4d74a7b3d6ab82ee381632323191f51e78be",
+      "output_chars": 372
+    },
+    {
+      "id": "product_manager#1",
+      "kind": "model_call",
+      "role": "product_manager",
+      "call": 1,
+      "seq": 7,
+      "status": "completed",
+      "inputs": [
+        {
+          "node": "specification",
+          "via": "original_specification",
+          "status": "verified",
+          "sent_sha256": "1eb46648867a6e499ee7e4fa6500b594937f325209204606d7391c8cad9df9c4",
+          "received_sha256": "1eb46648867a6e499ee7e4fa6500b594937f325209204606d7391c8cad9df9c4",
+          "in_prompt": true
+        },
+        {
+          "node": "instructions:product_manager",
+          "via": "system_messages",
+          "status": "verified",
+          "sent_sha256": "d98ab816d960ae2a59d17a25987a4d74a7b3d6ab82ee381632323191f51e78be",
+          "received_sha256": "d98ab816d960ae2a59d17a25987a4d74a7b3d6ab82ee381632323191f51e78be"
+        },
+        {
+          "node": "model_config:product_manager",
+          "via": "llm.config",
+          "status": "verified",
+          "sent_sha256": "5b6eeda0875fe5da6f1b58fd6b2e656f7085f32a5ee05654a72654c2a006a990",
+          "received_sha256": "5b6eeda0875fe5da6f1b58fd6b2e656f7085f32a5ee05654a72654c2a006a990"
+        }
+      ],
+      "routing": "declared",
+      "method": "aask",
+      "prompt_sha256": "1644dd11f20e457d4a852662c5deda3109fed090aa17b0b5ebabe31b87bcc660",
+      "elapsed_seconds": 5.988,
+      "output_sha256": "e91127473df5f38ee6e1fb4ecfc326f6d71bc1a3c163feec8d58eee3a88c3654",
+      "output_chars": 503,
+      "trace_stage": 0
+    },
+    {
+      "id": "instructions:architect",
+      "kind": "configuration",
+      "seq": 8,
+      "status": "completed",
+      "inputs": [],
+      "output_sha256": "29be8f57b9140a8b27329d3d82876d08c16238fe0b052ed1b277075f6972d2f3",
+      "output_chars": 376
+    },
+    {
+      "id": "architect#1",
+      "kind": "model_call",
+      "role": "architect",
+      "call": 1,
+      "seq": 9,
+      "status": "completed",
+      "inputs": [
+        {
+          "node": "specification",
+          "via": "original_specification",
+          "status": "verified",
+          "sent_sha256": "1eb46648867a6e499ee7e4fa6500b594937f325209204606d7391c8cad9df9c4",
+          "received_sha256": "1eb46648867a6e499ee7e4fa6500b594937f325209204606d7391c8cad9df9c4",
+          "in_prompt": true
+        },
+        {
+          "node": "product_manager#1",
+          "via": "previous_artifact",
+          "status": "verified",
+          "sent_sha256": "e91127473df5f38ee6e1fb4ecfc326f6d71bc1a3c163feec8d58eee3a88c3654",
+          "received_sha256": "e91127473df5f38ee6e1fb4ecfc326f6d71bc1a3c163feec8d58eee3a88c3654",
+          "in_prompt": true
+        },
+        {
+          "node": "instructions:architect",
+          "via": "system_messages",
+          "status": "verified",
+          "sent_sha256": "29be8f57b9140a8b27329d3d82876d08c16238fe0b052ed1b277075f6972d2f3",
+          "received_sha256": "29be8f57b9140a8b27329d3d82876d08c16238fe0b052ed1b277075f6972d2f3"
+        },
+        {
+          "node": "model_config:architect",
+          "via": "llm.config",
+          "status": "verified",
+          "sent_sha256": "5b6eeda0875fe5da6f1b58fd6b2e656f7085f32a5ee05654a72654c2a006a990",
+          "received_sha256": "5b6eeda0875fe5da6f1b58fd6b2e656f7085f32a5ee05654a72654c2a006a990"
+        }
+      ],
+      "routing": "declared",
+      "method": "aask",
+      "prompt_sha256": "4dd873c99d3cd24a1361be7ae806fb5f702008b8d1786777a0563f83825c0a90",
+      "elapsed_seconds": 9.506,
+      "output_sha256": "7ff4222388ec1a08434763fdc66312cbcaa3045b4e1914b1c489802971ec7fd9",
+      "output_chars": 757,
+      "trace_stage": 1
+    },
+    {
+      "id": "instructions:project_manager",
+      "kind": "configuration",
+      "seq": 10,
+      "status": "completed",
+      "inputs": [],
+      "output_sha256": "033e0498ef9e1f2a6b75010ff9e6502145949ab4d311497b005f782ac92690fe",
+      "output_chars": 385
+    },
+    {
+      "id": "project_manager#1",
+      "kind": "model_call",
+      "role": "project_manager",
+      "call": 1,
+      "seq": 11,
+      "status": "completed",
+      "inputs": [
+        {
+          "node": "specification",
+          "via": "original_specification",
+          "status": "verified",
+          "sent_sha256": "1eb46648867a6e499ee7e4fa6500b594937f325209204606d7391c8cad9df9c4",
+          "received_sha256": "1eb46648867a6e499ee7e4fa6500b594937f325209204606d7391c8cad9df9c4",
+          "in_prompt": true
+        },
+        {
+          "node": "architect#1",
+          "via": "previous_artifact",
+          "status": "verified",
+          "sent_sha256": "7ff4222388ec1a08434763fdc66312cbcaa3045b4e1914b1c489802971ec7fd9",
+          "received_sha256": "7ff4222388ec1a08434763fdc66312cbcaa3045b4e1914b1c489802971ec7fd9",
+          "in_prompt": true
+        },
+        {
+          "node": "instructions:project_manager",
+          "via": "system_messages",
+          "status": "verified",
+          "sent_sha256": "033e0498ef9e1f2a6b75010ff9e6502145949ab4d311497b005f782ac92690fe",
+          "received_sha256": "033e0498ef9e1f2a6b75010ff9e6502145949ab4d311497b005f782ac92690fe"
+        },
+        {
+          "node": "model_config:project_manager",
+          "via": "llm.config",
+          "status": "verified",
+          "sent_sha256": "5b6eeda0875fe5da6f1b58fd6b2e656f7085f32a5ee05654a72654c2a006a990",
+          "received_sha256": "5b6eeda0875fe5da6f1b58fd6b2e656f7085f32a5ee05654a72654c2a006a990"
+        }
+      ],
+      "routing": "declared",
+      "method": "aask",
+      "prompt_sha256": "7b0dfbce5d151dad52fba7290b29bd89b69d7582d40038455c6054d663141b40",
+      "elapsed_seconds": 18.507,
+      "output_sha256": "c9946e12f1deac4beb0aa543a6f407435f76ff9cb8aba7eac24f0085a25eca4d",
+      "output_chars": 1645,
+      "trace_stage": 2
+    },
+    {
+      "id": "instructions:coder",
+      "kind": "configuration",
+      "seq": 12,
+      "status": "completed",
+      "inputs": [],
+      "output_sha256": "fb1cf259fbb44fbed6456a578b6ec7acffcbc3a0f2536da8ff8eccd14d54d836",
+      "output_chars": 480
+    },
+    {
+      "id": "coder#1",
+      "kind": "model_call",
+      "role": "coder",
+      "call": 1,
+      "seq": 13,
+      "status": "completed",
+      "inputs": [
+        {
+          "node": "specification",
+          "via": "original_specification",
+          "status": "verified",
+          "sent_sha256": "1eb46648867a6e499ee7e4fa6500b594937f325209204606d7391c8cad9df9c4",
+          "received_sha256": "1eb46648867a6e499ee7e4fa6500b594937f325209204606d7391c8cad9df9c4",
+          "in_prompt": true
+        },
+        {
+          "node": "project_manager#1",
+          "via": "previous_artifact",
+          "status": "verified",
+          "sent_sha256": "c9946e12f1deac4beb0aa543a6f407435f76ff9cb8aba7eac24f0085a25eca4d",
+          "received_sha256": "c9946e12f1deac4beb0aa543a6f407435f76ff9cb8aba7eac24f0085a25eca4d",
+          "in_prompt": true
+        },
+        {
+          "node": "instructions:coder",
+          "via": "system_messages",
+          "status": "verified",
+          "sent_sha256": "fb1cf259fbb44fbed6456a578b6ec7acffcbc3a0f2536da8ff8eccd14d54d836",
+          "received_sha256": "fb1cf259fbb44fbed6456a578b6ec7acffcbc3a0f2536da8ff8eccd14d54d836"
+        },
+        {
+          "node": "model_config:coder",
+          "via": "llm.config",
+          "status": "verified",
+          "sent_sha256": "1b31f11cc4052d8b07e462fec8eb7fc7efaca52417b588e9d58fe2e178384c3c",
+          "received_sha256": "1b31f11cc4052d8b07e462fec8eb7fc7efaca52417b588e9d58fe2e178384c3c"
+        }
+      ],
+      "routing": "declared",
+      "method": "aask",
+      "prompt_sha256": "66d6b291d199679ff6663cf0e7546600d2e55660b76ecede35a2d0e00a0c1df2",
+      "elapsed_seconds": 6.723,
+      "output_sha256": "178f5dedc72c90cdd96bf890eed7b389620ef9da5251f19605e6874fc89a7597",
+      "output_chars": 303,
+      "trace_stage": 3
+    },
+    {
+      "id": "instructions:test_engineer",
+      "kind": "configuration",
+      "seq": 14,
+      "status": "completed",
+      "inputs": [],
+      "output_sha256": "b7ea219d7dfcb427834507ef494119efe1e75618e4fec8ea2ef30a6099795fb2",
+      "output_chars": 625
+    },
+    {
+      "id": "test_engineer#1",
+      "kind": "model_call",
+      "role": "test_engineer",
+      "call": 1,
+      "seq": 15,
+      "status": "completed",
+      "inputs": [
+        {
+          "node": "specification",
+          "via": "original_specification",
+          "status": "verified",
+          "sent_sha256": "1eb46648867a6e499ee7e4fa6500b594937f325209204606d7391c8cad9df9c4",
+          "received_sha256": "1eb46648867a6e499ee7e4fa6500b594937f325209204606d7391c8cad9df9c4",
+          "in_prompt": true
+        },
+        {
+          "node": "coder#1",
+          "via": "previous_artifact",
+          "status": "verified",
+          "sent_sha256": "178f5dedc72c90cdd96bf890eed7b389620ef9da5251f19605e6874fc89a7597",
+          "received_sha256": "178f5dedc72c90cdd96bf890eed7b389620ef9da5251f19605e6874fc89a7597",
+          "in_prompt": true
+        },
+        {
+          "node": "instructions:test_engineer",
+          "via": "system_messages",
+          "status": "verified",
+          "sent_sha256": "b7ea219d7dfcb427834507ef494119efe1e75618e4fec8ea2ef30a6099795fb2",
+          "received_sha256": "b7ea219d7dfcb427834507ef494119efe1e75618e4fec8ea2ef30a6099795fb2"
+        },
+        {
+          "node": "model_config:test_engineer",
+          "via": "llm.config",
+          "status": "verified",
+          "sent_sha256": "5b6eeda0875fe5da6f1b58fd6b2e656f7085f32a5ee05654a72654c2a006a990",
+          "received_sha256": "5b6eeda0875fe5da6f1b58fd6b2e656f7085f32a5ee05654a72654c2a006a990"
+        }
+      ],
+      "routing": "declared",
+      "method": "aask",
+      "prompt_sha256": "173e1abc5a57df360c6ef692901b55b8c3c134344ca3dba4a6d698d717de013c",
+      "elapsed_seconds": 5.818,
+      "output_sha256": "178f5dedc72c90cdd96bf890eed7b389620ef9da5251f19605e6874fc89a7597",
+      "output_chars": 303,
+      "trace_stage": 4
+    }
+  ]
+}

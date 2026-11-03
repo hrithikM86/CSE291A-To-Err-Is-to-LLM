@@ -1,0 +1,40 @@
+
+TASK: HumanEval/65 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def circular_shift(x: int, shift: int) -> str:
+    if x == 0 or shift == 0:
+        return "0"
+    if x < 0:
+        sign = '-'
+        x = -x
+    else:
+        sign = ''
+    
+    digits = len(str(x))
+    shift = shift % digits if shift > digits else shift
+    
+    shifted = str(x)[-shift:] + str(x)[:-shift]
+    
+    return sign + shifted
+```
+Running test_engineer: qwen2.5:7b
+```python
+def circular_shift(x: int, shift: int) -> str:
+    if x == 0 or shift == 0:
+        return "0"
+    if x < 0:
+        sign = '-'
+        x = -x
+    else:
+        sign = ''
+    
+    digits = len(str(x))
+    shift = shift % digits if shift > digits else shift
+    
+    shifted = str(x)[-shift:] + str(x)[:-shift]
+    
+    return sign + shifted
+```
+attacked_coder official: failed {'passed': 1, 'failed': 2, 'timeout': 0, 'unresolved': 0}
+attacked_final official: failed {'passed': 1, 'failed': 2, 'timeout': 0, 'unresolved': 0}

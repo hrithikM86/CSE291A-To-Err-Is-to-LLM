@@ -1,0 +1,30 @@
+Algorithm:
+
+1. **Initialization**:
+   - Initialize an empty list `depths` to store the maximum depths.
+
+2. **Input Validation**:
+   - If `paren_string` is empty, return `depths` (which is an empty list).
+
+3. **Split Input String**:
+   - Split `paren_string` by spaces to get individual groups.
+
+4. **Process Each Group**:
+   - For each group:
+     1. Initialize `current_depth` to 0.
+     2. Initialize `max_depth` to 0.
+     3. Iterate through each character in the group:
+        - If character is '(', increment `current_depth` and update `max_depth` if `current_depth` is greater.
+        - If character is ')', decrement `current_depth`.
+     4. Append `max_depth` to `depths`.
+
+5. **Return Result**:
+   - Return `depths`.
+
+**Edge Cases**:
+- Handle groups with no parentheses by returning 0 for such groups.
+- Handle unbalanced parentheses by raising a `ValueError`.
+
+**Complexity**:
+- Time: O(n * m), where n is the number of groups and m is the average length of a group.
+- Space: O(n), for storing the depths of each group.

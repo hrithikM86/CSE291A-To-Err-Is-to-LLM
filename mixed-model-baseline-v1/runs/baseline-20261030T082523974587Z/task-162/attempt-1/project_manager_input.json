@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef string_to_md5(text):\n    \"\"\"\n    Given a string 'text', return its md5 hash equivalent string.\n    If 'text' is an empty string, return None.\n\n    >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `string_to_md5`:\n\n1. **Input Validation**: Ensure the input `text` is a string. If not, raise a `TypeError`.\n2. **Empty String Check**: If `text` is an empty string, return `None`.\n3. **MD5 Hash Calculation**: Use a secure hash algorithm (SHA-256 or similar) to compute the MD5 hash of `text`.\n4. **Hexadecimal Conversion**: Convert the hash to a hexadecimal string.\n5. **Return Result**: Return the hexadecimal string.\n\n**Edge Cases**:\n- Ensure the input is always a string.\n- Handle an empty string by returning `None`.\n\n**Complexity**:\n- Input validation: O(1)\n- Empty string check: O(1)\n- Hash calculation: O(n), where n is the length of the input string.\n- Hexadecimal conversion: O(1)\n\nThis algorithm ensures the function behaves as specified, handling the given edge cases and maintaining the required complexity."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

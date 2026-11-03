@@ -1,0 +1,19 @@
+from typing import List
+
+def separate_paren_groups(paren_string: str) -> List[str]:
+    groups = []
+    current_group = ""
+    open_paren_count = 0
+
+    for char in paren_string.replace(" ", ""):
+        if char == '(':
+            open_paren_count += 1
+            current_group += char
+        elif char == ')':
+            open_paren_count -= 1
+            current_group += char
+            if open_paren_count == 0:
+                groups.append(current_group)
+                current_group = ""
+
+    return groups

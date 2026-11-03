@@ -1,0 +1,33 @@
+
+TASK: HumanEval/76 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def is_simple_power(x: int, n: int) -> bool:
+    if x == 0 or n == 0:
+        return False
+    if n == 1:
+        return x == 1
+    if x == 1 and n > 1:
+        return False
+    if x > 1 and n > 1:
+        return x % n == 0
+```
+Running test_engineer: qwen2.5:7b
+```python
+def is_simple_power(x: int, n: int) -> bool:
+    if x == 0 or n == 0:
+        return False
+    if n == 1:
+        return x == 1
+    if x == 1 and n > 1:
+        return False
+    if x > 1 and n > 1:
+        power = 1
+        while power < x:
+            power *= n
+            if power == x:
+                return True
+        return False
+```
+attacked_coder official: failed {'passed': 1, 'failed': 2, 'timeout': 0, 'unresolved': 0}
+attacked_final official: failed {'passed': 2, 'failed': 1, 'timeout': 0, 'unresolved': 0}

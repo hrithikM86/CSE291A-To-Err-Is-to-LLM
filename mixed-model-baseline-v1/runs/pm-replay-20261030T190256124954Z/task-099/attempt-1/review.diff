@@ -1,0 +1,13 @@
+--- coder_after_pm_injection.py
++++ final.py
+@@ -4,8 +4,8 @@
+         if num == 0:
+             return 0
+         elif num > 0:
+-            return int(num + 0.5)
++            return int(num + 0.5) if num - int(num) != 0.5 else int(num) + 1
+         else:
+-            return int(num - 0.5)
++            return int(num - 0.5) if int(num) - num != 0.5 else int(num) - 1
+     except ValueError:
+         raise ValueError("Input must be a numeric string")

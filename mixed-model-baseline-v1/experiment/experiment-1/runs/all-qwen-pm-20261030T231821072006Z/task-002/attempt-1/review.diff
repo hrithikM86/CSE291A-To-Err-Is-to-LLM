@@ -1,0 +1,18 @@
+--- all-Qwen raw Coder
++++ all-Qwen reviewed final
+@@ -2,9 +2,12 @@
+     if not isinstance(number, float):
+         raise TypeError("Input must be a float")
+     
++    integer_part = int(number)
++    decimal_part = number - integer_part
++    
+     if number < 0:
+-        return number - int(number)
+-    elif number == int(number):
++        return decimal_part
++    elif number == integer_part:
+         return 0.0
+     else:
+-        return 1.0 - (number - int(number))
++        return decimal_part

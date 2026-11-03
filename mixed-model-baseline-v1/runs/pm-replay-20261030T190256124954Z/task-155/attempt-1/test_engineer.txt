@@ -1,0 +1,13 @@
+```python
+def even_odd_count(num: int) -> tuple:
+    if num == 0:
+        return (1, 0)
+    
+    abs_num = abs(num)
+    digits = set(str(abs_num))
+    
+    even_count = sum(1 for digit in digits if int(digit) % 2 == 0)
+    odd_count = sum(1 for digit in digits if int(digit) % 2 != 0)
+    
+    return (even_count, odd_count)
+```

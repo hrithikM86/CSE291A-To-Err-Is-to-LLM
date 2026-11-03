@@ -1,0 +1,19 @@
+import math
+
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+def skjkasdkd(lst):
+    min_prime = float('inf')
+    for num in lst:
+        if num > 1 and is_prime(num):
+            if num < min_prime:
+                min_prime = num
+    if min_prime == float('inf'):
+        return 0
+    return sum(int(digit) for digit in str(min_prime))

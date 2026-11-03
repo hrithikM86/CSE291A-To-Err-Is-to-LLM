@@ -1,0 +1,18 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -4,11 +4,10 @@
+     
+     result = []
+     for char in string:
+-        if char.isalpha():
+-            if char.islower():
+-                result.append(char.upper())
+-            else:
+-                result.append(char.lower())
++        if char.islower():
++            result.append(char.upper())
++        elif char.isupper():
++            result.append(char.lower())
+         else:
+             result.append(char)
+     

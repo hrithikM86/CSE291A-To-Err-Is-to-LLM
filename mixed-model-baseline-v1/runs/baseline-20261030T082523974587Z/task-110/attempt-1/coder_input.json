@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef exchange(lst1, lst2):\n    \"\"\"In this problem, you will implement a function that takes two lists of numbers,\n    and determines whether it is possible to perform an exchange of elements\n    between them to make lst1 a list of only even numbers.\n    There is no limit on the number of exchanged elements between lst1 and lst2.\n    If it is possible to exchange elements between the lst1 and lst2 to make\n    all the elements of lst1 to be even, return \"YES\".\n    Otherwise, return \"NO\".\n    For example:\n    exchange([1, 2, 3, 4], [1, 2, 3, 4]) => \"YES\"\n    exchange([1, 2, 3, 4], [1, 5, 3, 4]) => \"NO\"\n    It is assumed that the input lists will be non-empty.\n    \"\"\"\n",
+    "previous_stage": "project_manager",
+    "previous_artifact": "### Implementation Checklist for `exchange(lst1, lst2)`\n\n1. **Function Signature**\n   ```python\n   def exchange(lst1, lst2):\n       # Function body\n   ```\n\n2. **Algorithm Steps**\n   - **Step 1: Check if `lst1` is already even**\n     - If all elements in `lst1` are even, return \"YES\".\n   - **Step 2: Check if `lst2` contains only odd numbers**\n     - If all elements in `lst2` are odd, return \"NO\".\n   - **Step 3: Count odd numbers in `lst1` and even numbers in `lst2`**\n     - Let `odd_count_lst1` be the count of odd numbers in `lst1`.\n     - Let `even_count_lst2` be the count of even numbers in `lst2`.\n   - **Step 4: Determine if exchange is possible**\n     - If `odd_count_lst1` is less than or equal to `even_count_lst2`, return \"YES\".\n     - Otherwise, return \"NO\".\n\n3. **Boundary Conditions**\n   - Ensure both `lst1` and `lst2` are non-empty.\n   - Handle cases where `lst1` or `lst2` might be empty (though not applicable as per the assumption).\n\n4. **Example Implementations**\n   ```python\n   def exchange(lst1, lst2):\n       # Step 1: Check if lst1 is already even\n       if all(x % 2 == 0 for x in lst1):\n           return \"YES\"\n       \n       # Step 2: Check if lst2 contains only odd numbers\n       if all(x % 2 != 0 for x in lst2):\n           return \"NO\"\n       \n       # Step 3: Count odd numbers in lst1 and even numbers in lst2\n       odd_count_lst1 = sum(x % 2 != 0 for x in lst1)\n       even_count_lst2 = sum(x % 2 == 0 for x in lst2)\n       \n       # Step 4: Determine if exchange is possible\n       if odd_count_lst1 <= even_count_lst2:\n           return \"YES\"\n       else:\n           return \"NO\"\n   ```\n\n5. **Testing**\n   - Test with various inputs, including edge cases.\n   - Ensure the function handles all specified conditions correctly."
+  },
+  "system_messages": [
+    "You are a Code Engineer, named coder, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5-coder:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

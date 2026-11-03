@@ -1,0 +1,26 @@
+```python
+def will_it_fly(q, w):
+    # Function to check if the list is a palindrome
+    def is_palindrome(lst):
+        return lst == lst[::-1]
+    
+    # Check if the list is empty
+    if not q:
+        return False
+    
+    # Check if the list is a palindrome
+    if not is_palindrome(q):
+        return False
+    
+    # Calculate the sum of the elements in the list
+    total_weight = sum(q)
+    
+    # Check if the sum is less than or equal to the maximum possible weight
+    return total_weight <= w
+
+# Example test cases
+print(will_it_fly([1, 2], 5))  # False
+print(will_it_fly([3, 2, 3], 1))  # False
+print(will_it_fly([3, 2, 3], 9))  # True
+print(will_it_fly([3], 5))  # True
+```

@@ -1,0 +1,36 @@
+--- baseline_final.py
++++ final.py
+@@ -8,23 +8,22 @@
+     if len(operator) < 1:
+         raise ValueError("Operator list must have at least one operator.")
+ 
+-    valid_operators = {'+', '-', '*', '//', '**'}
+-    if not all(op in valid_operators for op in operator):
+-        raise ValueError("All operators must be one of '+', '-', '*', '//', '**'.")
+-    
+     result = operand[0]
+-    for i, op in enumerate(operator):
+-        if op == '+':
++
++    for i in range(len(operator)):
++        if operator[i] == '+':
+             result += operand[i + 1]
+-        elif op == '-':
++        elif operator[i] == '-':
+             result -= operand[i + 1]
+-        elif op == '*':
++        elif operator[i] == '*':
+             result *= operand[i + 1]
+-        elif op == '//':
++        elif operator[i] == '//':
+             if operand[i + 1] == 0:
+                 raise ValueError("Division by zero is not allowed.")
+             result //= operand[i + 1]
+-        elif op == '**':
++        elif operator[i] == '**':
+             result **= operand[i + 1]
+-    
++        else:
++            raise ValueError("Invalid operator. Only '+', '-', '*', '//', and '**' are allowed.")
++
+     return result

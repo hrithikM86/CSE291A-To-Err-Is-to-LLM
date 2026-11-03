@@ -1,0 +1,18 @@
+Algorithm for `is_nested`:
+
+1. Initialize a counter `depth` to 0.
+2. Iterate through each character `c` in the string:
+   - If `c` is '[', increment `depth` by 1.
+   - If `c` is ']', decrement `depth` by 1.
+   - If `depth` is greater than 0 at any point, set a flag `has_nested` to True.
+3. After the loop, check if `has_nested` is True and `depth` is 0 (to ensure all brackets are balanced).
+4. Return `True` if `has_nested` is True and `depth` is 0, otherwise return `False`.
+
+Edge cases:
+- Handle an empty string by returning `False`.
+- Ensure the string is balanced by checking `depth` is 0 at the end.
+- A string with only one pair of brackets should return `False` as it is not nested.
+
+Complexity:
+- Time: O(n), where n is the length of the string.
+- Space: O(1), constant space used.

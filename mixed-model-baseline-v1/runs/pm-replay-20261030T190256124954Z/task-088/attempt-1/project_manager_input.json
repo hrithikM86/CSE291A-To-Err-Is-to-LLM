@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef sort_array(array):\n    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n    Note:\n    * don't change the given array.\n\n    Examples:\n    * sort_array([]) => []\n    * sort_array([5]) => [5]\n    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]\n    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `sort_array(array)`:\n\n1. **Input Validation**: Check if the input array is empty. If so, return an empty array.\n2. **Edge Case Handling**:\n   - If the array has only one element, return the array as is.\n3. **Determine Sorting Order**:\n   - Calculate the sum of the first and last elements of the array.\n   - If the sum is odd, sort the array in ascending order.\n   - If the sum is even, sort the array in descending order.\n4. **Return the Sorted Array**: Return a new list that is a sorted copy of the original array.\n\nComplexity:\n- **Time Complexity**: O(n log n) due to the sorting operation.\n- **Space Complexity**: O(n) for storing the sorted array.\n\nThis algorithm ensures that the original array is not modified and handles all specified edge cases."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

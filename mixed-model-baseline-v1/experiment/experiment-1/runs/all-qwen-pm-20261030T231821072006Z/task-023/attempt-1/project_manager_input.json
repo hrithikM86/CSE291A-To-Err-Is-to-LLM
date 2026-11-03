@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef strlen(string: str) -> int:\n    \"\"\" Return length of given string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `strlen`:\n\n1. **Input Validation**:\n   - Check if the input `string` is `None`. If so, raise a `TypeError`.\n   - Check if the input `string` is an integer. If so, raise a `TypeError`.\n\n2. **Length Calculation**:\n   - If the input `string` is an empty string (`''`), return 0.\n   - Otherwise, return the length of the string using the built-in `len()` function.\n\n3. **Edge Cases**:\n   - Handle `None` input by raising `TypeError`.\n   - Handle integer input by raising `TypeError`.\n   - Handle empty string by returning 0.\n   - Handle strings with spaces or special characters by counting all characters, including spaces and special characters.\n\n4. **Complexity**:\n   - The time complexity is O(n), where n is the length of the string, due to the `len()` function.\n   - The space complexity is O(1), as no additional space is required beyond the input and output variables.\n\nThis algorithm ensures the function behaves as specified, handling all edge cases and returning the correct length for any valid string input."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List\n\n\ndef below_zero(operations: List[int]) -> bool:\n    \"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n    \"\"\"\n",
+    "previous_stage": "project_manager",
+    "previous_artifact": "### Implementation Checklist for `below_zero` Function\n\n1. **Function Signature:**\n   ```python\n   from typing import List\n\n   def below_zero(operations: List[int]) -> bool:\n       pass\n   ```\n\n2. **Algorithm Steps:**\n   - **Step 1:** Initialize `balance` to 0.\n   - **Step 2:** Iterate through each `operation` in `operations`:\n     - Add `operation` to `balance`.\n     - If `balance` is less than 0, return `True`.\n   - **Step 3:** After the loop, return `False`.\n\n3. **Boundary Conditions and Edge Cases:**\n   - **Empty List:** Return `False`.\n   - **Single Withdrawal Operation:** Return `True` if the single operation is negative.\n   - **Multiple Operations:** Ensure the function correctly handles sequences of deposits and withdrawals.\n   - **Large Numbers:** Use appropriate data types to handle potential integer overflow (e.g., `int` in Python).\n\n4. **Testing:**\n   - Test with an empty list.\n   - Test with a list containing only deposits.\n   - Test with a list containing only withdrawals.\n   - Test with a mix of deposits and withdrawals.\n   - Test with large numbers to ensure no overflow issues.\n\n5. **Example Test Cases:**\n   ```python\n   assert below_zero([1, 2, 3]) == False\n   assert below_zero([1, 2, -4, 5]) == True\n   assert below_zero([]) == False\n   assert below_zero([-1, -2, -3]) == True\n   assert below_zero([100, -101, 102]) == True\n   ```\n\n6. **Complexity:**\n   - **Time Complexity:** O(n), where n is the length of `operations`.\n   - **Space Complexity:** O(1), constant space used for `balance`.\n\nFollow this checklist to ensure a correct and efficient implementation of the `below_zero` function."
+  },
+  "system_messages": [
+    "You are a Code Engineer, named coder, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5-coder:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

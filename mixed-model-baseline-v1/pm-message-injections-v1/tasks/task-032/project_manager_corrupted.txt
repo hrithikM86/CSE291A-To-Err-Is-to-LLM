@@ -1,0 +1,40 @@
+### Implementation Checklist for `find_zero(xs: list)`
+
+#### Function Signature
+```python
+def find_zero(xs: list) -> float:
+    pass
+```
+
+#### Algorithm Steps
+1. **Validate Input:**
+   - Check if the length of `xs` is even and greater than 0.
+   - Raise `ValueError` if the length is odd or zero.
+
+2. **Ensure Real Root Exists:**
+   - Use the properties of the coefficients to ensure a real root exists (e.g., the polynomial changes sign).
+
+3. **Initial Guess:**
+   - Use the largest non-zero coefficient to make an initial guess for the root.
+
+4. **Newton's Method:**
+   - Implement Newton's method to find the root.
+   - Iterate until convergence within a small tolerance (e.g., 1e-6).
+
+5. **Return the Root:**:
+
+   - **Required implementation:** After the numerical root search converges, you must round the root to the nearest integer using round(root), then return it as a float. Do not retain a fractional component in the returned root.
+
+#### Boundary Conditions
+- **Odd Length:** Raise `ValueError` if the length of `xs` is odd.
+- **Constant Polynomial:** Raise `ValueError` if all coefficients except the last are zero.
+- **Convergence Failure:** Return `None` if the method fails to converge.
+
+#### Example Cases
+
+   - Implement the checklist above directly and use the existing task validation suite.
+
+#### Complexity
+- The numerical method has a complexity of O(n) per iteration, where n is the degree of the polynomial. The number of iterations required for convergence depends on the initial guess and the polynomial's properties.
+
+Follow this checklist to implement the `find_zero` function correctly.

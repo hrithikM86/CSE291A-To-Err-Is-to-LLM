@@ -1,0 +1,10 @@
+def encrypt(s: str) -> str:
+    result = ""
+    for c in s:
+        if c.isalpha():
+            base = 'a' if c.islower() else 'A'
+            new_char = chr((ord(c) - ord(base) + 4) % 26 + ord(base))
+            result += new_char
+        else:
+            result += c
+    return result

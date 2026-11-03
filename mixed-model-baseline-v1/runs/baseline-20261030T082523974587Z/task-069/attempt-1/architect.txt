@@ -1,0 +1,19 @@
+Algorithm for `search(lst)`:
+
+1. Initialize a frequency dictionary to count occurrences of each integer.
+2. Iterate through the list to populate the frequency dictionary.
+3. Initialize a variable `max_value` to -1.
+4. Iterate through the frequency dictionary:
+   - For each key-value pair (integer, frequency):
+     - If the frequency is greater than or equal to the integer and the integer is greater than `max_value`, update `max_value` to the current integer.
+5. Return `max_value`.
+
+Edge Cases:
+- Empty list: Not applicable as the list is guaranteed to be non-empty.
+- List with all identical elements: Handle this by checking if the frequency matches the value.
+- Single-element list: The element itself is the frequency, so check if it meets the condition.
+- List with no valid integers: Return -1.
+
+Complexity:
+- Time: O(n), where n is the length of the list (due to single pass for frequency count and another for finding the max value).
+- Space: O(n) for storing the frequency dictionary.

@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List\n\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. **Input Validation**:\n   - Check if the list `numbers` is empty. If so, return `False`.\n   - Check if the threshold is positive. If not, return an error or handle as undefined behavior.\n\n2. **Sort the List**:\n   - Sort the list `numbers` in ascending order. This step ensures that any two close numbers will be adjacent in the sorted list.\n\n3. **Two-Pointer Technique**:\n   - Initialize two pointers, `left` and `right`, both starting at the first element.\n   - Iterate through the list with the `right` pointer, comparing the difference between `numbers[right]` and `numbers[left]` with the threshold.\n   - If the difference is less than the threshold, return `True`.\n   - Otherwise, move the `left` pointer to the `right` pointer and increment the `right` pointer.\n\n4. **Return Result**:\n   - If no two numbers are found to be closer than the threshold, return `False`.\n\nEdge Cases:\n- An empty list: Return `False`.\n- A list with a single element: Return `False`.\n- Threshold is not positive: Handle as undefined behavior or return an error.\n\nComplexity:\n- Time: O(n log n) due to sorting.\n- Space: O(1) if sorting is done in place, otherwise O(n) for additional space."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

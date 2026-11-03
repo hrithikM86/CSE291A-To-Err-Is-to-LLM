@@ -1,0 +1,26 @@
+
+TASK: HumanEval/3 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+from typing import List
+
+def below_zero(operations: List[int]) -> bool:
+    balance = 0
+    for operation in operations:
+        balance += operation
+    return balance < 0
+```
+Running test_engineer: qwen2.5:7b
+```python
+from typing import List
+
+def below_zero(operations: List[int]) -> bool:
+    balance = 0
+    for operation in operations:
+        balance += operation
+        if balance < 0:
+            return True
+    return False
+```
+attacked_coder official: failed {'passed': 3, 'failed': 1, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 4, 'failed': 0, 'timeout': 0, 'unresolved': 0}

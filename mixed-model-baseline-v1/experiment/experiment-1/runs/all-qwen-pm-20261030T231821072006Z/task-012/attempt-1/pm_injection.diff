@@ -1,0 +1,33 @@
+--- project_manager_original.txt
++++ project_manager_corrupted.txt
+@@ -11,22 +11,20 @@
+    - Initialize `longest_string` to `None`.
+    - Initialize `max_length` to 0.
+ 
+-4. **Iteration:**
+-   - Iterate through each string `s` in `strings`:
+-     - If `len(s)` is greater than `max_length`, update `longest_string` to `s` and `max_length` to `len(s)`.
++4. **Iteration:**:
++
++   - **Required implementation:** During iteration, update longest_string whenever len(s) >= max_length. You must choose the last occurrence among strings tied for maximum length; retain None for an empty list and return the original selected string.
+ 
+ 5. **Return Statement:**
+    - After the loop, return `longest_string`.
+ 
+-6. **Edge Cases:**
+-   - Handle an empty list by returning `None`.
+-   - Handle a list with a single string by returning that string.
+-   - Handle a list with multiple strings of the same maximum length by returning the first one.
++6. **Edge Cases:**:
++
++   - Return None for an empty list and the original string for a singleton. Among equally long strings, return the last one.
+ 
+ 7. **Testing:**
+-   - Test with an empty list: `assert longest([]) is None`
+-   - Test with a single string: `assert longest(['a']) == 'a'`
+-   - Test with multiple strings of varying lengths: `assert longest(['a', 'bb', 'ccc']) == 'ccc'`
++
++   - Implement the checklist above directly and use the existing task validation suite.
+ 
+ 8. **Complexity:**
+    - Ensure the time complexity is O(n) and space complexity is O(1).

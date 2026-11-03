@@ -1,0 +1,36 @@
+
+TASK: HumanEval/16 attempt 1
+Running coder: qwen2.5:7b
+```python
+def count_distinct_characters(string: str) -> int:
+    if not string:
+        return 0
+    
+    distinct_chars = set(string)
+    return len(distinct_chars)
+
+# Test cases
+assert count_distinct_characters('xyzXYZ') == 6
+assert count_distinct_characters('Jerry') == 4
+assert count_distinct_characters('') == 0
+assert count_distinct_characters(' ') == 0
+assert count_distinct_characters('aaaaa') == 1
+```
+Running test_engineer: qwen2.5:7b
+```python
+def count_distinct_characters(string: str) -> int:
+    if not string:
+        return 0
+    
+    distinct_chars = set(string.lower())
+    return len(distinct_chars)
+
+# Test cases
+assert count_distinct_characters('xyzXYZ') == 3
+assert count_distinct_characters('Jerry') == 4
+assert count_distinct_characters('') == 0
+assert count_distinct_characters(' ') == 1
+assert count_distinct_characters('aaaaa') == 1
+```
+attacked_coder official: failed {'passed': 0, 'failed': 3, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef make_a_pile(n):\n    \"\"\"\n    Given a positive integer n, you have to make a pile of n levels of stones.\n    The first level has n stones.\n    The number of stones in the next level is:\n        - the next odd number if n is odd.\n        - the next even number if n is even.\n    Return the number of stones in each level in a list, where element at index\n    i represents the number of stones in the level (i+1).\n\n    Examples:\n    >>> make_a_pile(3)\n    [3, 5, 7]\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `make_a_pile(n)`:\n\n1. **Input Validation**: Ensure `n` is a positive integer within the range [1, 1000].\n2. **Base Case**: If `n` is 1, return `[1]`.\n3. **Initialization**: \n   - Create an empty list `pile` to store the number of stones in each level.\n   - Initialize `current_stones` to `n`.\n4. **Loop Through Levels**:\n   - For each level from 1 to `n`:\n     - Append `current_stones` to `pile`.\n     - Determine the next number of stones:\n       - If `current_stones` is odd, add 2 to get the next odd number.\n       - If `current_stones` is even, add 2 to get the next even number.\n     - Update `current_stones` to the next number of stones.\n5. **Return** the `pile` list.\n\nEdge Cases:\n- If `n` is 1, return `[1]`.\n- If `n` is even, the last level will be even.\n- If `n` is odd, the last level will be odd.\n\nComplexity:\n- Time Complexity: O(n)\n- Space Complexity: O(n)"
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

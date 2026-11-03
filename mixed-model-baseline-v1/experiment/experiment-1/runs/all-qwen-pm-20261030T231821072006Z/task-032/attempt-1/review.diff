@@ -1,0 +1,35 @@
+--- all-Qwen raw Coder
++++ all-Qwen reviewed final
+@@ -22,18 +22,18 @@
+     """
+     if len(xs) % 2 != 0 or len(xs) == 0:
+         raise ValueError("The length of xs must be even and greater than 0.")
+-    
++
+     # Ensure a real root exists by checking the sign change
+     for i in range(len(xs) - 1):
+         if xs[i] * xs[i + 1] < 0:
+             break
+     else:
+         raise ValueError("No sign change detected, no real root guaranteed.")
+-    
++
+     # Initial guess based on the largest non-zero coefficient
+     largest_coeff_index = max(range(len(xs)), key=lambda i: abs(xs[i]))
+     x0 = -xs[largest_coeff_index] / xs[largest_coeff_index - 1] if largest_coeff_index > 0 else 0
+-    
++
+     tolerance = 1e-6
+     max_iterations = 1000
+     for _ in range(max_iterations):
+@@ -44,9 +44,5 @@
+         if fpx == 0:
+             break
+         x0 -= fx / fpx
+-    
++
+     return round(x0)
+-
+-# Example cases
+-print(round(find_zero([1, 2]), 2))  # -0.5
+-print(round(find_zero([-6, 11, -6, 1]), 2))  # 1.0

@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef move_one_ball(arr):\n    \"\"\"We have an array 'arr' of N integers arr[1], arr[2], ..., arr[N].The\n    numbers in the array will be randomly ordered. Your task is to determine if\n    it is possible to get an array sorted in non-decreasing order by performing \n    the following operation on the given array:\n        You are allowed to perform right shift operation any number of times.\n    \n    One right shift operation means shifting all elements of the array by one\n    position in the right direction. The last element of the array will be moved to\n    the starting position in the array i.e. 0th index. \n\n    If it is possible to obtain the sorted array by performing the above operation\n    then return True else return False.\n    If the given array is empty then return True.\n\n    Note: The given list is guaranteed to have unique elements.\n\n    For Example:\n    \n    move_one_ball([3, 4, 5, 1, 2])==>True\n    Explanation: By performin 2 right shift operations, non-decreasing order can\n                 be achieved for the given array.\n    move_one_ball([3, 5, 4, 1, 2])==>False\n    Explanation:It is not possible to get non-decreasing order for the given\n                array by performing any number of right shift operations.\n                \n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `move_one_ball(arr)`:\n\n1. **Check for Empty Array**: If the array is empty, return `True`.\n2. **Find the Number of Discontinuities**: \n   - Iterate through the array and count the number of times an element is greater than the next element (considering the last element as the next of the first element after a right shift).\n   - If the count is more than 1, return `False` as it's not possible to sort the array with one right shift.\n3. **Return True**: If the count is 0 or 1, return `True` as the array can be sorted with zero or one right shift.\n\nEdge Cases:\n- Array with a single element: Return `True`.\n- Array already sorted: Return `True`.\n- Array sorted except for the last element being the smallest: Return `True`.\n\nComplexity:\n- Time Complexity: O(N) where N is the length of the array.\n- Space Complexity: O(1) as no additional space is used.\n\nThis algorithm ensures that the function correctly identifies whether the array can be sorted with at most one right shift operation."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

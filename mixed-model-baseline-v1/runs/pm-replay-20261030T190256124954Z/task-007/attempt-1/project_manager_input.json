@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List\n\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    \"\"\" Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. Define the function `filter_by_substring(strings: List[str], substring: str) -> List[str]`.\n2. Check if `strings` is an empty list:\n   - If true, return an empty list.\n3. Check if `substring` is an empty string:\n   - If true, return the original `strings` list.\n4. Initialize an empty list `filtered_strings` to store the results.\n5. Iterate through each string `s` in `strings`:\n   - Convert both `s` and `substring` to lowercase for case-insensitive comparison.\n   - Check if `substring` is a substring of `s`:\n     - If true, append `s` to `filtered_strings`.\n6. Return `filtered_strings`.\n\nComplexity:\n- Time: O(n * m), where n is the number of strings and m is the average length of the strings.\n- Space: O(n), for storing the filtered strings.\n\nEdge Cases:\n- `strings` is an empty list: Return an empty list.\n- `substring` is an empty string: Return the original `strings` list.\n- No strings contain the `substring`: Return an empty list.\n- Strings contain the `substring` in different cases: Ensure case-insensitive comparison."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

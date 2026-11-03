@@ -1,0 +1,146 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "drop",
+  "dry_run": false,
+  "task_id": "HumanEval/51",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-051/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\n\ndef remove_vowels(text):\n    \"\"\"\n    remove_vowels is a function that takes string and returns string without vowels.\n    >>> remove_vowels('')\n    ''\n    >>> remove_vowels(\"abcdef\\nghijklm\")\n    'bcdf\\nghjklm'\n    >>> remove_vowels('abcdef')\n    'bcdf'\n    >>> remove_vowels('aaaaa')\n    ''\n    >>> remove_vowels('aaBAA')\n    'B'\n    >>> remove_vowels('zbcd')\n    'zbcd'\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements:\n- The function `remove_vowels` takes a single input `text` (a string).\n- It returns a new string with all vowels removed.\n- The function should handle an empty string input, returning an empty string.\n- Vowels include 'a', 'e', 'i', 'o', 'u' (both uppercase and lowercase).\n- The function should preserve the original case of the consonants.\n- Whitespace and non-alphabetic characters should remain unchanged.\n- Edge cases: \n  - Empty string: Return ''.\n  - String with only vowels: Return ''.\n  - String with no vowels: Return the original string.",
+      "output_sha256": "a1a2d48cfce8bb51f232fd988ce69cb2ade7b44ec51385e961883ed8e560322f",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\n\ndef remove_vowels(text):\n    \"\"\"\n    remove_vowels is a function that takes string and returns string without vowels.\n    >>> remove_vowels('')\n    ''\n    >>> remove_vowels(\"abcdef\\nghijklm\")\n    'bcdf\\nghjklm'\n    >>> remove_vowels('abcdef')\n    'bcdf'\n    >>> remove_vowels('aaaaa')\n    ''\n    >>> remove_vowels('aaBAA')\n    'B'\n    >>> remove_vowels('zbcd')\n    'zbcd'\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- The function `remove_vowels` takes a single input `text` (a string).\n- It returns a new string with all vowels removed.\n- The function should handle an empty string input, returning an empty string.\n- Vowels include 'a', 'e', 'i', 'o', 'u' (both uppercase and lowercase).\n- The function should preserve the original case of the consonants.\n- Whitespace and non-alphabetic characters should remain unchanged.\n- Edge cases: \n  - Empty string: Return ''.\n  - String with only vowels: Return ''.\n  - String with no vowels: Return the original string."
+      },
+      "delivered_output": "Algorithm for `remove_vowels(text)`:\n\n1. Define the function `remove_vowels(text)`.\n2. Initialize an empty string `result`.\n3. Iterate through each character `c` in `text`:\n   - If `c` is not a vowel (i.e., not 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'):\n     - Append `c` to `result`.\n4. Return `result`.\n\nEdge cases:\n- If `text` is an empty string, return an empty string.\n- If `text` contains only vowels, return an empty string.\n- If `text` contains no vowels, return the original string.\n\nComplexity:\n- Time: O(n), where n is the length of the input string.\n- Space: O(n), for storing the resulting string.",
+      "output_sha256": "8f369ec9792b761f4e97d22145fc5dec6153e3e9f79e2a4c9089c713c294e6b5",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "\n\ndef remove_vowels(text):\n    \"\"\"\n    remove_vowels is a function that takes string and returns string without vowels.\n    >>> remove_vowels('')\n    ''\n    >>> remove_vowels(\"abcdef\\nghijklm\")\n    'bcdf\\nghjklm'\n    >>> remove_vowels('abcdef')\n    'bcdf'\n    >>> remove_vowels('aaaaa')\n    ''\n    >>> remove_vowels('aaBAA')\n    'B'\n    >>> remove_vowels('zbcd')\n    'zbcd'\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `remove_vowels(text)`:\n\n1. Define the function `remove_vowels(text)`.\n2. Initialize an empty string `result`.\n3. Iterate through each character `c` in `text`:\n   - If `c` is not a vowel (i.e., not 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'):\n     - Append `c` to `result`.\n4. Return `result`.\n\nEdge cases:\n- If `text` is an empty string, return an empty string.\n- If `text` contains only vowels, return an empty string.\n- If `text` contains no vowels, return the original string.\n\nComplexity:\n- Time: O(n), where n is the length of the input string.\n- Space: O(n), for storing the resulting string."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `remove_vowels(text)`:\n\n1. **Function Signature**:\n   - Define `remove_vowels(text: str) -> str`.\n\n2. **Algorithm Steps**:\n   - **Step 1**: Initialize an empty string `result`.\n   - **Step 2**: Iterate through each character `c` in `text`.\n     - **Step 2a**: Check if `c` is not a vowel (i.e., not 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U').\n     - **Step 2b**: If `c` is not a vowel, append `c` to `result`.\n   - **Step 3**: Return `result`.\n\n3. **Boundary Conditions**:\n   - **Empty String**: If `text` is an empty string, return an empty string.\n   - **Only Vowels**: If `text` contains only vowels, return an empty string.\n   - **No Vowels**: If `text` contains no vowels, return the original string.\n\n4. **Edge Cases**:\n   - Ensure the function handles strings with only vowels, strings with no vowels, and an empty string correctly.\n\n5. **Complexity**:\n   - **Time Complexity**: O(n), where n is the length of the input string.\n   - **Space Complexity**: O(n), for storing the resulting string.\n\n6. **Testing**:\n   - Test with various inputs including empty strings, strings with only vowels, strings with no vowels, and strings with mixed characters.\n\nBy following this checklist, the coder can ensure a correct and efficient implementation of the `remove_vowels` function.",
+      "output_sha256": "5a7eb7bd6bcda11e6459bcd76ee86c34bc6f219d9bcdad1460bdaf52b84fbc24",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "\n\ndef remove_vowels(text):\n    \"\"\"\n    remove_vowels is a function that takes string and returns string without vowels.\n    >>> remove_vowels('')\n    ''\n    >>> remove_vowels(\"abcdef\\nghijklm\")\n    'bcdf\\nghjklm'\n    >>> remove_vowels('abcdef')\n    'bcdf'\n    >>> remove_vowels('aaaaa')\n    ''\n    >>> remove_vowels('aaBAA')\n    'B'\n    >>> remove_vowels('zbcd')\n    'zbcd'\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `remove_vowels(text)`:\n\n1. **Function Signature**:\n   - Define `remove_vowels(text: str) -> str`.\n\n2. **Algorithm Steps**:\n   - **Step 1**: Initialize an empty string `result`.\n   - **Step 2**: Iterate through each character `c` in `text`.\n     - **Step 2a**: Check if `c` is not a vowel (i.e., not 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U').\n     - **Step 2b**: If `c` is not a vowel, append `c` to `result`.\n   - **Step 3**: Return `result`.\n\n3. **Boundary Conditions**:\n   - **Empty String**: If `text` is an empty string, return an empty string.\n   - **Only Vowels**: If `text` contains only vowels, return an empty string.\n   - **No Vowels**: If `text` contains no vowels, return the original string.\n\n4. **Edge Cases**:\n   - Ensure the function handles strings with only vowels, strings with no vowels, and an empty string correctly.\n\n5. **Complexity**:\n   - **Time Complexity**: O(n), where n is the length of the input string.\n   - **Space Complexity**: O(n), for storing the resulting string.\n\n6. **Testing**:\n   - Test with various inputs including empty strings, strings with only vowels, strings with no vowels, and strings with mixed characters.\n\nBy following this checklist, the coder can ensure a correct and efficient implementation of the `remove_vowels` function."
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 18.66,
+      "prompt_tokens": 659,
+      "completion_tokens": 48,
+      "delivered_output": "```python\ndef remove_vowels(text: str) -> str:\n    vowels = 'aeiouAEIOU'\n    result = ''.join([c for c in text if c not in vowels])\n    return result\n```",
+      "output_sha256": "f371e5c01a50058cc3d77ec60eefabe3edbe46c5f4c4c9ab17c950c6113831a2",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "\n\ndef remove_vowels(text):\n    \"\"\"\n    remove_vowels is a function that takes string and returns string without vowels.\n    >>> remove_vowels('')\n    ''\n    >>> remove_vowels(\"abcdef\\nghijklm\")\n    'bcdf\\nghjklm'\n    >>> remove_vowels('abcdef')\n    'bcdf'\n    >>> remove_vowels('aaaaa')\n    ''\n    >>> remove_vowels('aaBAA')\n    'B'\n    >>> remove_vowels('zbcd')\n    'zbcd'\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\ndef remove_vowels(text: str) -> str:\n    vowels = 'aeiouAEIOU'\n    result = ''.join([c for c in text if c not in vowels])\n    return result\n```"
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 14.16,
+      "prompt_tokens": 351,
+      "completion_tokens": 48,
+      "delivered_output": "```python\ndef remove_vowels(text: str) -> str:\n    vowels = 'aeiouAEIOU'\n    result = ''.join([c for c in text if c not in vowels])\n    return result\n```",
+      "output_sha256": "f371e5c01a50058cc3d77ec60eefabe3edbe46c5f4c4c9ab17c950c6113831a2",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1010,
+    "completion_tokens": 96,
+    "model_seconds": 32.82,
+    "tracking_overhead_seconds": 0.001242,
+    "recovery_wall_seconds": 32.905
+  }
+}

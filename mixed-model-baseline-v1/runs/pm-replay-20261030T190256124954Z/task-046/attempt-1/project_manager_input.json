@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef fib4(n: int):\n    \"\"\"The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fib4(0) -> 0\n    fib4(1) -> 0\n    fib4(2) -> 2\n    fib4(3) -> 0\n    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.\n    >>> fib4(5)\n    4\n    >>> fib4(6)\n    8\n    >>> fib4(7)\n    14\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `fib4(n)`:\n\n1. Validate input: If `n` is negative, raise `ValueError`.\n2. Initialize a list `cache` with the first four elements of the sequence: `[0, 0, 2, 0]`.\n3. For `i` from 4 to `n`:\n   - Compute `cache[i]` as the sum of the last four elements in `cache`: `cache[i] = cache[i-1] + cache[i-2] + cache[i-3] + cache[i-4]`.\n   - Update `cache` to include the new element.\n4. Return `cache[n]`.\n\nEdge cases:\n- Handle `n < 0` by raising `ValueError`.\n\nComplexity:\n- Time: O(n), where n is the input number.\n- Space: O(n), for storing the sequence up to `n`.\n\nThis algorithm efficiently computes the n-th element of the Fib4 sequence iteratively, avoiding the exponential time complexity of a naive recursive approach."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

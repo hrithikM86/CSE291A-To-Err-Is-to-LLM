@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef encode_cyclic(s: str):\n    \"\"\"\n    returns encoded string by cycling groups of three characters.\n    \"\"\"\n    # split string to groups. Each of length 3.\n    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]\n    # cycle elements in each group. Unless group has fewer elements than 3.\n    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]\n    return \"\".join(groups)\n\n\ndef decode_cyclic(s: str):\n    \"\"\"\n    takes as input string encoded with encode_cyclic function. Returns decoded string.\n    \"\"\"\n",
+    "previous_stage": "product_manager",
+    "previous_artifact": "Requirements:\n- `encode_cyclic(s: str)` should take a string `s` as input.\n- The function should split the string into groups of three characters.\n- If a group has exactly three characters, cyclically shift it by moving the first character to the end.\n- If a group has fewer than three characters, leave it unchanged.\n- Join the modified groups back into a single string and return it.\n- `decode_cyclic(s: str)` should take an encoded string as input, which was encoded using `encode_cyclic`.\n- The function should reverse the encoding process to return the original string.\n- Handle edge cases where the input string is empty or has less than three characters."
+  },
+  "system_messages": [
+    "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

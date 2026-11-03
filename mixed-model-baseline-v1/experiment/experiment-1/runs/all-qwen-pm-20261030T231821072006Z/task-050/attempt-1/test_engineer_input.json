@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef encode_shift(s: str):\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    \"\"\"\n    return \"\".join([chr(((ord(ch) + 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n\n\ndef decode_shift(s: str):\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    \"\"\"\n",
+    "previous_stage": "coder",
+    "previous_artifact": "```python\ndef encode_shift(s: str) -> str:\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    \"\"\"\n    return ''.join([chr(((ord(ch) + 5 - ord('a')) % 26) + ord('a')) for ch in s if ch.isalpha()])\n\n\ndef decode_shift(s: str) -> str:\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    \"\"\"\n    return ''.join([chr(((ord(ch) - 5 - ord('a')) % 26) + ord('a')) for ch in s if ch.isalpha()])\n```"
+  },
+  "system_messages": [
+    "You are a Test Engineer, named test_engineer, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

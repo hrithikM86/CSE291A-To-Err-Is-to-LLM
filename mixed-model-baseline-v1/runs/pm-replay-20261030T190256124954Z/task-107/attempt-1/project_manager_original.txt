@@ -1,0 +1,42 @@
+### Implementation Checklist for `even_odd_palindrome(n)`
+
+1. **Function Signature**
+   ```python
+   def even_odd_palindrome(n: int) -> tuple:
+       pass
+   ```
+
+2. **Helper Function**
+   - Define a helper function `is_palindrome(num)` to check if a number is a palindrome.
+   - Algorithm:
+     1. Convert the number to a string.
+     2. Compare the string with its reverse.
+     3. Return `True` if they are the same, `False` otherwise.
+
+3. **Initialization**
+   - Initialize `even_count` and `odd_count` to 0.
+
+4. **Iteration**
+   - Iterate through each number `i` from 1 to `n` (inclusive).
+   - For each `i`, if `is_palindrome(i)` is true:
+     - Check if `i` is even or odd.
+     - Increment `even_count` if `i` is even.
+     - Increment `odd_count` if `i` is odd.
+
+5. **Edge Cases**
+   - If `n` is 1, return `(0, 1)`.
+   - If `n` is 2, return `(1, 1)`.
+
+6. **Return the Result**
+   - Return the tuple `(even_count, odd_count)`.
+
+7. **Boundary Conditions**
+   - Ensure `1 <= n <= 10^3`.
+   - Handle the edge cases where `n` is 1 or 2 explicitly.
+
+8. **Testing**
+   - Test the function with various inputs, including edge cases and typical cases.
+   - Verify the output matches the expected results.
+
+9. **Complexity**
+   - Ensure the overall complexity is O(n log n) by checking the complexity of the `is_palindrome` function and the loop.

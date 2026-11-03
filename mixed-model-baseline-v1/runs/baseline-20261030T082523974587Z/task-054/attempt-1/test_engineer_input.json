@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef same_chars(s0: str, s1: str):\n    \"\"\"\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n    \"\"\"\n",
+    "previous_stage": "coder",
+    "previous_artifact": "```python\ndef same_chars(s0: str, s1: str) -> bool:\n    s0 = s0.lower().replace(\" \", \"\")\n    s1 = s1.lower().replace(\" \", \"\")\n    \n    if len(s0) != len(s1):\n        return False\n    \n    return set(s0) == set(s1)\n```"
+  },
+  "system_messages": [
+    "You are a Test Engineer, named test_engineer, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

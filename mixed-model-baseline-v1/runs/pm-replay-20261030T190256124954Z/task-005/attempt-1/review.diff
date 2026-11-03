@@ -1,0 +1,31 @@
+--- coder_after_pm_injection.py
++++ final.py
+@@ -1,7 +1,8 @@
+ from typing import List
+ 
+ def intersperse(numbers: List[int], delimiter: int) -> List[int]:
+-    """ Insert a number 'delimiter' between every two consecutive elements of input list `numbers`
++    """
++    Insert a number 'delimiter' between every two consecutive elements of input list `numbers`
+     >>> intersperse([], 4)
+     []
+     >>> intersperse([1, 2, 3], 4)
+@@ -9,13 +10,11 @@
+     """
+     if not numbers:
+         return []
+-    
++
+     result = []
+-    for number in numbers:
++    for i, number in enumerate(numbers):
+         result.append(number)
+-        result.append(delimiter)
+-    
+-    # Remove the trailing delimiter
+-    result.pop()
+-    
++        if i < len(numbers) - 1:
++            result.append(delimiter)
++
+     return result

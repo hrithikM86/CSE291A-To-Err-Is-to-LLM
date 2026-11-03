@@ -1,0 +1,47 @@
+### Implementation Checklist for `hex_key` Function
+
+1. **Function Signature**
+   ```python
+   def hex_key(num: str) -> int:
+       pass
+   ```
+
+2. **Algorithm Steps**
+   - **Step 1:** Define a set of prime hexadecimal digits.
+     ```python
+     prime_hex = {'2', '3', '5', '7', 'B', 'D'}
+     ```
+   - **Step 2:** Initialize a counter `count` to 0.
+     ```python
+     count = 0
+     ```
+   - **Step 3:** Iterate through each character `c` in `num`.
+     ```python
+     for c in num:
+         if c in prime_hex:
+             count += 1
+     ```
+   - **Step 4:** Return the `count`.
+     ```python
+     return count
+     ```
+
+3. **Boundary Conditions**
+   - **Empty String:** Return 0.
+   - **Single Character:** Check if it's a prime hex digit.
+   - **Edge Cases:** Ensure the input is always a string and handle uppercase letters correctly.
+
+4. **Example Implementations**
+   - For `num = "AB"`: Expected output is 1.
+   - For `num = "1077E"`: Expected output is 2.
+   - For `num = "ABED1A33"`: Expected output is 4.
+   - For `num = "123456789ABCDEF0"`: Expected output is 6.
+   - For `num = "2020"`: Expected output is 2.
+
+5. **Complexity**
+   - **Time Complexity:** O(n), where n is the length of `num`.
+   - **Space Complexity:** O(1), as the set size is constant.
+
+6. **Testing**
+   - Test with various inputs, including edge cases like empty strings and single characters.
+   - Ensure the function handles uppercase letters correctly.

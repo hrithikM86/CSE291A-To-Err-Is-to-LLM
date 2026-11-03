@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List\n\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    \"\"\" Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n    \"\"\"\n",
+    "previous_stage": "coder",
+    "previous_artifact": "```python\nfrom typing import List\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    \"\"\"\n    Filter an input list of strings only for ones that contain given substring\n    \"\"\"\n    if not strings:\n        return []\n    if not substring:\n        return strings\n    \n    filtered_strings = []\n    for s in strings:\n        if substring.lower() in s.lower():\n            filtered_strings.append(s)\n    \n    return filtered_strings\n```"
+  },
+  "system_messages": [
+    "You are a Test Engineer, named test_engineer, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

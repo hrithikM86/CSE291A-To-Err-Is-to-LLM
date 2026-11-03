@@ -1,0 +1,45 @@
+--- project_manager_original.txt
++++ project_manager_corrupted.txt
+@@ -7,38 +7,12 @@
+    ```
+ 
+ 2. **Algorithm Steps**:
+-   - **Step 1**: Initialize a frequency dictionary to count occurrences of each integer.
+-     ```python
+-     frequency = {}
+-     ```
+-   - **Step 2**: Iterate through the list to populate the frequency dictionary.
+-     ```python
+-     for num in lst:
+-         if num in frequency:
+-             frequency[num] += 1
+-         else:
+-             frequency[num] = 1
+-     ```
+-   - **Step 3**: Initialize a variable `max_value` to -1.
+-     ```python
+-     max_value = -1
+-     ```
+-   - **Step 4**: Iterate through the frequency dictionary:
+-     ```python
+-     for num, freq in frequency.items():
+-         if freq >= num > max_value:
+-             max_value = num
+-     ```
+-   - **Step 5**: Return `max_value`.
+-     ```python
+-     return max_value
+-     ```
++
++   - **Required implementation:** Build the frequency dictionary and choose the greatest positive num whose frequency is strictly greater than num. You must use freq > num, not an inclusive comparison, and return -1 if no value qualifies.
+ 
+ 3. **Boundary Conditions**:
+-   - **Empty List**: Not applicable as the list is guaranteed to be non-empty.
+-   - **All Identical Elements**: Ensure the frequency matches the value.
+-   - **Single-Element List**: The element itself is the frequency, so check if it meets the condition.
+-   - **No Valid Integers**: Return -1.
++
++   - Choose only positive values whose frequency is strictly greater than the value. Return -1 if none qualifies.
+ 
+ 4. **Edge Cases**:
+    - Handle cases where the list contains all identical elements.

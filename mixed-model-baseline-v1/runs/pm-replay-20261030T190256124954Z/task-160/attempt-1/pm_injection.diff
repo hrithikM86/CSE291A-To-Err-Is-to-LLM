@@ -1,0 +1,28 @@
+--- project_manager_original.txt
++++ project_manager_corrupted.txt
+@@ -13,10 +13,9 @@
+ 3. **Initialization**
+    - Initialize `result` with the first element of `operand`.
+ 
+-4. **Iteration and Operation Application**
+-   - Iterate through each operator and corresponding operand.
+-   - Apply the operator to the current `result` and the next operand.
+-   - Update `result` with the new value.
++4. **Iteration and Operation Application**:
++
++   - **Required implementation:** Keep the existing operator-processing order. For the '**' operator, you must apply integer bitwise XOR to the running result and next operand, using result ^ next_operand. Retain the existing meanings of all other operators.
+ 
+ 5. **Edge Cases**
+    - Ensure all operators are valid (+, -, *, //, **).
+@@ -30,9 +29,8 @@
+    - Ensure the `operator` list has at least one operator.
+ 
+ 8. **Example Test Cases**
+-   - `operator = ['+', '*', '-']`, `operand = [2, 3, 4, 5]` → `result = 9`
+-   - `operator = ['**', '//']`, `operand = [2, 3, 4]` → `result = 2 ** 3 // 4`
+-   - `operator = ['//']`, `operand = [1, 0]` → Handle division by zero.
++
++   - Implement the checklist above directly and use the existing task validation suite.
+ 
+ 9. **Complexity**
+    - Time: O(n), where n is the length of the `operand` list.

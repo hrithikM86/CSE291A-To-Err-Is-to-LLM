@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef is_prime(n):\n    \"\"\"Return true if a given number is prime, and false otherwise.\n    >>> is_prime(6)\n    False\n    >>> is_prime(101)\n    True\n    >>> is_prime(11)\n    True\n    >>> is_prime(13441)\n    True\n    >>> is_prime(61)\n    True\n    >>> is_prime(4)\n    False\n    >>> is_prime(1)\n    False\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `is_prime(n)`:\n\n1. **Input Validation**: Ensure `n` is a non-negative integer. If `n` is negative, return `False` (though this case is not applicable as per the specification).\n\n2. **Edge Cases**:\n   - If `n` is 0, return `False`.\n   - If `n` is 1, return `False`.\n   - If `n` is 2, return `True`.\n\n3. **General Case**:\n   - If `n` is even and not 2, return `False`.\n   - For odd `n`, check divisibility from 3 to the square root of `n` in steps of 2 (i.e., 3, 5, 7, ...). If `n` is divisible by any of these numbers, return `False`.\n   - If no divisors are found, return `True`.\n\nComplexity:\n- The algorithm has a time complexity of O(\u221an) due to checking divisibility up to the square root of `n`.\n- The space complexity is O(1) as it uses a constant amount of extra space.\n\nThis algorithm covers all specified edge cases and behaves as expected for the given examples."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

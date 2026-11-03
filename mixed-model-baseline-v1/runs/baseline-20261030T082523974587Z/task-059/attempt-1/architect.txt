@@ -1,0 +1,26 @@
+Algorithm for `largest_prime_factor(n: int)`:
+
+1. **Initialization**:
+   - Set `largest_factor` to 2, the smallest prime number.
+
+2. **Factorization Loop**:
+   - While `n` is even, divide `n` by 2 and update `largest_factor` to 2.
+   - Set `factor` to 3.
+   - While `factor * factor` is less than or equal to `n`:
+     - If `n` is divisible by `factor`, divide `n` by `factor` and update `largest_factor` to `factor`.
+     - Otherwise, increment `factor` by 2 (to skip even numbers).
+
+3. **Final Check**:
+   - If `n` is greater than 1 after the loop, `n` itself is a prime factor and is the largest.
+
+4. **Return**:
+   - Return `largest_factor`.
+
+**Edge Cases**:
+- If `n` is a power of a prime (e.g., 2048), the loop will eventually reduce `n` to 2.
+- If `n` is a product of multiple primes (e.g., 13195), the loop will find and update the largest prime factor.
+- For large `n`, the algorithm efficiently reduces `n` by its smallest prime factors first, ensuring performance.
+
+**Complexity**:
+- Time complexity: O(√n) due to the square root limit in the while loop.
+- Space complexity: O(1) as no additional space is used.

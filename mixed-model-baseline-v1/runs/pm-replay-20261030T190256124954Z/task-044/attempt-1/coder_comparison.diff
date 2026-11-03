@@ -1,0 +1,29 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -1,19 +1,18 @@
+ def change_base(x: int, base: int) -> str:
+-    if not 2 <= base <= 9:
+-        raise ValueError("Base must be between 2 and 9.")
++    if base < 2 or base > 9:
++        raise ValueError("Base must be between 2 and 9")
+     
+     if x == 0:
+         return '0'
+     
+-    result = ''
+-    is_negative = x < 0
+-    x = abs(x)
++    if x < 0:
++        x = -x
++        result = '-'
++    else:
++        result = ''
+     
+     while x > 0:
+         result += str(x % base)
+         x //= base
+     
+-    if is_negative:
+-        result = '-' + result
+-    
+     return result[::-1]

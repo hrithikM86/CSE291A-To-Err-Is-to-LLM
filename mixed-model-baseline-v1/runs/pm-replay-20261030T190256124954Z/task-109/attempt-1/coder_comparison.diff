@@ -1,0 +1,23 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -1,12 +1,10 @@
+ def move_one_ball(arr):
+-    if len(arr) == 0:
++    if not arr:
+         return True
+-    
+-    discontinuities = 0
+-    for i in range(len(arr)):
+-        if arr[i] > arr[(i + 1) % len(arr)]:
+-            discontinuities += 1
+-            if discontinuities > 1:
+-                return False
+-    
+-    return True
++    n = len(arr)
++    sorted_arr = sorted(arr)
++    for i in range(n):
++        if arr == sorted_arr:
++            return True
++        arr.insert(0, arr.pop())
++    return False

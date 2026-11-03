@@ -1,0 +1,34 @@
+### Implementation Checklist for `reverse_delete(s, c)`
+
+1. **Function Signature**
+   ```python
+   def reverse_delete(s: str, c: str) -> tuple:
+       pass
+   ```
+
+2. **Algorithm Steps**
+   - **Input Validation**
+     - Check if `s` or `c` is empty. If so, return `('', False)`.
+   - **Character Removal**
+     - Create an empty string `result`.
+     - Iterate through each character in `s` and append it to `result` if it is not in `c`.
+   - **Palindrome Check**
+     - Check if `result` is a palindrome by comparing it to its reverse (`result == result[::-1]`).
+   - **Return Result**
+     - Return a tuple containing `result` and the boolean result of the palindrome check.
+
+3. **Boundary Conditions**
+   - If `s` or `c` is empty, return `('', False)`.
+   - If `s` contains no characters from `c`, return `(s, s == s[::-1])`.
+   - If `s` is already a palindrome, return `(s, True)`.
+
+4. **Example Test Cases**
+   - `reverse_delete("abcde", "ae")` should return `('bcd', False)`.
+   - `reverse_delete("abcdef", "b")` should return `('acdef', False)`.
+   - `reverse_delete("abcdedcba", "ab")` should return `('cdedc', True)`.
+
+5. **Complexity**
+   - Time: O(n), where n is the length of `s`.
+   - Space: O(n), for storing the `result` string.
+
+Follow these steps to implement the function correctly.

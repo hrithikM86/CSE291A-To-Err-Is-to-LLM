@@ -1,0 +1,22 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -1,12 +1,11 @@
+ def sorted_list_sum(lst: list) -> list:
+-    # Step 1: Filter out strings with odd lengths
+-    filtered_lst = [word for word in lst if len(word) % 2 == 0]
++    # Filter out strings with odd lengths
++    even_length_strings = [s for s in lst if len(s) % 2 == 0]
+     
+-    # Step 2: Remove duplicates by converting to a set and back to a list
+-    unique_lst = list(set(filtered_lst))
++    # Remove duplicates
++    unique_strings = list(dict.fromkeys(even_length_strings))
+     
+-    # Step 3: Sort the list by length, and alphabetically for strings of the same length
+-    sorted_lst = sorted(unique_lst, key=lambda x: (len(x), x))
++    # Sort by length, then alphabetically
++    sorted_strings = sorted(unique_strings, key=lambda x: (len(x), x))
+     
+-    # Step 4: Return the sorted list
+-    return sorted_lst
++    return sorted_strings

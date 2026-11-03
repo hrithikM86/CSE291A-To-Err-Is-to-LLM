@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef histogram(test):\n    \"\"\"Given a string representing a space separated lowercase letters, return a dictionary\n    of the letter with the most repetition and containing the corresponding count.\n    If several letters have the same occurrence, return all of them.\n    \n    Example:\n    histogram('a b c') == {'a': 1, 'b': 1, 'c': 1}\n    histogram('a b b a') == {'a': 2, 'b': 2}\n    histogram('a b c a b') == {'a': 2, 'b': 2}\n    histogram('b b b b a') == {'b': 4}\n    histogram('') == {}\n\n    \"\"\"\n",
+    "previous_stage": "coder",
+    "previous_artifact": "```python\ndef histogram(test: str) -> dict:\n    if not test:\n        return {}\n    \n    # Split the input string into a list of letters\n    letters = test.split()\n    # Initialize a dictionary to store the frequency of each letter\n    frequency = {}\n    # Initialize variables to keep track of the maximum frequency and the result dictionary\n    max_freq = 0\n    result = {}\n    \n    # Count the frequency of each letter\n    for letter in letters:\n        freq = letters.count(letter)\n        frequency[letter] = freq\n        if freq > max_freq:\n            max_freq = freq\n            result = {letter: freq}\n        elif freq == max_freq:\n            result[letter] = freq\n    \n    return result\n```"
+  },
+  "system_messages": [
+    "You are a Test Engineer, named test_engineer, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

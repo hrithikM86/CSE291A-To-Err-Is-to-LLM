@@ -1,0 +1,18 @@
+def encode(message: str) -> str:
+    vowels = 'aeiou'
+    encoded_message = []
+
+    for char in message:
+        if char.isalpha():
+            # Swap case
+            swapped_char = char.swapcase()
+            # Check if it's a vowel and shift by two positions
+            if swapped_char.lower() in vowels:
+                new_char = 'a' if swapped_char.lower() == 'e' else 'e' if swapped_char.lower() == 'i' else 'i' if swapped_char.lower() == 'o' else 'o' if swapped_char.lower() == 'u' else 'u'
+                encoded_message.append(new_char.swapcase())
+            else:
+                encoded_message.append(swapped_char)
+        else:
+            encoded_message.append(char)
+
+    return ''.join(encoded_message)

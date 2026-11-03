@@ -1,0 +1,24 @@
+Algorithm for `iscube(a)`:
+
+1. **Input Validation**: Ensure `a` is an integer. (Not explicitly required but good practice)
+2. **Special Cases**:
+   - If `a` is 0, return `True` (0 is a cube of 0).
+   - If `a` is 1, return `True` (1 is a cube of 1).
+3. **Sign Handling**:
+   - If `a` is negative, check if `-a` is a perfect cube. If so, return `True`.
+4. **Cube Root Calculation**:
+   - Compute the cube root of the absolute value of `a` using `cbrt(abs(a))`.
+   - Check if the cube of the rounded cube root equals `a`.
+5. **Return Result**: Based on the above checks, return `True` or `False`.
+
+Edge Cases:
+- `iscube(0)` -> `True`
+- `iscube(1)` -> `True`
+- `iscube(-1)` -> `True`
+- `iscube(64)` -> `True`
+- `iscube(-64)` -> `True`
+- `iscube(180)` -> `False`
+
+Complexity:
+- The cube root calculation and rounding operations are O(1).
+- The overall complexity is O(1).

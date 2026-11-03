@@ -1,0 +1,22 @@
+
+TASK: HumanEval/72 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def will_it_fly(q, w):
+    if not q:
+        return False
+    if q == q[::-1] and sum(q) < w:
+        return True
+    return False
+```
+Running test_engineer: qwen2.5:7b
+```python
+def will_it_fly(q, w):
+    if not q:
+        return False
+    if q == q[::-1] and sum(q) <= w:
+        return True
+    return False
+```
+attacked_coder official: failed {'passed': 2, 'failed': 1, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

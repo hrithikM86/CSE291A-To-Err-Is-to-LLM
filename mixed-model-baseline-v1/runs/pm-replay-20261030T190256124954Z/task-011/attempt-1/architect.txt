@@ -1,0 +1,20 @@
+Algorithm for `string_xor`:
+
+1. Validate inputs:
+   - Check if `a` or `b` is an empty string. If true, return an empty string.
+   - Check if `a` and `b` contain only '0' and '1'. If not, raise `ValueError`.
+
+2. Initialize result string `result` as an empty string.
+
+3. Determine the maximum length `max_len` between `a` and `b`.
+
+4. Iterate over the range of `max_len`:
+   - For each index `i`, append `a[i] ^ b[i]` to `result` if `i` is within the bounds of both strings. Otherwise, append the corresponding bit from the longer string.
+
+5. Return `result`.
+
+Complexity:
+- Time: O(max(len(a), len(b)))
+- Space: O(max(len(a), len(b)))
+
+This algorithm handles all specified edge cases and input validation.

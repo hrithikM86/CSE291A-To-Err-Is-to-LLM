@@ -1,0 +1,25 @@
+Algorithm:
+
+1. **Initialization**:
+   - Set `left` pointer to 0.
+   - Set `right` pointer to length of `text` - 1.
+   - Initialize `is_palindrome` to True.
+
+2. **Edge Case Handling**:
+   - If `text` is empty, return `True`.
+
+3. **Main Loop**:
+   - While `left < right`:
+     - If `text[left]` is not alphanumeric, increment `left`.
+     - If `text[right]` is not alphanumeric, decrement `right`.
+     - If `text[left].lower()` != `text[right].lower()`, set `is_palindrome` to `False` and break loop.
+     - Increment `left` and decrement `right`.
+
+4. **Return Result**:
+   - Return `is_palindrome`.
+
+Complexity:
+- Time: O(n), where n is the length of the string.
+- Space: O(1), constant space used.
+
+This algorithm ensures all edge cases are handled, including empty strings, case sensitivity, and non-alphanumeric characters.

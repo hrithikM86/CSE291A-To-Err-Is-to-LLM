@@ -1,0 +1,48 @@
+
+TASK: HumanEval/153 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def Strongest_Extension(class_name: str, extensions: list) -> str:
+    if not class_name:
+        return "Class name cannot be empty"
+    if not extensions:
+        return class_name
+
+    max_strength = float('-inf')
+    strongest_extension = ""
+
+    for extension in extensions:
+        cap = sum(1 for char in extension if char.isupper())
+        sm = sum(1 for char in extension if char.islower())
+        strength = cap - sm
+
+        if strength >= max_strength:
+            max_strength = strength
+            strongest_extension = extension
+
+    return f"{class_name}.{strongest_extension}"
+```
+Running test_engineer: qwen2.5:7b
+```python
+def Strongest_Extension(class_name: str, extensions: list) -> str:
+    if not class_name:
+        return "Class name cannot be empty"
+    if not extensions:
+        return class_name
+
+    max_strength = float('-inf')
+    strongest_extension = ""
+
+    for extension in extensions:
+        cap = sum(1 for char in extension if char.isupper())
+        sm = sum(1 for char in extension if char.islower())
+        strength = cap - sm
+
+        if strength >= max_strength:
+            max_strength = strength
+            strongest_extension = extension
+
+    return f"{class_name}.{strongest_extension}"
+```
+attacked_coder official: failed {'passed': 2, 'failed': 1, 'timeout': 0, 'unresolved': 0}
+attacked_final official: failed {'passed': 2, 'failed': 1, 'timeout': 0, 'unresolved': 0}

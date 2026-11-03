@@ -1,0 +1,41 @@
+### Implementation Checklist for `incr_list`
+
+1. **Function Signature**:
+   - Ensure the function is defined as `def incr_list(l: list) -> list:`.
+
+2. **Input Validation**:
+   - Check if the input `l` is a list. If not, raise a `TypeError` with an appropriate message.
+
+3. **Edge Case Handling**:
+   - **Empty List**: If `l` is empty, return an empty list `[]`.
+   - **Single Element List**: If `l` contains a single element, increment it by 1 and return the new list.
+
+4. **Main Logic**:
+   - Initialize an empty list `result`.
+   - Iterate through each element `x` in `l`.
+     - Increment `x` by 1.
+     - Append the incremented value to `result`.
+
+5. **Return**:
+   - Return the `result` list.
+
+6. **Boundary Conditions**:
+   - Ensure the function handles lists with negative numbers correctly.
+   - Test with large lists to ensure performance is as expected.
+
+7. **Testing**:
+   - Test with the provided examples:
+     ```python
+     assert incr_list([1, 2, 3]) == [2, 3, 4]
+     assert incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123]) == [6, 4, 6, 3, 4, 4, 10, 1, 124]
+     ```
+   - Test with edge cases:
+     ```python
+     assert incr_list([]) == []
+     assert incr_list([100]) == [101]
+     ```
+
+8. **Documentation**:
+   - Ensure the docstring matches the original specification.
+
+By following this checklist, you can ensure a correct and robust implementation of the `incr_list` function.

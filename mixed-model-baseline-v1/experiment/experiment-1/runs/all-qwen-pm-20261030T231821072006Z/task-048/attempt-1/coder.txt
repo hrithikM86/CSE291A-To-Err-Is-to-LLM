@@ -1,0 +1,44 @@
+```python
+def is_palindrome(text: str) -> bool:
+    """
+    Checks if given string is a palindrome
+    >>> is_palindrome('')
+    True
+    >>> is_palindrome('aba')
+    True
+    >>> is_palindrome('aaaaa')
+    True
+    >>> is_palindrome('zbcd')
+    False
+    """
+    import re
+
+    # Initialize pointers and result flag
+    left, right = 0, len(text) - 1
+    is_palindrome = True
+
+    # Edge case handling for empty string
+    if not text:
+        return True
+
+    # Main loop to check palindrome
+    while left < right:
+        # Filter out non-alphanumeric characters and normalize to lowercase
+        left_char = re.sub(r'\W+', '', text[left]).lower()
+        right_char = re.sub(r'\W+', '', text[right]).lower()
+
+        # Advance pointers if characters are not alphanumeric
+        if not left_char.isalnum():
+            left += 1
+        if not right_char.isalnum():
+            right -= 1
+        else:
+            # Compare characters
+            if left_char != right_char:
+                is_palindrome = False
+                break
+            left += 1
+            right -= 1
+
+    return is_palindrome
+```

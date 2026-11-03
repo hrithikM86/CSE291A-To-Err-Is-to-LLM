@@ -1,0 +1,14 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -7,9 +7,8 @@
+     
+     for num in arr:
+         if num == 0:
+-            sign_product = 0
+-            break
++            continue
++        magnitude_sum += abs(num)
+         sign_product *= -1 if num < 0 else 1
+-        magnitude_sum += abs(num)
+     
+     return magnitude_sum * sign_product

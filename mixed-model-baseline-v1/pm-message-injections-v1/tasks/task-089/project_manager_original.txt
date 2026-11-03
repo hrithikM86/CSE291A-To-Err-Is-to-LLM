@@ -1,0 +1,41 @@
+### Implementation Checklist for `encrypt(s)` Function
+
+1. **Function Signature**
+   ```python
+   def encrypt(s: str) -> str:
+       pass
+   ```
+
+2. **Algorithm Steps**
+   - **Step 1:** Initialize an empty result string `result`.
+   - **Step 2:** Iterate through each character `c` in the input string `s`.
+     - **Step 2a:** Check if `c` is an alphabetic character.
+       - **Step 2ai:** Determine the base character ('a' or 'A').
+       - **Step 2b:** Calculate the new character by shifting `c` down by 4 positions.
+       - **Step 2bi:** If the new character exceeds 'z' or 'Z', wrap around using modulo 26.
+       - **Step 2c:** Append the new character to `result`.
+     - **Step 2b:** If `c` is not an alphabetic character, append it to `result` as is.
+   - **Step 3:** Return the `result` string.
+
+3. **Boundary Conditions**
+   - **Empty String:** Return an empty string if `s` is empty.
+   - **Case Preservation:** Preserve the case of the original letters.
+   - **Non-Alphabetic Characters:** Non-alphabetic characters remain unchanged.
+
+4. **Edge Cases**
+   - Handle empty string input by returning an empty string.
+   - Preserve the case of the original letters.
+   - Non-alphabetic characters remain unchanged.
+
+5. **Complexity**
+   - **Time Complexity:** O(n), where n is the length of the input string.
+   - **Space Complexity:** O(n), for storing the result string.
+
+6. **Example Implementations**
+   - `encrypt('hi')` should return `'lm'`.
+   - `encrypt('asdfghjkl')` should return `'ewhjklnop'`.
+   - `encrypt('gf')` should return `'kj'`.
+   - `encrypt('et')` should return `'ix'`.
+
+7. **Testing**
+   - Test with various inputs including empty strings, single characters, and strings with mixed cases and non-alphabetic characters.

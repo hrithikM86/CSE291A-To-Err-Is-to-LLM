@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef greatest_common_divisor(a: int, b: int) -> int:\n    \"\"\" Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n    \"\"\"\n",
+    "previous_stage": "coder",
+    "previous_artifact": "```python\ndef greatest_common_divisor(a: int, b: int) -> int:\n    \"\"\"\n    Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n    \"\"\"\n    # Input validation\n    if not isinstance(a, int) or not isinstance(b, int):\n        raise TypeError(\"Both inputs must be integers\")\n\n    # Handle edge cases\n    if a == 0 and b == 0:\n        return 0\n    if a == 0:\n        return abs(b)\n    if b == 0:\n        return abs(a)\n\n    # Ensure both numbers are positive\n    a, b = abs(a), abs(b)\n\n    # Euclidean algorithm\n    while b != 0:\n        a, b = b, a % b\n\n    return a\n```"
+  },
+  "system_messages": [
+    "You are a Test Engineer, named test_engineer, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

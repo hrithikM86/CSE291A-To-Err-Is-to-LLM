@@ -1,0 +1,30 @@
+### Implementation Checklist for `pairs_sum_to_zero(l)`
+
+1. **Function Signature:**
+   ```python
+   def pairs_sum_to_zero(l: list) -> bool:
+   ```
+
+2. **Algorithm Steps:**
+   - **Step 1:** Check if the list `l` has less than 2 elements. If so, return `False`.
+   - **Step 2:** Initialize an empty set `seen` to store seen numbers.
+   - **Step 3:** Iterate through each number `num` in the list `l`:
+     - **Sub-step 3.1:** Check if `-num` is in the set `seen`.
+     - **Sub-step 3.2:** If `-num` is found, return `True`.
+     - **Sub-step 3.3:** Otherwise, add `num` to the set `seen`.
+   - **Step 4:** If no such pair is found after the loop, return `False`.
+
+3. **Boundary Conditions:**
+   - An empty list or a list with a single element should return `False`.
+   - Duplicates do not affect the result; only the presence of a pair that sums to zero matters.
+
+4. **Example Test Cases:**
+   - `pairs_sum_to_zero([1, 3, 5, 0])` should return `False`.
+   - `pairs_sum_to_zero([1, 3, -2, 1])` should return `False`.
+   - `pairs_sum_to_zero([1, 2, 3, 7])` should return `False`.
+   - `pairs_sum_to_zero([2, 4, -5, 3, 5, 7])` should return `True`.
+   - `pairs_sum_to_zero([1])` should return `False`.
+
+5. **Complexity:**
+   - Time: O(n), where n is the number of elements in the list.
+   - Space: O(n) for the set used to store seen numbers.

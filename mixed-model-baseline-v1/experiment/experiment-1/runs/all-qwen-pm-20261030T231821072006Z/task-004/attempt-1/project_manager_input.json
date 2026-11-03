@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List\n\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. **Input Validation**:\n   - Check if the input list is empty. If yes, return `0.0`.\n\n2. **Calculate the Mean**:\n   - Compute the mean of the input numbers.\n\n3. **Calculate Absolute Differences**:\n   - For each number in the list, calculate the absolute difference from the mean.\n\n4. **Compute Mean Absolute Deviation (MAD)**:\n   - Calculate the average of the absolute differences.\n\n5. **Return the Result**:\n   - Return the computed MAD as a float.\n\nEdge Cases:\n- **Empty List**: Return `0.0`.\n- **Single Element List**: Return `0.0` since there are no differences to calculate.\n\nComplexity:\n- **Time Complexity**: O(n), where n is the number of elements in the list.\n- **Space Complexity**: O(1), as no additional space is used other than variables for calculations.\n\nThis algorithm ensures the correct calculation of the Mean Absolute Deviation while handling edge cases as specified."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

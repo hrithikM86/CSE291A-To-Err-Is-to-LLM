@@ -1,0 +1,170 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "retract",
+  "dry_run": false,
+  "task_id": "HumanEval/67",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-067/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef fruit_distribution(s,n):\n    \"\"\"\n    In this task, you will be given a string that represents a number of apples and oranges \n    that are distributed in a basket of fruit this basket contains \n    apples, oranges, and mango fruits. Given the string that represents the total number of \n    the oranges and apples and an integer that represent the total number of the fruits \n    in the basket return the number of the mango fruits in the basket.\n    for examble:\n    fruit_distribution(\"5 apples and 6 oranges\", 19) ->19 - 5 - 6 = 8\n    fruit_distribution(\"0 apples and 1 oranges\",3) -> 3 - 0 - 1 = 2\n    fruit_distribution(\"2 apples and 3 oranges\", 100) -> 100 - 2 - 3 = 95\n    fruit_distribution(\"100 apples and 1 oranges\",120) -> 120 - 100 - 1 = 19\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements:\n- The function `fruit_distribution(s, n)` takes two inputs: a string `s` representing the number of apples and oranges, and an integer `n` representing the total number of fruits.\n- The string `s` is formatted as \"X apples and Y oranges\", where X and Y are non-negative integers.\n- The function returns an integer representing the number of mango fruits in the basket.\n- The number of mango fruits is calculated as `n - (X + Y)`, where X and Y are the numbers of apples and oranges, respectively.\n- Handle cases where the string `s` might be empty or incorrectly formatted, returning 0 for the number of mango fruits in such cases.\n- Ensure the function handles edge cases where `n` is less than the sum of X and Y, returning 0 in such scenarios.",
+      "output_sha256": "7bd5c52c602ecc2daee03058f873f84cb00641ca2af4d1ea4580e9e12db03b09",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef fruit_distribution(s,n):\n    \"\"\"\n    In this task, you will be given a string that represents a number of apples and oranges \n    that are distributed in a basket of fruit this basket contains \n    apples, oranges, and mango fruits. Given the string that represents the total number of \n    the oranges and apples and an integer that represent the total number of the fruits \n    in the basket return the number of the mango fruits in the basket.\n    for examble:\n    fruit_distribution(\"5 apples and 6 oranges\", 19) ->19 - 5 - 6 = 8\n    fruit_distribution(\"0 apples and 1 oranges\",3) -> 3 - 0 - 1 = 2\n    fruit_distribution(\"2 apples and 3 oranges\", 100) -> 100 - 2 - 3 = 95\n    fruit_distribution(\"100 apples and 1 oranges\",120) -> 120 - 100 - 1 = 19\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- The function `fruit_distribution(s, n)` takes two inputs: a string `s` representing the number of apples and oranges, and an integer `n` representing the total number of fruits.\n- The string `s` is formatted as \"X apples and Y oranges\", where X and Y are non-negative integers.\n- The function returns an integer representing the number of mango fruits in the basket.\n- The number of mango fruits is calculated as `n - (X + Y)`, where X and Y are the numbers of apples and oranges, respectively.\n- Handle cases where the string `s` might be empty or incorrectly formatted, returning 0 for the number of mango fruits in such cases.\n- Ensure the function handles edge cases where `n` is less than the sum of X and Y, returning 0 in such scenarios."
+      },
+      "delivered_output": "Algorithm for `fruit_distribution(s, n)`:\n\n1. **Input Validation**:\n   - Check if `s` is empty or not in the format \"X apples and Y oranges\".\n   - If `s` is invalid, return 0.\n\n2. **Extract Numbers**:\n   - Use regular expressions to extract `X` and `Y` from `s`.\n   - Convert `X` and `Y` to integers.\n\n3. **Calculate Mango Fruits**:\n   - If `n` is less than the sum of `X` and `Y`, return 0.\n   - Otherwise, return `n - (X + Y)`.\n\n4. **Edge Cases**:\n   - If `s` is empty, return 0.\n   - If `s` does not contain \"apples and oranges\", return 0.\n   - If `X` or `Y` cannot be converted to integers, return 0.\n\n5. **Return Result**:\n   - Return the calculated number of mango fruits.\n\nComplexity:\n- **Time Complexity**: O(1) - The operations are constant time.\n- **Space Complexity**: O(1) - No additional space is used other than variables for the result and temporary storage.\n\nThis algorithm ensures that all edge cases are handled as per the requirements.",
+      "output_sha256": "fcfaea571fcd9f213ef3f89d0a289fc17a23787ffc3f6e86ca56909e409415f5",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "\ndef fruit_distribution(s,n):\n    \"\"\"\n    In this task, you will be given a string that represents a number of apples and oranges \n    that are distributed in a basket of fruit this basket contains \n    apples, oranges, and mango fruits. Given the string that represents the total number of \n    the oranges and apples and an integer that represent the total number of the fruits \n    in the basket return the number of the mango fruits in the basket.\n    for examble:\n    fruit_distribution(\"5 apples and 6 oranges\", 19) ->19 - 5 - 6 = 8\n    fruit_distribution(\"0 apples and 1 oranges\",3) -> 3 - 0 - 1 = 2\n    fruit_distribution(\"2 apples and 3 oranges\", 100) -> 100 - 2 - 3 = 95\n    fruit_distribution(\"100 apples and 1 oranges\",120) -> 120 - 100 - 1 = 19\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `fruit_distribution(s, n)`:\n\n1. **Input Validation**:\n   - Check if `s` is empty or not in the format \"X apples and Y oranges\".\n   - If `s` is invalid, return 0.\n\n2. **Extract Numbers**:\n   - Use regular expressions to extract `X` and `Y` from `s`.\n   - Convert `X` and `Y` to integers.\n\n3. **Calculate Mango Fruits**:\n   - If `n` is less than the sum of `X` and `Y`, return 0.\n   - Otherwise, return `n - (X + Y)`.\n\n4. **Edge Cases**:\n   - If `s` is empty, return 0.\n   - If `s` does not contain \"apples and oranges\", return 0.\n   - If `X` or `Y` cannot be converted to integers, return 0.\n\n5. **Return Result**:\n   - Return the calculated number of mango fruits.\n\nComplexity:\n- **Time Complexity**: O(1) - The operations are constant time.\n- **Space Complexity**: O(1) - No additional space is used other than variables for the result and temporary storage.\n\nThis algorithm ensures that all edge cases are handled as per the requirements."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `fruit_distribution(s, n)`\n\n1. **Function Signature**:\n   ```python\n   def fruit_distribution(s: str, n: int) -> int:\n       pass\n   ```\n\n2. **Input Validation**:\n   - Check if `s` is empty or not in the format \"X apples and Y oranges\".\n   - If `s` is invalid, return 0.\n\n3. **Extract Numbers**:\n   - Use regular expressions to extract `X` and `Y` from `s`.\n   - Convert `X` and `Y` to integers.\n   - If `X` or `Y` cannot be converted to integers, return 0.\n\n4. **Calculate Mango Fruits**:\n   - If `n` is less than the sum of `X` and `Y`, return 0.\n   - Otherwise, return `n - (X + Y)`.\n\n5. **Edge Cases**:\n   - If `s` is empty, return 0.\n   - If `s` does not contain \"apples and oranges\", return 0.\n\n6. **Return Result**:\n   - Return the calculated number of mango fruits.\n\n7. **Boundary Conditions**:\n   - Ensure that the function handles edge cases such as invalid input formats, non-integer values, and negative numbers.\n\n8. **Testing**:\n   - Test with various inputs including edge cases:\n     - `fruit_distribution(\"5 apples and 6 oranges\", 19)` -> 8\n     - `fruit_distribution(\"0 apples and 1 oranges\", 3)` -> 2\n     - `fruit_distribution(\"2 apples and 3 oranges\", 100)` -> 95\n     - `fruit_distribution(\"100 apples and 1 oranges\", 120)` -> 19\n     - `fruit_distribution(\"\", 10)` -> 0\n     - `fruit_distribution(\"10 apples and oranges\", 15)` -> 0\n     - `fruit_distribution(\"10 apples and 20 oranges\", 10)` -> 0\n\n9. **Code Review**:\n   - Ensure the code is clean, readable, and follows best practices.\n   - Use comments to explain complex parts of the code.\n\n10. **Documentation**:\n    - Add docstring to the function explaining its purpose and parameters.",
+      "output_sha256": "cefdfd42f608e869bd89039afc465d2b10dfc795b9b201a46784b4f411589e0f",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "\ndef fruit_distribution(s,n):\n    \"\"\"\n    In this task, you will be given a string that represents a number of apples and oranges \n    that are distributed in a basket of fruit this basket contains \n    apples, oranges, and mango fruits. Given the string that represents the total number of \n    the oranges and apples and an integer that represent the total number of the fruits \n    in the basket return the number of the mango fruits in the basket.\n    for examble:\n    fruit_distribution(\"5 apples and 6 oranges\", 19) ->19 - 5 - 6 = 8\n    fruit_distribution(\"0 apples and 1 oranges\",3) -> 3 - 0 - 1 = 2\n    fruit_distribution(\"2 apples and 3 oranges\", 100) -> 100 - 2 - 3 = 95\n    fruit_distribution(\"100 apples and 1 oranges\",120) -> 120 - 100 - 1 = 19\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `fruit_distribution(s, n)`\n\n1. **Function Signature**:\n   ```python\n   def fruit_distribution(s: str, n: int) -> int:\n       pass\n   ```\n\n2. **Input Validation**:\n   - Check if `s` is empty or not in the format \"X apples and Y oranges\".\n   - If `s` is invalid, return 0.\n\n3. **Extract Numbers**:\n   - Use regular expressions to extract `X` and `Y` from `s`.\n   - Convert `X` and `Y` to integers.\n   - If `X` or `Y` cannot be converted to integers, return 0.\n\n4. **Calculate Mango Fruits**:\n   - If `n` is less than the sum of `X` and `Y`, return 0.\n   - Otherwise, return `n - (X + Y)`.\n\n5. **Edge Cases**:\n   - If `s` is empty, return 0.\n   - If `s` does not contain \"apples and oranges\", return 0.\n\n6. **Return Result**:\n   - Return the calculated number of mango fruits.\n\n7. **Boundary Conditions**:\n   - Ensure that the function handles edge cases such as invalid input formats, non-integer values, and negative numbers.\n\n8. **Testing**:\n   - Test with various inputs including edge cases:\n     - `fruit_distribution(\"5 apples and 6 oranges\", 19)` -> 8\n     - `fruit_distribution(\"0 apples and 1 oranges\", 3)` -> 2\n     - `fruit_distribution(\"2 apples and 3 oranges\", 100)` -> 95\n     - `fruit_distribution(\"100 apples and 1 oranges\", 120)` -> 19\n     - `fruit_distribution(\"\", 10)` -> 0\n     - `fruit_distribution(\"10 apples and oranges\", 15)` -> 0\n     - `fruit_distribution(\"10 apples and 20 oranges\", 10)` -> 0\n\n9. **Code Review**:\n   - Ensure the code is clean, readable, and follows best practices.\n   - Use comments to explain complex parts of the code.\n\n10. **Documentation**:\n    - Add docstring to the function explaining its purpose and parameters.",
+        "earlier_attempt_history": [
+          {
+            "kind": "message_received",
+            "from_stage": "project_manager",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          },
+          {
+            "kind": "your_previous_answer",
+            "from_stage": "coder",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          }
+        ]
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 21.433,
+      "prompt_tokens": 965,
+      "completion_tokens": 381,
+      "delivered_output": "```python\nimport re\n\ndef fruit_distribution(s: str, n: int) -> int:\n    \"\"\"\n    In this task, you will be given a string that represents a number of apples and oranges \n    that are distributed in a basket of fruit this basket contains \n    apples, oranges, and mango fruits. Given the string that represents the total number of \n    the oranges and apples and an integer that represent the total number of the fruits \n    in the basket return the number of the mango fruits in the basket.\n    for examble:\n    fruit_distribution(\\\"5 apples and 6 oranges\\\", 19) ->19 - 5 - 6 = 8\n    fruit_distribution(\\\"0 apples and 1 oranges\\\",3) -> 3 - 0 - 1 = 2\n    fruit_distribution(\\\"2 apples and 3 oranges\\\", 100) -> 100 - 2 - 3 = 95\n    fruit_distribution(\\\"100 apples and 1 oranges\\\",120) -> 120 - 100 - 1 = 19\n    \"\"\"\n    # Input validation\n    if not s or \"apples and oranges\" not in s:\n        return 0\n    \n    # Extract numbers using regular expressions\n    match = re.search(r'(\\d+) apples and (\\d+) oranges', s)\n    if not match:\n        return 0\n    \n    apples = match.group(1)\n    oranges = match.group(2)\n    \n    # Convert extracted numbers to integers\n    try:\n        apples = int(apples)\n        oranges = int(oranges)\n    except ValueError:\n        return 0\n    \n    # Calculate mango fruits\n    if n < apples + oranges:\n        return 0\n    else:\n        return n - (apples + oranges)\n```",
+      "output_sha256": "56ba9db87e7bcaa28fa4d2b4d5d6939a2e1e3e280c2e246f20b5ea4890b70898",
+      "matches_baseline_output": false,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "\ndef fruit_distribution(s,n):\n    \"\"\"\n    In this task, you will be given a string that represents a number of apples and oranges \n    that are distributed in a basket of fruit this basket contains \n    apples, oranges, and mango fruits. Given the string that represents the total number of \n    the oranges and apples and an integer that represent the total number of the fruits \n    in the basket return the number of the mango fruits in the basket.\n    for examble:\n    fruit_distribution(\"5 apples and 6 oranges\", 19) ->19 - 5 - 6 = 8\n    fruit_distribution(\"0 apples and 1 oranges\",3) -> 3 - 0 - 1 = 2\n    fruit_distribution(\"2 apples and 3 oranges\", 100) -> 100 - 2 - 3 = 95\n    fruit_distribution(\"100 apples and 1 oranges\",120) -> 120 - 100 - 1 = 19\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\nimport re\n\ndef fruit_distribution(s: str, n: int) -> int:\n    \"\"\"\n    In this task, you will be given a string that represents a number of apples and oranges \n    that are distributed in a basket of fruit this basket contains \n    apples, oranges, and mango fruits. Given the string that represents the total number of \n    the oranges and apples and an integer that represent the total number of the fruits \n    in the basket return the number of the mango fruits in the basket.\n    for examble:\n    fruit_distribution(\\\"5 apples and 6 oranges\\\", 19) ->19 - 5 - 6 = 8\n    fruit_distribution(\\\"0 apples and 1 oranges\\\",3) -> 3 - 0 - 1 = 2\n    fruit_distribution(\\\"2 apples and 3 oranges\\\", 100) -> 100 - 2 - 3 = 95\n    fruit_distribution(\\\"100 apples and 1 oranges\\\",120) -> 120 - 100 - 1 = 19\n    \"\"\"\n    # Input validation\n    if not s or \"apples and oranges\" not in s:\n        return 0\n    \n    # Extract numbers using regular expressions\n    match = re.search(r'(\\d+) apples and (\\d+) oranges', s)\n    if not match:\n        return 0\n    \n    apples = match.group(1)\n    oranges = match.group(2)\n    \n    # Convert extracted numbers to integers\n    try:\n        apples = int(apples)\n        oranges = int(oranges)\n    except ValueError:\n        return 0\n    \n    # Calculate mango fruits\n    if n < apples + oranges:\n        return 0\n    else:\n        return n - (apples + oranges)\n```",
+        "earlier_attempt_history": [
+          {
+            "kind": "message_received",
+            "from_stage": "coder",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          },
+          {
+            "kind": "your_previous_answer",
+            "from_stage": "test_engineer",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          }
+        ]
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 21.232,
+      "prompt_tokens": 894,
+      "completion_tokens": 382,
+      "delivered_output": "```python\nimport re\n\ndef fruit_distribution(s: str, n: int) -> int:\n    \"\"\"\n    In this task, you will be given a string that represents a number of apples and oranges \n    that are distributed in a basket of fruit this basket contains \n    apples, oranges, and mango fruits. Given the string that represents the total number of \n    the oranges and apples and an integer that represent the total number of the fruits \n    in the basket return the number of the mango fruits in the basket.\n    for example:\n    fruit_distribution(\"5 apples and 6 oranges\", 19) -> 19 - 5 - 6 = 8\n    fruit_distribution(\"0 apples and 1 oranges\", 3) -> 3 - 0 - 1 = 2\n    fruit_distribution(\"2 apples and 3 oranges\", 100) -> 100 - 2 - 3 = 95\n    fruit_distribution(\"100 apples and 1 oranges\", 120) -> 120 - 100 - 1 = 19\n    \"\"\"\n    # Input validation\n    if not s or \"apples and oranges\" not in s:\n        return 0\n\n    # Extract numbers using regular expressions\n    match = re.search(r'(\\d+) apples and (\\d+) oranges', s)\n    if not match:\n        return 0\n\n    apples = match.group(1)\n    oranges = match.group(2)\n\n    # Convert extracted numbers to integers\n    try:\n        apples = int(apples)\n        oranges = int(oranges)\n    except ValueError:\n        return 0\n\n    # Calculate mango fruits\n    if n < apples + oranges:\n        return 0\n    else:\n        return n - (apples + oranges)\n```",
+      "output_sha256": "6a1fb9d2c4dbe485205a13c7252bf282c7bcb0a153436add3b0dc5979f9a81f1",
+      "matches_baseline_output": false,
+      "matches_attacked_output": false
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1859,
+    "completion_tokens": 763,
+    "model_seconds": 42.665,
+    "tracking_overhead_seconds": 0.000698,
+    "recovery_wall_seconds": 42.718
+  }
+}

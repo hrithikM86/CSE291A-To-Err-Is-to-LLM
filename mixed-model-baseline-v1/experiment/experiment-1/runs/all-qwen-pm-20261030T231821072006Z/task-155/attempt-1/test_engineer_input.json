@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef even_odd_count(num):\n    \"\"\"Given an integer. return a tuple that has the number of even and odd digits respectively.\n\n     Example:\n        even_odd_count(-12) ==> (1, 1)\n        even_odd_count(123) ==> (1, 2)\n    \"\"\"\n",
+    "previous_stage": "coder",
+    "previous_artifact": "```python\ndef even_odd_count(num: int) -> tuple:\n    from collections import Counter\n    \n    # Handle the special case where num is 0\n    if num == 0:\n        return (1, 0)\n    \n    # Convert the absolute value of num to a string and count each digit\n    digits = str(abs(num))\n    digit_counts = Counter(digits)\n    \n    # Count even and odd digits\n    even_count = sum(1 for digit in digit_counts if int(digit) % 2 == 0)\n    odd_count = sum(1 for digit in digit_counts if int(digit) % 2 == 1)\n    \n    return (even_count, odd_count)\n\n# Test cases\nprint(even_odd_count(0))       # Output: (1, 0)\nprint(even_odd_count(-12))     # Output: (1, 1)\nprint(even_odd_count(123))     # Output: (1, 2)\nprint(even_odd_count(-12345))  # Output: (2, 3)\nprint(even_odd_count(2468))    # Output: (4, 0)\n```"
+  },
+  "system_messages": [
+    "You are a Test Engineer, named test_engineer, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

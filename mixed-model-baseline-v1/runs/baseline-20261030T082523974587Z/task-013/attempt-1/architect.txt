@@ -1,0 +1,29 @@
+Algorithm for `greatest_common_divisor(a: int, b: int) -> int`:
+
+1. **Input Validation**: Ensure both `a` and `b` are integers.
+2. **Edge Cases**:
+   - If `a` or `b` is 0, return the non-zero value. If both are 0, return 0.
+3. **Euclidean Algorithm**:
+   - If `b` is 0, return `a`.
+   - Otherwise, recursively call `greatest_common_divisor(b, a % b)`.
+4. **Return Result**: The final result of the recursive calls is the GCD.
+
+Pseudocode:
+```plaintext
+function greatest_common_divisor(a: int, b: int) -> int:
+    if a == 0:
+        return b
+    if b == 0:
+        return a
+    if a < 0:
+        a = -a
+    if b < 0:
+        b = -b
+    return greatest_common_divisor(b, a % b)
+```
+
+Complexity:
+- Time Complexity: O(log(min(a, b))), where `log` is the logarithm base 2.
+- Space Complexity: O(log(min(a, b))), due to the recursion stack.
+
+This algorithm handles all specified edge cases and follows the Euclidean algorithm for computing the GCD.

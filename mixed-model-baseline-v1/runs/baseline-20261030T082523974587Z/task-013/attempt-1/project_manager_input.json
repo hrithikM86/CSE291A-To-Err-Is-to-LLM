@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef greatest_common_divisor(a: int, b: int) -> int:\n    \"\"\" Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `greatest_common_divisor(a: int, b: int) -> int`:\n\n1. **Input Validation**: Ensure both `a` and `b` are integers.\n2. **Edge Cases**:\n   - If `a` or `b` is 0, return the non-zero value. If both are 0, return 0.\n3. **Euclidean Algorithm**:\n   - If `b` is 0, return `a`.\n   - Otherwise, recursively call `greatest_common_divisor(b, a % b)`.\n4. **Return Result**: The final result of the recursive calls is the GCD.\n\nPseudocode:\n```plaintext\nfunction greatest_common_divisor(a: int, b: int) -> int:\n    if a == 0:\n        return b\n    if b == 0:\n        return a\n    if a < 0:\n        a = -a\n    if b < 0:\n        b = -b\n    return greatest_common_divisor(b, a % b)\n```\n\nComplexity:\n- Time Complexity: O(log(min(a, b))), where `log` is the logarithm base 2.\n- Space Complexity: O(log(min(a, b))), due to the recursion stack.\n\nThis algorithm handles all specified edge cases and follows the Euclidean algorithm for computing the GCD."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

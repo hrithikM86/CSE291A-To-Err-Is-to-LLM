@@ -1,0 +1,27 @@
+Algorithm:
+
+1. **Input Validation**:
+   - Check if `class_name` is an empty string or `None`. If so, return an appropriate error message or handle it as specified.
+   - Check if `extensions` is an empty list. If so, return `class_name` as the result.
+
+2. **Calculate Strength**:
+   - For each extension, calculate the strength using the formula `CAP - SM`, where `CAP` is the number of uppercase letters and `SM` is the number of lowercase letters.
+
+3. **Find Strongest Extension**:
+   - Initialize `strongest_extension` and `max_strength` to `None` and `-∞` respectively.
+   - Iterate through each extension:
+     - Calculate its strength.
+     - If the strength is greater than `max_strength`, update `max_strength` and `strongest_extension`.
+     - If the strength is equal to `max_strength`, choose the first one in the list.
+
+4. **Return Result**:
+   - Return the combined string in the format `ClassName.StrongestExtensionName`.
+
+**Edge Cases**:
+- Handle `class_name` being `None` or an empty string.
+- Handle `extensions` being an empty list.
+- Handle cases where all extensions have the same strength, ensuring the first one in the list is chosen.
+
+**Complexity**:
+- Time: O(n * m), where n is the number of extensions and m is the average length of an extension.
+- Space: O(1) for the variables used.

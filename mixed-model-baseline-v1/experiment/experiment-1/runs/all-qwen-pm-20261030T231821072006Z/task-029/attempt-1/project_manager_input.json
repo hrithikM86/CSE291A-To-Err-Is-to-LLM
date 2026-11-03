@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List\n\n\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:\n    \"\"\" Filter an input list of strings only for ones that start with a given prefix.\n    >>> filter_by_prefix([], 'a')\n    []\n    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')\n    ['abc', 'array']\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. Define the function `filter_by_prefix(strings: List[str], prefix: str) -> List[str]`.\n2. Initialize an empty list `filtered_strings` to store the results.\n3. Iterate through each string `s` in `strings`:\n   - Check if `s` starts with `prefix` using `s.startswith(prefix)`.\n   - If true, append `s` to `filtered_strings`.\n4. Return `filtered_strings`.\n\nEdge Cases:\n- If `strings` is empty, return an empty list.\n- If `prefix` is an empty string, return the original `strings` list.\n- Handle strings of varying lengths, ensuring only those starting exactly with `prefix` are included.\n\nComplexity:\n- Time: O(n * m), where n is the number of strings and m is the average length of the strings.\n- Space: O(k), where k is the number of strings starting with the prefix."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

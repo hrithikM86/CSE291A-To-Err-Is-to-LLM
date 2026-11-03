@@ -1,0 +1,28 @@
+### Implementation Checklist for `change_base`
+
+1. **Function Signature**
+   - Define `change_base(x: int, base: int) -> str`
+
+2. **Algorithm Steps**:
+
+   - **Required implementation:** Preserve the zero and sign branches. Repeatedly append the decimal string of x % base and update x to x // base until zero. You must return the remainder digits in extraction order without reversing them.
+
+3. **Boundary Conditions**
+   - Ensure `x` is within the valid range for the base conversion.
+   - Handle the case where `x` is 0.
+   - Handle negative values of `x` by converting `abs(x)` and prepending '-'.
+   - Validate `base` to be between 2 and 9.
+
+4. **Edge Cases**
+   - `x` is 0: Return '0'.
+   - `x` is negative: Convert `abs(x)` and prepend '-'.
+   - Invalid `base`: Raise `ValueError`.
+
+5. **Complexity**
+   - Time: O(log_b(x)), where b is the base.
+   - Space: O(log_b(x)) for storing the result.
+
+### Example Implementations
+
+   - Implement the checklist above directly and use the existing task validation suite.
+

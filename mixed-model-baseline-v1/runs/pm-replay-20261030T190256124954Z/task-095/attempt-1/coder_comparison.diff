@@ -1,0 +1,33 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -1,19 +1,21 @@
+-def check_dict_case(dict):
+-    if not dict:
++def check_dict_case(dictionary):
++    if not dictionary:
+         return False
+ 
+-    lower_count = 0
+-    upper_count = 0
+-    key_count = len(dict)
++    lower_case = False
++    upper_case = False
+ 
+-    for key in dict.keys():
++    for key in dictionary.keys():
+         if not isinstance(key, str):
+             return False
+         if key.islower():
+-            lower_count += 1
++            lower_case = True
+         elif key.isupper():
+-            upper_count += 1
++            upper_case = True
+         else:
+             return False
+ 
+-    return lower_count == key_count or upper_count == key_count
++        if lower_case and upper_case:
++            return False
++
++    return True

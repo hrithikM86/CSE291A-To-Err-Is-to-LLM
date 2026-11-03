@@ -1,0 +1,170 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "retract",
+  "dry_run": false,
+  "task_id": "HumanEval/31",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-031/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\n\ndef is_prime(n):\n    \"\"\"Return true if a given number is prime, and false otherwise.\n    >>> is_prime(6)\n    False\n    >>> is_prime(101)\n    True\n    >>> is_prime(11)\n    True\n    >>> is_prime(13441)\n    True\n    >>> is_prime(61)\n    True\n    >>> is_prime(4)\n    False\n    >>> is_prime(1)\n    False\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements for the `is_prime` function:\n\n- **Input**: A single integer `n` (where `n` is a non-negative integer).\n- **Output**: A boolean value (`True` or `False`).\n- **Behavior**:\n  - Return `True` if `n` is a prime number.\n  - Return `False` if `n` is not a prime number.\n- **Edge Cases**:\n  - `n` = 0: Return `False`.\n  - `n` = 1: Return `False`.\n  - `n` = 2: Return `True` (2 is the smallest prime number).\n  - `n` < 0: Not applicable as input is restricted to non-negative integers.",
+      "output_sha256": "bac6913f0a8e47a511bbe96d7d09b0d25bec7158ce568a3690c00a12805c9cea",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\n\ndef is_prime(n):\n    \"\"\"Return true if a given number is prime, and false otherwise.\n    >>> is_prime(6)\n    False\n    >>> is_prime(101)\n    True\n    >>> is_prime(11)\n    True\n    >>> is_prime(13441)\n    True\n    >>> is_prime(61)\n    True\n    >>> is_prime(4)\n    False\n    >>> is_prime(1)\n    False\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements for the `is_prime` function:\n\n- **Input**: A single integer `n` (where `n` is a non-negative integer).\n- **Output**: A boolean value (`True` or `False`).\n- **Behavior**:\n  - Return `True` if `n` is a prime number.\n  - Return `False` if `n` is not a prime number.\n- **Edge Cases**:\n  - `n` = 0: Return `False`.\n  - `n` = 1: Return `False`.\n  - `n` = 2: Return `True` (2 is the smallest prime number).\n  - `n` < 0: Not applicable as input is restricted to non-negative integers."
+      },
+      "delivered_output": "Algorithm for `is_prime(n)`:\n\n1. **Input Validation**: Ensure `n` is a non-negative integer. If `n` is negative, return `False` (though this case is not applicable as per the specification).\n\n2. **Edge Cases**:\n   - If `n` is 0, return `False`.\n   - If `n` is 1, return `False`.\n   - If `n` is 2, return `True`.\n\n3. **General Case**:\n   - If `n` is even and not 2, return `False`.\n   - For odd `n`, check divisibility from 3 to the square root of `n` in steps of 2 (i.e., 3, 5, 7, ...). If `n` is divisible by any of these numbers, return `False`.\n   - If no divisors are found, return `True`.\n\nComplexity:\n- The algorithm has a time complexity of O(\u221an) due to checking divisibility up to the square root of `n`.\n- The space complexity is O(1) as it uses a constant amount of extra space.\n\nThis algorithm covers all specified edge cases and behaves as expected for the given examples.",
+      "output_sha256": "9cb67b0f8aa29cf1070be25dac4263dca530b60200dce41e39d98c90a719c2c1",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "\n\ndef is_prime(n):\n    \"\"\"Return true if a given number is prime, and false otherwise.\n    >>> is_prime(6)\n    False\n    >>> is_prime(101)\n    True\n    >>> is_prime(11)\n    True\n    >>> is_prime(13441)\n    True\n    >>> is_prime(61)\n    True\n    >>> is_prime(4)\n    False\n    >>> is_prime(1)\n    False\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `is_prime(n)`:\n\n1. **Input Validation**: Ensure `n` is a non-negative integer. If `n` is negative, return `False` (though this case is not applicable as per the specification).\n\n2. **Edge Cases**:\n   - If `n` is 0, return `False`.\n   - If `n` is 1, return `False`.\n   - If `n` is 2, return `True`.\n\n3. **General Case**:\n   - If `n` is even and not 2, return `False`.\n   - For odd `n`, check divisibility from 3 to the square root of `n` in steps of 2 (i.e., 3, 5, 7, ...). If `n` is divisible by any of these numbers, return `False`.\n   - If no divisors are found, return `True`.\n\nComplexity:\n- The algorithm has a time complexity of O(\u221an) due to checking divisibility up to the square root of `n`.\n- The space complexity is O(1) as it uses a constant amount of extra space.\n\nThis algorithm covers all specified edge cases and behaves as expected for the given examples."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `is_prime(n)`\n\n1. **Function Signature**:\n   ```python\n   def is_prime(n: int) -> bool:\n       pass\n   ```\n\n2. **Algorithm Steps**:\n   - **Input Validation**: Ensure `n` is a non-negative integer.\n   - **Edge Cases**:\n     - If `n` is 0, return `False`.\n     - If `n` is 1, return `False`.\n     - If `n` is 2, return `True`.\n   - **General Case**:\n     - If `n` is even and not 2, return `False`.\n     - For odd `n`, check divisibility from 3 to the square root of `n` in steps of 2 (i.e., 3, 5, 7, ...). If `n` is divisible by any of these numbers, return `False`.\n     - If no divisors are found, return `True`.\n\n3. **Boundary Conditions**:\n   - Ensure the function handles non-integer inputs by raising a `TypeError`.\n   - Handle the case where `n` is 0 or 1 explicitly.\n   - Optimize the loop to run up to the square root of `n` and only check odd numbers.\n\n4. **Example Test Cases**:\n   - `is_prime(6)` should return `False`.\n   - `is_prime(101)` should return `True`.\n   - `is_prime(11)` should return `True`.\n   - `is_prime(13441)` should return `True`.\n   - `is_prime(61)` should return `True`.\n   - `is_prime(4)` should return `False`.\n   - `is_prime(1)` should return `False`.\n\n5. **Code Structure**:\n   - Use a `for` loop to check divisibility.\n   - Use a `break` statement to exit the loop early if a divisor is found.\n   - Use a `return` statement to return `True` if no divisors are found.\n\n6. **Complexity**:\n   - Time complexity: O(\u221an).\n   - Space complexity: O(1).\n\n### Example Implementation\n```python\nimport math\n\ndef is_prime(n: int) -> bool:\n    if not isinstance(n, int):\n        raise TypeError(\"Input must be an integer\")\n    if n < 2:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    for i in range(3, int(math.sqrt(n)) + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n```\n\nThis checklist ensures that the implementation covers all necessary aspects of the `is_prime` function.",
+      "output_sha256": "f542ef10eabd2fd36011b7632f94de086de8287812f325dd767b45e79725e87c",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "\n\ndef is_prime(n):\n    \"\"\"Return true if a given number is prime, and false otherwise.\n    >>> is_prime(6)\n    False\n    >>> is_prime(101)\n    True\n    >>> is_prime(11)\n    True\n    >>> is_prime(13441)\n    True\n    >>> is_prime(61)\n    True\n    >>> is_prime(4)\n    False\n    >>> is_prime(1)\n    False\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `is_prime(n)`\n\n1. **Function Signature**:\n   ```python\n   def is_prime(n: int) -> bool:\n       pass\n   ```\n\n2. **Algorithm Steps**:\n   - **Input Validation**: Ensure `n` is a non-negative integer.\n   - **Edge Cases**:\n     - If `n` is 0, return `False`.\n     - If `n` is 1, return `False`.\n     - If `n` is 2, return `True`.\n   - **General Case**:\n     - If `n` is even and not 2, return `False`.\n     - For odd `n`, check divisibility from 3 to the square root of `n` in steps of 2 (i.e., 3, 5, 7, ...). If `n` is divisible by any of these numbers, return `False`.\n     - If no divisors are found, return `True`.\n\n3. **Boundary Conditions**:\n   - Ensure the function handles non-integer inputs by raising a `TypeError`.\n   - Handle the case where `n` is 0 or 1 explicitly.\n   - Optimize the loop to run up to the square root of `n` and only check odd numbers.\n\n4. **Example Test Cases**:\n   - `is_prime(6)` should return `False`.\n   - `is_prime(101)` should return `True`.\n   - `is_prime(11)` should return `True`.\n   - `is_prime(13441)` should return `True`.\n   - `is_prime(61)` should return `True`.\n   - `is_prime(4)` should return `False`.\n   - `is_prime(1)` should return `False`.\n\n5. **Code Structure**:\n   - Use a `for` loop to check divisibility.\n   - Use a `break` statement to exit the loop early if a divisor is found.\n   - Use a `return` statement to return `True` if no divisors are found.\n\n6. **Complexity**:\n   - Time complexity: O(\u221an).\n   - Space complexity: O(1).\n\n### Example Implementation\n```python\nimport math\n\ndef is_prime(n: int) -> bool:\n    if not isinstance(n, int):\n        raise TypeError(\"Input must be an integer\")\n    if n < 2:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    for i in range(3, int(math.sqrt(n)) + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n```\n\nThis checklist ensures that the implementation covers all necessary aspects of the `is_prime` function.",
+        "earlier_attempt_history": [
+          {
+            "kind": "message_received",
+            "from_stage": "project_manager",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          },
+          {
+            "kind": "your_previous_answer",
+            "from_stage": "coder",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          }
+        ]
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 8.299,
+      "prompt_tokens": 974,
+      "completion_tokens": 109,
+      "delivered_output": "```python\nimport math\n\ndef is_prime(n: int) -> bool:\n    if not isinstance(n, int):\n        raise TypeError(\"Input must be an integer\")\n    if n < 2:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    for i in range(3, int(math.sqrt(n)) + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n```",
+      "output_sha256": "139b96488791f31863d34659bae86c6d4be3faefed44ac9844865fc7f9d47029",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "\n\ndef is_prime(n):\n    \"\"\"Return true if a given number is prime, and false otherwise.\n    >>> is_prime(6)\n    False\n    >>> is_prime(101)\n    True\n    >>> is_prime(11)\n    True\n    >>> is_prime(13441)\n    True\n    >>> is_prime(61)\n    True\n    >>> is_prime(4)\n    False\n    >>> is_prime(1)\n    False\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\nimport math\n\ndef is_prime(n: int) -> bool:\n    if not isinstance(n, int):\n        raise TypeError(\"Input must be an integer\")\n    if n < 2:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    for i in range(3, int(math.sqrt(n)) + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n```",
+        "earlier_attempt_history": [
+          {
+            "kind": "message_received",
+            "from_stage": "coder",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          },
+          {
+            "kind": "your_previous_answer",
+            "from_stage": "test_engineer",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          }
+        ]
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 7.593,
+      "prompt_tokens": 465,
+      "completion_tokens": 109,
+      "delivered_output": "```python\nimport math\n\ndef is_prime(n: int) -> bool:\n    if not isinstance(n, int):\n        raise TypeError(\"Input must be an integer\")\n    if n < 2:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    for i in range(3, int(math.sqrt(n)) + 1, 2):\n        if n % i == 0:\n            return False\n    return True\n```",
+      "output_sha256": "139b96488791f31863d34659bae86c6d4be3faefed44ac9844865fc7f9d47029",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1439,
+    "completion_tokens": 218,
+    "model_seconds": 15.892,
+    "tracking_overhead_seconds": 0.00056,
+    "recovery_wall_seconds": 15.94
+  }
+}

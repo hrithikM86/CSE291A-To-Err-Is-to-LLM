@@ -1,0 +1,8 @@
+```python
+def decimal_to_binary(decimal: int) -> str:
+    if decimal == 0:
+        return "db00000000db"
+    binary_str = bin(decimal)[2:]  # Convert to binary and remove the '0b' prefix
+    binary_str = binary_str.zfill(8)  # Left-pad with zeros to ensure 8 digits
+    return f"db{binary_str}db"
+```

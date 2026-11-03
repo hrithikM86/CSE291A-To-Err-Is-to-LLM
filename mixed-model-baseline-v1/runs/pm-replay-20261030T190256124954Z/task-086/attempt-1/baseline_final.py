@@ -1,0 +1,17 @@
+import re
+
+def anti_shuffle(s: str) -> str:
+    if not s:
+        return s
+    
+    words = re.split(r'(\s+)', s)
+    result = []
+    
+    for word in words:
+        if word.strip():  # Check if the word is not just a space
+            sorted_word = ''.join(sorted(word))
+            result.append(sorted_word)
+        else:
+            result.append(word)
+    
+    return ''.join(result)

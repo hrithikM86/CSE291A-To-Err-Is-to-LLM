@@ -1,0 +1,11 @@
+def closest_integer(value: str) -> int:
+    try:
+        num = float(value)
+        if num == 0:
+            return 0
+        elif num > 0:
+            return int(num + 0.5)
+        else:
+            return int(num - 0.5)
+    except ValueError:
+        raise ValueError("Input must be a numeric string")

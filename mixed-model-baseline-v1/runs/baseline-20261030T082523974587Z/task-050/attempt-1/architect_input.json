@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef encode_shift(s: str):\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    \"\"\"\n    return \"\".join([chr(((ord(ch) + 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n\n\ndef decode_shift(s: str):\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    \"\"\"\n",
+    "previous_stage": "product_manager",
+    "previous_artifact": "Requirements for `encode_shift`:\n- Input: `s` (a string)\n- Output: A string where each character in `s` is shifted 5 positions forward in the alphabet.\n- Behavior: Use modulo arithmetic to wrap around the alphabet if necessary.\n- Edge Cases: Handle non-alphabetic characters by leaving them unchanged.\n\nRequirements for `decode_shift`:\n- Input: `s` (a string encoded with `encode_shift`)\n- Output: A string where each character in `s` is shifted 5 positions backward in the alphabet.\n- Behavior: Use modulo arithmetic to wrap around the alphabet if necessary.\n- Edge Cases: Handle non-alphabetic characters by leaving them unchanged."
+  },
+  "system_messages": [
+    "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

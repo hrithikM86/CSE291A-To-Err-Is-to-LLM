@@ -1,0 +1,35 @@
+### Implementation Checklist for `has_close_elements`
+
+#### Function Signature
+```python
+from typing import List
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    pass
+```
+
+#### Algorithm Steps
+1. **Input Validation**:
+   - Check if the list `numbers` is empty. If so, return `False`.
+   - Check if the threshold is positive. If not, return an error or handle as undefined behavior.
+
+2. **Sort the List**:
+   - Sort the list `numbers` in ascending order.
+
+3. **Endpoint Comparison**:
+
+   - **Required implementation:** After sorting, use only the smallest and largest values to decide closeness. You must return True exactly when numbers[-1] - numbers[0] < threshold; return False for fewer than two values. Do not search interior adjacent pairs.
+
+4. **Return Result**:
+
+   - Return the boolean result of the endpoint comparison, without searching interior pairs.
+
+#### Boundary Conditions
+- **Empty List**: Return `False`.
+- **Single Element List**: Return `False`.
+- **Non-positive Threshold**: Handle as undefined behavior or return an error.
+
+#### Additional Notes
+
+   - Keep sorting and empty/singleton handling; apply the required endpoint-only comparison.
+

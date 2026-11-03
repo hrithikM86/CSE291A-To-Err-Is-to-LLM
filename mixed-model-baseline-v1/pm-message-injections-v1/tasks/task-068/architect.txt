@@ -1,0 +1,19 @@
+Algorithm:
+
+1. If the input array is empty, return `[]`.
+2. Initialize `smallest_even` to `None` and `smallest_index` to `-1`.
+3. Iterate through the array:
+   - If the current node is even and (either `smallest_even` is `None` or `current_node < smallest_even` or `current_node == smallest_even and current_index < smallest_index`):
+     - Set `smallest_even` to `current_node`.
+     - Set `smallest_index` to `current_index`.
+4. If `smallest_even` is still `None`, return `[]`.
+5. Return `[smallest_even, smallest_index]`.
+
+Edge Cases:
+- Empty array: Return `[]`.
+- No even values: Return `[]`.
+- Multiple nodes with the same smallest even value: Return the one with the smallest index.
+
+Complexity:
+- Time: O(n), where n is the number of nodes in the array.
+- Space: O(1), constant space is used.

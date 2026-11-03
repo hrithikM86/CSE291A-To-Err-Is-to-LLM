@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef prod_signs(arr):\n    \"\"\"\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n\n    Example:\n    >>> prod_signs([1, 2, 2, -4]) == -9\n    >>> prod_signs([0, 1]) == 0\n    >>> prod_signs([]) == None\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. Check if the input array `arr` is empty.\n   - If empty, return `None`.\n2. Initialize `sign_product` to 1 and `magnitude_sum` to 0.\n3. Iterate through each integer `num` in `arr`:\n   - If `num` is 0:\n     - Set `sign_product` to 0 and break the loop.\n   - Otherwise:\n     - Multiply `sign_product` by the sign of `num` (1 if positive, -1 if negative).\n     - Add the magnitude of `num` to `magnitude_sum`.\n4. Multiply `magnitude_sum` by `sign_product`.\n5. Return the result.\n\nEdge Cases:\n- Handling an empty array by returning `None`.\n- Properly handling zeros, as they set the `sign_product` to 0.\n- Correctly handling both positive and negative numbers.\n\nComplexity:\n- Time: O(n), where n is the length of the array.\n- Space: O(1), constant space used."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

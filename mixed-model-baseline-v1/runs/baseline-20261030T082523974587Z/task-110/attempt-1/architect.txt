@@ -1,0 +1,23 @@
+Algorithm for `exchange(lst1, lst2)`:
+
+1. **Check if `lst1` is already even**: 
+   - If all elements in `lst1` are even, return "YES".
+
+2. **Check if `lst2` contains only odd numbers**:
+   - If all elements in `lst2` are odd, return "NO" because it's impossible to make `lst1` all even by exchanging elements.
+
+3. **Count odd numbers in `lst1` and even numbers in `lst2`**:
+   - Let `odd_count_lst1` be the count of odd numbers in `lst1`.
+   - Let `even_count_lst2` be the count of even numbers in `lst2`.
+
+4. **Determine if exchange is possible**:
+   - If `odd_count_lst1` is less than or equal to `even_count_lst2`, return "YES" because we can replace all odd numbers in `lst1` with even numbers from `lst2`.
+   - Otherwise, return "NO".
+
+**Edge Cases**:
+- If `lst1` is empty, return "NO" (though this case is not applicable as per the assumption).
+- If `lst2` is empty, return "NO" (though this case is not applicable as per the assumption).
+
+**Complexity**:
+- Time: O(n + m), where n is the length of `lst1` and m is the length of `lst2`.
+- Space: O(1) for the counts.

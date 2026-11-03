@@ -1,0 +1,12 @@
+--- coder_after_pm_injection.py
++++ final.py
+@@ -2,4 +2,8 @@
+     if not a or not b:
+         return False
+     
+-    return b in a
++    for i in range(len(b)):
++        rotated_b = b[i:] + b[:i]
++        if rotated_b in a:
++            return True
++    return False

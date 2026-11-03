@@ -1,0 +1,23 @@
+Algorithm:
+
+1. Define the function `filter_by_substring(strings: List[str], substring: str) -> List[str]`.
+2. Check if `strings` is an empty list:
+   - If true, return an empty list.
+3. Check if `substring` is an empty string:
+   - If true, return the original `strings` list.
+4. Initialize an empty list `filtered_strings` to store the results.
+5. Iterate through each string `s` in `strings`:
+   - Convert both `s` and `substring` to lowercase for case-insensitive comparison.
+   - Check if `substring` is a substring of `s`:
+     - If true, append `s` to `filtered_strings`.
+6. Return `filtered_strings`.
+
+Complexity:
+- Time: O(n * m), where n is the number of strings and m is the average length of the strings.
+- Space: O(n), for storing the filtered strings.
+
+Edge Cases:
+- `strings` is an empty list: Return an empty list.
+- `substring` is an empty string: Return the original `strings` list.
+- No strings contain the `substring`: Return an empty list.
+- Strings contain the `substring` in different cases: Ensure case-insensitive comparison.

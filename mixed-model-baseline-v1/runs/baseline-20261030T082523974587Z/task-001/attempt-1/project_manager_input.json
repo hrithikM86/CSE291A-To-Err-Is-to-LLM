@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List\n\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. Initialize an empty list `groups` to store the resulting groups of parentheses.\n2. Initialize an empty string `current_group` to build the current group of parentheses.\n3. Initialize a counter `open_paren_count` to count open parentheses.\n4. Iterate through each character `char` in the input string `paren_string` (ignoring spaces):\n   - If `char` is '(', increment `open_paren_count` and append `char` to `current_group`.\n   - If `char` is ')', decrement `open_paren_count` and append `char` to `current_group`.\n     - If `open_paren_count` becomes 0, add `current_group` to `groups` and reset `current_group`.\n5. Return `groups`.\n\nEdge Cases:\n- Empty input string: Return an empty list.\n- Single group: Return a list containing the single group.\n- Multiple groups: Correctly separate and return each group.\n- Unbalanced or nested groups: Ignore them and only return balanced, non-nested groups.\n\nComplexity:\n- Time: O(n), where n is the length of the input string.\n- Space: O(n), for storing the groups and the current group."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

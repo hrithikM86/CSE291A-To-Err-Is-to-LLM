@@ -1,0 +1,20 @@
+Algorithm for `match_parens(lst)`:
+
+1. **Input Validation**: Check if the input list `lst` contains exactly two strings. If not, return 'No'.
+2. **Edge Cases**:
+   - If any string in `lst` is empty, check if the other string is balanced. If yes, return 'Yes'; otherwise, return 'No'.
+   - If both strings are empty, return 'Yes'.
+3. **Concatenation and Balance Check**:
+   - Concatenate the two strings in both possible orders.
+   - For each concatenated string, use a counter to track the balance of parentheses:
+     - Increment counter for '('.
+     - Decrement counter for ')'.
+     - If at any point the counter is negative, the string is unbalanced.
+     - If the counter is zero at the end, the string is balanced.
+4. **Return Result**: If either concatenated string is balanced, return 'Yes'. Otherwise, return 'No'.
+
+Complexity:
+- **Time Complexity**: O(n), where n is the total length of the two strings.
+- **Space Complexity**: O(n) for storing the concatenated strings.
+
+This algorithm ensures all given examples and edge cases are handled correctly.

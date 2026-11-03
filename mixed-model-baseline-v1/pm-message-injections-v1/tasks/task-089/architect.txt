@@ -1,0 +1,20 @@
+Algorithm for `encrypt(s)`:
+
+1. Initialize an empty result string.
+2. For each character `c` in the input string `s`:
+   - If `c` is an alphabetic character:
+     - Determine its base character ('a' or 'A').
+     - Calculate the new character by shifting `c` down by 4 positions.
+     - If the new character exceeds 'z' or 'Z', wrap around using modulo 26.
+     - Append the new character to the result string.
+   - If `c` is not an alphabetic character, append it to the result string as is.
+3. Return the result string.
+
+Edge cases:
+- Handle empty string input by returning an empty string.
+- Preserve the case of the original letters.
+- Non-alphabetic characters remain unchanged.
+
+Complexity:
+- Time: O(n), where n is the length of the input string.
+- Space: O(n), for storing the result string.

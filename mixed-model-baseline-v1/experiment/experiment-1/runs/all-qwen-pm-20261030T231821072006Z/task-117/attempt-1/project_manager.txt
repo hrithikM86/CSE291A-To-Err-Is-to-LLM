@@ -1,0 +1,36 @@
+### Implementation Checklist for `select_words(s, n)`
+
+1. **Function Signature**
+   ```python
+   def select_words(s: str, n: int) -> list:
+       pass
+   ```
+
+2. **Helper Function**
+   - Define `count_consonants(word: str) -> int` to count consonants in a word.
+     ```python
+     def count_consonants(word: str) -> int:
+         consonants = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ"
+         return sum(1 for char in word if char in consonants)
+     ```
+
+3. **Main Function Steps**:
+
+   - **Required implementation:** Keep the existing consonant-count helper. Include a nonempty word when its consonant count is at least n. You must use >= n rather than equality and preserve word order.
+
+4. **Edge Cases**
+
+   - Return [] for an empty string. Apply the at-least-n consonant condition to all words, including vowel-only words when n == 0.
+
+5. **Complexity**
+   - **Time Complexity:** O(m * k), where m is the number of words in the string and k is the average length of the words.
+   - **Space Complexity:** O(m) for storing the result list.
+
+6. **Example Implementations**
+
+   - Implement the checklist above directly and use the existing task validation suite.
+
+7. **Test Cases**
+
+   - Implement the checklist above directly and use the existing task validation suite.
+

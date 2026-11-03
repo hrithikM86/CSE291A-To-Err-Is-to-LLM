@@ -1,0 +1,17 @@
+```python
+def solve(s: str) -> str:
+    if not s:
+        return s
+
+    result = []
+    has_letters = False
+
+    for char in s:
+        if char.isalpha():
+            has_letters = True
+            result.append(char.swapcase())
+        else:
+            result.append(char)
+
+    return ''.join(result)[::-1] if has_letters else ''.join(result)
+```

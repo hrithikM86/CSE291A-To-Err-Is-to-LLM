@@ -1,0 +1,14 @@
+
+TASK: HumanEval/151 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def double_the_difference(lst):
+    return sum(x**2 for x in lst if isinstance(x, int) and x % 2 != 0)
+```
+Running test_engineer: qwen2.5:7b
+```python
+def double_the_difference(lst):
+    return sum(x**2 for x in lst if isinstance(x, int) and x > 0 and x % 2 != 0)
+```
+attacked_coder official: failed {'passed': 2, 'failed': 1, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

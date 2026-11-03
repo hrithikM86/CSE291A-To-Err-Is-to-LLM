@@ -1,0 +1,33 @@
+
+TASK: HumanEval/2 attempt 1
+Running coder: qwen2.5:7b
+```python
+def truncate_number(number: float) -> float:
+    if not isinstance(number, float):
+        raise TypeError("Input must be a float")
+    
+    if number < 0:
+        return number - int(number)
+    elif number == int(number):
+        return 0.0
+    else:
+        return 1.0 - (number - int(number))
+```
+Running test_engineer: qwen2.5:7b
+```python
+def truncate_number(number: float) -> float:
+    if not isinstance(number, float):
+        raise TypeError("Input must be a float")
+    
+    integer_part = int(number)
+    decimal_part = number - integer_part
+    
+    if number < 0:
+        return decimal_part
+    elif number == integer_part:
+        return 0.0
+    else:
+        return decimal_part
+```
+attacked_coder official: failed {'passed': 2, 'failed': 2, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 4, 'failed': 0, 'timeout': 0, 'unresolved': 0}

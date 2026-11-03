@@ -1,0 +1,23 @@
+```python
+from typing import Optional
+
+def fib(n: int) -> Optional[int]:
+    if n < 1:
+        return None
+    
+    # Memoization dictionary to store previously computed Fibonacci numbers
+    memo = {1: 1, 2: 2}
+    
+    def fib_memo(n: int) -> int:
+        if n not in memo:
+            memo[n] = fib_memo(n - 1) + fib_memo(n - 2)
+        return memo[n]
+    
+    # Limit the computation to n = 50
+    if n > 50:
+        raise ValueError("Input value is too large. Please provide n <= 50.")
+    
+    return fib_memo(n)
+```
+
+This implementation follows the provided checklist by including input validation, base cases, and a memoization technique to optimize the recursive calls. It also handles the boundary condition of `n < 1` and limits the computation to avoid excessive processing.

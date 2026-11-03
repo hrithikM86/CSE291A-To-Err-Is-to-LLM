@@ -1,0 +1,49 @@
+
+TASK: HumanEval/60 attempt 1
+Running coder: qwen2.5:7b
+```python
+def sum_to_n(n: int) -> int:
+    """
+    sum_to_n is a function that sums numbers from 1 to n.
+    >>> sum_to_n(30)
+    465
+    >>> sum_to_n(100)
+    5050
+    >>> sum_to_n(5)
+    15
+    >>> sum_to_n(10)
+    55
+    >>> sum_to_n(1)
+    1
+    """
+    if n < 1 or n > 10000:
+        raise ValueError("n must be within the range [1, 10000].")
+    
+    if n == 1:
+        return 1
+    
+    return n * (n - 1) // 2
+```
+Running test_engineer: qwen2.5:7b
+```python
+def sum_to_n(n: int) -> int:
+    """
+    sum_to_n is a function that sums numbers from 1 to n.
+    >>> sum_to_n(30)
+    465
+    >>> sum_to_n(100)
+    5050
+    >>> sum_to_n(5)
+    15
+    >>> sum_to_n(10)
+    55
+    >>> sum_to_n(1)
+    1
+    """
+    if n < 1 or n > 10000:
+        raise ValueError("n must be within the range [1, 10000].")
+
+    return n * (n + 1) // 2
+```
+attacked_coder official: failed {'passed': 1, 'failed': 2, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

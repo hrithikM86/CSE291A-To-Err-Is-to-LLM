@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef right_angle_triangle(a, b, c):\n    '''\n    Given the lengths of the three sides of a triangle. Return True if the three\n    sides form a right-angled triangle, False otherwise.\n    A right-angled triangle is a triangle in which one angle is right angle or \n    90 degree.\n    Example:\n    right_angle_triangle(3, 4, 5) == True\n    right_angle_triangle(1, 2, 3) == False\n    '''\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `right_angle_triangle(a, b, c)`:\n\n1. Validate input:\n   - Ensure all sides are positive integers.\n   - Check if any side is zero or negative. If so, return `False`.\n\n2. Check if the sides form a valid triangle:\n   - Verify that the sum of any two sides is greater than the third side.\n   - If not, return `False`.\n\n3. Determine if the triangle is right-angled:\n   - Sort the sides to ensure `a \u2264 b \u2264 c`.\n   - Check if `a^2 + b^2 == c^2`.\n   - If true, return `True`.\n   - Otherwise, return `False`.\n\nEdge cases:\n- Sides that do not form a valid triangle.\n- Sides that are zero or negative.\n- Degenerate cases where one side is the sum of the other two.\n\nComplexity:\n- Time: O(1) since the operations are constant.\n- Space: O(1) as no additional space is used."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

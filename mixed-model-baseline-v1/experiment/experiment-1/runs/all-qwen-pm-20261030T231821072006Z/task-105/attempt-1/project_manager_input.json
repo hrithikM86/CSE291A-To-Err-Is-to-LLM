@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef by_length(arr):\n    \"\"\"\n    Given an array of integers, sort the integers that are between 1 and 9 inclusive,\n    reverse the resulting array, and then replace each digit by its corresponding name from\n    \"One\", \"Two\", \"Three\", \"Four\", \"Five\", \"Six\", \"Seven\", \"Eight\", \"Nine\".\n\n    For example:\n      arr = [2, 1, 1, 4, 5, 8, 2, 3]   \n            -> sort arr -> [1, 1, 2, 2, 3, 4, 5, 8] \n            -> reverse arr -> [8, 5, 4, 3, 2, 2, 1, 1]\n      return [\"Eight\", \"Five\", \"Four\", \"Three\", \"Two\", \"Two\", \"One\", \"One\"]\n    \n      If the array is empty, return an empty array:\n      arr = []\n      return []\n    \n      If the array has any strange number ignore it:\n      arr = [1, -1 , 55] \n            -> sort arr -> [-1, 1, 55]\n            -> reverse arr -> [55, 1, -1]\n      return = ['One']\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. Initialize an empty list `valid_digits` to store digits between 1 and 9.\n2. Iterate through `arr`:\n   - If the current element is between 1 and 9, append it to `valid_digits`.\n3. If `valid_digits` is empty, return an empty list.\n4. Sort `valid_digits` in ascending order.\n5. Reverse the sorted `valid_digits` list.\n6. Initialize an empty list `result` to store the final output.\n7. For each digit in the reversed `valid_digits` list:\n   - Append the corresponding name from [\"One\", \"Two\", \"Three\", \"Four\", \"Five\", \"Six\", \"Seven\", \"Eight\", \"Nine\"] to `result`.\n8. Return `result`.\n\nEdge Cases:\n- If `arr` is empty, return an empty list.\n- If `arr` contains numbers outside the range 1-9, ignore them.\n- If `arr` contains only numbers outside the range 1-9, return a list with the corresponding name of the smallest number (if any).\n\nComplexity:\n- Time: O(n log n) due to sorting.\n- Space: O(n) for storing `valid_digits` and `result`."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

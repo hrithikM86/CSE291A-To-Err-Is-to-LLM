@@ -1,0 +1,70 @@
+### Implementation Checklist for `f(n)`:
+
+1. **Function Signature**:
+   ```python
+   def f(n: int) -> list:
+       pass
+   ```
+
+2. **Input Validation**:
+   - Check if `n` is 0 or negative.
+   - If `n` is 0 or negative, return an empty list.
+
+3. **Initialize Result List**:
+   - Create an empty list `result` of size `n`.
+
+4. **Loop Through Indices**:
+   - For each index `i` from 0 to `n-1`:
+     - If `i` is even, calculate the factorial of `i + 1` and store it in `result[i]`.
+     - If `i` is odd, calculate the sum of numbers from 1 to `i + 1` and store it in `result[i]`.
+
+5. **Return Result List**:
+   - Return the `result` list.
+
+6. **Edge Cases**:
+   - `n = 0` or `n < 0`: Return an empty list.
+   - `n = 1`: Return `[1]` (since the sum of numbers from 1 to 1 is 1).
+
+7. **Helper Functions**:
+   - Define a helper function `factorial(x)` to calculate the factorial of `x`.
+   - Define a helper function `sum_to(x)` to calculate the sum of numbers from 1 to `x`.
+
+8. **Complexity**:
+   - Ensure the time complexity is O(n * (i + 1)) and space complexity is O(n).
+
+9. **Testing**:
+   - Test with various values of `n` including edge cases.
+   - Verify the results match the expected output.
+
+### Example Implementation:
+
+```python
+def f(n: int) -> list:
+    if n <= 0:
+        return []
+    
+    result = [0] * n
+    
+    def factorial(x):
+        if x == 0 or x == 1:
+            return 1
+        return x * factorial(x - 1)
+    
+    def sum_to(x):
+        return x * (x + 1) // 2
+    
+    for i in range(n):
+        if i % 2 == 0:
+            result[i] = factorial(i + 1)
+        else:
+            result[i] = sum_to(i + 1)
+    
+    return result
+
+# Test cases
+print(f(5))  # Expected: [1, 2, 6, 24, 15]
+print(f(0))  # Expected: []
+print(f(1))  # Expected: [1]
+```
+
+This checklist ensures a clear and structured approach to implementing the function `f(n)`.

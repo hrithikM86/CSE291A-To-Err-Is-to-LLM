@@ -1,0 +1,31 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -13,20 +13,21 @@
+     fruit_distribution(\"2 apples and 3 oranges\", 100) -> 100 - 2 - 3 = 95
+     fruit_distribution(\"100 apples and 1 oranges\",120) -> 120 - 100 - 1 = 19
+     """
+-    # Input validation
+     if not s or "apples and oranges" not in s:
+         return 0
+     
+-    # Extract numbers using regular expressions
+-    match = re.search(r'(\d+) apples and (\d+) oranges', s)
++    match = re.match(r"(\d+) apples and (\d+) oranges", s)
+     if not match:
+         return 0
+     
+-    apples = int(match.group(1))
+-    oranges = int(match.group(2))
++    apples, oranges = match.groups()
++    try:
++        apples = int(apples)
++        oranges = int(oranges)
++    except ValueError:
++        return 0
+     
+-    # Calculate mango fruits
+     if n < apples + oranges:
+         return 0
+     
+-    return n - (apples + oranges)
++    return n - apples - oranges

@@ -1,0 +1,170 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "retract",
+  "dry_run": false,
+  "task_id": "HumanEval/85",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-085/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef add(lst):\n    \"\"\"Given a non-empty list of integers lst. add the even elements that are at odd indices..\n\n\n    Examples:\n        add([4, 2, 6, 7]) ==> 2 \n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements:\n- **Inputs**: A non-empty list of integers (`lst`).\n- **Outputs**: An integer representing the sum of even elements located at odd indices in the list.\n- **Behavior**:\n  - Traverse the list, considering only elements at odd indices (1st, 3rd, 5th, etc.).\n  - Check if the element at each odd index is even.\n  - Sum up all even elements found at odd indices.\n- **Edge Cases**:\n  - If there are no even elements at odd indices, return 0.\n  - Ensure the list is non-empty; if not, raise an appropriate error.",
+      "output_sha256": "15278b60ccd1a4c0e17db3991b313f6f91b10072dd4d918f2fa86d2f5edb571b",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef add(lst):\n    \"\"\"Given a non-empty list of integers lst. add the even elements that are at odd indices..\n\n\n    Examples:\n        add([4, 2, 6, 7]) ==> 2 \n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- **Inputs**: A non-empty list of integers (`lst`).\n- **Outputs**: An integer representing the sum of even elements located at odd indices in the list.\n- **Behavior**:\n  - Traverse the list, considering only elements at odd indices (1st, 3rd, 5th, etc.).\n  - Check if the element at each odd index is even.\n  - Sum up all even elements found at odd indices.\n- **Edge Cases**:\n  - If there are no even elements at odd indices, return 0.\n  - Ensure the list is non-empty; if not, raise an appropriate error."
+      },
+      "delivered_output": "Algorithm for `add(lst)`:\n\n1. **Input Validation**: Check if the list `lst` is non-empty. If not, raise an error.\n2. **Initialization**: Set `sum_even = 0` to store the sum of even elements at odd indices.\n3. **Traversal**: Iterate through the list using an index-based loop, starting from index 1 (the first odd index) and increment by 2.\n4. **Condition Check**: For each element at the current index:\n   - Check if the element is even.\n   - If even, add it to `sum_even`.\n5. **Output**: Return `sum_even`.\n\n**Edge Cases**:\n- If the list is empty, raise an error.\n- If there are no even elements at odd indices, return 0.\n\n**Complexity**:\n- Time Complexity: O(n), where n is the length of the list.\n- Space Complexity: O(1), as only a few variables are used.",
+      "output_sha256": "81d6f5d66e101df5d6da71c95977fa5b2061aabad5893b6712ae011d1dd6b26f",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "\ndef add(lst):\n    \"\"\"Given a non-empty list of integers lst. add the even elements that are at odd indices..\n\n\n    Examples:\n        add([4, 2, 6, 7]) ==> 2 \n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `add(lst)`:\n\n1. **Input Validation**: Check if the list `lst` is non-empty. If not, raise an error.\n2. **Initialization**: Set `sum_even = 0` to store the sum of even elements at odd indices.\n3. **Traversal**: Iterate through the list using an index-based loop, starting from index 1 (the first odd index) and increment by 2.\n4. **Condition Check**: For each element at the current index:\n   - Check if the element is even.\n   - If even, add it to `sum_even`.\n5. **Output**: Return `sum_even`.\n\n**Edge Cases**:\n- If the list is empty, raise an error.\n- If there are no even elements at odd indices, return 0.\n\n**Complexity**:\n- Time Complexity: O(n), where n is the length of the list.\n- Space Complexity: O(1), as only a few variables are used."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `add(lst)`:\n\n1. **Function Signature**:\n   ```python\n   def add(lst):\n       # Function body\n   ```\n\n2. **Input Validation**:\n   - Check if `lst` is non-empty.\n   - Raise an error if `lst` is empty.\n\n3. **Initialization**:\n   - Initialize `sum_even = 0`.\n\n4. **Traversal**:\n   - Use a for loop with an index-based approach, starting from index 1 and increment by 2.\n   - Iterate through the list: `for i in range(1, len(lst), 2):`\n\n5. **Condition Check**:\n   - For each element at the current index `i`:\n     - Check if `lst[i]` is even using `lst[i] % 2 == 0`.\n     - If even, add `lst[i]` to `sum_even`.\n\n6. **Output**:\n   - Return `sum_even`.\n\n7. **Edge Cases**:\n   - Ensure the function handles an empty list by raising an error.\n   - If no even elements are found at odd indices, return `0`.\n\n8. **Testing**:\n   - Test with various cases including:\n     - Empty list.\n     - List with no even elements at odd indices.\n     - List with even elements at odd indices.\n     - List with mixed even and odd elements.\n\n9. **Complexity**:\n   - Ensure the time complexity is O(n) and space complexity is O(1).\n\nBy following this checklist, the coder can implement the `add(lst)` function correctly.",
+      "output_sha256": "d13585f8634c3ca4c8adb202834a074f5039c9a7235dd968dbd53930b149902f",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "\ndef add(lst):\n    \"\"\"Given a non-empty list of integers lst. add the even elements that are at odd indices..\n\n\n    Examples:\n        add([4, 2, 6, 7]) ==> 2 \n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `add(lst)`:\n\n1. **Function Signature**:\n   ```python\n   def add(lst):\n       # Function body\n   ```\n\n2. **Input Validation**:\n   - Check if `lst` is non-empty.\n   - Raise an error if `lst` is empty.\n\n3. **Initialization**:\n   - Initialize `sum_even = 0`.\n\n4. **Traversal**:\n   - Use a for loop with an index-based approach, starting from index 1 and increment by 2.\n   - Iterate through the list: `for i in range(1, len(lst), 2):`\n\n5. **Condition Check**:\n   - For each element at the current index `i`:\n     - Check if `lst[i]` is even using `lst[i] % 2 == 0`.\n     - If even, add `lst[i]` to `sum_even`.\n\n6. **Output**:\n   - Return `sum_even`.\n\n7. **Edge Cases**:\n   - Ensure the function handles an empty list by raising an error.\n   - If no even elements are found at odd indices, return `0`.\n\n8. **Testing**:\n   - Test with various cases including:\n     - Empty list.\n     - List with no even elements at odd indices.\n     - List with even elements at odd indices.\n     - List with mixed even and odd elements.\n\n9. **Complexity**:\n   - Ensure the time complexity is O(n) and space complexity is O(1).\n\nBy following this checklist, the coder can implement the `add(lst)` function correctly.",
+        "earlier_attempt_history": [
+          {
+            "kind": "message_received",
+            "from_stage": "project_manager",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          },
+          {
+            "kind": "your_previous_answer",
+            "from_stage": "coder",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          }
+        ]
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 6.044,
+      "prompt_tokens": 633,
+      "completion_tokens": 71,
+      "delivered_output": "```python\ndef add(lst):\n    if not lst:\n        raise ValueError(\"The list cannot be empty\")\n    \n    sum_even = 0\n    \n    for i in range(1, len(lst), 2):\n        if lst[i] % 2 == 0:\n            sum_even += lst[i]\n    \n    return sum_even\n```",
+      "output_sha256": "bf93d6c749fd74dc53156a35be9969da7cf9969e7935fac6b6739c36e348cdae",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "\ndef add(lst):\n    \"\"\"Given a non-empty list of integers lst. add the even elements that are at odd indices..\n\n\n    Examples:\n        add([4, 2, 6, 7]) ==> 2 \n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\ndef add(lst):\n    if not lst:\n        raise ValueError(\"The list cannot be empty\")\n    \n    sum_even = 0\n    \n    for i in range(1, len(lst), 2):\n        if lst[i] % 2 == 0:\n            sum_even += lst[i]\n    \n    return sum_even\n```",
+        "earlier_attempt_history": [
+          {
+            "kind": "message_received",
+            "from_stage": "coder",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          },
+          {
+            "kind": "your_previous_answer",
+            "from_stage": "test_engineer",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          }
+        ]
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 7.154,
+      "prompt_tokens": 374,
+      "completion_tokens": 117,
+      "delivered_output": "```python\ndef add(lst):\n    \"\"\"\n    Given a non-empty list of integers lst. add the even elements that are at odd indices.\n    \n    Examples:\n        add([4, 2, 6, 7]) ==> 2 \n    \"\"\"\n    if not lst:\n        raise ValueError(\"The list cannot be empty\")\n    \n    sum_even = 0\n    \n    for i in range(1, len(lst), 2):\n        if lst[i] % 2 == 0:\n            sum_even += lst[i]\n    \n    return sum_even\n```",
+      "output_sha256": "b9bb6469cb6e428de68b163ae521e2723b121316b1a1775d5393614e5753205d",
+      "matches_baseline_output": false,
+      "matches_attacked_output": false
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1007,
+    "completion_tokens": 188,
+    "model_seconds": 13.198,
+    "tracking_overhead_seconds": 0.000369,
+    "recovery_wall_seconds": 13.241
+  }
+}

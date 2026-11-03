@@ -1,0 +1,56 @@
+--- tasks/task-079/project_manager_original.txt
++++ tasks/task-079/project_manager_corrupted.txt
+@@ -7,47 +7,16 @@
+    ```
+ 
+ 2. **Algorithm Steps**:
+-   - **Step 1: Validate Input**
+-     - Check if `decimal` is a non-negative integer.
+-     - If not, raise a `ValueError`.
+-   - **Step 2: Handle Edge Case**
+-     - If `decimal` is 0, return "db0db".
+-   - **Step 3: Convert Decimal to Binary**
+-     - Initialize an empty string `binary`.
+-     - While `decimal` is greater than 0:
+-       - Append `decimal % 2` to `binary`.
+-       - Divide `decimal` by 2 (integer division).
+-     - Reverse `binary` to get the correct binary representation.
+-   - **Step 4: Enclose with 'db'**
+-     - Prepend and append 'db' to `binary`.
+-   - **Step 5: Return Result**
+-     - Return the resulting string.
++
++   - **Required implementation:** Compute the ordinary binary digits and left-pad them with zeros to a minimum width of eight. You must return 'db' + padded_digits + 'db', including the padded zero representation for decimal == 0.
+ 
+ 3. **Boundary Conditions**:
+-   - Ensure the function handles non-negative integers correctly.
+-   - Test with `decimal = 0` to return "db0db".
+-   - Test with `decimal = 1` to return "db1db".
+-   - Test with `decimal = 2` to return "db10db".
+-   - Test with `decimal = 15` to return "db1111db".
+-   - Test with `decimal = 32` to return "db100000db".
+-   - Test with large values to ensure the algorithm works efficiently.
++
++   - All returned binary fields must have at least eight digits, including zero and one, enclosed by the same db markers.
+ 
+ 4. **Example Implementations**:
+-   ```python
+-   def decimal_to_binary(decimal: int) -> str:
+-       if not isinstance(decimal, int) or decimal < 0:
+-           raise ValueError("Input must be a non-negative integer.")
+-       
+-       if decimal == 0:
+-           return "db0db"
+-       
+-       binary = ""
+-       while decimal > 0:
+-           binary += str(decimal % 2)
+-           decimal //= 2
+-       
+-       return "db" + binary[::-1] + "db"
+-   ```
++
++   - Implement the checklist above directly and use the existing task validation suite.
+ 
+ 5. **Testing**:
+    - Use provided examples and additional test cases to ensure correctness.

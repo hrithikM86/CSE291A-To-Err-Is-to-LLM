@@ -1,0 +1,19 @@
+Algorithm for `is_prime(n)`:
+
+1. **Input Validation**: Ensure `n` is a non-negative integer. If `n` is negative, return `False` (though this case is not applicable as per the specification).
+
+2. **Edge Cases**:
+   - If `n` is 0, return `False`.
+   - If `n` is 1, return `False`.
+   - If `n` is 2, return `True`.
+
+3. **General Case**:
+   - If `n` is even and not 2, return `False`.
+   - For odd `n`, check divisibility from 3 to the square root of `n` in steps of 2 (i.e., 3, 5, 7, ...). If `n` is divisible by any of these numbers, return `False`.
+   - If no divisors are found, return `True`.
+
+Complexity:
+- The algorithm has a time complexity of O(√n) due to checking divisibility up to the square root of `n`.
+- The space complexity is O(1) as it uses a constant amount of extra space.
+
+This algorithm covers all specified edge cases and behaves as expected for the given examples.

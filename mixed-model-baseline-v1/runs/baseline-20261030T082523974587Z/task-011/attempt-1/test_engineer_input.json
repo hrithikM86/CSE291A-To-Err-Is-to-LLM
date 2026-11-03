@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List\n\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n",
+    "previous_stage": "coder",
+    "previous_artifact": "```python\nfrom typing import List\n\ndef string_xor(a: str, b: str) -> str:\n    if not a and not b:\n        return \"\"\n    \n    if not a:\n        return b\n    \n    if not b:\n        return a\n    \n    if not all(char in '01' for char in a) or not all(char in '01' for char in b):\n        raise ValueError(\"Input strings must contain only '0' and '1'\")\n    \n    max_len = max(len(a), len(b))\n    result = []\n    \n    for i in range(max_len):\n        if i < len(a) and i < len(b):\n            result.append(str(int(a[i]) ^ int(b[i])))\n        elif i < len(a):\n            result.append(a[i])\n        else:\n            result.append(b[i])\n    \n    return ''.join(result)\n```"
+  },
+  "system_messages": [
+    "You are a Test Engineer, named test_engineer, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

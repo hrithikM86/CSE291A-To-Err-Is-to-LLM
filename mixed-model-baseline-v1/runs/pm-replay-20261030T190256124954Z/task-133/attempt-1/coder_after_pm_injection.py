@@ -1,0 +1,13 @@
+import math
+
+def sum_squares(lst):
+    if not lst:
+        return 0
+    
+    total = 0
+    for num in lst:
+        floored_num = math.floor(num)
+        squared_num = floored_num ** 2
+        total += squared_num
+    
+    return total

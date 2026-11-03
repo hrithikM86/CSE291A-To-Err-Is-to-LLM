@@ -1,0 +1,50 @@
+### Implementation Checklist for `compare` Function
+
+1. **Function Signature**
+   ```python
+   def compare(game, guess):
+       # Function body
+   ```
+
+2. **Input Validation**
+   - Check if `game` and `guess` are lists.
+   - Check if both lists are of equal length.
+   - Raise an exception or return an appropriate error message if validation fails.
+
+3. **Initialization**
+   - Initialize an empty list `result` to store the differences.
+
+4. **Iteration and Calculation**
+   - Iterate through each index `i` from 0 to the length of `game` - 1.
+   - Calculate the absolute difference between `game[i]` and `guess[i]`.
+   - If the difference is 0, append `0` to `result`.
+   - Otherwise, append the absolute difference to `result`.
+
+5. **Edge Cases**
+   - Handle empty lists by returning an empty list.
+   - Ensure negative numbers and zeros are handled correctly.
+
+6. **Return Statement**
+   - Return the `result` list.
+
+7. **Boundary Conditions**
+   - Ensure the function handles edge cases such as empty lists, negative numbers, and zeros.
+
+8. **Testing**
+   - Test with various inputs including edge cases to ensure correctness.
+
+### Example Test Cases
+```python
+# Test Case 1
+assert compare([1,2,3,4,5,1], [1,2,3,4,2,-2]) == [0,0,0,0,3,3]
+# Test Case 2
+assert compare([0,5,0,0,0,4], [4,1,1,0,0,-2]) == [4,4,1,0,0,6]
+# Test Case 3
+assert compare([], []) == []
+# Test Case 4
+assert compare([1,2,3], [1,2,4]) == [0,0,1]
+# Test Case 5
+assert compare([-1,0,1], [1,0,-1]) == [2,0,2]
+```
+
+Ensure all steps are followed to produce a correct and efficient implementation.

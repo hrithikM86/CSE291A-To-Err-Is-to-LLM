@@ -1,0 +1,32 @@
+
+TASK: HumanEval/99 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def closest_integer(value: str) -> int:
+    try:
+        num = float(value)
+        if num == 0:
+            return 0
+        elif num > 0:
+            return int(num + 0.5)
+        else:
+            return int(num - 0.5)
+    except ValueError:
+        raise ValueError("Input must be a numeric string")
+```
+Running test_engineer: qwen2.5:7b
+```python
+def closest_integer(value: str) -> int:
+    try:
+        num = float(value)
+        if num == 0:
+            return 0
+        elif num > 0:
+            return int(num + 0.5) if num - int(num) != 0.5 else int(num) + 1
+        else:
+            return int(num - 0.5) if int(num) - num != 0.5 else int(num) - 1
+    except ValueError:
+        raise ValueError("Input must be a numeric string")
+```
+attacked_coder official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

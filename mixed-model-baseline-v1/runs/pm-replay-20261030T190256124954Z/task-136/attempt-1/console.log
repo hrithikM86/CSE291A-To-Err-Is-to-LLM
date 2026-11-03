@@ -1,0 +1,26 @@
+
+TASK: HumanEval/136 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def largest_smallest_integers(lst):
+    negative_values = [x for x in lst if x < 0]
+    positive_values = [x for x in lst if x > 0]
+
+    a = min(negative_values) if negative_values else None
+    b = max(positive_values) if positive_values else None
+
+    return (a, b)
+```
+Running test_engineer: qwen2.5:7b
+```python
+def largest_smallest_integers(lst):
+    negative_values = [x for x in lst if x < 0]
+    positive_values = [x for x in lst if x > 0]
+
+    a = min(negative_values) if negative_values else None
+    b = max(positive_values) if positive_values else None
+
+    return (a, b)
+```
+attacked_coder official: failed {'passed': 1, 'failed': 2, 'timeout': 0, 'unresolved': 0}
+attacked_final official: failed {'passed': 1, 'failed': 2, 'timeout': 0, 'unresolved': 0}

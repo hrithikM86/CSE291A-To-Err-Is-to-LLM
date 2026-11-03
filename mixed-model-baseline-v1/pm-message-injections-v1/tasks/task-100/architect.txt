@@ -1,0 +1,24 @@
+Algorithm for `make_a_pile(n)`:
+
+1. **Input Validation**: Ensure `n` is a positive integer within the range [1, 1000].
+2. **Base Case**: If `n` is 1, return `[1]`.
+3. **Initialization**: 
+   - Create an empty list `pile` to store the number of stones in each level.
+   - Initialize `current_stones` to `n`.
+4. **Loop Through Levels**:
+   - For each level from 1 to `n`:
+     - Append `current_stones` to `pile`.
+     - Determine the next number of stones:
+       - If `current_stones` is odd, add 2 to get the next odd number.
+       - If `current_stones` is even, add 2 to get the next even number.
+     - Update `current_stones` to the next number of stones.
+5. **Return** the `pile` list.
+
+Edge Cases:
+- If `n` is 1, return `[1]`.
+- If `n` is even, the last level will be even.
+- If `n` is odd, the last level will be odd.
+
+Complexity:
+- Time Complexity: O(n)
+- Space Complexity: O(n)

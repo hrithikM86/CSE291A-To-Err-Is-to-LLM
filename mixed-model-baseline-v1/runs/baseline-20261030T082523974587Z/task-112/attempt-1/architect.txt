@@ -1,0 +1,22 @@
+Algorithm for `reverse_delete(s, c)`:
+
+1. **Input Validation**:
+   - Check if `s` or `c` is empty. If so, return `('', False)`.
+
+2. **Character Removal**:
+   - Create a new string `result` by iterating through `s` and appending characters not in `c`.
+
+3. **Palindrome Check**:
+   - Check if `result` is a palindrome by comparing it to its reverse (`result == result[::-1]`).
+
+4. **Return Result**:
+   - Return a tuple containing `result` and the boolean result of the palindrome check.
+
+**Edge Cases**:
+- If `s` or `c` is empty, return `('', False)`.
+- If `s` contains no characters from `c`, return `(s, s == s[::-1])`.
+- If `s` is already a palindrome, return `(s, True)`.
+
+**Complexity**:
+- Time: O(n), where n is the length of `s`.
+- Space: O(n), for storing the `result` string.

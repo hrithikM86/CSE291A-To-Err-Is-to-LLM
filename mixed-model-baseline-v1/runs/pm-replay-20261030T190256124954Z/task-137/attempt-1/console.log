@@ -1,0 +1,60 @@
+
+TASK: HumanEval/137 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def compare_one(a, b):
+    def to_float(value):
+        if isinstance(value, str):
+            value = value.replace(',', '.')
+            try:
+                return float(value)
+            except ValueError:
+                return None
+        elif isinstance(value, (int, float)):
+            return float(value)
+        else:
+            return None
+
+    float_a = to_float(a)
+    float_b = to_float(b)
+
+    if float_a is None or float_b is None:
+        return None
+
+    if float_a == float_b:
+        return None
+    elif float_a > float_b:
+        return a
+    else:
+        return b
+```
+Running test_engineer: qwen2.5:7b
+```python
+def compare_one(a, b):
+    def to_float(value):
+        if isinstance(value, str):
+            value = value.replace(',', '.')
+            try:
+                return float(value)
+            except ValueError:
+                return None
+        elif isinstance(value, (int, float)):
+            return float(value)
+        else:
+            return None
+
+    float_a = to_float(a)
+    float_b = to_float(b)
+
+    if float_a is None or float_b is None:
+        return None
+
+    if float_a == float_b:
+        return None
+    elif float_a > float_b:
+        return a
+    else:
+        return b
+```
+attacked_coder official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

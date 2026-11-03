@@ -1,0 +1,29 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -2,17 +2,17 @@
+     if not lst:
+         return []
+     
++    sorted_lst = lst.copy()
+     result = []
+-    lst_copy = lst.copy()
+     
+-    while lst_copy:
+-        min_val = min(lst_copy)
+-        result.append(min_val)
+-        lst_copy.remove(min_val)
+-        
+-        if lst_copy:
+-            max_val = max(lst_copy)
++    while sorted_lst:
++        if result and result[-1] == max(sorted_lst):
++            min_val = min(sorted_lst)
++            result.append(min_val)
++            sorted_lst.remove(min_val)
++        else:
++            max_val = max(sorted_lst)
+             result.append(max_val)
+-            lst_copy.remove(max_val)
++            sorted_lst.remove(max_val)
+     
+     return result

@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef string_sequence(n: int) -> str:\n    \"\"\" Return a string containing space-delimited numbers starting from 0 upto n inclusive.\n    >>> string_sequence(0)\n    '0'\n    >>> string_sequence(5)\n    '0 1 2 3 4 5'\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `string_sequence(n: int) -> str`:\n\n1. Validate input: Ensure `n` is a non-negative integer.\n2. If `n` is 0, return `'0'`.\n3. For `n > 0`:\n   - Initialize an empty string `result`.\n   - Loop from 0 to `n` (inclusive):\n     - Convert each number to a string and append it to `result` followed by a space.\n4. Return `result` trimmed of the trailing space.\n\nEdge Cases:\n- `n = 0`: Return `'0'`.\n- `n = 1`: Return `'0 1'`.\n- Large `n`: Ensure the algorithm's time complexity is O(n) to handle large numbers efficiently.\n- Minimum and maximum integer values: Handle these edge cases by ensuring the algorithm works correctly for the smallest and largest possible integer values.\n\nComplexity:\n- Time: O(n)\n- Space: O(n) for storing the result string."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

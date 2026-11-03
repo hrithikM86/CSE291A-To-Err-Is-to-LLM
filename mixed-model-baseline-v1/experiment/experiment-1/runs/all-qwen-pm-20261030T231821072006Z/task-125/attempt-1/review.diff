@@ -1,0 +1,11 @@
+--- all-Qwen raw Coder
++++ all-Qwen reviewed final
+@@ -2,7 +2,7 @@
+ 
+ def split_words(txt: str) -> Union[List[str], int]:
+     if ',' in txt:
+-        return [word.strip() for word in txt.split(',')]
++        return [word.strip() for word in txt.split(',') if word]
+     elif ' ' in txt:
+         return [word for word in txt.split(' ') if word]
+     else:

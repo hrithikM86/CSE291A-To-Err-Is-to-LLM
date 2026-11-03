@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef x_or_y(n, x, y):\n    \"\"\"A simple program which should return the value of x if n is \n    a prime number and should return the value of y otherwise.\n\n    Examples:\n    for x_or_y(7, 34, 12) == 34\n    for x_or_y(15, 8, 5) == 5\n    \n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `x_or_y(n, x, y)`:\n\n1. **Input Validation**: Check if `n` is less than 2. If true, return `y`.\n2. **Prime Check**:\n   - If `n` is 2, return `x` (since 2 is the smallest prime number).\n   - For `n > 2`, check if `n` is divisible by any integer from 2 to the square root of `n`. If any such divisor is found, `n` is not prime, return `y`.\n   - If no divisors are found, `n` is prime, return `x`.\n3. **Efficiency Consideration**: Use a loop to check divisibility up to the square root of `n` to handle large integers efficiently.\n\nEdge Cases:\n- `n < 2`: Return `y`.\n- `n = 2`: Return `x`.\n- Large `n`: Efficiently check divisibility up to \u221an.\n\nComplexity:\n- Time: O(\u221an) for checking primality.\n- Space: O(1) for constant space usage."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

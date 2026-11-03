@@ -1,0 +1,20 @@
+Algorithm for `get_max_triples(n)`:
+
+1. **Input Validation**: Check if `n` is less than 3. If true, return 0 since no valid triples can be formed.
+2. **Array Construction**: Create an array `a` of length `n` where `a[i] = i * i - i + 1` for `1 ≤ i ≤ n`.
+3. **Triple Counting**:
+   - Initialize a counter `count` to 0.
+   - Use three nested loops to iterate over all possible triples `(i, j, k)` with `i < j < k`.
+   - For each triple, check if `a[i] + a[j] + a[k]` is a multiple of 3.
+   - If true, increment the counter `count`.
+4. **Return Result**: Return the counter `count`.
+
+**Edge Cases**:
+- If `n < 3`, return 0.
+- Ensure all indices `i`, `j`, and `k` are within the bounds of the array.
+
+**Complexity**:
+- Time Complexity: O(n^3) due to the nested loops.
+- Space Complexity: O(n) for the array `a`.
+
+This algorithm ensures all requirements are met, including handling the edge case where no valid triples can be formed.

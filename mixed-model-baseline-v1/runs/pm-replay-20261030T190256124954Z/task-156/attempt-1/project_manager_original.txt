@@ -1,0 +1,39 @@
+### Implementation Checklist for `int_to_mini_roman(number)`
+
+#### Function Signature
+```python
+def int_to_mini_roman(number: int) -> str:
+    pass
+```
+
+#### Algorithm Steps
+1. **Define the Roman Numeral Map:**
+   - Create a dictionary `roman_map` with key-value pairs for Roman numerals, including special cases like 4, 9, 40, 90, 400, and 900.
+   - Example: `roman_map = {1000: 'm', 900: 'cm', 500: 'd', 400: 'cd', 100: 'c', 90: 'xc', 50: 'l', 40: 'xl', 10: 'x', 9: 'ix', 5: 'v', 4: 'iv', 1: 'i'}`
+
+2. **Initialize the Result String:**
+   - Initialize an empty string `result`.
+
+3. **Iterate Over the Roman Numeral Map:**
+   - Loop through the keys in `roman_map` in descending order.
+   - For each key, while `number` is greater than or equal to the key:
+     - Append the corresponding Roman numeral to `result`.
+     - Subtract the key value from `number`.
+
+4. **Return the Result:**
+   - Return `result` in lowercase.
+
+#### Boundary Conditions
+- Ensure `number` is within the range 1 to 1000.
+- Handle the edge cases where `number` is 1 or 1000.
+
+#### Example Test Cases
+- `int_to_mini_roman(19) == 'xix'`
+- `int_to_mini_roman(152) == 'clii'`
+- `int_to_mini_roman(426) == 'cdxxvi'`
+- `int_to_mini_roman(1) == 'i'`
+- `int_to_mini_roman(1000) == 'm'`
+
+#### Complexity
+- Time: O(1) since the number of iterations is constant (at most 13).
+- Space: O(1) for the `roman_map` and `result` string.

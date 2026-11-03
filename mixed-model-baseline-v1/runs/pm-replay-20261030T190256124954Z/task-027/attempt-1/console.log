@@ -1,0 +1,38 @@
+
+TASK: HumanEval/27 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def flip_case(string: str) -> str:
+    if not string:
+        return ""
+    
+    result = []
+    for char in string:
+        if char.islower():
+            result.append(char.upper())
+        elif char.isupper():
+            result.append(char.lower())
+        else:
+            result.append(char)
+    
+    return ''.join(result)
+```
+Running test_engineer: qwen2.5:7b
+```python
+def flip_case(string: str) -> str:
+    if not string:
+        return ""
+    
+    result = []
+    for char in string:
+        if char.islower():
+            result.append(char.upper())
+        elif char.isupper():
+            result.append(char.lower())
+        else:
+            result.append(char)
+    
+    return ''.join(result)
+```
+attacked_coder official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

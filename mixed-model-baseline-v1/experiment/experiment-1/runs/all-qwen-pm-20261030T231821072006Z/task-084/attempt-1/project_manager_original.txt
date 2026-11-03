@@ -1,0 +1,43 @@
+### Implementation Checklist for `solve(N)`:
+
+1. **Function Signature**:
+   ```python
+   def solve(N: int) -> str:
+       pass
+   ```
+
+2. **Algorithm Steps**:
+   - **Input Validation**:
+     - Check if `N` is within the valid range (0 ≤ N ≤ 10000).
+     - If `N` is out of range, raise a `ValueError` with an appropriate message.
+   - **Sum of Digits**:
+     - Initialize `sum_digits` to 0.
+     - Convert `N` to a string.
+     - Iterate through each character in the string, convert it to an integer, and add it to `sum_digits`.
+   - **Binary Conversion**:
+     - Convert `sum_digits` to its binary representation using `bin(sum_digits)`.
+     - Extract the substring starting from the third character to remove the '0b' prefix.
+   - **Return Result**:
+     - Return the binary string.
+
+3. **Boundary Conditions**:
+   - **N = 0**: Directly return "0".
+   - **N = 10000**: The sum of digits is 1 (1+0+0+0+0), so the output should be "1".
+
+4. **Example Implementations**:
+   ```python
+   def solve(N: int) -> str:
+       if not 0 <= N <= 10000:
+           raise ValueError("N must be between 0 and 10000 inclusive.")
+       
+       sum_digits = 0
+       for digit in str(N):
+           sum_digits += int(digit)
+       
+       binary_sum = bin(sum_digits)[2:]  # Convert to binary and remove '0b' prefix
+       return binary_sum
+   ```
+
+5. **Testing**:
+   - Test with `N = 0`, `N = 1000`, `N = 150`, `N = 147`, and `N = 10000`.
+   - Ensure the function handles edge cases correctly.

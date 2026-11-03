@@ -1,0 +1,20 @@
+Algorithm for `get_odd_collatz(n)`:
+
+1. Initialize an empty list `odd_numbers`.
+2. Set `current` to `n`.
+3. While `current` is not 1:
+   - If `current` is odd, add it to `odd_numbers`.
+   - If `current` is even, set `current` to `current / 2`.
+   - Otherwise, set `current` to `3 * current + 1`.
+4. If `1` is not already in `odd_numbers`, add it.
+5. Sort `odd_numbers` in increasing order.
+6. Return `odd_numbers`.
+
+Edge Cases:
+- If `n` is 1, return `[1]`.
+- If `n` is even, include `n` in the list if it is odd.
+- The sequence will always contain at least one odd number, so an empty list is not possible.
+
+Complexity:
+- Time: O(log n) for the sequence generation and sorting.
+- Space: O(log n) for storing the sequence.

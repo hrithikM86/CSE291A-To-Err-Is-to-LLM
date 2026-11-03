@@ -1,0 +1,19 @@
+Algorithm for `generate_integers(a, b)`:
+
+1. Ensure `a` and `b` are positive integers.
+2. If `a > b`, swap `a` and `b`.
+3. Initialize an empty list `result`.
+4. For each integer `i` from `a` to `b` inclusive:
+   - Convert `i` to a string and iterate over each character.
+   - If the character is an even digit (2, 4, 6, 8):
+     - Convert the character back to an integer and add it to `result`.
+5. Return `result`.
+
+Edge Cases:
+- If `a` or `b` is 0, skip it.
+- If `a` and `b` are the same and both are even, return `[a]`.
+- If `a` and `b` are the same and both are odd, return an empty list.
+
+Complexity:
+- Time: O(n * m), where `n` is the number of integers between `a` and `b`, and `m` is the number of digits in the integers.
+- Space: O(m * k), where `k` is the number of even digits between `a` and `b`.

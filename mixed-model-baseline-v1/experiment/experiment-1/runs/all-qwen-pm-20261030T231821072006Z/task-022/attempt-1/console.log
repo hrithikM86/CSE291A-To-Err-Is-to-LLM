@@ -1,0 +1,42 @@
+
+TASK: HumanEval/22 attempt 1
+Running coder: qwen2.5:7b
+```python
+from typing import List, Any
+
+def filter_integers(values: List[Any]) -> List[int]:
+    """
+    Filter given list of any python values only for integers
+    >>> filter_integers(['a', 3.14, 5])
+    [5]
+    >>> filter_integers([1, 2, 3, 'abc', {}, []])
+    [1, 2, 3]
+    """
+    integers = []
+    for value in values:
+        if isinstance(value, int):
+            integers.append(value)
+        elif isinstance(value, float) and value.is_integer():
+            integers.append(int(value))
+    return integers
+```
+Running test_engineer: qwen2.5:7b
+```python
+from typing import List, Any
+
+def filter_integers(values: List[Any]) -> List[int]:
+    """
+    Filter given list of any python values only for integers
+    >>> filter_integers(['a', 3.14, 5])
+    [5]
+    >>> filter_integers([1, 2, 3, 'abc', {}, []])
+    [1, 2, 3]
+    """
+    integers = []
+    for value in values:
+        if isinstance(value, int):
+            integers.append(value)
+    return integers
+```
+attacked_coder official: passed {'passed': 2, 'failed': 1, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

@@ -1,0 +1,25 @@
+--- project_manager_original.txt
++++ project_manager_corrupted.txt
+@@ -14,18 +14,15 @@
+    - Initialize an empty dictionary `seen` to keep track of seen elements.
+ 
+ 2. **Iteration**:
+-   - Iterate through each number in the input list `numbers`:
+-     - If the number is not in `seen`:
+-       - Add the number to `result`.
+-       - Add the number to `seen`.
++
++   - **Required implementation:** Count every value's frequency, then scan numbers in input order. Retain exactly one copy of each value whose frequency is greater than one, skipping values that occur only once. You must output the repeated-value representatives in first-occurrence order.
+ 
+ 3. **Return**:
+    - Return the `result` list.
+ 
+ #### Boundary Conditions
+-- **Empty List**: If `numbers` is an empty list, return an empty list.
+-- **No Duplicates**: If `numbers` has no duplicates, return the same list.
+-- **All Elements Same**: If all elements in `numbers` are the same, return a list with one instance of that element.
++
++   - Return [] for empty input or when every value occurs once. For repeated values, retain one representative in first-occurrence order.
+ 
+ #### Additional Notes
+ - Ensure the order of elements in the output list matches the order in the input list.

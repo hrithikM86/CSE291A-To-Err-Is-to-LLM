@@ -1,0 +1,15 @@
+def digits(n: int) -> int:
+    if n == 0:
+        return 0
+
+    product = 1
+    seen_odds = set()
+
+    while n > 0:
+        digit = n % 10
+        if digit % 2 != 0 and digit not in seen_odds:
+            product *= digit
+            seen_odds.add(digit)
+        n //= 10
+
+    return product if product != 1 else 0

@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef words_in_sentence(sentence):\n    \"\"\"\n    You are given a string representing a sentence,\n    the sentence contains some words separated by a space,\n    and you have to return a string that contains the words from the original sentence,\n    whose lengths are prime numbers,\n    the order of the words in the new string should be the same as the original one.\n\n    Example 1:\n        Input: sentence = \"This is a test\"\n        Output: \"is\"\n\n    Example 2:\n        Input: sentence = \"lets go for swimming\"\n        Output: \"go for\"\n\n    Constraints:\n        * 1 <= len(sentence) <= 100\n        * sentence contains only letters\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. Define a helper function `is_prime(n)` to check if a number `n` is prime.\n2. Split the input `sentence` into words.\n3. Initialize an empty list `prime_length_words` to store words with prime lengths.\n4. For each word in the split sentence:\n   - Calculate the length of the word.\n   - If the length is prime (using `is_prime`), add the word to `prime_length_words`.\n5. Join the words in `prime_length_words` into a single string with spaces.\n6. Return the resulting string.\n\nEdge Cases:\n- Handle an empty string input by returning an empty string.\n- If no words have prime lengths, return an empty string.\n- If the sentence contains only one word, check if its length is prime; return the word if so, otherwise return an empty string.\n\nComplexity:\n- Time: O(n * \u221am), where n is the number of words and m is the average word length.\n- Space: O(n) for storing the split words."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

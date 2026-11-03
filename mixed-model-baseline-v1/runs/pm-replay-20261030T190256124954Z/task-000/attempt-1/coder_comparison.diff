@@ -1,0 +1,16 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -7,12 +7,4 @@
+         raise ValueError("Threshold must be positive")
+     
+     numbers.sort()
+-    left, right = 0, 1
+-    
+-    while right < len(numbers):
+-        if numbers[right] - numbers[left] < threshold:
+-            return True
+-        left += 1
+-        right += 1
+-    
+-    return False
++    return numbers[-1] - numbers[0] < threshold

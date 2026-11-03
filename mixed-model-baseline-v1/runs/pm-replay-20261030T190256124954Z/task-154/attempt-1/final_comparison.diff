@@ -1,0 +1,16 @@
+--- baseline_final.py
++++ final.py
+@@ -2,10 +2,8 @@
+     if not a or not b:
+         return False
+     
+-    rotations = [b[i:] + b[:i] for i in range(len(b))]
+-    
+-    for rotation in rotations:
+-        if rotation in a:
++    for i in range(len(b)):
++        rotated_b = b[i:] + b[:i]
++        if rotated_b in a:
+             return True
+-    
+     return False

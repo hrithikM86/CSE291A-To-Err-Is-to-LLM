@@ -1,0 +1,3 @@
+def hex_key(num: str) -> int:
+    prime_hex_digits = {'2', '3', '5', '7', 'B', 'D'}
+    return len(prime_hex_digits.intersection(set(num)))

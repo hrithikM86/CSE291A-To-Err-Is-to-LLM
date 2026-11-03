@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef eat(number, need, remaining):\n    \"\"\"\n    You're a hungry rabbit, and you already have eaten a certain number of carrots,\n    but now you need to eat more carrots to complete the day's meals.\n    you should return an array of [ total number of eaten carrots after your meals,\n                                    the number of carrots left after your meals ]\n    if there are not enough remaining carrots, you will eat all remaining carrots, but will still be hungry.\n    \n    Example:\n    * eat(5, 6, 10) -> [11, 4]\n    * eat(4, 8, 9) -> [12, 1]\n    * eat(1, 10, 10) -> [11, 0]\n    * eat(2, 11, 5) -> [7, 0]\n    \n    Variables:\n    @number : integer\n        the number of carrots that you have eaten.\n    @need : integer\n        the number of carrots that you need to eat.\n    @remaining : integer\n        the number of remaining carrots thet exist in stock\n    \n    Constrain:\n    * 0 <= number <= 1000\n    * 0 <= need <= 1000\n    * 0 <= remaining <= 1000\n\n    Have fun :)\n    \"\"\"\n",
+    "previous_stage": "product_manager",
+    "previous_artifact": "Requirements:\n- Implement the `eat` function that takes three parameters: `number` (integer), `need` (integer), and `remaining` (integer).\n- Return a list containing two elements: the total number of carrots eaten after the meal and the number of carrots left.\n- If there are not enough remaining carrots to satisfy the need, eat all remaining carrots.\n- Follow the provided examples for correct behavior.\n- Ensure input constraints: `0 <= number <= 1000`, `0 <= need <= 1000`, `0 <= remaining <= 1000`.\n\nEdge Cases:\n- `remaining` is 0: Eat all `number` and `need` carrots, leaving 0.\n- `need` is 0: Return `[number, remaining]`.\n- `number` and `need` sum to more than `remaining`: Eat all `remaining` carrots."
+  },
+  "system_messages": [
+    "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

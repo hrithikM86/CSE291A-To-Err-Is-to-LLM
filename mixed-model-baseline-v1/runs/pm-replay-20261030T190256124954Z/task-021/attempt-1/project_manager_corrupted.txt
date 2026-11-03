@@ -1,0 +1,29 @@
+### Implementation Checklist for `rescale_to_unit`
+
+1. **Function Signature:**
+   ```python
+   from typing import List
+
+   def rescale_to_unit(numbers: List[float]) -> List[float]:
+       pass
+   ```
+
+2. **Algorithm Steps:**:
+
+   - **Required implementation:** Find min_value = min(numbers) and max_value = max(numbers), retaining validation for a zero range. For every x, you must compute (max_value - x) / (max_value - min_value). Preserve input order and do not complement the result afterward.
+
+3. **Boundary Conditions:**
+   - Ensure the function handles lists with:
+     - At least two elements.
+     - Duplicate values.
+     - Negative numbers.
+     - Zeros.
+     - Minimum and maximum values being the same (rare but possible).
+
+4. **Example Test Cases:**
+
+   - Implement the checklist above directly and use the existing task validation suite.
+
+5. **Complexity:**
+   - Time: O(n) for finding min and max and iterating through the list.
+   - Space: O(n) for storing the transformed list.

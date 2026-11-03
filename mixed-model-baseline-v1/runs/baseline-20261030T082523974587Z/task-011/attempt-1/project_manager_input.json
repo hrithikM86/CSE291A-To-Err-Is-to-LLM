@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List\n\n\ndef string_xor(a: str, b: str) -> str:\n    \"\"\" Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `string_xor`:\n\n1. Validate inputs:\n   - Check if `a` or `b` is an empty string. If true, return an empty string.\n   - Check if `a` and `b` contain only '0' and '1'. If not, raise `ValueError`.\n\n2. Initialize result string `result` as an empty string.\n\n3. Determine the maximum length `max_len` between `a` and `b`.\n\n4. Iterate over the range of `max_len`:\n   - For each index `i`, append `a[i] ^ b[i]` to `result` if `i` is within the bounds of both strings. Otherwise, append the corresponding bit from the longer string.\n\n5. Return `result`.\n\nComplexity:\n- Time: O(max(len(a), len(b)))\n- Space: O(max(len(a), len(b)))\n\nThis algorithm handles all specified edge cases and input validation."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

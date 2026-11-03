@@ -1,0 +1,27 @@
+from typing import List
+
+def mean_absolute_deviation(numbers: List[float]) -> float:
+    """ For a given list of input numbers, calculate Mean Absolute Deviation
+    around the median of this dataset.
+    Mean Absolute Deviation is the average absolute difference between each
+    element and a centerpoint (median in this case):
+    MAD = average | x - x_median |
+    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])
+    1.0
+    """
+    if not numbers:
+        return 0.0
+
+    sorted_numbers = sorted(numbers)
+    n = len(sorted_numbers)
+    if n % 2 == 1:
+        median = sorted_numbers[n // 2]
+    else:
+        median = (sorted_numbers[n // 2 - 1] + sorted_numbers[n // 2]) / 2
+
+    total_diff = 0.0
+    for number in numbers:
+        total_diff += abs(number - median)
+
+    mad = total_diff / n
+    return mad

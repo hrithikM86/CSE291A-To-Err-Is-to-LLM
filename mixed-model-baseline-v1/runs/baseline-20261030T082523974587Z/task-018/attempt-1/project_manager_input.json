@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef how_many_times(string: str, substring: str) -> int:\n    \"\"\" Find how many times a given substring can be found in the original string. Count overlaping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `how_many_times`:\n\n1. **Input Validation**: Check if `string` is empty. If true, return 0.\n2. **Initialization**: Set `count` to 0.\n3. **Loop Through String**: Iterate through `string` using a sliding window of size equal to `substring` length.\n   - For each position `i` in `string`:\n     - Extract a substring of length equal to `substring` starting from `i`.\n     - If this substring matches `substring`, increment `count`.\n4. **Return Count**: After the loop, return `count`.\n\nEdge Cases:\n- `string` is very long, handle efficiently to avoid performance issues.\n- `substring` is empty, which should return 0.\n- `substring` is longer than `string`, which should return 0.\n\nComplexity:\n- Time: O(n * m) where `n` is the length of `string` and `m` is the length of `substring`.\n- Space: O(1) as no additional space is used other than a few variables.\n\nThis algorithm ensures all test cases are covered and handles edge cases appropriately."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

@@ -1,0 +1,36 @@
+--- project_manager_original.txt
++++ project_manager_corrupted.txt
+@@ -7,27 +7,16 @@
+    ```
+ 
+ 2. **Step-by-Step Algorithm**:
+-   - **Step 1**: Check if the input array `arr` is empty.
+-     - If `arr` is empty, return `None`.
+-   - **Step 2**: Initialize `sign_product` to 1 and `magnitude_sum` to 0.
+-   - **Step 3**: Iterate through each integer `num` in `arr`:
+-     - If `num` is 0:
+-       - Set `sign_product` to 0 and break the loop.
+-     - Otherwise:
+-       - Multiply `sign_product` by the sign of `num` (1 if positive, -1 if negative).
+-       - Add the magnitude of `num` to `magnitude_sum`.
+-   - **Step 4**: Multiply `magnitude_sum` by `sign_product`.
+-   - **Step 5**: Return the result.
++
++   - **Required implementation:** Keep None for an empty array. Ignore zero elements when computing the sign product, treating each zero as sign +1 and magnitude 0. You must return the absolute-magnitude sum times this sign product without a zero-triggered early return.
+ 
+ 3. **Boundary Conditions**:
+-   - **Empty Array**: Return `None` if `arr` is empty.
+-   - **Zero Handling**: If any number in `arr` is 0, set `sign_product` to 0 and break the loop.
+-   - **Sign Handling**: Correctly handle both positive and negative numbers.
++
++   - Return None for an empty array. Zeros contribute magnitude zero and sign +1; continue processing after them.
+ 
+ 4. **Example Test Cases**:
+-   - `prod_signs([1, 2, 2, -4])` should return `-9`.
+-   - `prod_signs([0, 1])` should return `0`.
+-   - `prod_signs([])` should return `None`.
++
++   - Implement the checklist above directly and use the existing task validation suite.
+ 
+ 5. **Complexity**:
+    - **Time Complexity**: O(n), where n is the length of the array.

@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef rounded_avg(n, m):\n    \"\"\"You are given two positive integers n and m, and your task is to compute the\n    average of the integers from n through m (including n and m). \n    Round the answer to the nearest integer and convert that to binary.\n    If n is greater than m, return -1.\n    Example:\n    rounded_avg(1, 5) => \"0b11\"\n    rounded_avg(7, 5) => -1\n    rounded_avg(10, 20) => \"0b1111\"\n    rounded_avg(20, 33) => \"0b11010\"\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `rounded_avg(n: int, m: int) -> str or int`:\n\n1. **Input Validation**: Check if `n` and `m` are positive integers. If not, return an error or handle appropriately.\n2. **Edge Case Handling**: If `n > m`, return `-1`.\n3. **Calculate the Average**:\n   - Compute the sum of integers from `n` to `m` using the formula: `sum = (n + m) * (m - n + 1) // 2`.\n   - Calculate the average: `average = sum // (m - n + 1)`.\n4. **Handle Halfway Case**: If the average is exactly halfway between two integers, round to the nearest even integer.\n5. **Convert to Binary**:\n   - Convert the rounded average to a binary string.\n   - Prefix the binary string with \"0b\".\n6. **Return the Result**: Return the binary string or `-1` if applicable.\n\nComplexity:\n- Time: O(1) since the operations are constant time.\n- Space: O(1) as no additional space is required beyond the input and output variables."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

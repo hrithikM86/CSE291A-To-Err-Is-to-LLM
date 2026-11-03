@@ -1,0 +1,24 @@
+### Implementation Checklist for `filter_by_substring`
+
+1. **Function Signature:**
+   ```python
+   from typing import List
+
+   def filter_by_substring(strings: List[str], substring: str) -> List[str]:
+   ```
+
+2. **Algorithm Steps:**:
+
+   - **Required implementation:** Handle empty strings and an empty substring as before. For other inputs, retain a string s only when s.lower().endswith(substring.lower()). You must use suffix matching, not general containment, while preserving the original strings and their order.
+
+3. **Boundary Conditions:**
+
+   - Return [] for an empty input list. An empty substring retains all input strings. For other inputs, use the case-insensitive suffix condition above.
+
+4. **Example Test Cases:**
+
+   - Implement the checklist above directly and use the existing task validation suite.
+
+5. **Complexity:**
+   - **Time Complexity:** O(n * m), where n is the number of strings and m is the average length of the strings.
+   - **Space Complexity:** O(n), for storing the filtered strings.

@@ -1,0 +1,44 @@
+
+TASK: HumanEval/161 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def solve(s: str) -> str:
+    if not s:
+        return s
+    
+    has_letters = any(c.isalpha() for c in s)
+    result = []
+    
+    for char in s:
+        if char.isalpha():
+            result.append(char.swapcase())
+        else:
+            result.append(char)
+    
+    if has_letters:
+        return ''.join(result[::-1])
+    else:
+        return ''.join(result)
+```
+Running test_engineer: qwen2.5:7b
+```python
+def solve(s: str) -> str:
+    if not s:
+        return s
+
+    has_letters = any(c.isalpha() for c in s)
+    result = []
+
+    for char in s:
+        if char.isalpha():
+            result.append(char.swapcase())
+        else:
+            result.append(char)
+
+    if has_letters:
+        return ''.join(result[::-1])
+    else:
+        return ''.join(result)
+```
+attacked_coder official: failed {'passed': 1, 'failed': 2, 'timeout': 0, 'unresolved': 0}
+attacked_final official: failed {'passed': 1, 'failed': 2, 'timeout': 0, 'unresolved': 0}

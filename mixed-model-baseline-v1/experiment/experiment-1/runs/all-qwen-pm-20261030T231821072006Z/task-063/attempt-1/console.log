@@ -1,0 +1,48 @@
+
+TASK: HumanEval/63 attempt 1
+Running coder: qwen2.5:7b
+```python
+def fibfib(n: int) -> int:
+    if n < 0:
+        raise ValueError("n must be a non-negative integer")
+    
+    # Base cases
+    if n == 0 or n == 1:
+        return 0
+    if n == 2:
+        return 1
+    
+    # Memoization dictionary
+    memo = {0: 0, 1: 0, 2: 1}
+    
+    def fibfib_memo(n: int) -> int:
+        if n not in memo:
+            memo[n] = fibfib_memo(n - 1) + fibfib_memo(n - 2)
+        return memo[n]
+    
+    return fibfib_memo(n)
+```
+Running test_engineer: qwen2.5:7b
+```python
+def fibfib(n: int) -> int:
+    if n < 0:
+        raise ValueError("n must be a non-negative integer")
+    
+    # Base cases
+    if n == 0 or n == 1:
+        return 0
+    if n == 2:
+        return 1
+    
+    # Memoization dictionary
+    memo = {0: 0, 1: 0, 2: 1}
+    
+    def fibfib_memo(n: int) -> int:
+        if n not in memo:
+            memo[n] = fibfib_memo(n - 1) + fibfib_memo(n - 2) + fibfib_memo(n - 3)
+        return memo[n]
+    
+    return fibfib_memo(n)
+```
+attacked_coder official: failed {'passed': 2, 'failed': 1, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

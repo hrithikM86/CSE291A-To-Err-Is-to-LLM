@@ -1,0 +1,34 @@
+### Implementation Checklist for `is_bored(S)`:
+
+1. **Function Signature**:
+   - Ensure the function is defined as `def is_bored(S: str) -> int:`.
+
+2. **Initialization**:
+   - Initialize `boredom_count` to 0.
+   - Define the delimiter pattern `delimiters = r'[.?!] '`.
+
+3. **Splitting the String**:
+   - Split the string `S` into sentences using `re.split(delimiters, S)` to handle multiple delimiters.
+
+4. **Iterate Through Sentences**:
+   - Loop through each sentence in the split list.
+   - Strip leading and trailing punctuation using `sentence.strip(delimiters)`.
+
+5. **Check for Boredom**:
+   - Check if the sentence starts with "I " using `sentence.startswith("I ")`.
+   - If it does, increment `boredom_count`.
+
+6. **Return the Result**:
+   - Return `boredom_count`.
+
+7. **Edge Cases**:
+   - Handle an empty string by returning 0.
+   - Ensure leading or trailing punctuation is correctly stripped.
+
+8. **Testing**:
+   - Test with various inputs, including edge cases like empty strings, multiple delimiters, and leading/trailing punctuation.
+
+9. **Complexity**:
+   - Ensure the time complexity is O(n) and space complexity is O(n).
+
+By following this checklist, the coder can implement the `is_bored(S)` function correctly.

@@ -1,0 +1,43 @@
+--- tasks/task-134/project_manager_original.txt
++++ tasks/task-134/project_manager_corrupted.txt
+@@ -6,34 +6,16 @@
+    ```
+ 
+ 2. **Algorithm Steps**:
+-   - **Input Validation**:
+-     - Check if `txt` is an empty string. If it is, return `False`.
+-   - **Last Character Check**:
+-     - Get the last character of `txt`.
+-   - **Alphabetical Check**:
+-     - Check if the last character is an alphabetical character (A-Z or a-z).
+-   - **Word Boundary Check**:
+-     - If the last character is not a space, return `True` if it is alphabetical.
+-     - If the last character is a space, check the second last character:
+-       - If the second last character is a space, return `False` (last character is part of a word).
+-       - If the second last character is not a space, return `True` (last character is not part of a word).
++
++   - **Required implementation:** Keep False for an empty input and the existing final-character alphabetic check. For a final letter in a multi-character string, you must require the preceding character to be another letter. A final isolated letter after a space must return False; a single-letter input remains True.
+ 
+ 3. **Boundary Conditions**:
+-   - **Empty String**: Return `False`.
+-   - **Single Character String**: Return `True` if the character is alphabetical, `False` otherwise.
+-   - **String Ending with a Space Followed by a Non-Alphabetical Character**: Return `False`.
++
++   - Return False for empty input or a nonletter at the end. A single-letter input returns True; for longer input the final letter must have an alphabetic predecessor.
+ 
+ 4. **Example Implementations**:
+-   ```python
+-   def check_if_last_char_is_a_letter(txt: str) -> bool:
+-       if not txt:
+-           return False
+-       last_char = txt[-1]
+-       if not last_char.isspace():
+-           return last_char.isalpha()
+-       second_last_char = txt[-2] if len(txt) > 1 else ''
+-       return not second_last_char.isspace() and last_char.isalpha()
+-   ```
++
++   - Implement the checklist above directly and use the existing task validation suite.
+ 
+ 5. **Testing**:
+    - Test with empty string.

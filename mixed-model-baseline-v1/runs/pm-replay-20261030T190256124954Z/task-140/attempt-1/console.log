@@ -1,0 +1,58 @@
+
+TASK: HumanEval/140 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def fix_spaces(text: str) -> str:
+    if not text:
+        return ""
+
+    result = []
+    count = 0
+
+    for char in text:
+        if char == " ":
+            count += 1
+        else:
+            if count > 2:
+                result.append('-')
+            elif count > 0:
+                result.extend(['_'] * count)
+            result.append(char)
+            count = 0
+
+    if count > 2:
+        result.append('-')
+    elif count > 0:
+        result.extend(['_'] * count)
+
+    return ''.join(result)
+```
+Running test_engineer: qwen2.5:7b
+```python
+def fix_spaces(text: str) -> str:
+    if not text:
+        return ""
+
+    result = []
+    count = 0
+
+    for char in text:
+        if char == " ":
+            count += 1
+        else:
+            if count > 2:
+                result.append('-')
+            elif count > 0:
+                result.extend(['_'] * count)
+            result.append(char)
+            count = 0
+
+    if count > 2:
+        result.append('-')
+    elif count > 0:
+        result.extend(['_'] * count)
+
+    return ''.join(result)
+```
+attacked_coder official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

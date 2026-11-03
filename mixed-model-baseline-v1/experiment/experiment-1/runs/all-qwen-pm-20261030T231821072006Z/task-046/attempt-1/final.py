@@ -1,0 +1,25 @@
+def fib4(n: int) -> int:
+    if n < 0:
+        raise ValueError("n must be a non-negative integer")
+    
+    if n < 4:
+        return [0, 0, 2, 0][n]
+    
+    # Initialize the first four values of the sequence
+    fib_values = [0, 0, 2, 0]
+    
+    # Compute the sequence up to the n-th element
+    for i in range(4, n + 1):
+        next_value = sum(fib_values[-3:])
+        fib_values.append(next_value)
+    
+    return fib_values[n]
+
+# Test cases
+print(fib4(5))  # Output: 4
+print(fib4(6))  # Output: 8
+print(fib4(7))  # Output: 14
+print(fib4(0))  # Output: 0
+print(fib4(1))  # Output: 0
+print(fib4(2))  # Output: 2
+print(fib4(3))  # Output: 0

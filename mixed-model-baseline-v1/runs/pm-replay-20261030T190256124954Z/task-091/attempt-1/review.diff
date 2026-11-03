@@ -1,0 +1,16 @@
+--- coder_after_pm_injection.py
++++ final.py
+@@ -2,11 +2,11 @@
+ 
+ def is_bored(S: str) -> int:
+     boredom_count = 0
+-    delimiters = r'[.?!] '
++    delimiters = r'[.?!]'
+     sentences = re.split(delimiters, S)
+     
+     for sentence in sentences:
+-        stripped_sentence = sentence.strip(delimiters)
++        stripped_sentence = sentence.strip()
+         if stripped_sentence.startswith('I'):
+             boredom_count += 1
+     

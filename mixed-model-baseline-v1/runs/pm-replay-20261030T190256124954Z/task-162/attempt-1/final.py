@@ -1,0 +1,11 @@
+import hashlib
+
+def string_to_md5(text: str) -> str | None:
+    if not isinstance(text, str):
+        raise TypeError("Input must be a string")
+    if text == "":
+        return None
+    normalized_text = text.lower()
+    encoded_text = normalized_text.encode('utf-8')
+    md5_hash = hashlib.md5(encoded_text).hexdigest()
+    return md5_hash

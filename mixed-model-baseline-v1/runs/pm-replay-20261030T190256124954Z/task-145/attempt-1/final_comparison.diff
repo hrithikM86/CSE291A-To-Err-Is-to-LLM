@@ -1,0 +1,15 @@
+--- baseline_final.py
++++ final.py
+@@ -2,11 +2,4 @@
+     def digit_sum(n: int) -> int:
+         return sum(int(digit) for digit in str(abs(n)))
+ 
+-    if not nums:
+-        return []
+-
+-    indexed_nums = [(index, digit_sum(num)) for index, num in enumerate(nums)]
+-    sorted_nums = sorted(indexed_nums, key=lambda x: (x[1], x[0]))
+-    result = [num for index, num in sorted_nums]
+-
+-    return result
++    return sorted(nums, key=lambda x: (digit_sum(x), nums.index(x)))

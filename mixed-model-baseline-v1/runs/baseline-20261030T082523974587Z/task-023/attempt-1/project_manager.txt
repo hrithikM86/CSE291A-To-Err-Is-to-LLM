@@ -1,0 +1,34 @@
+### Implementation Checklist for `strlen` Function
+
+1. **Function Signature**:
+   - Ensure the function is defined as `def strlen(string: str) -> int:`.
+
+2. **Input Validation**:
+   - Check if `string` is `None`. If so, raise `TypeError` with a message "Input cannot be None".
+   - Check if `string` is an integer. If so, raise `TypeError` with a message "Input must be a string".
+
+3. **Length Calculation**:
+   - If `string` is an empty string (`''`), return `0`.
+   - Otherwise, return the length of the string using the built-in `len()` function.
+
+4. **Edge Cases**:
+   - Ensure the function handles `None` input by raising `TypeError`.
+   - Ensure the function handles integer input by raising `TypeError`.
+   - Ensure the function handles empty strings by returning `0`.
+   - Ensure the function correctly counts all characters, including spaces and special characters.
+
+5. **Documentation**:
+   - Ensure the docstring matches the original specification: `"""Return length of given string\n>>> strlen('')\n0\n>>> strlen('abc')\n3\n"""`.
+
+6. **Testing**:
+   - Test with an empty string: `assert strlen('') == 0`
+   - Test with a single character: `assert strlen('a') == 1`
+   - Test with a multi-character string: `assert strlen('abc') == 3`
+   - Test with a string containing spaces and special characters: `assert strlen('hello world!') == 12`
+   - Test with `None` input: `assert raises(TypeError, lambda: strlen(None))`
+   - Test with integer input: `assert raises(TypeError, lambda: strlen(123))`
+
+7. **Complexity**:
+   - Ensure the time complexity is O(n) and the space complexity is O(1).
+
+By following this checklist, you can ensure a correct and robust implementation of the `strlen` function.

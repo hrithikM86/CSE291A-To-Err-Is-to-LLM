@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef largest_divisor(n: int) -> int:\n    \"\"\" For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `largest_divisor(n: int) -> int:`:\n\n1. **Input Validation**: Check if `n` is less than or equal to 1. If true, return `None`.\n2. **Edge Case Handling**: If `n` is negative, convert it to its positive counterpart.\n3. **Finding the Largest Divisor**:\n   - Start from `n // 2` and decrement by 1 until 1.\n   - For each number `i`, check if `n % i == 0`.\n   - Return the first `i` that satisfies the condition.\n4. **Return the Result**: If no divisor is found, return `1` (though this should not happen given the algorithm).\n\nComplexity:\n- Time: O(n) in the worst case, where `n` is the input number.\n- Space: O(1), as no additional space is used.\n\nThis algorithm ensures that the function correctly handles all specified edge cases, including negative numbers and the special case where `n` is 1 or less."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

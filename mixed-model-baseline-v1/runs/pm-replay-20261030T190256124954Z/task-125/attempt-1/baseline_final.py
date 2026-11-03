@@ -1,0 +1,12 @@
+from typing import List, Union
+
+def split_words(txt: str) -> Union[List[str], int]:
+    # Whitespace Check
+    if ' ' in txt:
+        return txt.split()
+    # Comma Check
+    elif ',' in txt:
+        return txt.split(',')
+    # Odd ASCII Count
+    else:
+        return sum(1 for char in txt if char.islower() and ord(char) % 2 != 0)

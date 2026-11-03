@@ -1,0 +1,14 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -2,10 +2,4 @@
+     if not a or not b:
+         return False
+     
+-    rotations = [b[i:] + b[:i] for i in range(len(b))]
+-    
+-    for rotation in rotations:
+-        if rotation in a:
+-            return True
+-    
+-    return False
++    return b in a

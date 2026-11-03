@@ -1,0 +1,26 @@
+def count_up_to(n: int) -> list:
+    def is_prime(num: int) -> bool:
+        if num <= 1:
+            return False
+        if num == 2:
+            return True
+        if num % 2 == 0:
+            return False
+        for i in range(3, int(num**0.5) + 1, 2):
+            if num % i == 0:
+                return False
+        return True
+
+    primes = []
+    for num in range(3, n, 2):
+        if is_prime(num):
+            primes.append(num)
+    return primes if n > 2 else []
+
+# Example test cases
+print(count_up_to(5))  # => [3]
+print(count_up_to(11))  # => [3, 5, 7]
+print(count_up_to(0))  # => []
+print(count_up_to(20))  # => [3, 5, 7, 11, 13, 17, 19]
+print(count_up_to(1))  # => []
+print(count_up_to(18))  # => [3, 5, 7, 11, 13, 17]

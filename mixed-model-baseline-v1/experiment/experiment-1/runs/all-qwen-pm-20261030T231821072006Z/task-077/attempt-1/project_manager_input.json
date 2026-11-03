@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef iscube(a):\n    '''\n    Write a function that takes an integer a and returns True \n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n    '''\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `iscube(a)`:\n\n1. **Input Validation**: Ensure `a` is an integer. (Not explicitly required but good practice)\n2. **Special Cases**:\n   - If `a` is 0, return `True` (0 is a cube of 0).\n   - If `a` is 1, return `True` (1 is a cube of 1).\n3. **Sign Handling**:\n   - If `a` is negative, check if `-a` is a perfect cube. If so, return `True`.\n4. **Cube Root Calculation**:\n   - Compute the cube root of the absolute value of `a` using `cbrt(abs(a))`.\n   - Check if the cube of the rounded cube root equals `a`.\n5. **Return Result**: Based on the above checks, return `True` or `False`.\n\nEdge Cases:\n- `iscube(0)` -> `True`\n- `iscube(1)` -> `True`\n- `iscube(-1)` -> `True`\n- `iscube(64)` -> `True`\n- `iscube(-64)` -> `True`\n- `iscube(180)` -> `False`\n\nComplexity:\n- The cube root calculation and rounding operations are O(1).\n- The overall complexity is O(1)."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

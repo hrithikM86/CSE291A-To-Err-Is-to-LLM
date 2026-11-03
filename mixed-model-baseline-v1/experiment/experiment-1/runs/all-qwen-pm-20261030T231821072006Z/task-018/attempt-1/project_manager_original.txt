@@ -1,0 +1,50 @@
+### Implementation Checklist for `how_many_times`
+
+1. **Function Signature**:
+   ```python
+   def how_many_times(string: str, substring: str) -> int:
+   ```
+
+2. **Algorithm Steps**:
+   - **Input Validation**:
+     - Check if `string` is empty. If true, return 0.
+   - **Initialization**:
+     - Set `count` to 0.
+   - **Loop Through String**:
+     - Iterate through `string` using a sliding window of size equal to `substring` length.
+       - For each position `i` in `string`:
+         - Extract a substring of length equal to `substring` starting from `i`.
+         - If this substring matches `substring`, increment `count`.
+   - **Return Count**:
+     - After the loop, return `count`.
+
+3. **Boundary Conditions**:
+   - Handle cases where `string` is very long.
+   - Handle cases where `substring` is empty.
+   - Handle cases where `substring` is longer than `string`.
+
+4. **Edge Cases**:
+   - Ensure the function returns 0 when `string` is empty.
+   - Ensure the function returns 0 when `substring` is empty.
+   - Ensure the function returns 0 when `substring` is longer than `string`.
+
+5. **Performance Considerations**:
+   - Optimize the loop to avoid unnecessary operations.
+   - Ensure the function handles large inputs efficiently.
+
+6. **Testing**:
+   - Test with empty string and substring.
+   - Test with overlapping substrings.
+   - Test with large strings and substrings.
+   - Test with edge cases where `substring` is empty or longer than `string`.
+
+### Example Test Cases:
+```python
+assert how_many_times('', 'a') == 0
+assert how_many_times('aaa', 'a') == 3
+assert how_many_times('aaaa', 'aa') == 3
+assert how_many_times('abcabcabc', 'abc') == 3
+assert how_many_times('abcabcabc', 'abcd') == 0
+assert how_many_times('abcabcabc', '') == 0
+assert how_many_times('abcabcabc', 'abcabc') == 1
+```

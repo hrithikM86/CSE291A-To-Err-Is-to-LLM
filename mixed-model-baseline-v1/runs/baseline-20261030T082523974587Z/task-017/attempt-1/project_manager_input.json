@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List\n\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\" Input to this function is a string representing musical notes in a special ASCII format.\n    Your task is to parse this string and return list of integers corresponding to how many beats does each\n    not last.\n\n    Here is a legend:\n    'o' - whole note, lasts four beats\n    'o|' - half note, lasts two beats\n    '.|' - quater note, lasts one beat\n\n    >>> parse_music('o o| .| o| o| .| .| .| .| o o')\n    [4, 2, 1, 2, 2, 1, 1, 1, 1, 4, 4]\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `parse_music`:\n\n1. Initialize an empty list `durations` to store the result.\n2. Iterate through each character in `music_string`:\n   - If the character is 'o', append 4 to `durations`.\n   - If the character is 'o|', append 2 to `durations`.\n   - If the character is '.|', append 1 to `durations`.\n   - Ignore any other characters.\n3. Return `durations`.\n\nEdge cases:\n- If `music_string` is empty, return an empty list.\n- If `music_string` contains invalid characters, ignore them and continue parsing the valid ones.\n\nComplexity:\n- Time: O(n), where n is the length of `music_string`.\n- Space: O(m), where m is the number of valid notes in `music_string`."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

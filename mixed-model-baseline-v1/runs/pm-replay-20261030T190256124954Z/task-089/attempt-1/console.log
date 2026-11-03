@@ -1,0 +1,34 @@
+
+TASK: HumanEval/89 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def encrypt(s: str) -> str:
+    result = []
+    for char in s:
+        if char.isalpha():
+            shift = 2 * 2
+            if char.islower():
+                result.append(chr((ord(char) - ord('a') + shift) % 26 + ord('a')))
+            else:
+                result.append(chr((ord(char) - ord('A') + shift) % 26 + ord('A')))
+        else:
+            result.append(char)
+    return ''.join(result)
+```
+Running test_engineer: qwen2.5:7b
+```python
+def encrypt(s: str) -> str:
+    result = []
+    for char in s:
+        if char.isalpha():
+            shift = 2 * 2
+            if char.islower():
+                result.append(chr((ord(char) - ord('a') + shift) % 26 + ord('a')))
+            else:
+                result.append(chr((ord(char) - ord('A') + shift) % 26 + ord('A')))
+        else:
+            result.append(char)
+    return ''.join(result)
+```
+attacked_coder official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

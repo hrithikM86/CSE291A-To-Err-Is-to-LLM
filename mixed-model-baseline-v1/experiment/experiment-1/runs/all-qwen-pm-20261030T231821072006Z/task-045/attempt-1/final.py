@@ -1,0 +1,11 @@
+def triangle_area(a, h):
+    """
+    Given length of a side and height return area for a triangle.
+    >>> triangle_area(5, 3)
+    7.5
+    """
+    if a < 0 or h < 0:
+        return "Invalid input: side and height must be non-negative."
+    if a == 0 or h == 0:
+        return 0.0
+    return 0.5 * a * h

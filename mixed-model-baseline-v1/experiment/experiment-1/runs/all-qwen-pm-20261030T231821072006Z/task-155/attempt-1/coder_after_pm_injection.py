@@ -1,0 +1,23 @@
+def even_odd_count(num: int) -> tuple:
+    from collections import Counter
+    
+    # Handle the special case where num is 0
+    if num == 0:
+        return (1, 0)
+    
+    # Convert the absolute value of num to a string and count each digit
+    digits = str(abs(num))
+    digit_counts = Counter(digits)
+    
+    # Count even and odd digits
+    even_count = sum(1 for digit in digit_counts if int(digit) % 2 == 0)
+    odd_count = sum(1 for digit in digit_counts if int(digit) % 2 == 1)
+    
+    return (even_count, odd_count)
+
+# Test cases
+print(even_odd_count(0))       # Output: (1, 0)
+print(even_odd_count(-12))     # Output: (1, 1)
+print(even_odd_count(123))     # Output: (1, 2)
+print(even_odd_count(-12345))  # Output: (2, 3)
+print(even_odd_count(2468))    # Output: (4, 0)

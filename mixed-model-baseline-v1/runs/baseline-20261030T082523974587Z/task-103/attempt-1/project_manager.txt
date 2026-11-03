@@ -1,0 +1,47 @@
+### Implementation Checklist for `rounded_avg(n: int, m: int) -> str or int`
+
+1. **Function Signature**:
+   ```python
+   def rounded_avg(n: int, m: int) -> str or int:
+       pass
+   ```
+
+2. **Input Validation**:
+   - Check if `n` and `m` are positive integers.
+   - If not, raise an appropriate error or handle the case.
+
+3. **Edge Case Handling**:
+   - If `n > m`, return `-1`.
+
+4. **Calculate the Sum**:
+   - Use the formula: `sum = (n + m) * (m - n + 1) // 2`.
+
+5. **Calculate the Average**:
+   - Compute the average: `average = sum // (m - n + 1)`.
+
+6. **Handle Halfway Case**:
+   - If the average is exactly halfway between two integers, round to the nearest even integer.
+
+7. **Convert to Binary**:
+   - Convert the rounded average to a binary string.
+   - Prefix the binary string with "0b".
+
+8. **Return the Result**:
+   - Return the binary string or `-1` if applicable.
+
+9. **Boundary Conditions**:
+   - Ensure the function handles cases where `n` and `m` are very large or very small.
+   - Test with edge cases like `n = 1, m = 1`, `n = 0, m = 1`, and `n = 1, m = 0`.
+
+10. **Example Test Cases**:
+    ```python
+    assert rounded_avg(1, 5) == "0b11"
+    assert rounded_avg(7, 5) == -1
+    assert rounded_avg(10, 20) == "0b1111"
+    assert rounded_avg(20, 33) == "0b11010"
+    ```
+
+11. **Complexity**:
+    - Ensure the function has a time complexity of O(1) and space complexity of O(1).
+
+Follow these steps to implement the `rounded_avg` function correctly.

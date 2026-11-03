@@ -1,0 +1,146 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "drop",
+  "dry_run": false,
+  "task_id": "HumanEval/90",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-090/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef next_smallest(lst):\n    \"\"\"\n    You are given a list of integers.\n    Write a function next_smallest() that returns the 2nd smallest element of the list.\n    Return None if there is no such element.\n    \n    next_smallest([1, 2, 3, 4, 5]) == 2\n    next_smallest([5, 1, 4, 3, 2]) == 2\n    next_smallest([]) == None\n    next_smallest([1, 1]) == None\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements:\n- The function `next_smallest(lst)` takes a single input: `lst` (a list of integers).\n- It returns the second smallest integer in the list.\n- If the list has fewer than 2 unique elements, return `None`.\n- If the list is empty, return `None`.\n- The input list may contain duplicates.\n- The function should handle both positive and negative integers.\n- Edge cases to consider: empty list, list with one unique element, list with all elements the same.",
+      "output_sha256": "9c4aed02c629aad87e59ee62018624833bb82e1ec34293be5c38bffcb3863724",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef next_smallest(lst):\n    \"\"\"\n    You are given a list of integers.\n    Write a function next_smallest() that returns the 2nd smallest element of the list.\n    Return None if there is no such element.\n    \n    next_smallest([1, 2, 3, 4, 5]) == 2\n    next_smallest([5, 1, 4, 3, 2]) == 2\n    next_smallest([]) == None\n    next_smallest([1, 1]) == None\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- The function `next_smallest(lst)` takes a single input: `lst` (a list of integers).\n- It returns the second smallest integer in the list.\n- If the list has fewer than 2 unique elements, return `None`.\n- If the list is empty, return `None`.\n- The input list may contain duplicates.\n- The function should handle both positive and negative integers.\n- Edge cases to consider: empty list, list with one unique element, list with all elements the same."
+      },
+      "delivered_output": "Algorithm for `next_smallest(lst)`:\n\n1. **Check for Edge Cases**:\n   - If `lst` is empty, return `None`.\n   - If `lst` has fewer than 2 unique elements, return `None`.\n\n2. **Sort the List**:\n   - Sort the list in ascending order.\n\n3. **Identify the Second Smallest Element**:\n   - Iterate through the sorted list to find the second smallest unique element.\n\n4. **Return the Result**:\n   - Return the second smallest element found.\n   - If no second smallest element exists, return `None`.\n\n**Complexity Analysis**:\n- **Time Complexity**: O(n log n) due to sorting.\n- **Space Complexity**: O(1) if sorting is done in place, otherwise O(n) for additional space.\n\n**Edge Cases**:\n- Empty list: Return `None`.\n- List with one unique element: Return `None`.\n- List with all elements the same: Return `None`.\n\nThis algorithm ensures that all specified requirements and edge cases are handled correctly.",
+      "output_sha256": "ac25a43bb300aea70b05b4a40c97ea11213c9b915bbb36ae4a93a12a389a22f8",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "\ndef next_smallest(lst):\n    \"\"\"\n    You are given a list of integers.\n    Write a function next_smallest() that returns the 2nd smallest element of the list.\n    Return None if there is no such element.\n    \n    next_smallest([1, 2, 3, 4, 5]) == 2\n    next_smallest([5, 1, 4, 3, 2]) == 2\n    next_smallest([]) == None\n    next_smallest([1, 1]) == None\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `next_smallest(lst)`:\n\n1. **Check for Edge Cases**:\n   - If `lst` is empty, return `None`.\n   - If `lst` has fewer than 2 unique elements, return `None`.\n\n2. **Sort the List**:\n   - Sort the list in ascending order.\n\n3. **Identify the Second Smallest Element**:\n   - Iterate through the sorted list to find the second smallest unique element.\n\n4. **Return the Result**:\n   - Return the second smallest element found.\n   - If no second smallest element exists, return `None`.\n\n**Complexity Analysis**:\n- **Time Complexity**: O(n log n) due to sorting.\n- **Space Complexity**: O(1) if sorting is done in place, otherwise O(n) for additional space.\n\n**Edge Cases**:\n- Empty list: Return `None`.\n- List with one unique element: Return `None`.\n- List with all elements the same: Return `None`.\n\nThis algorithm ensures that all specified requirements and edge cases are handled correctly."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `next_smallest(lst)`:\n\n1. **Function Signature**:\n   ```python\n   def next_smallest(lst):\n       # Function body\n   ```\n\n2. **Edge Case Handling**:\n   - Check if the list is empty:\n     ```python\n     if not lst:\n         return None\n     ```\n   - Check if the list has fewer than 2 unique elements:\n     ```python\n     unique_elements = set(lst)\n     if len(unique_elements) < 2:\n         return None\n     ```\n\n3. **Sorting the List**:\n   - Sort the list in ascending order:\n     ```python\n     sorted_lst = sorted(lst)\n     ```\n\n4. **Identify the Second Smallest Element**:\n   - Iterate through the sorted list to find the second smallest unique element:\n     ```python\n     for i in range(1, len(sorted_lst)):\n         if sorted_lst[i] != sorted_lst[i-1]:\n             return sorted_lst[i]\n     ```\n\n5. **Return the Result**:\n   - If no second smallest element is found, return `None`:\n     ```python\n     return None\n     ```\n\n6. **Testing**:\n   - Test with provided examples:\n     ```python\n     assert next_smallest([1, 2, 3, 4, 5]) == 2\n     assert next_smallest([5, 1, 4, 3, 2]) == 2\n     assert next_smallest([]) == None\n     assert next_smallest([1, 1]) == None\n     ```\n\n7. **Complexity Analysis**:\n   - Ensure the time complexity is O(n log n) due to sorting.\n   - Ensure the space complexity is O(1) if sorting is done in place, otherwise O(n) for additional space.\n\n8. **Edge Cases**:\n   - Ensure all edge cases are handled correctly, including:\n     - Empty list.\n     - List with one unique element.\n     - List with all elements the same.\n\nBy following this checklist, the coder can implement the `next_smallest` function correctly and efficiently.",
+      "output_sha256": "128cfd802e68a0c279d4e7322f75334dc0dbff063ac6eadfde81738b9c62351e",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "\ndef next_smallest(lst):\n    \"\"\"\n    You are given a list of integers.\n    Write a function next_smallest() that returns the 2nd smallest element of the list.\n    Return None if there is no such element.\n    \n    next_smallest([1, 2, 3, 4, 5]) == 2\n    next_smallest([5, 1, 4, 3, 2]) == 2\n    next_smallest([]) == None\n    next_smallest([1, 1]) == None\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `next_smallest(lst)`:\n\n1. **Function Signature**:\n   ```python\n   def next_smallest(lst):\n       # Function body\n   ```\n\n2. **Edge Case Handling**:\n   - Check if the list is empty:\n     ```python\n     if not lst:\n         return None\n     ```\n   - Check if the list has fewer than 2 unique elements:\n     ```python\n     unique_elements = set(lst)\n     if len(unique_elements) < 2:\n         return None\n     ```\n\n3. **Sorting the List**:\n   - Sort the list in ascending order:\n     ```python\n     sorted_lst = sorted(lst)\n     ```\n\n4. **Identify the Second Smallest Element**:\n   - Iterate through the sorted list to find the second smallest unique element:\n     ```python\n     for i in range(1, len(sorted_lst)):\n         if sorted_lst[i] != sorted_lst[i-1]:\n             return sorted_lst[i]\n     ```\n\n5. **Return the Result**:\n   - If no second smallest element is found, return `None`:\n     ```python\n     return None\n     ```\n\n6. **Testing**:\n   - Test with provided examples:\n     ```python\n     assert next_smallest([1, 2, 3, 4, 5]) == 2\n     assert next_smallest([5, 1, 4, 3, 2]) == 2\n     assert next_smallest([]) == None\n     assert next_smallest([1, 1]) == None\n     ```\n\n7. **Complexity Analysis**:\n   - Ensure the time complexity is O(n log n) due to sorting.\n   - Ensure the space complexity is O(1) if sorting is done in place, otherwise O(n) for additional space.\n\n8. **Edge Cases**:\n   - Ensure all edge cases are handled correctly, including:\n     - Empty list.\n     - List with one unique element.\n     - List with all elements the same.\n\nBy following this checklist, the coder can implement the `next_smallest` function correctly and efficiently."
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 6.387,
+      "prompt_tokens": 743,
+      "completion_tokens": 84,
+      "delivered_output": "```python\ndef next_smallest(lst):\n    if not lst:\n        return None\n    unique_elements = set(lst)\n    if len(unique_elements) < 2:\n        return None\n    sorted_lst = sorted(unique_elements)\n    for i in range(1, len(sorted_lst)):\n        if sorted_lst[i] != sorted_lst[i-1]:\n            return sorted_lst[i]\n    return None\n```",
+      "output_sha256": "edec4c202d8142bfd0bb50d56fda2ff0b409ef7f57aa1cb215be5918f09d99a6",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "\ndef next_smallest(lst):\n    \"\"\"\n    You are given a list of integers.\n    Write a function next_smallest() that returns the 2nd smallest element of the list.\n    Return None if there is no such element.\n    \n    next_smallest([1, 2, 3, 4, 5]) == 2\n    next_smallest([5, 1, 4, 3, 2]) == 2\n    next_smallest([]) == None\n    next_smallest([1, 1]) == None\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\ndef next_smallest(lst):\n    if not lst:\n        return None\n    unique_elements = set(lst)\n    if len(unique_elements) < 2:\n        return None\n    sorted_lst = sorted(unique_elements)\n    for i in range(1, len(sorted_lst)):\n        if sorted_lst[i] != sorted_lst[i-1]:\n            return sorted_lst[i]\n    return None\n```"
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 5.255,
+      "prompt_tokens": 374,
+      "completion_tokens": 67,
+      "delivered_output": "```python\ndef next_smallest(lst):\n    if not lst:\n        return None\n    unique_elements = set(lst)\n    if len(unique_elements) < 2:\n        return None\n    sorted_lst = sorted(unique_elements)\n    return sorted_lst[1] if len(sorted_lst) > 1 else None\n```",
+      "output_sha256": "4b4ea173c96dec5385e2aa6963bee463ffccf225add630d4e1ddc12c13022fde",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1117,
+    "completion_tokens": 151,
+    "model_seconds": 11.642,
+    "tracking_overhead_seconds": 0.000734,
+    "recovery_wall_seconds": 11.693
+  }
+}

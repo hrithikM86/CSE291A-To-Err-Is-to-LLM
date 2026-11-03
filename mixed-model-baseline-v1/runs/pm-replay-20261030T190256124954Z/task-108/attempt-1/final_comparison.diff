@@ -1,0 +1,18 @@
+--- baseline_final.py
++++ final.py
+@@ -10,11 +10,8 @@
+     """
+     count = 0
+     for num in arr:
+-        if num == 0:
+-            continue
+-        digits = [int(d) for d in str(abs(num))]
+-        if num < 0:
+-            digits[0] = -digits[0]
+-        if sum(digits) > 0:
+-            count += 1
++        if num != 0:
++            digit_sum = sum(int(digit) for digit in str(abs(num))) if num > 0 else -int(str(num)[1]) + sum(int(digit) for digit in str(abs(num))[1:])
++            if digit_sum > 0:
++                count += 1
+     return count

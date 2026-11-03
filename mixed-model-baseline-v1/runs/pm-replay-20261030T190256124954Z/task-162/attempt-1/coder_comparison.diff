@@ -1,0 +1,11 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -5,5 +5,7 @@
+         raise TypeError("Input must be a string")
+     if text == "":
+         return None
+-    md5_hash = hashlib.md5(text.encode()).hexdigest()
++    normalized_text = text.lower()
++    encoded_text = normalized_text.encode('utf-8')
++    md5_hash = hashlib.md5(encoded_text).hexdigest()
+     return md5_hash

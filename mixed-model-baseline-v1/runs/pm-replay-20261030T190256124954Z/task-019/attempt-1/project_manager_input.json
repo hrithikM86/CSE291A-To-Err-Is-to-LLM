@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. Define the function `sort_numbers(numbers: str) -> str`.\n2. Handle edge cases:\n   - If `numbers` is an empty string, return an empty string.\n3. Create a dictionary to map number words to their numerical values:\n   - `{'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}`\n4. Split the input string into a list of number words.\n5. Filter out any invalid number words.\n6. Convert the valid number words to their numerical values, sort them.\n7. Convert the sorted numerical values back to number words.\n8. Join the sorted number words with spaces and return the result.\n\nComplexity:\n- Time: O(n + m log m), where n is the number of words and m is the number of valid words.\n- Space: O(n), for storing the list of number words and their sorted values.\n\nThis algorithm ensures correct sorting and handles edge cases as specified."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

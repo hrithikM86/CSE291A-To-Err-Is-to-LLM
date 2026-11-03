@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n",
+    "previous_stage": "project_manager",
+    "previous_artifact": "### Implementation Checklist for `closest_integer(value)`:\n\n1. **Function Signature:**\n   ```python\n   def closest_integer(value: str) -> int:\n       pass\n   ```\n\n2. **Algorithm Steps:**\n   - **Input Validation:**\n     - Check if `value` is a valid numeric string.\n     - If not, return `None` or raise a `ValueError`.\n   - **Conversion:**\n     - Convert `value` to a float.\n   - **Determine Closest Integers:**\n     - Calculate the floor and ceiling of the float value.\n     - If the difference between the float value and the floor is exactly 0.5, choose the ceiling.\n     - If the difference between the float value and the ceiling is exactly 0.5, choose the floor.\n   - **Return the Chosen Integer:**\n     - Return the chosen integer.\n\n3. **Boundary Conditions:**\n   - **Empty String:**\n     - Return `None` or raise a `ValueError`.\n   - **Non-Numeric String:**\n     - Return `None` or raise a `ValueError`.\n   - **Very Large or Very Small Numbers:**\n     - Ensure no overflow or underflow occurs during conversion and calculation.\n\n4. **Example Implementations:**\n   ```python\n   def closest_integer(value: str) -> int:\n       if not value or not value.replace('.', '', 1).isdigit():\n           raise ValueError(\"Invalid input\")\n       \n       num = float(value)\n       floor_val = int(num // 1)\n       ceil_val = int(num // 1) + 1\n       \n       if num - floor_val == 0.5 or ceil_val - num == 0.5:\n           return ceil_val if num > 0 else floor_val\n       else:\n           return round(num)\n   ```\n\n5. **Test Cases:**\n   - `closest_integer(\"10\")` should return `10`.\n   - `closest_integer(\"15.3\")` should return `15`.\n   - `closest_integer(\"14.5\")` should return `15`.\n   - `closest_integer(\"-14.5\")` should return `-15`.\n   - `closest_integer(\"\")` should raise a `ValueError`.\n   - `closest_integer(\"abc\")` should raise a `ValueError`.\n   - `closest_integer(\"1e308\")` should handle large numbers without overflow."
+  },
+  "system_messages": [
+    "You are a Code Engineer, named coder, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5-coder:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

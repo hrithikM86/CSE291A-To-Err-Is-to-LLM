@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef total_match(lst1, lst2):\n    '''\n    Write a function that accepts two lists of strings and returns the list that has \n    total number of chars in the all strings of the list less than the other list.\n\n    if the two lists have the same number of chars, return the first list.\n\n    Examples\n    total_match([], []) \u279e []\n    total_match(['hi', 'admin'], ['hI', 'Hi']) \u279e ['hI', 'Hi']\n    total_match(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']) \u279e ['hi', 'admin']\n    total_match(['hi', 'admin'], ['hI', 'hi', 'hi']) \u279e ['hI', 'hi', 'hi']\n    total_match(['4'], ['1', '2', '3', '4', '5']) \u279e ['4']\n    '''\n",
+    "previous_stage": "project_manager",
+    "previous_artifact": "### Implementation Checklist for `total_match(lst1, lst2)`\n\n1. **Function Signature**\n   ```python\n   def total_match(lst1, lst2):\n       pass\n   ```\n\n2. **Algorithm Steps**\n   - **Step 1:** Initialize variables to count the total number of characters in `lst1` and `lst2`.\n   - **Step 2:** Iterate through each string in `lst1` and `lst2` to calculate the total character count.\n   - **Step 3:** Compare the total character counts:\n     - If `lst1` has fewer characters, return `lst1`.\n     - If `lst2` has fewer characters, return `lst2`.\n     - If both have the same number of characters, return `lst1`.\n   - **Step 4:** Handle edge cases:\n     - If either list is empty, return the non-empty list or an empty list if both are empty.\n\n3. **Boundary Conditions**\n   - Ensure the function handles cases where both lists are empty.\n   - Ensure the function handles cases where one list is empty and the other is not.\n   - Ensure the function handles cases where both lists have the same total character count.\n\n4. **Example Test Cases**\n   - `total_match([], [])` should return `[]`.\n   - `total_match(['hi', 'admin'], ['hI', 'Hi'])` should return `['hI', 'Hi']`.\n   - `total_match(['hi', 'admin'], ['hi', 'hi', 'admin', 'project'])` should return `['hi', 'admin']`.\n   - `total_match(['hi', 'admin'], ['hI', 'hi', 'hi'])` should return `['hI', 'hi', 'hi']`.\n   - `total_match(['4'], ['1', '2', '3', '4', '5'])` should return `['4']`.\n\n5. **Complexity**\n   - Time: O(n + m), where n and m are the lengths of `lst1` and `lst2`, respectively.\n   - Space: O(1), as no additional space is used other than variables for counting characters.\n\n6. **Code Structure**\n   - Ensure the code is well-structured and follows PEP 8 guidelines.\n   - Include appropriate comments to explain the logic and edge cases."
+  },
+  "system_messages": [
+    "You are a Code Engineer, named coder, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5-coder:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

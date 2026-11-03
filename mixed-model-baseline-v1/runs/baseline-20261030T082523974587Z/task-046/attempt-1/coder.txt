@@ -1,0 +1,12 @@
+```python
+def fib4(n: int) -> int:
+    if n < 0:
+        raise ValueError("Input must be a non-negative integer")
+    
+    cache = [0, 0, 2, 0]
+    
+    for i in range(4, n + 1):
+        cache.append(cache[i-1] + cache[i-2] + cache[i-3] + cache[i-4])
+    
+    return cache[n]
+```

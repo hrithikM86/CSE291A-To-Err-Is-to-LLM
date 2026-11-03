@@ -1,0 +1,38 @@
+### Implementation Checklist for `string_to_md5`
+
+1. **Function Signature**:
+   - Define `string_to_md5(text: str) -> str | None`.
+
+2. **Algorithm Steps**:
+   - **Step 1: Input Validation**
+     - Check if `text` is a string.
+     - If not, raise a `TypeError` with an appropriate message.
+   - **Step 2: Empty String Check**
+     - If `text` is an empty string, return `None`.
+   - **Step 3: MD5 Hash Calculation**
+     - Use a secure hash function (e.g., `hashlib.md5()`) to compute the MD5 hash of `text`.
+   - **Step 4: Hexadecimal Conversion**
+     - Convert the hash object to a hexadecimal string.
+   - **Step 5: Return Result**
+     - Return the hexadecimal string.
+
+3. **Boundary Conditions**:
+   - Ensure the input is always a string.
+   - Handle an empty string by returning `None`.
+
+4. **Edge Cases**:
+   - Verify that the function raises a `TypeError` for non-string inputs.
+   - Confirm that an empty string returns `None`.
+
+5. **Complexity**:
+   - Input validation: O(1)
+   - Empty string check: O(1)
+   - Hash calculation: O(n), where n is the length of the input string.
+   - Hexadecimal conversion: O(1)
+
+6. **Testing**:
+   - Test with various string inputs, including an empty string.
+   - Verify the function returns the correct MD5 hash for given strings.
+   - Ensure error handling for non-string inputs.
+
+By following this checklist, the coder can ensure a correct and robust implementation of the `string_to_md5` function.

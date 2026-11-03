@@ -1,0 +1,13 @@
+--- coder_after_pm_injection.py
++++ final.py
+@@ -6,6 +6,9 @@
+     current_stones = n
+     for _ in range(n):
+         pile.append(current_stones)
+-        current_stones += 4
++        if current_stones % 2 == 0:
++            current_stones += 2
++        else:
++            current_stones += 4
+ 
+     return pile

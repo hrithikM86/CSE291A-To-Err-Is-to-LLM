@@ -1,0 +1,22 @@
+
+TASK: HumanEval/159 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+from typing import List
+
+def eat(number: int, need: int, remaining: int) -> List[int]:
+    total_eaten = number + need
+    remaining_stock = max(remaining - need, 0)
+    return [total_eaten, remaining_stock]
+```
+Running test_engineer: qwen2.5:7b
+```python
+from typing import List
+
+def eat(number: int, need: int, remaining: int) -> List[int]:
+    total_eaten = number + min(need, remaining)
+    remaining_stock = max(remaining - need, 0)
+    return [total_eaten, remaining_stock]
+```
+attacked_coder official: failed {'passed': 1, 'failed': 2, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

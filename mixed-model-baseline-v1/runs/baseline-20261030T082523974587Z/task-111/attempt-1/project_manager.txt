@@ -1,0 +1,42 @@
+### Implementation Checklist for `histogram` Function
+
+1. **Function Signature**:
+   ```python
+   def histogram(test: str) -> dict:
+       pass
+   ```
+
+2. **Algorithm Steps**:
+   - **Input Validation**: Check if the input string `test` is empty. If it is, return an empty dictionary `{}`.
+   - **Split the Input**: Split the string into a list of letters using `test.split()`.
+   - **Frequency Count**: Use a dictionary to count the frequency of each letter.
+   - **Determine Maximum Frequency**: Find the maximum frequency among all letters.
+   - **Filter Letters with Maximum Frequency**: Create a dictionary containing only the letters that have the maximum frequency.
+   - **Return Result**: Return the filtered dictionary.
+
+3. **Boundary Conditions**:
+   - Handle an empty string input.
+   - Handle cases where all letters have the same frequency.
+   - Handle a single letter input.
+
+4. **Example Implementations**:
+   - For an empty string: `return {}`
+   - For a string with multiple letters: 
+     ```python
+     test = 'a b c'
+     result = {'a': 1, 'b': 1, 'c': 1}
+     ```
+   - For a string with repeated letters:
+     ```python
+     test = 'a b b a'
+     result = {'a': 2, 'b': 2}
+     ```
+
+5. **Edge Cases**:
+   - Ensure the function handles all edge cases as described in the algorithm steps.
+
+6. **Complexity**:
+   - Time: O(n), where n is the number of letters in the input string.
+   - Space: O(m), where m is the number of unique letters in the input string.
+
+By following this checklist, the coder can ensure a correct and efficient implementation of the `histogram` function.

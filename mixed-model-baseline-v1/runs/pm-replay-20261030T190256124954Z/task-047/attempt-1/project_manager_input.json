@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef median(l: list):\n    \"\"\"Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. **Input Validation**:\n   - Check if the list `l` is empty. If it is, raise an exception or return `None`.\n\n2. **Sort the List**:\n   - Sort the list `l` in ascending order.\n\n3. **Determine the Median**:\n   - Calculate the length of the list `n`.\n   - If `n` is odd, return the element at index `n // 2`.\n   - If `n` is even, return the average of the elements at indices `n // 2 - 1` and `n // 2`.\n\n4. **Edge Cases**:\n   - **Empty List**: Raise an exception or return `None`.\n   - **Single Element List**: Return the single element.\n   - **Duplicate Middle Values**: The algorithm inherently handles this by correctly calculating the average of the two middle elements.\n\n5. **Complexity**:\n   - **Time Complexity**: O(n log n) due to the sorting step.\n   - **Space Complexity**: O(1) if sorting is done in place, otherwise O(n) for additional space.\n\nThis algorithm ensures the correct calculation of the median according to the provided requirements and handles edge cases appropriately."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

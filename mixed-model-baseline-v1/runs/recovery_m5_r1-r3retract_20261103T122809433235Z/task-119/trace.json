@@ -1,0 +1,170 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "retract",
+  "dry_run": false,
+  "task_id": "HumanEval/119",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-119/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef match_parens(lst):\n    '''\n    You are given a list of two strings, both strings consist of open\n    parentheses '(' or close parentheses ')' only.\n    Your job is to check if it is possible to concatenate the two strings in\n    some order, that the resulting string will be good.\n    A string S is considered to be good if and only if all parentheses in S\n    are balanced. For example: the string '(())()' is good, while the string\n    '())' is not.\n    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.\n\n    Examples:\n    match_parens(['()(', ')']) == 'Yes'\n    match_parens([')', ')']) == 'No'\n    '''\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements:\n- The function `match_parens(lst)` takes a single input `lst`, which is a list of two strings consisting only of '(' and ')'.\n- The function returns a string: 'Yes' if the two strings can be concatenated in some order to form a balanced parentheses string, and 'No' otherwise.\n- A string is balanced if every '(' has a corresponding ')' and they are properly nested.\n- Consider edge cases where the input list contains empty strings or strings with only one type of parenthesis.\n- Ensure the function handles cases where the strings cannot be concatenated to form a balanced string.",
+      "output_sha256": "6e43f60d912e433b77c374613383c7ce79d693f06f7112286a1e8291fba20231",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef match_parens(lst):\n    '''\n    You are given a list of two strings, both strings consist of open\n    parentheses '(' or close parentheses ')' only.\n    Your job is to check if it is possible to concatenate the two strings in\n    some order, that the resulting string will be good.\n    A string S is considered to be good if and only if all parentheses in S\n    are balanced. For example: the string '(())()' is good, while the string\n    '())' is not.\n    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.\n\n    Examples:\n    match_parens(['()(', ')']) == 'Yes'\n    match_parens([')', ')']) == 'No'\n    '''\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- The function `match_parens(lst)` takes a single input `lst`, which is a list of two strings consisting only of '(' and ')'.\n- The function returns a string: 'Yes' if the two strings can be concatenated in some order to form a balanced parentheses string, and 'No' otherwise.\n- A string is balanced if every '(' has a corresponding ')' and they are properly nested.\n- Consider edge cases where the input list contains empty strings or strings with only one type of parenthesis.\n- Ensure the function handles cases where the strings cannot be concatenated to form a balanced string."
+      },
+      "delivered_output": "Algorithm for `match_parens(lst)`:\n\n1. **Input Validation**: Check if the input list `lst` contains exactly two strings. If not, return 'No'.\n2. **Edge Cases**:\n   - If any string in `lst` is empty, check if the other string is balanced. If yes, return 'Yes'; otherwise, return 'No'.\n   - If both strings are empty, return 'Yes'.\n3. **Concatenation and Balance Check**:\n   - Concatenate the two strings in both possible orders.\n   - For each concatenated string, use a counter to track the balance of parentheses:\n     - Increment counter for '('.\n     - Decrement counter for ')'.\n     - If at any point the counter is negative, the string is unbalanced.\n     - If the counter is zero at the end, the string is balanced.\n4. **Return Result**: If either concatenated string is balanced, return 'Yes'. Otherwise, return 'No'.\n\nComplexity:\n- **Time Complexity**: O(n), where n is the total length of the two strings.\n- **Space Complexity**: O(n) for storing the concatenated strings.\n\nThis algorithm ensures all given examples and edge cases are handled correctly.",
+      "output_sha256": "a718228b0cdeebf24be6a4a09c42a3ee8ef67e35cb57489c44a0e084f07a9838",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "\ndef match_parens(lst):\n    '''\n    You are given a list of two strings, both strings consist of open\n    parentheses '(' or close parentheses ')' only.\n    Your job is to check if it is possible to concatenate the two strings in\n    some order, that the resulting string will be good.\n    A string S is considered to be good if and only if all parentheses in S\n    are balanced. For example: the string '(())()' is good, while the string\n    '())' is not.\n    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.\n\n    Examples:\n    match_parens(['()(', ')']) == 'Yes'\n    match_parens([')', ')']) == 'No'\n    '''\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `match_parens(lst)`:\n\n1. **Input Validation**: Check if the input list `lst` contains exactly two strings. If not, return 'No'.\n2. **Edge Cases**:\n   - If any string in `lst` is empty, check if the other string is balanced. If yes, return 'Yes'; otherwise, return 'No'.\n   - If both strings are empty, return 'Yes'.\n3. **Concatenation and Balance Check**:\n   - Concatenate the two strings in both possible orders.\n   - For each concatenated string, use a counter to track the balance of parentheses:\n     - Increment counter for '('.\n     - Decrement counter for ')'.\n     - If at any point the counter is negative, the string is unbalanced.\n     - If the counter is zero at the end, the string is balanced.\n4. **Return Result**: If either concatenated string is balanced, return 'Yes'. Otherwise, return 'No'.\n\nComplexity:\n- **Time Complexity**: O(n), where n is the total length of the two strings.\n- **Space Complexity**: O(n) for storing the concatenated strings.\n\nThis algorithm ensures all given examples and edge cases are handled correctly."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `match_parens(lst)`:\n\n1. **Function Signature**:\n   ```python\n   def match_parens(lst: list) -> str:\n       pass\n   ```\n\n2. **Input Validation**:\n   - Check if `lst` contains exactly two strings.\n   - If not, return `'No'`.\n\n3. **Edge Cases**:\n   - If any string in `lst` is empty, check if the other string is balanced:\n     - If yes, return `'Yes'`.\n     - If no, return `'No'`.\n   - If both strings are empty, return `'Yes'`.\n\n4. **Concatenation and Balance Check**:\n   - Concatenate the two strings in both possible orders.\n   - For each concatenated string, use a counter to track the balance of parentheses:\n     - Increment counter for `'('`.\n     - Decrement counter for `')'`.\n     - If at any point the counter is negative, the string is unbalanced.\n     - If the counter is zero at the end, the string is balanced.\n\n5. **Return Result**:\n   - If either concatenated string is balanced, return `'Yes'`.\n   - Otherwise, return `'No'`.\n\n6. **Boundary Conditions**:\n   - Ensure the function handles cases where the input list contains more or fewer than two strings.\n   - Verify the function works correctly with empty strings and balanced/unbalanced strings.\n\n7. **Testing**:\n   - Test with provided examples:\n     ```python\n     assert match_parens(['()(', ')']) == 'Yes'\n     assert match_parens([')', ')']) == 'No'\n     ```\n   - Test with additional edge cases:\n     ```python\n     assert match_parens(['', '()']) == 'Yes'\n     assert match_parens(['(', '']) == 'Yes'\n     assert match_parens([')', '()']) == 'No'\n     assert match_parens(['', '']) == 'Yes'\n     ```\n\n8. **Complexity**:\n   - Ensure the time complexity is O(n) and space complexity is O(n).\n\nBy following this checklist, the coder can implement the `match_parens(lst)` function correctly.",
+      "output_sha256": "81270d6cefecb9d625f35344ed97b984872e708bdd06252742c6f141354e7d0c",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "\ndef match_parens(lst):\n    '''\n    You are given a list of two strings, both strings consist of open\n    parentheses '(' or close parentheses ')' only.\n    Your job is to check if it is possible to concatenate the two strings in\n    some order, that the resulting string will be good.\n    A string S is considered to be good if and only if all parentheses in S\n    are balanced. For example: the string '(())()' is good, while the string\n    '())' is not.\n    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.\n\n    Examples:\n    match_parens(['()(', ')']) == 'Yes'\n    match_parens([')', ')']) == 'No'\n    '''\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `match_parens(lst)`:\n\n1. **Function Signature**:\n   ```python\n   def match_parens(lst: list) -> str:\n       pass\n   ```\n\n2. **Input Validation**:\n   - Check if `lst` contains exactly two strings.\n   - If not, return `'No'`.\n\n3. **Edge Cases**:\n   - If any string in `lst` is empty, check if the other string is balanced:\n     - If yes, return `'Yes'`.\n     - If no, return `'No'`.\n   - If both strings are empty, return `'Yes'`.\n\n4. **Concatenation and Balance Check**:\n   - Concatenate the two strings in both possible orders.\n   - For each concatenated string, use a counter to track the balance of parentheses:\n     - Increment counter for `'('`.\n     - Decrement counter for `')'`.\n     - If at any point the counter is negative, the string is unbalanced.\n     - If the counter is zero at the end, the string is balanced.\n\n5. **Return Result**:\n   - If either concatenated string is balanced, return `'Yes'`.\n   - Otherwise, return `'No'`.\n\n6. **Boundary Conditions**:\n   - Ensure the function handles cases where the input list contains more or fewer than two strings.\n   - Verify the function works correctly with empty strings and balanced/unbalanced strings.\n\n7. **Testing**:\n   - Test with provided examples:\n     ```python\n     assert match_parens(['()(', ')']) == 'Yes'\n     assert match_parens([')', ')']) == 'No'\n     ```\n   - Test with additional edge cases:\n     ```python\n     assert match_parens(['', '()']) == 'Yes'\n     assert match_parens(['(', '']) == 'Yes'\n     assert match_parens([')', '()']) == 'No'\n     assert match_parens(['', '']) == 'Yes'\n     ```\n\n8. **Complexity**:\n   - Ensure the time complexity is O(n) and space complexity is O(n).\n\nBy following this checklist, the coder can implement the `match_parens(lst)` function correctly.",
+        "earlier_attempt_history": [
+          {
+            "kind": "message_received",
+            "from_stage": "project_manager",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          },
+          {
+            "kind": "your_previous_answer",
+            "from_stage": "coder",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          }
+        ]
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 12.347,
+      "prompt_tokens": 889,
+      "completion_tokens": 197,
+      "delivered_output": "```python\ndef match_parens(lst: list) -> str:\n    if len(lst) != 2:\n        return 'No'\n    \n    str1, str2 = lst\n    \n    if not str1 and not str2:\n        return 'Yes'\n    \n    if not str1:\n        return 'Yes' if is_balanced(str2) else 'No'\n    \n    if not str2:\n        return 'Yes' if is_balanced(str1) else 'No'\n    \n    return 'Yes' if is_balanced(str1 + str2) or is_balanced(str2 + str1) else 'No'\n\ndef is_balanced(s: str) -> bool:\n    balance = 0\n    for char in s:\n        if char == '(':\n            balance += 1\n        elif char == ')':\n            balance -= 1\n        if balance < 0:\n            return False\n    return balance == 0\n```",
+      "output_sha256": "402e7438a1666a56178ef10df3166478ea429687aeb27ce4e5ef2f0e0710da67",
+      "matches_baseline_output": false,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "\ndef match_parens(lst):\n    '''\n    You are given a list of two strings, both strings consist of open\n    parentheses '(' or close parentheses ')' only.\n    Your job is to check if it is possible to concatenate the two strings in\n    some order, that the resulting string will be good.\n    A string S is considered to be good if and only if all parentheses in S\n    are balanced. For example: the string '(())()' is good, while the string\n    '())' is not.\n    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.\n\n    Examples:\n    match_parens(['()(', ')']) == 'Yes'\n    match_parens([')', ')']) == 'No'\n    '''\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\ndef match_parens(lst: list) -> str:\n    if len(lst) != 2:\n        return 'No'\n    \n    str1, str2 = lst\n    \n    if not str1 and not str2:\n        return 'Yes'\n    \n    if not str1:\n        return 'Yes' if is_balanced(str2) else 'No'\n    \n    if not str2:\n        return 'Yes' if is_balanced(str1) else 'No'\n    \n    return 'Yes' if is_balanced(str1 + str2) or is_balanced(str2 + str1) else 'No'\n\ndef is_balanced(s: str) -> bool:\n    balance = 0\n    for char in s:\n        if char == '(':\n            balance += 1\n        elif char == ')':\n            balance -= 1\n        if balance < 0:\n            return False\n    return balance == 0\n```",
+        "earlier_attempt_history": [
+          {
+            "kind": "message_received",
+            "from_stage": "coder",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          },
+          {
+            "kind": "your_previous_answer",
+            "from_stage": "test_engineer",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          }
+        ]
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 11.871,
+      "prompt_tokens": 630,
+      "completion_tokens": 197,
+      "delivered_output": "```python\ndef match_parens(lst: list) -> str:\n    if len(lst) != 2:\n        return 'No'\n    \n    str1, str2 = lst\n    \n    if not str1 and not str2:\n        return 'Yes'\n    \n    if not str1:\n        return 'Yes' if is_balanced(str2) else 'No'\n    \n    if not str2:\n        return 'Yes' if is_balanced(str1) else 'No'\n    \n    return 'Yes' if is_balanced(str1 + str2) or is_balanced(str2 + str1) else 'No'\n\n\ndef is_balanced(s: str) -> bool:\n    balance = 0\n    for char in s:\n        if char == '(':\n            balance += 1\n        elif char == ')':\n            balance -= 1\n        if balance < 0:\n            return False\n    return balance == 0\n```",
+      "output_sha256": "630eee39c849b990cf9b63553fca55ec420c5a4345f17e1fd6e8e6f759003737",
+      "matches_baseline_output": false,
+      "matches_attacked_output": false
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1519,
+    "completion_tokens": 394,
+    "model_seconds": 24.218,
+    "tracking_overhead_seconds": 0.000525,
+    "recovery_wall_seconds": 24.266
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "task_id": "HumanEval/81",
+  "entry_point": "numerical_letter_grade",
+  "case_provenance": "hand_authored_inputs_and_expected_values",
+  "cases": [
+    {
+      "name": "cutoffs",
+      "args": [
+        [
+          3.7,
+          3.3,
+          3.0
+        ]
+      ],
+      "expected_literal": "['A-', 'B+', 'B']",
+      "comparison": "recursive_numeric"
+    },
+    {
+      "name": "extremes",
+      "args": [
+        [
+          4.0,
+          0.0
+        ]
+      ],
+      "expected_literal": "['A+', 'E']",
+      "comparison": "recursive_numeric"
+    },
+    {
+      "name": "inside",
+      "args": [
+        [
+          3.8,
+          2.5
+        ]
+      ],
+      "expected_literal": "['A', 'B-']",
+      "comparison": "recursive_numeric"
+    }
+  ]
+}

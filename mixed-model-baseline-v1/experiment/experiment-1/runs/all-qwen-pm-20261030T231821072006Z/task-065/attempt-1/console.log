@@ -1,0 +1,60 @@
+
+TASK: HumanEval/65 attempt 1
+Running coder: qwen2.5:7b
+```python
+def circular_shift(x: int, shift: int) -> str:
+    if x == 0 or shift == 0:
+        return "0"
+    
+    sign = -1 if x < 0 else 1
+    x = abs(x)
+    num_digits = len(str(x))
+    
+    if shift >= num_digits:
+        shift = shift % num_digits
+    
+    if shift == 0:
+        return str(x)
+    
+    str_x = str(x)
+    if shift < num_digits:
+        shifted_part = str_x[-shift:] + str_x[:-shift]
+    else:
+        shifted_part = str_x[num_digits - shift:] + str_x[:num_digits - shift]
+    
+    result = shifted_part
+    if sign < 0:
+        result = "-" + result
+    
+    return result
+```
+Running test_engineer: qwen2.5:7b
+```python
+def circular_shift(x: int, shift: int) -> str:
+    if x == 0 or shift == 0:
+        return "0"
+    
+    sign = -1 if x < 0 else 1
+    x = abs(x)
+    num_digits = len(str(x))
+    
+    if shift >= num_digits:
+        shift = shift % num_digits
+    
+    if shift == 0:
+        return str(x)
+    
+    str_x = str(x)
+    if shift < num_digits:
+        shifted_part = str_x[-shift:] + str_x[:-shift]
+    else:
+        shifted_part = str_x[num_digits - shift:] + str_x[:num_digits - shift]
+    
+    result = shifted_part
+    if sign < 0:
+        result = "-" + result
+    
+    return result
+```
+attacked_coder official: failed {'passed': 1, 'failed': 2, 'timeout': 0, 'unresolved': 0}
+attacked_final official: failed {'passed': 1, 'failed': 2, 'timeout': 0, 'unresolved': 0}

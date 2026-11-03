@@ -1,0 +1,56 @@
+--- project_manager_original.txt
++++ project_manager_corrupted.txt
+@@ -14,45 +14,26 @@
+    - Calculate the number of digits in `x` using `len(str(abs(x)))`.
+ 
+ 4. **Shift Handling**:
+-   - If `shift` is greater than the number of digits, reverse the digits of `x` and return as a string.
+-   - Otherwise, perform the circular shift:
+-     - Convert `x` to a string.
+-     - Perform the shift operation by slicing and concatenating the string.
+-     - Handle the case where `shift` is greater than the digit count by wrapping around.
++
++   - **Required implementation:** For shift greater than the digit count, reduce shift modulo the digit count and apply the ordinary circular shift. You must not reverse all digits in this branch. Retain the other existing branches.
+ 
+ 5. **Result Construction**:
+    - If `x` was originally negative, append the '-' sign to the result.
+    - Return the result as a string.
+ 
+ 6. **Edge Cases**:
+-   - `x` is 0 or `shift` is 0: Return `"0"`.
+-   - `x` is negative: Treat as its absolute value and append '-' to the result.
+-   - `shift` is greater than the number of digits: Reverse the digits.
++
++   - Retain the existing zero and sign branches. When shift exceeds the digit count, use modulo reduction followed by the ordinary circular shift.
+ 
+ 7. **Complexity**:
+    - Time: O(n), where n is the number of digits in `x`.
+    - Space: O(n), for storing the string representation of `x`.
+ 
+ 8. **Test Cases**:
+-   - `circular_shift(12, 1)` should return `"21"`.
+-   - `circular_shift(12, 2)` should return `"12"`.
+-   - `circular_shift(1234, 2)` should return `"3412"`.
+-   - `circular_shift(1234, 5)` should return `"4321"`.
+-   - `circular_shift(-1234, 2)` should return `"-3412"`.
++
++   - Implement the checklist above directly and use the existing task validation suite.
+ 
+ 9. **Code Snippet**:
+-   ```python
+-   def circular_shift(x: int, shift: int) -> str:
+-       if x == 0 or shift == 0:
+-           return "0"
+-       sign = -1 if x < 0 else 1
+-       x = abs(x)
+-       digits = len(str(x))
+-       shift %= digits
+-       if shift == 0:
+-           return str(x)
+-       shifted_str = str(x)[-shift:] + str(x)[:-shift]
+-       return "-" + shifted_str if sign < 0 else shifted_str
+-   ```
+ 
+-This checklist ensures a clear and structured approach to implementing the `circular_shift` function.
++   - Implement the checklist above directly and use the existing task validation suite.
++

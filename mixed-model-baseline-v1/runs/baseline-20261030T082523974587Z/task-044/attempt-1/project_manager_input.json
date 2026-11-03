@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef change_base(x: int, base: int):\n    \"\"\"Change numerical base of input number x to base.\n    return string representation after the conversion.\n    base numbers are less than 10.\n    >>> change_base(8, 3)\n    '22'\n    >>> change_base(8, 2)\n    '1000'\n    >>> change_base(7, 2)\n    '111'\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `change_base`:\n\n1. Validate `base`:\n   - If `base` is not between 2 and 9, raise `ValueError`.\n\n2. Handle `x` as 0:\n   - If `x` is 0, return '0'.\n\n3. Handle negative `x`:\n   - If `x` is negative, convert `abs(x)` to the specified base and prepend '-' to the result.\n\n4. Convert `x` to the specified base:\n   - Initialize an empty string `result`.\n   - While `x` is greater than 0:\n     - Append `x % base` to `result`.\n     - Update `x` to `x // base`.\n   - Reverse `result` to get the correct base representation.\n\n5. Return `result`.\n\nEdge cases:\n- `x` is 0: Return '0'.\n- `x` is negative: Convert `abs(x)` and prepend '-'.\n- Invalid `base`: Raise `ValueError`.\n\nComplexity:\n- Time: O(log_b(x)), where b is the base.\n- Space: O(log_b(x)) for storing the result."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

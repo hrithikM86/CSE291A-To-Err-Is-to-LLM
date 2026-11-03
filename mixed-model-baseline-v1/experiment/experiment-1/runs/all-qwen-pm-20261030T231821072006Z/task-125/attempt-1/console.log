@@ -1,0 +1,46 @@
+
+TASK: HumanEval/125 attempt 1
+Running coder: qwen2.5:7b
+```python
+from typing import List, Union
+
+def split_words(txt: str) -> Union[List[str], int]:
+    if ',' in txt:
+        return [word.strip() for word in txt.split(',')]
+    elif ' ' in txt:
+        return [word for word in txt.split(' ') if word]
+    else:
+        return sum(1 for char in txt if char.islower() and ord(char) % 2 == 1)
+
+# Test cases
+assert split_words("Hello world!") == ["Hello", "world!"]
+assert split_words("Hello,world!") == ["Hello", "world!"]
+assert split_words("abcdef") == 3
+assert split_words("") == []
+assert split_words("   ") == []
+assert split_words(", , ,") == ["", "", ""]
+assert split_words("12345") == 0
+```
+Running test_engineer: qwen2.5:7b
+```python
+from typing import List, Union
+
+def split_words(txt: str) -> Union[List[str], int]:
+    if ',' in txt:
+        return [word.strip() for word in txt.split(',') if word]
+    elif ' ' in txt:
+        return [word for word in txt.split(' ') if word]
+    else:
+        return sum(1 for char in txt if char.islower() and ord(char) % 2 == 1)
+
+# Test cases
+assert split_words("Hello world!") == ["Hello", "world!"]
+assert split_words("Hello,world!") == ["Hello", "world!"]
+assert split_words("abcdef") == 3
+assert split_words("") == []
+assert split_words("   ") == []
+assert split_words(", , ,") == ["", "", ""]
+assert split_words("12345") == 0
+```
+attacked_coder official: failed {'passed': 0, 'failed': 3, 'timeout': 0, 'unresolved': 0}
+attacked_final official: failed {'passed': 0, 'failed': 3, 'timeout': 0, 'unresolved': 0}

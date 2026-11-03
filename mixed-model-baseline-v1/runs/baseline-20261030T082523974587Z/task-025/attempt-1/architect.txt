@@ -1,0 +1,20 @@
+Algorithm for `factorize`:
+
+1. **Input Validation**: Check if `n` is a positive integer. If not, raise an exception.
+2. **Edge Cases**:
+   - If `n` is 0, return an empty list `[]`.
+   - If `n` is 1, return `[1]`.
+3. **Factorization**:
+   - Initialize an empty list `factors`.
+   - For each integer `i` from 2 to `sqrt(n)`:
+     - While `n` is divisible by `i`:
+       - Append `i` to `factors`.
+       - Divide `n` by `i`.
+   - If `n` is greater than 1, append `n` to `factors` (remaining prime factor).
+4. **Return** the list `factors`.
+
+Complexity:
+- Time: O(sqrt(n)) due to the loop up to the square root of `n`.
+- Space: O(sqrt(n)) for storing the factors.
+
+This algorithm ensures all prime factors are found and listed in ascending order, adhering to the specification.

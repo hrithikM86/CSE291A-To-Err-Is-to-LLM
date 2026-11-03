@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef common(l1: list, l2: list):\n    \"\"\"Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `common` function:\n\n1. **Input Validation**: Check if either `l1` or `l2` is empty. If so, return an empty list.\n2. **Convert to Set**: Convert both lists to sets to remove duplicates and allow for efficient intersection.\n3. **Intersection**: Compute the intersection of the two sets to find common elements.\n4. **Sort**: Sort the resulting set in ascending order.\n5. **Return**: Return the sorted list of common elements.\n\nEdge Cases:\n- Both lists are empty: Return an empty list.\n- One list is empty: Return an empty list.\n- No common elements: Return an empty list.\n- Large lists: Use set operations to ensure efficiency.\n\nComplexity:\n- Time: O(n + m), where n and m are the lengths of `l1` and `l2`, respectively.\n- Space: O(n + m) for storing the sets.\n\nThis algorithm ensures the function behaves as specified, handling edge cases and large inputs efficiently."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

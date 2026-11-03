@@ -1,0 +1,18 @@
+from typing import List
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    if not numbers:
+        return False
+    if threshold <= 0:
+        raise ValueError("Threshold must be positive")
+    
+    numbers.sort()
+    left, right = 0, 1
+    
+    while right < len(numbers):
+        if numbers[right] - numbers[left] < threshold:
+            return True
+        left += 1
+        right += 1
+    
+    return False

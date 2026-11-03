@@ -1,0 +1,33 @@
+
+TASK: HumanEval/0 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+from typing import List
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    if not numbers:
+        return False
+    if threshold <= 0:
+        raise ValueError("Threshold must be positive")
+    
+    numbers.sort()
+    return numbers[-1] - numbers[0] < threshold
+```
+Running test_engineer: qwen2.5:7b
+```python
+from typing import List
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    if not numbers:
+        return False
+    if threshold <= 0:
+        raise ValueError("Threshold must be positive")
+
+    numbers.sort()
+    for i in range(len(numbers) - 1):
+        if numbers[i + 1] - numbers[i] < threshold:
+            return True
+    return False
+```
+attacked_coder official: failed {'passed': 3, 'failed': 2, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 4, 'failed': 1, 'timeout': 0, 'unresolved': 0}

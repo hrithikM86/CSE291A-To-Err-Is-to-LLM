@@ -1,0 +1,53 @@
+### Implementation Checklist for `closest_integer(value)`:
+
+1. **Function Signature:**
+   ```python
+   def closest_integer(value: str) -> int:
+       pass
+   ```
+
+2. **Algorithm Steps:**
+   - **Input Validation:**
+     - Check if `value` is a valid numeric string.
+     - If not, return `None` or raise a `ValueError`.
+   - **Conversion:**
+     - Convert `value` to a float.
+   - **Determine Closest Integers:**
+     - Calculate the floor and ceiling of the float value.
+     - If the difference between the float value and the floor is exactly 0.5, choose the ceiling.
+     - If the difference between the float value and the ceiling is exactly 0.5, choose the floor.
+   - **Return the Chosen Integer:**
+     - Return the chosen integer.
+
+3. **Boundary Conditions:**
+   - **Empty String:**
+     - Return `None` or raise a `ValueError`.
+   - **Non-Numeric String:**
+     - Return `None` or raise a `ValueError`.
+   - **Very Large or Very Small Numbers:**
+     - Ensure no overflow or underflow occurs during conversion and calculation.
+
+4. **Example Implementations:**
+   ```python
+   def closest_integer(value: str) -> int:
+       if not value or not value.replace('.', '', 1).isdigit():
+           raise ValueError("Invalid input")
+       
+       num = float(value)
+       floor_val = int(num // 1)
+       ceil_val = int(num // 1) + 1
+       
+       if num - floor_val == 0.5 or ceil_val - num == 0.5:
+           return ceil_val if num > 0 else floor_val
+       else:
+           return round(num)
+   ```
+
+5. **Test Cases:**
+   - `closest_integer("10")` should return `10`.
+   - `closest_integer("15.3")` should return `15`.
+   - `closest_integer("14.5")` should return `15`.
+   - `closest_integer("-14.5")` should return `-15`.
+   - `closest_integer("")` should raise a `ValueError`.
+   - `closest_integer("abc")` should raise a `ValueError`.
+   - `closest_integer("1e308")` should handle large numbers without overflow.

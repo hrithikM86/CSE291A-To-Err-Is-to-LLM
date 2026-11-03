@@ -1,0 +1,39 @@
+{
+  "task_id": "HumanEval/101",
+  "entry_point": "words_string",
+  "case_provenance": "hand_authored_inputs_and_expected_values",
+  "cases": [
+    {
+      "name": "consecutive_delimiters",
+      "args": [
+        "alpha,,beta"
+      ],
+      "expected_literal": "['alpha', 'beta']",
+      "comparison": "recursive_numeric"
+    },
+    {
+      "name": "space_only",
+      "args": [
+        "alpha beta"
+      ],
+      "expected_literal": "['alpha', 'beta']",
+      "comparison": "recursive_numeric"
+    },
+    {
+      "name": "comma",
+      "args": [
+        "alpha,beta"
+      ],
+      "expected_literal": "['alpha', 'beta']",
+      "comparison": "recursive_numeric"
+    },
+    {
+      "name": "empty",
+      "args": [
+        ""
+      ],
+      "expected_literal": "[]",
+      "comparison": "recursive_numeric"
+    }
+  ]
+}

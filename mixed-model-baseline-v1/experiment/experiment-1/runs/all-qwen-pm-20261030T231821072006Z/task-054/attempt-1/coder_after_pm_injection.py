@@ -1,0 +1,11 @@
+def same_chars(s0: str, s1: str) -> bool:
+    # Lowercase both strings and remove spaces
+    s0 = ''.join(s0.lower().split())
+    s1 = ''.join(s1.lower().split())
+    
+    # Reject different processed lengths
+    if len(s0) != len(s1):
+        return False
+    
+    # Compare sorted character sequences with duplicate multiplicities
+    return sorted(s0) == sorted(s1)

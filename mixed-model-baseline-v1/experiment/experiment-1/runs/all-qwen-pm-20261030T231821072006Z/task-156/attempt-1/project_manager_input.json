@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef int_to_mini_roman(number):\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n\n    Examples:\n    >>> int_to_mini_roman(19) == 'xix'\n    >>> int_to_mini_roman(152) == 'clii'\n    >>> int_to_mini_roman(426) == 'cdxxvi'\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `int_to_mini_roman(number)`:\n\n1. Define a dictionary `roman_map` with key-value pairs for Roman numerals, including special cases like 4, 9, 40, 90, 400, and 900.\n2. Initialize an empty string `result`.\n3. Iterate over the `roman_map` keys in descending order:\n   - While `number` is greater than or equal to the current key:\n     - Append the corresponding Roman numeral to `result`.\n     - Subtract the key value from `number`.\n4. Return `result` in lowercase.\n\nEdge Cases:\n- Ensure `number` is within the range 1 to 1000.\n- Handle the edge cases where `number` is 1 or 1000.\n\nComplexity:\n- Time: O(1) since the number of iterations is constant (at most 13).\n- Space: O(1) for the `roman_map` and `result` string."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

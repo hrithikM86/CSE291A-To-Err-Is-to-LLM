@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef decimal_to_binary(decimal):\n    \"\"\"You will be given a number in decimal form and your task is to convert it to\n    binary format. The function should return a string, with each character representing a binary\n    number. Each character in the string will be '0' or '1'.\n\n    There will be an extra couple of characters 'db' at the beginning and at the end of the string.\n    The extra characters are there to help with the format.\n\n    Examples:\n    decimal_to_binary(15)   # returns \"db1111db\"\n    decimal_to_binary(32)   # returns \"db100000db\"\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `decimal_to_binary(decimal)`:\n\n1. Validate input: Ensure `decimal` is a non-negative integer.\n2. Handle edge case: If `decimal` is 0, return \"db0db\".\n3. Convert `decimal` to binary:\n   - Initialize an empty string `binary`.\n   - While `decimal` is greater than 0:\n     - Append `decimal % 2` to `binary`.\n     - Divide `decimal` by 2 (integer division).\n   - Reverse `binary` to get the correct binary representation.\n4. Enclose `binary` with 'db' at the start and end.\n5. Return the resulting string.\n\nComplexity:\n- Time: O(log(decimal)), where log is base 2.\n- Space: O(log(decimal)), for storing the binary string.\n\nThis algorithm ensures the correct conversion and handles all specified edge cases."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

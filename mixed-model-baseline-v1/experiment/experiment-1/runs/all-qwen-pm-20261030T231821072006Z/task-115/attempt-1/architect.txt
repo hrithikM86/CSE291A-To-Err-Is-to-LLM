@@ -1,0 +1,26 @@
+Algorithm for `max_fill(grid, capacity)`:
+
+1. **Input Validation**: 
+   - Check if `grid` is not empty and each well (row) has the same length. If not, return an error or handle appropriately.
+
+2. **Initialization**:
+   - Set `total_drops` to 0 to count the number of times buckets are lowered.
+
+3. **Iterate Over Wells**:
+   - For each row (well) in `grid`:
+     - Calculate the number of buckets needed to empty the well: `drops = math.ceil(well.count(1) / capacity)`.
+     - Add `drops` to `total_drops`.
+
+4. **Return Result**:
+   - Return `total_drops`.
+
+**Edge Cases**:
+- If a well is empty (`well.count(1) == 0`), no drops are needed for that well.
+- If `capacity` is 1, each unit of water requires one drop.
+- If `capacity` is equal to the maximum number of units in a well, only one drop is needed for that well.
+
+**Complexity**:
+- Time: O(n * m), where n is the number of wells and m is the length of each well.
+- Space: O(1), as no additional space is used other than a few variables.
+
+This algorithm ensures that all wells are emptied with the minimum number of bucket drops, adhering to the constraints and examples provided.

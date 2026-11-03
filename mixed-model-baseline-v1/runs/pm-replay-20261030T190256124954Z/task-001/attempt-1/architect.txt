@@ -1,0 +1,20 @@
+Algorithm:
+
+1. Initialize an empty list `groups` to store the resulting groups of parentheses.
+2. Initialize an empty string `current_group` to build the current group of parentheses.
+3. Initialize a counter `open_paren_count` to count open parentheses.
+4. Iterate through each character `char` in the input string `paren_string` (ignoring spaces):
+   - If `char` is '(', increment `open_paren_count` and append `char` to `current_group`.
+   - If `char` is ')', decrement `open_paren_count` and append `char` to `current_group`.
+     - If `open_paren_count` becomes 0, add `current_group` to `groups` and reset `current_group`.
+5. Return `groups`.
+
+Edge Cases:
+- Empty input string: Return an empty list.
+- Single group: Return a list containing the single group.
+- Multiple groups: Correctly separate and return each group.
+- Unbalanced or nested groups: Ignore them and only return balanced, non-nested groups.
+
+Complexity:
+- Time: O(n), where n is the length of the input string.
+- Space: O(n), for storing the groups and the current group.

@@ -1,0 +1,13 @@
+--- coder_after_pm_injection.py
++++ final.py
+@@ -3,6 +3,8 @@
+         return ("", False)
+     
+     filtered_string = ''.join(char for char in s if char not in c)
+-    original_s_is_palindrome = s == s[::-1]
+     
+-    return (filtered_string, original_s_is_palindrome)
++    # Check if the filtered string is a palindrome
++    is_palindrome = filtered_string == filtered_string[::-1]
++    
++    return (filtered_string, is_palindrome)

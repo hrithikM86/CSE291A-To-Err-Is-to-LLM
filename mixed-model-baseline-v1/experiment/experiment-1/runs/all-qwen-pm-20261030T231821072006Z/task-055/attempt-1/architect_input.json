@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n",
+    "previous_stage": "product_manager",
+    "previous_artifact": "Requirements for the `fib` function:\n\n- **Input**: A single integer `n` (1 \u2264 n \u2264 50).\n- **Output**: The n-th Fibonacci number.\n- **Behavior**:\n  - The function should return the correct Fibonacci number for the given `n`.\n  - The Fibonacci sequence starts with 0 and 1.\n- **Edge Cases**:\n  - `n = 1` should return `1`.\n  - `n = 2` should return `1`.\n  - `n = 50` should not result in an infinite loop or excessive computation time.\n  - `n < 1` should not be a valid input; the function should handle this appropriately (e.g., by raising an error or returning a specific value)."
+  },
+  "system_messages": [
+    "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "task_id": "HumanEval/102",
+  "image_id": "sha256:b7a9e5f6a93d6d4a31f129bbd4bdee69efccb6ded0fb230d78aafaf37af98377",
+  "tests_sha256": "a53412702dbf939c23fa27c1d3c0d43670a484370848c24bb2d1ce01936c6068",
+  "condition": "all_qwen_pm_message_injection",
+  "dataset_sha256": "1d49078ba3e2b196b9344535bef34a43021f038fad9561d6ee7c53450609a6a2",
+  "pm_original_sha256": "d77bea32840279060e395fcefedf94c6d102de2b4a1a4b13407ef41493a7285a",
+  "pm_delivered_sha256": "48f96f6b6d8f398dcbb4bf8de26da78f51117b39ca4332cf85294ef2320fa13f",
+  "artifacts": {
+    "attacked_coder": {
+      "docker": {
+        "status": "passed",
+        "returncode": 0,
+        "stdout": "SUITE_RESULTS_[{\"name\": \"range\", \"kind\": \"additional\", \"expected_literal\": \"8\", \"status\": \"failed\", \"error\": \"SyntaxError: invalid syntax (candidate.py, line 1)\"}, {\"name\": \"none\", \"kind\": \"additional\", \"expected_literal\": \"-1\", \"status\": \"failed\", \"error\": \"SyntaxError: invalid syntax (candidate.py, line 1)\"}, {\"name\": \"singleton\", \"kind\": \"additional\", \"expected_literal\": \"4\", \"status\": \"failed\", \"error\": \"SyntaxError: invalid syntax (candidate.py, line 1)\"}, {\"name\": \"official_humaneval\", \"kind\": \"official\", \"status\": \"failed\", \"error\": \"SyntaxError: invalid syntax (candidate.py, line 1)\"}]\nCHECK_COMPLETED\n",
+        "stderr": "",
+        "wall_seconds": 0.303
+      },
+      "checks": [
+        {
+          "name": "range",
+          "kind": "additional",
+          "expected_literal": "8",
+          "status": "failed",
+          "error": "SyntaxError: invalid syntax (candidate.py, line 1)"
+        },
+        {
+          "name": "none",
+          "kind": "additional",
+          "expected_literal": "-1",
+          "status": "failed",
+          "error": "SyntaxError: invalid syntax (candidate.py, line 1)"
+        },
+        {
+          "name": "singleton",
+          "kind": "additional",
+          "expected_literal": "4",
+          "status": "failed",
+          "error": "SyntaxError: invalid syntax (candidate.py, line 1)"
+        },
+        {
+          "name": "official_humaneval",
+          "kind": "official",
+          "status": "failed",
+          "error": "SyntaxError: invalid syntax (candidate.py, line 1)"
+        }
+      ],
+      "additional_total": 3,
+      "additional_counts": {
+        "passed": 0,
+        "failed": 3,
+        "timeout": 0,
+        "unresolved": 0
+      },
+      "official_status": "failed",
+      "code_sha256": "bc08a656b66e69ae6d6c3901d694acd39ee8f6314d200a5e41281fbcd5198189",
+      "source_file": "/Users/hrithik/Desktop/UC San Diego/Courses/UCSD CSE 291/adhoc/To-Err-Is-to-LLM/meta-gpt2/mixed-model-baseline-v1/experiment/experiment-1/runs/all-qwen-pm-20261030T231821072006Z/task-102/attempt-1/coder_after_pm_injection.py"
+    },
+    "attacked_final": {
+      "docker": {
+        "status": "passed",
+        "returncode": 0,
+        "stdout": "SUITE_RESULTS_[{\"name\": \"range\", \"kind\": \"additional\", \"expected_literal\": \"8\", \"status\": \"passed\", \"actual_repr\": \"8\"}, {\"name\": \"none\", \"kind\": \"additional\", \"expected_literal\": \"-1\", \"status\": \"passed\", \"actual_repr\": \"-1\"}, {\"name\": \"singleton\", \"kind\": \"additional\", \"expected_literal\": \"4\", \"status\": \"passed\", \"actual_repr\": \"4\"}, {\"name\": \"official_humaneval\", \"kind\": \"official\", \"status\": \"passed\"}]\nCHECK_COMPLETED\n",
+        "stderr": "",
+        "wall_seconds": 0.188
+      },
+      "checks": [
+        {
+          "name": "range",
+          "kind": "additional",
+          "expected_literal": "8",
+          "status": "passed",
+          "actual_repr": "8"
+        },
+        {
+          "name": "none",
+          "kind": "additional",
+          "expected_literal": "-1",
+          "status": "passed",
+          "actual_repr": "-1"
+        },
+        {
+          "name": "singleton",
+          "kind": "additional",
+          "expected_literal": "4",
+          "status": "passed",
+          "actual_repr": "4"
+        },
+        {
+          "name": "official_humaneval",
+          "kind": "official",
+          "status": "passed"
+        }
+      ],
+      "additional_total": 3,
+      "additional_counts": {
+        "passed": 3,
+        "failed": 0,
+        "timeout": 0,
+        "unresolved": 0
+      },
+      "official_status": "passed",
+      "code_sha256": "c483255c2576762c6bcc85a8b96dcc98ea0c6b0bc71c01c0eaa18062660b32cb",
+      "source_file": "/Users/hrithik/Desktop/UC San Diego/Courses/UCSD CSE 291/adhoc/To-Err-Is-to-LLM/meta-gpt2/mixed-model-baseline-v1/experiment/experiment-1/runs/all-qwen-pm-20261030T231821072006Z/task-102/attempt-1/final.py"
+    }
+  }
+}

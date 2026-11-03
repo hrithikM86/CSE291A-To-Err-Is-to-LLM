@@ -1,0 +1,48 @@
+
+TASK: HumanEval/114 attempt 1
+Running coder: qwen2.5:7b
+```python
+def minSubArraySum(nums: list) -> int:
+    if not nums:
+        raise ValueError("Input list cannot be empty")
+    
+    if len(nums) == 1:
+        return nums[0]
+    
+    # Initialize the minimum sum with the first element
+    min_sum = nums[0]
+    current_sum = nums[0]
+    
+    # Iterate through the list starting from the second element
+    for i in range(1, len(nums)):
+        # Update the current sum to be the minimum of the current element or the sum of the current element and the previous sum
+        current_sum = min(nums[i], current_sum + nums[i])
+        # Update the minimum sum found so far
+        min_sum = min(min_sum, current_sum)
+    
+    return min_sum
+```
+Running test_engineer: qwen2.5:7b
+```python
+def minSubArraySum(nums: list) -> int:
+    if not nums:
+        raise ValueError("Input list cannot be empty")
+
+    if len(nums) == 1:
+        return nums[0]
+
+    # Initialize the minimum sum with the first element
+    min_sum = nums[0]
+    current_sum = nums[0]
+
+    # Iterate through the list starting from the second element
+    for i in range(1, len(nums)):
+        # Update the current sum to be the minimum of the current element or the sum of the current element and the previous sum
+        current_sum = min(nums[i], current_sum + nums[i])
+        # Update the minimum sum found so far
+        min_sum = min(min_sum, current_sum)
+
+    return min_sum
+```
+attacked_coder official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

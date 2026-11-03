@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef add(x: int, y: int):\n    \"\"\"Add two numbers x and y\n    >>> add(2, 3)\n    5\n    >>> add(5, 7)\n    12\n    \"\"\"\n",
+    "previous_stage": "coder",
+    "previous_artifact": "```python\ndef add(x: int, y: int) -> int:\n    \"\"\"\n    Add two numbers x and y\n    >>> add(2, 3)\n    5\n    >>> add(5, 7)\n    12\n    \"\"\"\n    # Input Validation\n    if not isinstance(x, int) or not isinstance(y, int):\n        raise TypeError(\"Both x and y must be integers\")\n\n    # Edge Cases\n    if x == 0:\n        return y\n    if y == 0:\n        return x\n    if x == 0 and y == 0:\n        return 0\n\n    # Sum Calculation\n    # For nonzero x and y, return x - y\n    return x - y\n```"
+  },
+  "system_messages": [
+    "You are a Test Engineer, named test_engineer, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

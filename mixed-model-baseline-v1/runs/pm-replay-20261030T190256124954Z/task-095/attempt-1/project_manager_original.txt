@@ -1,0 +1,51 @@
+### Implementation Checklist for `check_dict_case(dict)`:
+
+1. **Function Signature**:
+   ```python
+   def check_dict_case(dict):
+       pass
+   ```
+
+2. **Algorithm Steps**:
+   - **Step 1**: Check if the dictionary is empty. If yes, return `False`.
+   - **Step 2**: Initialize `lower_count` and `upper_count` to 0.
+   - **Step 3**: Iterate through each key in the dictionary:
+     - If the key is a string, check if it is in lowercase. If yes, increment `lower_count`.
+     - If the key is a string, check if it is in uppercase. If yes, increment `upper_count`.
+     - If the key is neither in lowercase nor in uppercase, return `False`.
+   - **Step 4**: After the loop, check if either `lower_count` or `upper_count` is equal to the number of keys in the dictionary. If yes, return `True`.
+   - **Step 5**: If neither counter matches the number of keys, return `False`.
+
+3. **Boundary Conditions**:
+   - **Empty Dictionary**: Return `False`.
+   - **Mixed Case Keys**: Return `False`.
+   - **Non-string Keys**: Return `False`.
+
+4. **Example Implementations**:
+   ```python
+   def check_dict_case(dict):
+       if not dict:
+           return False
+
+       lower_count = 0
+       upper_count = 0
+       key_count = len(dict)
+
+       for key in dict.keys():
+           if not isinstance(key, str):
+               return False
+           if key.islower():
+               lower_count += 1
+           elif key.isupper():
+               upper_count += 1
+           else:
+               return False
+
+       return lower_count == key_count or upper_count == key_count
+   ```
+
+5. **Testing**:
+   - Test with an empty dictionary.
+   - Test with a dictionary with mixed case keys.
+   - Test with a dictionary with non-string keys.
+   - Test with dictionaries where all keys are in lowercase or uppercase.

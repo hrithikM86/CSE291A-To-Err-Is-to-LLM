@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef largest_smallest_integers(lst):\n    '''\n    Create a function that returns a tuple (a, b), where 'a' is\n    the largest of negative integers, and 'b' is the smallest\n    of positive integers in a list.\n    If there is no negative or positive integers, return them as None.\n\n    Examples:\n    largest_smallest_integers([2, 4, 1, 3, 5, 7]) == (None, 1)\n    largest_smallest_integers([]) == (None, None)\n    largest_smallest_integers([0]) == (None, None)\n    '''\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `largest_smallest_integers(lst)`:\n\n1. Initialize `largest_negative` and `smallest_positive` to `None`.\n2. Iterate through each integer `num` in the list `lst`:\n   - If `num` is negative and `largest_negative` is `None` or `num` > `largest_negative`, set `largest_negative` to `num`.\n   - If `num` is positive and `smallest_positive` is `None` or `num` < `smallest_positive`, set `smallest_positive` to `num`.\n3. Return the tuple `(largest_negative, smallest_positive)`.\n\nEdge Cases:\n- An empty list: Return `(None, None)`.\n- A list with only zero: Return `(None, None)`.\n- A list with only negative numbers: Return `(max(lst), None)`.\n- A list with only positive numbers: Return `(None, min(lst))`.\n- A list with both negative and positive numbers: Return `(largest_negative, smallest_positive)` as calculated.\n\nComplexity:\n- Time: O(n), where n is the length of the list.\n- Space: O(1), as only a few variables are used."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

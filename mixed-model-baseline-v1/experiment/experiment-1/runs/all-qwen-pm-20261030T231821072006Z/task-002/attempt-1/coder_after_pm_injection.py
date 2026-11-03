@@ -1,0 +1,10 @@
+def truncate_number(number: float) -> float:
+    if not isinstance(number, float):
+        raise TypeError("Input must be a float")
+    
+    if number < 0:
+        return number - int(number)
+    elif number == int(number):
+        return 0.0
+    else:
+        return 1.0 - (number - int(number))

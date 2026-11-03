@@ -1,0 +1,25 @@
+Algorithm for `triangle_area(a, b, c)`:
+
+1. **Input Validation**:
+   - Check if any of the sides `a`, `b`, or `c` are zero or negative. If any are, return -1.
+
+2. **Triangle Inequality Check**:
+   - Verify if the sum of any two sides is greater than the third side. If not, return -1.
+
+3. **Calculate Semi-Perimeter**:
+   - Compute the semi-perimeter `s` as `(a + b + c) / 2`.
+
+4. **Heron's Formula**:
+   - Use Heron's formula to calculate the area: `area = sqrt(s * (s - a) * (s - b) * (s - c))`.
+
+5. **Return Result**:
+   - Round the area to 2 decimal points and return it.
+   - If the sides do not form a valid triangle, return -1.
+
+**Edge Cases**:
+- All sides are zero or negative: Return -1.
+- Sides do not satisfy the triangle inequality theorem: Return -1.
+- Valid triangle: Return the area rounded to 2 decimal points.
+
+**Complexity**:
+- The algorithm has a constant time complexity O(1) as it involves a fixed number of operations regardless of the input size.

@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List\n\n\ndef rescale_to_unit(numbers: List[float]) -> List[float]:\n    \"\"\" Given list of numbers (of at least two elements), apply a linear transform to that list,\n    such that the smallest number will become 0 and the largest will become 1\n    >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])\n    [0.0, 0.25, 0.5, 0.75, 1.0]\n    \"\"\"\n",
+    "previous_stage": "product_manager",
+    "previous_artifact": "Requirements:\n- **Inputs**: A list of `float` numbers with at least two elements.\n- **Outputs**: A list of `float` numbers where the smallest number in the input list is transformed to 0 and the largest number is transformed to 1.\n- **Behavior**: Apply a linear transformation to scale the numbers in the list.\n- **Edge Cases**:\n  - The input list must contain at least two elements.\n  - The input list can contain duplicate values.\n  - The input list can include negative numbers.\n  - The input list can include zero."
+  },
+  "system_messages": [
+    "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

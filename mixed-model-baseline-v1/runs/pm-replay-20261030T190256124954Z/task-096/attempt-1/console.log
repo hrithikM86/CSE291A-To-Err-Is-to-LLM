@@ -1,0 +1,54 @@
+
+TASK: HumanEval/96 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def count_up_to(n: int) -> list:
+    if n <= 2:
+        return []
+    
+    def is_prime(num: int) -> bool:
+        if num <= 1:
+            return False
+        if num == 2:
+            return True
+        if num % 2 == 0:
+            return False
+        for i in range(3, int(num**0.5) + 1, 2):
+            if num % i == 0:
+                return False
+        return True
+    
+    primes = []
+    for num in range(3, n, 2):
+        if is_prime(num):
+            primes.append(num)
+    
+    return primes
+```
+Running test_engineer: qwen2.5:7b
+```python
+def count_up_to(n: int) -> list:
+    if n <= 2:
+        return [] if n < 2 else [2]
+
+    def is_prime(num: int) -> bool:
+        if num <= 1:
+            return False
+        if num == 2:
+            return True
+        if num % 2 == 0:
+            return False
+        for i in range(3, int(num**0.5) + 1, 2):
+            if num % i == 0:
+                return False
+        return True
+
+    primes = []
+    for num in range(2, n):
+        if is_prime(num):
+            primes.append(num)
+
+    return primes
+```
+attacked_coder official: failed {'passed': 1, 'failed': 2, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 2, 'failed': 1, 'timeout': 0, 'unresolved': 0}

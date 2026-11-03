@@ -1,0 +1,48 @@
+{
+  "task_id": "HumanEval/3",
+  "entry_point": "below_zero",
+  "case_provenance": "hand_authored_inputs_and_expected_values",
+  "cases": [
+    {
+      "name": "temporary_overdraft",
+      "args": [
+        [
+          -5,
+          10
+        ]
+      ],
+      "expected_literal": "True",
+      "comparison": "recursive_numeric"
+    },
+    {
+      "name": "final_overdraft",
+      "args": [
+        [
+          2,
+          -5
+        ]
+      ],
+      "expected_literal": "True",
+      "comparison": "recursive_numeric"
+    },
+    {
+      "name": "zero_balance",
+      "args": [
+        [
+          3,
+          -3
+        ]
+      ],
+      "expected_literal": "False",
+      "comparison": "recursive_numeric"
+    },
+    {
+      "name": "empty",
+      "args": [
+        []
+      ],
+      "expected_literal": "False",
+      "comparison": "recursive_numeric"
+    }
+  ]
+}

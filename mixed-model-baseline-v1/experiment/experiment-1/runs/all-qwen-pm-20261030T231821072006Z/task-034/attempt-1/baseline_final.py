@@ -1,0 +1,6 @@
+def unique(l: list) -> list:
+    if not l:
+        return []
+    unique_elements = set(l)
+    sorted_unique_elements = sorted(unique_elements)
+    return sorted_unique_elements

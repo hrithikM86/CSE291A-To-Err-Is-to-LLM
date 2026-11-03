@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef fibfib(n: int):\n    \"\"\"The FibFib number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fibfib(0) == 0\n    fibfib(1) == 0\n    fibfib(2) == 1\n    fibfib(n) == fibfib(n-1) + fibfib(n-2) + fibfib(n-3).\n    Please write a function to efficiently compute the n-th element of the fibfib number sequence.\n    >>> fibfib(1)\n    0\n    >>> fibfib(5)\n    4\n    >>> fibfib(8)\n    24\n    \"\"\"\n",
+    "previous_stage": "project_manager",
+    "previous_artifact": "### Implementation Checklist for `fibfib(n)`:\n\n1. **Function Signature**:\n   ```python\n   def fibfib(n: int) -> int:\n       pass\n   ```\n\n2. **Algorithm Steps**:\n   - **Input Validation**:\n     - Check if `n` is less than 0. If true, raise `ValueError`.\n   - **Base Cases**:\n     - If `n == 0` or `n == 1`, return `0`.\n     - If `n == 2`, return `1`.\n   - **Dynamic Programming with Memoization**:\n     - Initialize a dictionary `memo` to store previously computed values.\n     - If `n` is not in `memo`, compute `fibfib(n)` using the formula `fibfib(n-1) + fibfib(n-2) + fibfib(n-3)`.\n     - Store the result in `memo` for future use.\n   - **Return the Result**:\n     - Return the computed value.\n\n3. **Boundary Conditions**:\n   - Ensure the function handles `n < 0` by raising `ValueError`.\n   - Ensure the function handles `n >= 0` by correctly computing the sequence.\n\n4. **Example Test Cases**:\n   - `fibfib(1)` should return `0`.\n   - `fibfib(5)` should return `4`.\n   - `fibfib(8)` should return `24`.\n\n5. **Edge Cases**:\n   - Handle `n < 0` by raising `ValueError`.\n\n6. **Complexity**:\n   - Time Complexity: O(n) due to memoization.\n   - Space Complexity: O(n) for storing the memoization dictionary.\n\n### Example Code Structure:\n```python\ndef fibfib(n: int) -> int:\n    if n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n    \n    memo = {}\n    \n    def fibfib_memo(n: int) -> int:\n        if n in memo:\n            return memo[n]\n        if n == 0 or n == 1:\n            return 0\n        if n == 2:\n            return 1\n        memo[n] = fibfib_memo(n-1) + fibfib_memo(n-2) + fibfib_memo(n-3)\n        return memo[n]\n    \n    return fibfib_memo(n)\n```\n\nThis checklist ensures a clear and efficient implementation of the `fibfib` function."
+  },
+  "system_messages": [
+    "You are a Code Engineer, named coder, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5-coder:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

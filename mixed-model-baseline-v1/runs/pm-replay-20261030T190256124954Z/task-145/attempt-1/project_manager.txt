@@ -1,0 +1,37 @@
+### Implementation Checklist for `order_by_points(nums)`
+
+1. **Function Signature**
+   ```python
+   def order_by_points(nums: list) -> list:
+       pass
+   ```
+
+2. **Algorithm Steps**
+
+   - Compute the existing digit sum for each number. Sort by ascending computed digit sum, then ascending numeric value, and return the original numbers in that order.
+
+3. **Boundary Conditions**
+   - Handle negative numbers correctly by summing their absolute values.
+   - Single-digit numbers are already in their simplest form.
+   - An empty input list should return an empty list.
+
+4. **Helper Function**
+   ```python
+   def digit_sum(n: int) -> int:
+       return sum(int(digit) for digit in str(abs(n)))
+   ```
+
+5. **Sorting Logic**:
+
+   - **Required implementation:** Keep the existing digit-sum helper. You must sort by ascending computed digit sum and then ascending numeric value, replacing the original-position tie breaker.
+
+6. **Example Test Cases**
+
+   - Implement the checklist above directly and use the existing task validation suite.
+
+7. **Edge Cases**
+   - Ensure the function handles large numbers and negative numbers correctly.
+   - Verify the function works with a mix of positive, negative, and single-digit numbers.
+
+8. **Complexity Considerations**
+   - Ensure the digit sum calculation and sorting operations are efficient as per the given complexity analysis.

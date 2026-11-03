@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef digits(n):\n    \"\"\"Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    For example:\n    digits(1)  == 1\n    digits(4)  == 0\n    digits(235) == 15\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. **Input Validation**: Ensure `n` is a positive integer.\n2. **Edge Case Handling**:\n   - If `n` is 0, return 0.\n   - If `n` is a single digit, check if it's odd or even:\n     - Return `n` if odd.\n     - Return 0 if even.\n3. **Digit Extraction and Product Calculation**:\n   - Initialize `product` to 1.\n   - While `n` is greater than 0:\n     - Extract the last digit of `n`.\n     - If the digit is odd, multiply it with `product`.\n     - Remove the last digit from `n`.\n   - If `product` remains 1, all digits were even, so return 0.\n   - Otherwise, return `product`.\n\nComplexity:\n- Time: O(d), where d is the number of digits in `n`.\n- Space: O(1), constant space is used.\n\nThis algorithm ensures all edge cases are handled correctly and efficiently."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

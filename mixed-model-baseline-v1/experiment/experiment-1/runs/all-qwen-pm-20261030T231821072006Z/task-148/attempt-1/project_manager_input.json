@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef bf(planet1, planet2):\n    '''\n    There are eight planets in our solar system: the closerst to the Sun \n    is Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn, \n    Uranus, Neptune.\n    Write a function that takes two planet names as strings planet1 and planet2. \n    The function should return a tuple containing all planets whose orbits are \n    located between the orbit of planet1 and the orbit of planet2, sorted by \n    the proximity to the sun. \n    The function should return an empty tuple if planet1 or planet2\n    are not correct planet names. \n    Examples\n    bf(\"Jupiter\", \"Neptune\") ==> (\"Saturn\", \"Uranus\")\n    bf(\"Earth\", \"Mercury\") ==> (\"Venus\")\n    bf(\"Mercury\", \"Uranus\") ==> (\"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\")\n    '''\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. Define a list of planets sorted by their proximity to the Sun: `planets = [\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\"]`.\n2. Validate `planet1` and `planet2`:\n   - If either is not in the list of planets, return an empty tuple `()`.\n3. Find the indices of `planet1` and `planet2` in the `planets` list.\n4. Ensure `planet1` comes before `planet2` by swapping indices if necessary.\n5. Return a tuple of planets between the indices (inclusive of `planet1` and exclusive of `planet2`).\n\nEdge Cases:\n- If `planet1` and `planet2` are the same, return an empty tuple.\n- If `planet1` or `planet2` is not a valid planet name, return an empty tuple.\n\nComplexity:\n- The validation and index finding steps are O(1) since the number of planets is fixed.\n- The slicing operation to return the tuple is O(n), where n is the number of planets between `planet1` and `planet2`."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

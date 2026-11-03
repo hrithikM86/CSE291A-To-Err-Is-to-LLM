@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef any_int(x, y, z):\n    '''\n    Create a function that takes 3 numbers.\n    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.\n    Returns false in any other cases.\n    \n    Examples\n    any_int(5, 2, 7) \u279e True\n    \n    any_int(3, 2, 2) \u279e False\n\n    any_int(3, -2, 1) \u279e True\n    \n    any_int(3.6, -2.2, 2) \u279e False\n  \n\n    \n    '''\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `any_int(x, y, z)`:\n\n1. Check if the function receives exactly three inputs. If not, return `False`.\n2. Check if all inputs are integers. If any input is not an integer, return `False`.\n3. Check if any one of the numbers is equal to the sum of the other two:\n   - If `x == y + z`, return `True`.\n   - If `y == x + z`, return `True`.\n   - If `z == x + y`, return `True`.\n4. If none of the above conditions are met, return `False`.\n\nEdge Cases:\n- Non-integer inputs: Return `False`.\n- Fewer than three inputs: Return `False`.\n- More than three inputs: Return `False`.\n- Inputs are zero or negative: Valid inputs, check logic as specified.\n\nComplexity:\n- Time Complexity: O(1) since the operations are constant.\n- Space Complexity: O(1) as no additional space is used."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

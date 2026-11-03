@@ -1,0 +1,36 @@
+### Implementation Checklist for `largest_prime_factor(n: int)`
+
+1. **Function Signature**:
+   - Ensure the function is defined as `def largest_prime_factor(n: int) -> int:`
+
+2. **Initialization**:
+   - Set `largest_factor` to 2.
+   - Initialize `factor` to 3.
+
+3. **Factorization Loop**:
+   - While `n` is even:
+     - Divide `n` by 2 and update `largest_factor` to 2.
+   - Set `factor` to 3.
+   - While `factor * factor` is less than or equal to `n`:
+     - If `n` is divisible by `factor`, divide `n` by `factor` and update `largest_factor` to `factor`.
+     - Otherwise, increment `factor` by 2.
+
+4. **Final Check**:
+   - If `n` is greater than 1 after the loop, `n` itself is the largest prime factor.
+
+5. **Return**:
+   - Return `largest_factor`.
+
+6. **Boundary Conditions**:
+   - Ensure `n > 1` and `n` is not a prime number.
+   - Handle the case where `n` is a power of a prime (e.g., 2048).
+   - Handle the case where `n` is a product of multiple primes (e.g., 13195).
+
+7. **Testing**:
+   - Test with various inputs, including edge cases like `2048` and `13195`.
+   - Verify the function handles large numbers efficiently.
+
+8. **Documentation**:
+   - Include the docstring with the provided examples and assumptions.
+
+By following this checklist, the coder can implement the `largest_prime_factor` function correctly and efficiently.

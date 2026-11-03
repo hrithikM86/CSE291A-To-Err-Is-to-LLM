@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef encode(message):\n    \"\"\"\n    Write a function that takes a message, and encodes in such a \n    way that it swaps case of all letters, replaces all vowels in \n    the message with the letter that appears 2 places ahead of that \n    vowel in the english alphabet. \n    Assume only letters. \n    \n    Examples:\n    >>> encode('test')\n    'TGST'\n    >>> encode('This is a message')\n    'tHKS KS C MGSSCGG'\n    \"\"\"\n",
+    "previous_stage": "product_manager",
+    "previous_artifact": "Requirements:\n- **Input**: A string `message` consisting of letters only.\n- **Output**: A string representing the encoded message.\n- **Behavior**:\n  - Swap the case of all letters in the message.\n  - Replace each vowel (a, e, i, o, u) with the letter that is 2 places ahead in the alphabet.\n- **Edge Cases**:\n  - If a vowel is at the end of the alphabet ('u' or 'U'), wrap around to the beginning ('a' or 'A').\n  - Ignore non-letter characters.\n  - Maintain the original spacing and punctuation."
+  },
+  "system_messages": [
+    "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

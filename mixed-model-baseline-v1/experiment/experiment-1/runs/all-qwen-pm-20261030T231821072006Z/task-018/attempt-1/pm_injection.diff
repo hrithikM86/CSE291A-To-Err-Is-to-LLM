@@ -1,0 +1,38 @@
+--- project_manager_original.txt
++++ project_manager_corrupted.txt
+@@ -6,17 +6,8 @@
+    ```
+ 
+ 2. **Algorithm Steps**:
+-   - **Input Validation**:
+-     - Check if `string` is empty. If true, return 0.
+-   - **Initialization**:
+-     - Set `count` to 0.
+-   - **Loop Through String**:
+-     - Iterate through `string` using a sliding window of size equal to `substring` length.
+-       - For each position `i` in `string`:
+-         - Extract a substring of length equal to `substring` starting from `i`.
+-         - If this substring matches `substring`, increment `count`.
+-   - **Return Count**:
+-     - After the loop, return `count`.
++
++   - **Required implementation:** For a nonempty substring, repeatedly find the next occurrence starting at the current cursor, increment count, then advance the cursor by len(substring). You must count non-overlapping occurrences only. Retain zero for empty or oversized substrings.
+ 
+ 3. **Boundary Conditions**:
+    - Handle cases where `string` is very long.
+@@ -39,12 +30,6 @@
+    - Test with edge cases where `substring` is empty or longer than `string`.
+ 
+ ### Example Test Cases:
+-```python
+-assert how_many_times('', 'a') == 0
+-assert how_many_times('aaa', 'a') == 3
+-assert how_many_times('aaaa', 'aa') == 3
+-assert how_many_times('abcabcabc', 'abc') == 3
+-assert how_many_times('abcabcabc', 'abcd') == 0
+-assert how_many_times('abcabcabc', '') == 0
+-assert how_many_times('abcabcabc', 'abcabc') == 1
+-```
++
++   - Implement the checklist above directly and use the existing task validation suite.
++

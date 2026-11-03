@@ -1,0 +1,44 @@
+### Implementation Checklist for `words_in_sentence(sentence)`:
+
+1. **Function Signature**:
+   ```python
+   def words_in_sentence(sentence: str) -> str:
+       pass
+   ```
+
+2. **Helper Function**:
+   - Define a helper function `is_prime(n)` to check if a number `n` is prime.
+   - Algorithm:
+     ```python
+     def is_prime(n: int) -> bool:
+         if n <= 1:
+             return False
+         for i in range(2, int(n**0.5) + 1):
+             if n % i == 0:
+                 return False
+         return True
+     ```
+
+3. **Main Function**:
+   - Split the input `sentence` into words.
+   - Initialize an empty list `prime_length_words` to store words with prime lengths.
+   - For each word in the split sentence:
+     - Calculate the length of the word.
+     - If the length is prime (using `is_prime`), add the word to `prime_length_words`.
+   - Join the words in `prime_length_words` into a single string with spaces.
+   - Return the resulting string.
+
+4. **Edge Cases**:
+   - Handle an empty string input by returning an empty string.
+   - If no words have prime lengths, return an empty string.
+   - If the sentence contains only one word, check if its length is prime; return the word if so, otherwise return an empty string.
+
+5. **Complexity**:
+   - Time: O(n * √m), where n is the number of words and m is the average word length.
+   - Space: O(n) for storing the split words.
+
+6. **Boundary Conditions**:
+   - Ensure the input `sentence` is a string.
+   - Handle sentences with no words or only non-prime length words.
+
+By following this checklist, the coder can implement the function correctly while adhering to the specified requirements and constraints.

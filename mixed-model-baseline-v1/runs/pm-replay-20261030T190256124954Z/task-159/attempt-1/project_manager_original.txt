@@ -1,0 +1,39 @@
+### Implementation Checklist for `eat` Function
+
+1. **Function Signature**
+   ```python
+   def eat(number: int, need: int, remaining: int) -> List[int]:
+       pass
+   ```
+
+2. **Algorithm Steps**
+   - **Step 1:** Initialize `total_eaten` to `number`.
+   - **Step 2:** Check if `remaining` is 0:
+     - If true, set `total_eaten` to `number + need` and `remaining` to 0.
+   - **Step 3:** Check if `need` is 0:
+     - If true, return `[total_eaten, remaining]`.
+   - **Step 4:** Calculate `to_eat` as the minimum of `need` and `remaining`.
+   - **Step 5:** Add `to_eat` to `total_eaten`.
+   - **Step 6:** Subtract `to_eat` from `remaining`.
+   - **Step 7:** Return `[total_eaten, remaining]`.
+
+3. **Boundary Conditions**
+   - Ensure `number`, `need`, and `remaining` are within the range [0, 1000].
+   - Handle cases where `remaining` is 0 by eating all available carrots.
+   - Handle cases where `need` is 0 by returning the current state without eating.
+   - Handle cases where `number` and `need` sum to more than `remaining` by eating all `remaining` carrots.
+
+4. **Example Test Cases**
+   - `eat(5, 6, 10) -> [11, 4]`
+   - `eat(4, 8, 9) -> [12, 1]`
+   - `eat(1, 10, 10) -> [11, 0]`
+   - `eat(2, 11, 5) -> [7, 0]`
+
+5. **Edge Cases**
+   - `remaining` is 0: Eat all available carrots.
+   - `need` is 0: Return the current state without eating.
+   - `number` and `need` sum to more than `remaining`: Eat all `remaining` carrots.
+
+6. **Complexity**
+   - Time: O(1) - Constant time operations.
+   - Space: O(1) - Constant space used.

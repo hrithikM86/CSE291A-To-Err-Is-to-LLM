@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef total_match(lst1, lst2):\n    '''\n    Write a function that accepts two lists of strings and returns the list that has \n    total number of chars in the all strings of the list less than the other list.\n\n    if the two lists have the same number of chars, return the first list.\n\n    Examples\n    total_match([], []) \u279e []\n    total_match(['hi', 'admin'], ['hI', 'Hi']) \u279e ['hI', 'Hi']\n    total_match(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']) \u279e ['hi', 'admin']\n    total_match(['hi', 'admin'], ['hI', 'hi', 'hi']) \u279e ['hI', 'hi', 'hi']\n    total_match(['4'], ['1', '2', '3', '4', '5']) \u279e ['4']\n    '''\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `total_match(lst1, lst2)`:\n\n1. Calculate the total number of characters in `lst1` and `lst2`.\n2. Compare the total character counts:\n   - If `lst1` has fewer characters, return `lst1`.\n   - If `lst2` has fewer characters, return `lst2`.\n   - If both have the same number of characters, return `lst1`.\n3. Handle edge cases:\n   - If either list is empty, return the non-empty list or an empty list if both are empty.\n\nComplexity:\n- Time: O(n + m), where n and m are the lengths of `lst1` and `lst2`, respectively.\n- Space: O(1), as no additional space is used other than variables for counting characters.\n\nThis algorithm ensures the function behaves as specified, including handling edge cases where lists are empty or have the same total character count."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

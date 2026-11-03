@@ -1,0 +1,49 @@
+--- baseline_final.py
++++ final.py
+@@ -2,30 +2,22 @@
+     if len(lst) != 2:
+         return 'No'
+     
+-    str1, str2 = lst
++    def is_balanced(s: str) -> bool:
++        balance = 0
++        for char in s:
++            if char == '(':
++                balance += 1
++            else:
++                balance -= 1
++            if balance < 0:
++                return False
++        return balance == 0
+     
+-    if not str1 and not str2:
++    if not lst[0] and not lst[1]:
+         return 'Yes'
++    if not lst[0]:
++        return 'Yes' if is_balanced(lst[1]) else 'No'
++    if not lst[1]:
++        return 'Yes' if is_balanced(lst[0]) else 'No'
+     
+-    if not str1:
+-        return 'Yes' if is_balanced(str2) else 'No'
+-    
+-    if not str2:
+-        return 'Yes' if is_balanced(str1) else 'No'
+-    
+-    if is_balanced(str1 + str2) or is_balanced(str2 + str1):
+-        return 'Yes'
+-    
+-    return 'No'
+-
+-
+-def is_balanced(s: str) -> bool:
+-    balance = 0
+-    for char in s:
+-        if char == '(':
+-            balance += 1
+-        else:
+-            balance -= 1
+-        if balance < 0:
+-            return False
+-    return balance == 0
++    return 'Yes' if is_balanced(lst[0] + lst[1]) else 'No'

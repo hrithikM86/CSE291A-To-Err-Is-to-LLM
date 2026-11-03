@@ -1,0 +1,41 @@
+### Implementation Checklist for `file_name_check(file_name)`
+
+1. **Function Signature**
+   - Define the function with the correct signature: `def file_name_check(file_name: str) -> str:`
+
+2. **Check for Empty String**
+   - Implement a condition to check if `file_name` is empty. If true, return `'No'`.
+
+3. **Count Digits**
+   - Use a loop or a regular expression to count the number of digits in `file_name`. If the count is greater than 3, return `'No'`.
+
+4. **Count Dots**
+   - Count the number of dots in `file_name` using `file_name.count('.')`. If the count is not exactly 1, return `'No'`.
+
+5. **Split by Dot**
+   - Split `file_name` by the dot using `file_name.split('.')`. Ensure there are exactly two parts: `prefix` and `suffix`.
+
+6. **Validate Prefix**
+   - Check if `prefix` is not empty and starts with a letter (a-z or A-Z). If not, return `'No'`.
+
+7. **Validate Suffix**
+   - Check if `suffix` is one of `['txt', 'exe', 'dll']`. If not, return `'No'`.
+
+8. **Return Valid**
+   - If all checks pass, return `'Yes'`.
+
+9. **Edge Cases**
+   - Test with edge cases such as `file_name` containing leading/trailing spaces, `file_name` with multiple dots, and `file_name` with no digits.
+
+10. **Examples**
+    - Ensure the function works as expected with provided examples:
+      ```python
+      assert file_name_check("example.txt") == 'Yes'
+      assert file_name_check("1example.dll") == 'No'
+      ```
+
+11. **Complexity**
+    - Ensure the implementation has a time complexity of O(n) and a space complexity of O(1).
+
+12. **Testing**
+    - Write additional test cases to cover all conditions and edge cases.

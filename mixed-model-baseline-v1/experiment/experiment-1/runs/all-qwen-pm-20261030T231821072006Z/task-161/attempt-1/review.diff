@@ -1,0 +1,27 @@
+--- all-Qwen raw Coder
++++ all-Qwen reviewed final
+@@ -1,21 +1,15 @@
+ def solve(s: str) -> str:
+     if not s:
+         return s
+-    
++
+     result = []
+     has_letters = False
+-    
++
+     for char in s:
+         if char.isalpha():
+             has_letters = True
+             result.append(char.swapcase())
+         else:
+             result.append(char)
+-    
+-    return result[::-1] if has_letters else ''.join(result)
+ 
+-# Test cases
+-assert solve("") == ""
+-assert solve("1234") == "4321"
+-assert solve("ab") == "AB"
+-assert solve("#a@C") == "#A@c"
++    return ''.join(result)[::-1] if has_letters else ''.join(result)

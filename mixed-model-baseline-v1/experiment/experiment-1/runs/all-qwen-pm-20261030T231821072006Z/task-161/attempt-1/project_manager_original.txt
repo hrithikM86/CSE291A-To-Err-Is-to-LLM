@@ -1,0 +1,53 @@
+### Implementation Checklist for `solve(s)` Function
+
+1. **Function Signature**
+   ```python
+   def solve(s: str) -> str:
+       pass
+   ```
+
+2. **Algorithm Steps**
+   - **Step 1:** Initialize an empty list `result` to store the transformed characters.
+   - **Step 2:** Initialize a boolean `has_letters` to `False`.
+   - **Step 3:** Iterate through each character `c` in the input string `s`:
+     - **Sub-step 3.1:** If `c` is a letter:
+       - Reverse its case and add to `result`.
+       - Set `has_letters` to `True`.
+     - **Sub-step 3.2:** If `c` is not a letter:
+       - Add `c` to `result` as is.
+   - **Step 4:** If `has_letters` is `False`, reverse the entire `result` list.
+   - **Step 5:** Join the characters in `result` to form the final string and return it.
+
+3. **Boundary Conditions**
+   - **Empty String:** Return an empty string.
+   - **String with only non-letter characters:** Reverse the string.
+   - **String with only letters:** Each letter's case is reversed.
+   - **String with a mix of letters and non-letter characters:** Apply the case reversal to letters and keep non-letters unchanged.
+
+4. **Example Implementations**
+   ```python
+   def solve(s: str) -> str:
+       result = []
+       has_letters = False
+
+       for c in s:
+           if c.isalpha():
+               if c.islower():
+                   result.append(c.upper())
+               else:
+                   result.append(c.lower())
+               has_letters = True
+           else:
+               result.append(c)
+
+       if not has_letters:
+           result.reverse()
+
+       return ''.join(result)
+   ```
+
+5. **Testing**
+   - Test with empty string.
+   - Test with strings containing only non-letter characters.
+   - Test with strings containing only letters.
+   - Test with strings containing a mix of letters and non-letter characters.

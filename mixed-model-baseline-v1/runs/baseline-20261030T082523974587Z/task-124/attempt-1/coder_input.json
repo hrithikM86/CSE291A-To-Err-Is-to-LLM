@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef valid_date(date):\n    \"\"\"You have to write a function which validates a given date string and\n    returns True if the date is valid otherwise False.\n    The date is valid if all of the following rules are satisfied:\n    1. The date string is not empty.\n    2. The number of days is not less than 1 or higher than 31 days for months 1,3,5,7,8,10,12. And the number of days is not less than 1 or higher than 30 days for months 4,6,9,11. And, the number of days is not less than 1 or higher than 29 for the month 2.\n    3. The months should not be less than 1 or higher than 12.\n    4. The date should be in the format: mm-dd-yyyy\n\n    for example: \n    valid_date('03-11-2000') => True\n\n    valid_date('15-01-2012') => False\n\n    valid_date('04-0-2040') => False\n\n    valid_date('06-04-2020') => True\n\n    valid_date('06/04/2020') => False\n    \"\"\"\n",
+    "previous_stage": "project_manager",
+    "previous_artifact": "### Implementation Checklist for `valid_date(date)` Function\n\n1. **Function Signature**\n   ```python\n   def valid_date(date: str) -> bool:\n       pass\n   ```\n\n2. **Algorithm Steps**\n   - **Step 1:** Check if the input string is empty.\n     - If yes, return `False`.\n   - **Step 2:** Split the string by `'-'` to get `month`, `day`, and `year`.\n   - **Step 3:** Convert `month`, `day`, and `year` to integers.\n   - **Step 4:** Check if `month` is between 1 and 12.\n     - If not, return `False`.\n   - **Step 5:** Check if `day` is within the valid range for the month:\n     - 1-31 for months 1, 3, 5, 7, 8, 10, 12.\n     - 1-30 for months 4, 6, 9, 11.\n     - 1-29 for month 2.\n     - If not, return `False`.\n   - **Step 6:** For month 2, check if the year is a leap year and adjust the day range to 1-29 if not.\n   - **Step 7:** If all checks pass, return `True`.\n\n3. **Boundary Conditions**\n   - Empty string: Return `False`.\n   - Invalid month (less than 1 or greater than 12): Return `False`.\n   - Invalid day (out of range for the given month): Return `False`.\n   - Leap year check for February: Ensure `day` is within 1-29.\n\n4. **Example Test Cases**\n   ```python\n   assert valid_date('03-11-2000') == True\n   assert valid_date('15-01-2012') == False\n   assert valid_date('04-0-2040') == False\n   assert valid_date('06-04-2020') == True\n   assert valid_date('06/04/2020') == False\n   ```\n\n5. **Complexity**\n   - **Time Complexity:** O(1)\n   - **Space Complexity:** O(1)\n\nFollow this checklist to implement the `valid_date` function correctly."
+  },
+  "system_messages": [
+    "You are a Code Engineer, named coder, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5-coder:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

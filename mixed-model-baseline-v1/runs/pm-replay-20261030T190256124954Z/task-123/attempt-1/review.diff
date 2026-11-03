@@ -1,0 +1,12 @@
+--- coder_after_pm_injection.py
++++ final.py
+@@ -10,7 +10,5 @@
+             odd_numbers.append(current)
+         current = current // 2 if current % 2 == 0 else 3 * current + 1
+     
+-    if 1 not in odd_numbers:
+-        odd_numbers.append(1)
+-    
+-    return odd_numbers
++    # The sequence always ends with 1, which is odd, so no need to append it separately
++    return sorted(odd_numbers)

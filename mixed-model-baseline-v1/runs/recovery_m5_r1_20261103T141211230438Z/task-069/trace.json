@@ -1,0 +1,146 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "drop",
+  "dry_run": false,
+  "task_id": "HumanEval/69",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-069/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef search(lst):\n    '''\n    You are given a non-empty list of positive integers. Return the greatest integer that is greater than \n    zero, and has a frequency greater than or equal to the value of the integer itself. \n    The frequency of an integer is the number of times it appears in the list.\n    If no such a value exist, return -1.\n    Examples:\n        search([4, 1, 2, 2, 3, 1]) == 2\n        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3\n        search([5, 5, 4, 4, 4]) == -1\n    '''\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements:\n- The function `search(lst)` takes a single input: `lst` (a non-empty list of positive integers).\n- The function returns an integer.\n- If there exists an integer `x` in the list such that `x` appears at least `x` times, return the greatest such integer.\n- If no such integer exists, return `-1`.\n- Consider edge cases where the list contains duplicate values or a single value repeated multiple times.\n- Ensure the function handles lists of varying lengths and values.",
+      "output_sha256": "39d8b63a9477c32dce1e3f18144295ad1c178e2d5e09058a192831c3dc15b01e",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef search(lst):\n    '''\n    You are given a non-empty list of positive integers. Return the greatest integer that is greater than \n    zero, and has a frequency greater than or equal to the value of the integer itself. \n    The frequency of an integer is the number of times it appears in the list.\n    If no such a value exist, return -1.\n    Examples:\n        search([4, 1, 2, 2, 3, 1]) == 2\n        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3\n        search([5, 5, 4, 4, 4]) == -1\n    '''\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- The function `search(lst)` takes a single input: `lst` (a non-empty list of positive integers).\n- The function returns an integer.\n- If there exists an integer `x` in the list such that `x` appears at least `x` times, return the greatest such integer.\n- If no such integer exists, return `-1`.\n- Consider edge cases where the list contains duplicate values or a single value repeated multiple times.\n- Ensure the function handles lists of varying lengths and values."
+      },
+      "delivered_output": "Algorithm for `search(lst)`:\n\n1. Initialize a frequency dictionary to count occurrences of each integer.\n2. Iterate through the list to populate the frequency dictionary.\n3. Initialize a variable `max_value` to -1.\n4. Iterate through the frequency dictionary:\n   - For each key-value pair (integer, frequency):\n     - If the frequency is greater than or equal to the integer and the integer is greater than `max_value`, update `max_value` to the current integer.\n5. Return `max_value`.\n\nEdge Cases:\n- Empty list: Not applicable as the list is guaranteed to be non-empty.\n- List with all identical elements: Handle this by checking if the frequency matches the value.\n- Single-element list: The element itself is the frequency, so check if it meets the condition.\n- List with no valid integers: Return -1.\n\nComplexity:\n- Time: O(n), where n is the length of the list (due to single pass for frequency count and another for finding the max value).\n- Space: O(n) for storing the frequency dictionary.",
+      "output_sha256": "55f18d4ae135cfaf9eda84e4921c63c80baa126c8d848e08736d87b033578324",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "\ndef search(lst):\n    '''\n    You are given a non-empty list of positive integers. Return the greatest integer that is greater than \n    zero, and has a frequency greater than or equal to the value of the integer itself. \n    The frequency of an integer is the number of times it appears in the list.\n    If no such a value exist, return -1.\n    Examples:\n        search([4, 1, 2, 2, 3, 1]) == 2\n        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3\n        search([5, 5, 4, 4, 4]) == -1\n    '''\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `search(lst)`:\n\n1. Initialize a frequency dictionary to count occurrences of each integer.\n2. Iterate through the list to populate the frequency dictionary.\n3. Initialize a variable `max_value` to -1.\n4. Iterate through the frequency dictionary:\n   - For each key-value pair (integer, frequency):\n     - If the frequency is greater than or equal to the integer and the integer is greater than `max_value`, update `max_value` to the current integer.\n5. Return `max_value`.\n\nEdge Cases:\n- Empty list: Not applicable as the list is guaranteed to be non-empty.\n- List with all identical elements: Handle this by checking if the frequency matches the value.\n- Single-element list: The element itself is the frequency, so check if it meets the condition.\n- List with no valid integers: Return -1.\n\nComplexity:\n- Time: O(n), where n is the length of the list (due to single pass for frequency count and another for finding the max value).\n- Space: O(n) for storing the frequency dictionary."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `search(lst)`:\n\n1. **Function Signature**:\n   ```python\n   def search(lst):\n       ...\n   ```\n\n2. **Algorithm Steps**:\n   - **Step 1**: Initialize a frequency dictionary to count occurrences of each integer.\n     ```python\n     frequency = {}\n     ```\n   - **Step 2**: Iterate through the list to populate the frequency dictionary.\n     ```python\n     for num in lst:\n         if num in frequency:\n             frequency[num] += 1\n         else:\n             frequency[num] = 1\n     ```\n   - **Step 3**: Initialize a variable `max_value` to -1.\n     ```python\n     max_value = -1\n     ```\n   - **Step 4**: Iterate through the frequency dictionary:\n     ```python\n     for num, freq in frequency.items():\n         if freq >= num > max_value:\n             max_value = num\n     ```\n   - **Step 5**: Return `max_value`.\n     ```python\n     return max_value\n     ```\n\n3. **Boundary Conditions**:\n   - **Empty List**: Not applicable as the list is guaranteed to be non-empty.\n   - **All Identical Elements**: Ensure the frequency matches the value.\n   - **Single-Element List**: The element itself is the frequency, so check if it meets the condition.\n   - **No Valid Integers**: Return -1.\n\n4. **Edge Cases**:\n   - Handle cases where the list contains all identical elements.\n   - Ensure the single-element list returns the element itself if it meets the condition.\n\n5. **Complexity**:\n   - **Time Complexity**: O(n), where n is the length of the list.\n   - **Space Complexity**: O(n) for storing the frequency dictionary.\n\nFollow this checklist to implement the `search(lst)` function correctly.",
+      "output_sha256": "34a48ca552dd53210b064474939db44867e4bfe007939b824c92ac61aec7c795",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "\ndef search(lst):\n    '''\n    You are given a non-empty list of positive integers. Return the greatest integer that is greater than \n    zero, and has a frequency greater than or equal to the value of the integer itself. \n    The frequency of an integer is the number of times it appears in the list.\n    If no such a value exist, return -1.\n    Examples:\n        search([4, 1, 2, 2, 3, 1]) == 2\n        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3\n        search([5, 5, 4, 4, 4]) == -1\n    '''\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `search(lst)`:\n\n1. **Function Signature**:\n   ```python\n   def search(lst):\n       ...\n   ```\n\n2. **Algorithm Steps**:\n   - **Step 1**: Initialize a frequency dictionary to count occurrences of each integer.\n     ```python\n     frequency = {}\n     ```\n   - **Step 2**: Iterate through the list to populate the frequency dictionary.\n     ```python\n     for num in lst:\n         if num in frequency:\n             frequency[num] += 1\n         else:\n             frequency[num] = 1\n     ```\n   - **Step 3**: Initialize a variable `max_value` to -1.\n     ```python\n     max_value = -1\n     ```\n   - **Step 4**: Iterate through the frequency dictionary:\n     ```python\n     for num, freq in frequency.items():\n         if freq >= num > max_value:\n             max_value = num\n     ```\n   - **Step 5**: Return `max_value`.\n     ```python\n     return max_value\n     ```\n\n3. **Boundary Conditions**:\n   - **Empty List**: Not applicable as the list is guaranteed to be non-empty.\n   - **All Identical Elements**: Ensure the frequency matches the value.\n   - **Single-Element List**: The element itself is the frequency, so check if it meets the condition.\n   - **No Valid Integers**: Return -1.\n\n4. **Edge Cases**:\n   - Handle cases where the list contains all identical elements.\n   - Ensure the single-element list returns the element itself if it meets the condition.\n\n5. **Complexity**:\n   - **Time Complexity**: O(n), where n is the length of the list.\n   - **Space Complexity**: O(n) for storing the frequency dictionary.\n\nFollow this checklist to implement the `search(lst)` function correctly."
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 11.495,
+      "prompt_tokens": 716,
+      "completion_tokens": 234,
+      "delivered_output": "```python\ndef search(lst):\n    '''You are given a non-empty list of positive integers. Return the greatest integer that is greater than \n    zero, and has a frequency greater than or equal to the value of the integer itself. \n    The frequency of an integer is the number of times it appears in the list.\n    If no such a value exist, return -1.\n    Examples:\n        search([4, 1, 2, 2, 3, 1]) == 2\n        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3\n        search([5, 5, 4, 4, 4]) == -1\n    '''\n    frequency = {}\n    for num in lst:\n        if num in frequency:\n            frequency[num] += 1\n        else:\n            frequency[num] = 1\n    \n    max_value = -1\n    for num, freq in frequency.items():\n        if freq >= num > max_value:\n            max_value = num\n    \n    return max_value\n```",
+      "output_sha256": "32ef20891bbc10a3b5f68f432b0a8466ec835eb6884b88d1cec6882dc0d683c5",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "\ndef search(lst):\n    '''\n    You are given a non-empty list of positive integers. Return the greatest integer that is greater than \n    zero, and has a frequency greater than or equal to the value of the integer itself. \n    The frequency of an integer is the number of times it appears in the list.\n    If no such a value exist, return -1.\n    Examples:\n        search([4, 1, 2, 2, 3, 1]) == 2\n        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3\n        search([5, 5, 4, 4, 4]) == -1\n    '''\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\ndef search(lst):\n    '''You are given a non-empty list of positive integers. Return the greatest integer that is greater than \n    zero, and has a frequency greater than or equal to the value of the integer itself. \n    The frequency of an integer is the number of times it appears in the list.\n    If no such a value exist, return -1.\n    Examples:\n        search([4, 1, 2, 2, 3, 1]) == 2\n        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3\n        search([5, 5, 4, 4, 4]) == -1\n    '''\n    frequency = {}\n    for num in lst:\n        if num in frequency:\n            frequency[num] += 1\n        else:\n            frequency[num] = 1\n    \n    max_value = -1\n    for num, freq in frequency.items():\n        if freq >= num > max_value:\n            max_value = num\n    \n    return max_value\n```"
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 11.556,
+      "prompt_tokens": 574,
+      "completion_tokens": 234,
+      "delivered_output": "```python\ndef search(lst):\n    '''You are given a non-empty list of positive integers. Return the greatest integer that is greater than \n    zero, and has a frequency greater than or equal to the value of the integer itself. \n    The frequency of an integer is the number of times it appears in the list.\n    If no such a value exist, return -1.\n    Examples:\n        search([4, 1, 2, 2, 3, 1]) == 2\n        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3\n        search([5, 5, 4, 4, 4]) == -1\n    '''\n    frequency = {}\n    for num in lst:\n        if num in frequency:\n            frequency[num] += 1\n        else:\n            frequency[num] = 1\n\n    max_value = -1\n    for num, freq in frequency.items():\n        if freq >= num > max_value:\n            max_value = num\n\n    return max_value\n```",
+      "output_sha256": "3601f084d44463a9685a932c6e3cbf6cd9975c22ec98ff95c4321210a50e629b",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1290,
+    "completion_tokens": 468,
+    "model_seconds": 23.051,
+    "tracking_overhead_seconds": 0.000413,
+    "recovery_wall_seconds": 23.094
+  }
+}

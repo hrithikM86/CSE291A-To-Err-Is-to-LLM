@@ -1,0 +1,32 @@
+
+TASK: HumanEval/149 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def sorted_list_sum(lst: list) -> list:
+    # Filter out strings with odd lengths
+    even_length_strings = [s for s in lst if len(s) % 2 == 0]
+    
+    # Remove duplicates
+    unique_strings = list(dict.fromkeys(even_length_strings))
+    
+    # Sort by length, then alphabetically
+    sorted_strings = sorted(unique_strings, key=lambda x: (len(x), x))
+    
+    return sorted_strings
+```
+Running test_engineer: qwen2.5:7b
+```python
+def sorted_list_sum(lst: list) -> list:
+    # Filter out strings with odd lengths
+    even_length_strings = [s for s in lst if len(s) % 2 == 0]
+    
+    # Remove duplicates
+    unique_strings = list(dict.fromkeys(even_length_strings))
+    
+    # Sort by length, then alphabetically
+    sorted_strings = sorted(unique_strings, key=lambda x: (len(x), x))
+    
+    return sorted_strings
+```
+attacked_coder official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

@@ -1,0 +1,23 @@
+```python
+def fix_spaces(text: str) -> str:
+    if not text:
+        return ""
+
+    result = []
+    count = 0
+
+    for char in text:
+        if char == " ":
+            count += 1
+            if count > 2:
+                if result and result[-1] != '-':
+                    result.append('-')
+                count = 1
+            else:
+                result.append('_')
+        else:
+            result.append(char)
+            count = 0
+
+    return ''.join(result)
+```

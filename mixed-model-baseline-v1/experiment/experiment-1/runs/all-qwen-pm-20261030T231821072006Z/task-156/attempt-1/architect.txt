@@ -1,0 +1,17 @@
+Algorithm for `int_to_mini_roman(number)`:
+
+1. Define a dictionary `roman_map` with key-value pairs for Roman numerals, including special cases like 4, 9, 40, 90, 400, and 900.
+2. Initialize an empty string `result`.
+3. Iterate over the `roman_map` keys in descending order:
+   - While `number` is greater than or equal to the current key:
+     - Append the corresponding Roman numeral to `result`.
+     - Subtract the key value from `number`.
+4. Return `result` in lowercase.
+
+Edge Cases:
+- Ensure `number` is within the range 1 to 1000.
+- Handle the edge cases where `number` is 1 or 1000.
+
+Complexity:
+- Time: O(1) since the number of iterations is constant (at most 13).
+- Space: O(1) for the `roman_map` and `result` string.

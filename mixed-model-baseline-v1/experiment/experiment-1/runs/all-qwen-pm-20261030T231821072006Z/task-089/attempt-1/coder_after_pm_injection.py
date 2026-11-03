@@ -1,0 +1,13 @@
+def encrypt(s: str) -> str:
+    result = []
+    for char in s:
+        if char.isalpha():
+            shift = 2 * 2  # Shift by 2 places, then multiply by 2
+            if char.islower():
+                new_char = chr(((ord(char) - ord('a') + shift) % 26) + ord('a'))
+            else:
+                new_char = chr(((ord(char) - ord('A') + shift) % 26) + ord('A'))
+        else:
+            new_char = char
+        result.append(new_char)
+    return ''.join(result)

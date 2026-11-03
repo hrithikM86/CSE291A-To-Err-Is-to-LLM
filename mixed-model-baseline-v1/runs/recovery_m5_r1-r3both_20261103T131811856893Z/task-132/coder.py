@@ -1,0 +1,13 @@
+def is_nested(string: str) -> bool:
+    depth = 0
+    has_nested = False
+
+    for c in string:
+        if c == '[':
+            depth += 1
+        elif c == ']':
+            depth -= 1
+        if depth > 0:
+            has_nested = True
+
+    return has_nested and depth == 0

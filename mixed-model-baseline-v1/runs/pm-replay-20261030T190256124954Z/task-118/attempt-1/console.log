@@ -1,0 +1,40 @@
+
+TASK: HumanEval/118 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def is_vowel(char):
+    return char.lower() in 'aeiou'
+
+def is_consonant(char):
+    return char.isalpha() and not is_vowel(char)
+
+def get_closest_vowel(word: str) -> str:
+    if len(word) < 3:
+        return ""
+    
+    for i in range(len(word) - 2, 0, -1):
+        if is_vowel(word[i]) and is_consonant(word[i - 1]) and is_consonant(word[i + 1]):
+            return word[i]
+    
+    return ""
+```
+Running test_engineer: qwen2.5:7b
+```python
+def is_vowel(char):
+    return char.lower() in 'aeiou'
+
+def is_consonant(char):
+    return char.isalpha() and not is_vowel(char)
+
+def get_closest_vowel(word: str) -> str:
+    if len(word) < 3:
+        return ""
+    
+    for i in range(len(word) - 2, 0, -1):
+        if is_vowel(word[i]) and is_consonant(word[i - 1]) and is_consonant(word[i + 1]):
+            return word[i]
+    
+    return ""
+```
+attacked_coder official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

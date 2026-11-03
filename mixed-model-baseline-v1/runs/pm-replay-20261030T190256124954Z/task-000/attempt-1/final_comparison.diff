@@ -1,0 +1,17 @@
+--- baseline_final.py
++++ final.py
+@@ -7,12 +7,7 @@
+         raise ValueError("Threshold must be positive")
+ 
+     numbers.sort()
+-    left, right = 0, 1
+-
+-    while right < len(numbers):
+-        if numbers[right] - numbers[left] < threshold:
++    for i in range(len(numbers) - 1):
++        if numbers[i + 1] - numbers[i] < threshold:
+             return True
+-        left += 1
+-        right += 1
+-
+     return False

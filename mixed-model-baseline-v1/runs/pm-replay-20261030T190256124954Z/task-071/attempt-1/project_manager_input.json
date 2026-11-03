@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef triangle_area(a, b, c):\n    '''\n    Given the lengths of the three sides of a triangle. Return the area of\n    the triangle rounded to 2 decimal points if the three sides form a valid triangle. \n    Otherwise return -1\n    Three sides make a valid triangle when the sum of any two sides is greater \n    than the third side.\n    Example:\n    triangle_area(3, 4, 5) == 6.00\n    triangle_area(1, 2, 10) == -1\n    '''\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `triangle_area(a, b, c)`:\n\n1. **Input Validation**:\n   - Check if any of the sides `a`, `b`, or `c` are zero or negative. If any are, return -1.\n\n2. **Triangle Inequality Check**:\n   - Verify if the sum of any two sides is greater than the third side. If not, return -1.\n\n3. **Calculate Semi-Perimeter**:\n   - Compute the semi-perimeter `s` as `(a + b + c) / 2`.\n\n4. **Heron's Formula**:\n   - Use Heron's formula to calculate the area: `area = sqrt(s * (s - a) * (s - b) * (s - c))`.\n\n5. **Return Result**:\n   - Round the area to 2 decimal points and return it.\n   - If the sides do not form a valid triangle, return -1.\n\n**Edge Cases**:\n- All sides are zero or negative: Return -1.\n- Sides do not satisfy the triangle inequality theorem: Return -1.\n- Valid triangle: Return the area rounded to 2 decimal points.\n\n**Complexity**:\n- The algorithm has a constant time complexity O(1) as it involves a fixed number of operations regardless of the input size."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

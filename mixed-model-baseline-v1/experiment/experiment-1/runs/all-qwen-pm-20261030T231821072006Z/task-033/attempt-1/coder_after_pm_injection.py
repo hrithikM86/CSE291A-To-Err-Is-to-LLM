@@ -1,0 +1,17 @@
+def sort_third(l: list) -> list:
+    if not l:
+        return []
+
+    # Identify indices that are divisible by 3 (i % 3 == 2)
+    indices = [i for i in range(len(l)) if i % 3 == 2]
+    # Extract elements at these indices
+    elements = [l[i] for i in indices]
+    # Sort the extracted elements
+    sorted_elements = sorted(elements)
+
+    # Reconstruct the output list
+    sorted_list = l.copy()
+    for i, val in zip(indices, sorted_elements):
+        sorted_list[i] = val
+
+    return sorted_list

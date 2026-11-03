@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List\n\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n    >>> parse_nested_parens('(()()) ((())) () ((())()())')\n    [2, 3, 1, 3]\n    \"\"\"\n",
+    "previous_stage": "product_manager",
+    "previous_artifact": "Requirements:\n- The function `parse_nested_parens` takes a single input `paren_string` (type: str).\n- The input string contains multiple groups of nested parentheses separated by spaces.\n- For each group, the function should return the maximum depth of nesting.\n- The output is a list of integers, where each integer represents the maximum nesting depth for each group.\n- Edge cases:\n  - Empty string input should return an empty list.\n  - Groups with no parentheses should return 0.\n  - Groups with unbalanced parentheses should raise a ValueError.\n- The function should correctly handle nested parentheses within each group."
+  },
+  "system_messages": [
+    "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

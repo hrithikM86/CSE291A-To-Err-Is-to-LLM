@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List, Any\n\n\ndef filter_integers(values: List[Any]) -> List[int]:\n    \"\"\" Filter given list of any python values only for integers\n    >>> filter_integers(['a', 3.14, 5])\n    [5]\n    >>> filter_integers([1, 2, 3, 'abc', {}, []])\n    [1, 2, 3]\n    \"\"\"\n",
+    "previous_stage": "product_manager",
+    "previous_artifact": "Requirements:\n- **Inputs**: A list of any Python values (`List[Any]`).\n- **Outputs**: A list of integers (`List[int]`).\n- **Behavior**: The function should iterate through the input list and return a new list containing only the integer values.\n- **Edge Cases**:\n  - An empty input list should return an empty list.\n  - Non-integer values should be ignored.\n  - Mixed types (e.g., strings, floats, dictionaries) should not be included in the output."
+  },
+  "system_messages": [
+    "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

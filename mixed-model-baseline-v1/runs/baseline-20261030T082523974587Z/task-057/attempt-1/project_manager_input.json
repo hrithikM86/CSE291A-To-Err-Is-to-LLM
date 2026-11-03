@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef monotonic(l: list):\n    \"\"\"Return True is list elements are monotonically increasing or decreasing.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `monotonic` function:\n\n1. **Input Validation**: Check if the input list `l` is empty or has only one element. If so, return `True`.\n\n2. **Direction Determination**:\n   - Initialize `increasing` and `decreasing` flags to `True`.\n   - Iterate through the list from the first element to the second last element.\n     - If `l[i] < l[i+1]`, set `decreasing` to `False`.\n     - If `l[i] > l[i+1]`, set `increasing` to `False`.\n\n3. **Output Determination**:\n   - If both `increasing` and `decreasing` are `False`, return `False`.\n   - Otherwise, return `True`.\n\n**Edge Cases**:\n- An empty list: Return `True`.\n- A list with one element: Return `True`.\n- Lists with repeated elements that maintain the same order: Considered monotonically increasing or decreasing.\n\n**Complexity**:\n- Time Complexity: O(n), where n is the length of the list.\n- Space Complexity: O(1), constant space used."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

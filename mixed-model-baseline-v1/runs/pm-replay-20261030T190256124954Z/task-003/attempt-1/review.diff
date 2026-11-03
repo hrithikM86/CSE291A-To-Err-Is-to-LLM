@@ -1,0 +1,10 @@
+--- coder_after_pm_injection.py
++++ final.py
+@@ -4,4 +4,6 @@
+     balance = 0
+     for operation in operations:
+         balance += operation
+-    return balance < 0
++        if balance < 0:
++            return True
++    return False

@@ -1,0 +1,146 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "drop",
+  "dry_run": false,
+  "task_id": "HumanEval/46",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-046/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\n\ndef fib4(n: int):\n    \"\"\"The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fib4(0) -> 0\n    fib4(1) -> 0\n    fib4(2) -> 2\n    fib4(3) -> 0\n    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.\n    >>> fib4(5)\n    4\n    >>> fib4(6)\n    8\n    >>> fib4(7)\n    14\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements:\n- Implement the `fib4` function that takes an integer `n` as input.\n- Compute the n-th element of the Fib4 number sequence without using recursion.\n- The sequence is defined as follows:\n  - `fib4(0) -> 0`\n  - `fib4(1) -> 0`\n  - `fib4(2) -> 2`\n  - `fib4(3) -> 0`\n  - `fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4)` for `n > 3`.\n- Expected outputs:\n  - `fib4(5) -> 4`\n  - `fib4(6) -> 8`\n  - `fib4(7) -> 14`\n- Handle edge cases, such as negative inputs, by raising a `ValueError`.\n- Use an iterative approach to ensure efficiency.",
+      "output_sha256": "b04fbe0e053a732daabc64eaa9a5dcff27f59c788cb32e1b5913ce3615ed7807",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\n\ndef fib4(n: int):\n    \"\"\"The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fib4(0) -> 0\n    fib4(1) -> 0\n    fib4(2) -> 2\n    fib4(3) -> 0\n    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.\n    >>> fib4(5)\n    4\n    >>> fib4(6)\n    8\n    >>> fib4(7)\n    14\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- Implement the `fib4` function that takes an integer `n` as input.\n- Compute the n-th element of the Fib4 number sequence without using recursion.\n- The sequence is defined as follows:\n  - `fib4(0) -> 0`\n  - `fib4(1) -> 0`\n  - `fib4(2) -> 2`\n  - `fib4(3) -> 0`\n  - `fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4)` for `n > 3`.\n- Expected outputs:\n  - `fib4(5) -> 4`\n  - `fib4(6) -> 8`\n  - `fib4(7) -> 14`\n- Handle edge cases, such as negative inputs, by raising a `ValueError`.\n- Use an iterative approach to ensure efficiency."
+      },
+      "delivered_output": "Algorithm for `fib4(n)`:\n\n1. Validate input: If `n` is negative, raise `ValueError`.\n2. Initialize a list `cache` with the first four elements of the sequence: `[0, 0, 2, 0]`.\n3. For `i` from 4 to `n`:\n   - Compute `cache[i]` as the sum of the last four elements in `cache`: `cache[i] = cache[i-1] + cache[i-2] + cache[i-3] + cache[i-4]`.\n   - Update `cache` to include the new element.\n4. Return `cache[n]`.\n\nEdge cases:\n- Handle `n < 0` by raising `ValueError`.\n\nComplexity:\n- Time: O(n), where n is the input number.\n- Space: O(n), for storing the sequence up to `n`.\n\nThis algorithm efficiently computes the n-th element of the Fib4 sequence iteratively, avoiding the exponential time complexity of a naive recursive approach.",
+      "output_sha256": "c53d426d4372f5ba91fd7fef8645c77faab60612e30401e7871a0b4999810680",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "\n\ndef fib4(n: int):\n    \"\"\"The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fib4(0) -> 0\n    fib4(1) -> 0\n    fib4(2) -> 2\n    fib4(3) -> 0\n    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.\n    >>> fib4(5)\n    4\n    >>> fib4(6)\n    8\n    >>> fib4(7)\n    14\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `fib4(n)`:\n\n1. Validate input: If `n` is negative, raise `ValueError`.\n2. Initialize a list `cache` with the first four elements of the sequence: `[0, 0, 2, 0]`.\n3. For `i` from 4 to `n`:\n   - Compute `cache[i]` as the sum of the last four elements in `cache`: `cache[i] = cache[i-1] + cache[i-2] + cache[i-3] + cache[i-4]`.\n   - Update `cache` to include the new element.\n4. Return `cache[n]`.\n\nEdge cases:\n- Handle `n < 0` by raising `ValueError`.\n\nComplexity:\n- Time: O(n), where n is the input number.\n- Space: O(n), for storing the sequence up to `n`.\n\nThis algorithm efficiently computes the n-th element of the Fib4 sequence iteratively, avoiding the exponential time complexity of a naive recursive approach."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `fib4(n)`:\n\n1. **Function Signature**:\n   ```python\n   def fib4(n: int) -> int:\n       pass\n   ```\n\n2. **Algorithm Steps**:\n   - **Step 1**: Validate input.\n     - If `n` is negative, raise `ValueError`.\n   - **Step 2**: Initialize a list `cache` with the first four elements of the sequence: `[0, 0, 2, 0]`.\n   - **Step 3**: Iterate from 4 to `n`:\n     - Compute `cache[i]` as the sum of the last four elements in `cache`: `cache[i] = cache[i-1] + cache[i-2] + cache[i-3] + cache[i-4]`.\n     - Update `cache` to include the new element.\n   - **Step 4**: Return `cache[n]`.\n\n3. **Boundary Conditions**:\n   - Ensure the function handles `n < 0` by raising `ValueError`.\n   - Test the function with edge cases such as `n = 0`, `n = 1`, `n = 2`, `n = 3`, and `n = 4` to ensure correctness.\n\n4. **Example Test Cases**:\n   ```python\n   assert fib4(0) == 0\n   assert fib4(1) == 0\n   assert fib4(2) == 2\n   assert fib4(3) == 0\n   assert fib4(4) == 2\n   assert fib4(5) == 4\n   assert fib4(6) == 8\n   assert fib4(7) == 14\n   ```\n\n5. **Complexity**:\n   - Time: O(n)\n   - Space: O(n)\n\nFollow this checklist to ensure a correct and efficient implementation of the `fib4` function.",
+      "output_sha256": "ac2385ec7611c797784bba454f31a5fc9f81451428e5741c6af9896028b93a46",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "\n\ndef fib4(n: int):\n    \"\"\"The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fib4(0) -> 0\n    fib4(1) -> 0\n    fib4(2) -> 2\n    fib4(3) -> 0\n    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.\n    >>> fib4(5)\n    4\n    >>> fib4(6)\n    8\n    >>> fib4(7)\n    14\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `fib4(n)`:\n\n1. **Function Signature**:\n   ```python\n   def fib4(n: int) -> int:\n       pass\n   ```\n\n2. **Algorithm Steps**:\n   - **Step 1**: Validate input.\n     - If `n` is negative, raise `ValueError`.\n   - **Step 2**: Initialize a list `cache` with the first four elements of the sequence: `[0, 0, 2, 0]`.\n   - **Step 3**: Iterate from 4 to `n`:\n     - Compute `cache[i]` as the sum of the last four elements in `cache`: `cache[i] = cache[i-1] + cache[i-2] + cache[i-3] + cache[i-4]`.\n     - Update `cache` to include the new element.\n   - **Step 4**: Return `cache[n]`.\n\n3. **Boundary Conditions**:\n   - Ensure the function handles `n < 0` by raising `ValueError`.\n   - Test the function with edge cases such as `n = 0`, `n = 1`, `n = 2`, `n = 3`, and `n = 4` to ensure correctness.\n\n4. **Example Test Cases**:\n   ```python\n   assert fib4(0) == 0\n   assert fib4(1) == 0\n   assert fib4(2) == 2\n   assert fib4(3) == 0\n   assert fib4(4) == 2\n   assert fib4(5) == 4\n   assert fib4(6) == 8\n   assert fib4(7) == 14\n   ```\n\n5. **Complexity**:\n   - Time: O(n)\n   - Space: O(n)\n\nFollow this checklist to ensure a correct and efficient implementation of the `fib4` function."
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 19.977,
+      "prompt_tokens": 739,
+      "completion_tokens": 96,
+      "delivered_output": "```python\ndef fib4(n: int) -> int:\n    if n < 0:\n        raise ValueError(\"Input must be a non-negative integer\")\n    \n    cache = [0, 0, 2, 0]\n    \n    for i in range(4, n + 1):\n        cache.append(cache[i-1] + cache[i-2] + cache[i-3] + cache[i-4])\n    \n    return cache[n]\n```",
+      "output_sha256": "8da06e1f20635300e2810c3df893f000fc5cb79ec483ad71af54911289ca6de4",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "\n\ndef fib4(n: int):\n    \"\"\"The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fib4(0) -> 0\n    fib4(1) -> 0\n    fib4(2) -> 2\n    fib4(3) -> 0\n    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.\n    >>> fib4(5)\n    4\n    >>> fib4(6)\n    8\n    >>> fib4(7)\n    14\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\ndef fib4(n: int) -> int:\n    if n < 0:\n        raise ValueError(\"Input must be a non-negative integer\")\n    \n    cache = [0, 0, 2, 0]\n    \n    for i in range(4, n + 1):\n        cache.append(cache[i-1] + cache[i-2] + cache[i-3] + cache[i-4])\n    \n    return cache[n]\n```"
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 18.529,
+      "prompt_tokens": 441,
+      "completion_tokens": 96,
+      "delivered_output": "```python\ndef fib4(n: int) -> int:\n    if n < 0:\n        raise ValueError(\"Input must be a non-negative integer\")\n    \n    cache = [0, 0, 2, 0]\n    \n    for i in range(4, n + 1):\n        cache.append(cache[i-1] + cache[i-2] + cache[i-3] + cache[i-4])\n    \n    return cache[n]\n```",
+      "output_sha256": "8da06e1f20635300e2810c3df893f000fc5cb79ec483ad71af54911289ca6de4",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1180,
+    "completion_tokens": 192,
+    "model_seconds": 38.506,
+    "tracking_overhead_seconds": 0.00058,
+    "recovery_wall_seconds": 38.557
+  }
+}

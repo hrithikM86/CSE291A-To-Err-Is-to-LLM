@@ -1,0 +1,17 @@
+Algorithm for `x_or_y(n, x, y)`:
+
+1. **Input Validation**: Check if `n` is less than 2. If true, return `y`.
+2. **Prime Check**:
+   - If `n` is 2, return `x` (since 2 is the smallest prime number).
+   - For `n > 2`, check if `n` is divisible by any integer from 2 to the square root of `n`. If any such divisor is found, `n` is not prime, return `y`.
+   - If no divisors are found, `n` is prime, return `x`.
+3. **Efficiency Consideration**: Use a loop to check divisibility up to the square root of `n` to handle large integers efficiently.
+
+Edge Cases:
+- `n < 2`: Return `y`.
+- `n = 2`: Return `x`.
+- Large `n`: Efficiently check divisibility up to √n.
+
+Complexity:
+- Time: O(√n) for checking primality.
+- Space: O(1) for constant space usage.

@@ -1,0 +1,43 @@
+{
+  "task_id": "HumanEval/29",
+  "entry_point": "filter_by_prefix",
+  "case_provenance": "hand_authored_inputs_and_expected_values",
+  "cases": [
+    {
+      "name": "middle",
+      "args": [
+        [
+          "cab",
+          "abc",
+          "zab"
+        ],
+        "ab"
+      ],
+      "expected_literal": "['abc']",
+      "comparison": "recursive_numeric"
+    },
+    {
+      "name": "empty_prefix",
+      "args": [
+        [
+          "x",
+          ""
+        ],
+        ""
+      ],
+      "expected_literal": "['x', '']",
+      "comparison": "recursive_numeric"
+    },
+    {
+      "name": "absent",
+      "args": [
+        [
+          "xyz"
+        ],
+        "a"
+      ],
+      "expected_literal": "[]",
+      "comparison": "recursive_numeric"
+    }
+  ]
+}

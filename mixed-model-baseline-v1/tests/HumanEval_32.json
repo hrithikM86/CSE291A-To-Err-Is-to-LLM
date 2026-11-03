@@ -1,0 +1,43 @@
+{
+  "task_id": "HumanEval/32",
+  "entry_point": "find_zero",
+  "case_provenance": "hand_authored_inputs_and_expected_values",
+  "cases": [
+    {
+      "name": "outside_interval",
+      "args": [
+        [
+          -5.0,
+          1.0
+        ]
+      ],
+      "expected_literal": "5.0",
+      "comparison": "polynomial_residual",
+      "absolute_tolerance": 1e-06
+    },
+    {
+      "name": "inside_interval",
+      "args": [
+        [
+          0.5,
+          1.0
+        ]
+      ],
+      "expected_literal": "-0.5",
+      "comparison": "polynomial_residual",
+      "absolute_tolerance": 1e-06
+    },
+    {
+      "name": "negative_root",
+      "args": [
+        [
+          3.0,
+          1.0
+        ]
+      ],
+      "expected_literal": "-3.0",
+      "comparison": "polynomial_residual",
+      "absolute_tolerance": 1e-06
+    }
+  ]
+}

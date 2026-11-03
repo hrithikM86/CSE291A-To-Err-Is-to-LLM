@@ -1,0 +1,17 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -5,7 +5,7 @@
+     if N < 2 or k < 1:
+         raise ValueError("Grid must be at least 2x2 and k must be a positive integer")
+     
+-    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
++    directions = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, -1), (-1, 1), (1, -1), (1, 1)]
+     pq = []
+     
+     for i in range(N):
+@@ -21,5 +21,3 @@
+             nx, ny = x + dx, y + dy
+             if 0 <= nx < N and 0 <= ny < N:
+                 heapq.heappush(pq, ((path + (grid[nx][ny],), nx, ny)))
+-    
+-    return []

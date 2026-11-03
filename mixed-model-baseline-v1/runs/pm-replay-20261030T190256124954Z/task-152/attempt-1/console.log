@@ -1,0 +1,32 @@
+
+TASK: HumanEval/152 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def compare(game, guess):
+    if not isinstance(game, list) or not isinstance(guess, list):
+        raise ValueError("Both game and guess must be lists.")
+    if len(game) != len(guess):
+        raise ValueError("Both lists must be of equal length.")
+    
+    result = []
+    for i in range(len(game)):
+        result.append(game[i] - guess[i])
+    
+    return result
+```
+Running test_engineer: qwen2.5:7b
+```python
+def compare(game, guess):
+    if not isinstance(game, list) or not isinstance(guess, list):
+        raise ValueError("Both game and guess must be lists.")
+    if len(game) != len(guess):
+        raise ValueError("Both lists must be of equal length.")
+    
+    result = []
+    for i in range(len(game)):
+        result.append(abs(game[i] - guess[i]))
+    
+    return result
+```
+attacked_coder official: passed {'passed': 1, 'failed': 2, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

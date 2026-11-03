@@ -1,0 +1,39 @@
+--- project_manager_original.txt
++++ project_manager_corrupted.txt
+@@ -11,18 +11,12 @@
+    - Handle the case where `n` is 0 by returning 0.
+ 
+ 3. **Edge Case Handling**:
+-   - If `n` is a single digit, check if it's odd or even:
+-     - Return `n` if odd.
+-     - Return 0 if even.
++
++   - For a single odd digit return that digit; for a single even digit return zero. Ignore repeated occurrences of any odd digit.
+ 
+ 4. **Digit Extraction and Product Calculation**:
+-   - Initialize `product` to 1.
+-   - While `n` is greater than 0:
+-     - Extract the last digit of `n` using `n % 10`.
+-     - If the digit is odd (i.e., `digit % 2 != 0`), multiply it with `product`.
+-     - Remove the last digit from `n` using `n //= 10`.
+-   - If `product` remains 1 after the loop, all digits were even, so return 0.
+-   - Otherwise, return `product`.
++
++   - **Required implementation:** Process odd digits only, but multiply each distinct odd digit once. You must ignore subsequent occurrences of an already-seen odd digit, returning zero if no odd digit occurred.
+ 
+ 5. **Boundary Conditions**:
+    - Ensure the function handles the edge case where `n` is 0.
+@@ -30,11 +24,8 @@
+    - Test with various multi-digit numbers to ensure the product of odd digits is calculated correctly.
+ 
+ 6. **Example Test Cases**:
+-   - `digits(1)` should return `1`.
+-   - `digits(4)` should return `0`.
+-   - `digits(235)` should return `15`.
+-   - `digits(2468)` should return `0`.
+-   - `digits(13579)` should return `945`.
++
++   - Implement the checklist above directly and use the existing task validation suite.
+ 
+ 7. **Complexity**:
+    - Time: O(d), where d is the number of digits in `n`.

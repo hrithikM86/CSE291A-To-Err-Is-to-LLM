@@ -1,0 +1,21 @@
+Algorithm for `eat` function:
+
+1. Initialize `total_eaten` to `number`.
+2. If `remaining` is 0:
+   - Set `total_eaten` to `number + need`.
+   - Set `remaining` to 0.
+3. If `need` is 0:
+   - Return `[total_eaten, remaining]`.
+4. Calculate `to_eat` as the minimum of `need` and `remaining`.
+5. Add `to_eat` to `total_eaten`.
+6. Subtract `to_eat` from `remaining`.
+7. Return `[total_eaten, remaining]`.
+
+Edge Cases:
+- `remaining` is 0: Handle by eating all available carrots.
+- `need` is 0: Return the current state without eating.
+- `number` and `need` sum to more than `remaining`: Eat all `remaining` carrots.
+
+Complexity:
+- Time: O(1) - Constant time operations.
+- Space: O(1) - Constant space used.

@@ -1,0 +1,49 @@
+### Implementation Checklist for `multiply(a, b)`:
+
+1. **Function Signature**:
+   ```python
+   def multiply(a: int, b: int) -> int:
+       pass
+   ```
+
+2. **Algorithm Steps**:
+   - **Step 1**: Extract the unit digit of `a` using `a % 10`.
+   - **Step 2**: Extract the unit digit of `b` using `b % 10`.
+   - **Step 3**: Ensure both unit digits are positive (if negative, use `abs()`).
+   - **Step 4**: Multiply the two unit digits.
+   - **Step 5**: Return the result.
+
+3. **Boundary Conditions**:
+   - If either `a` or `b` is 0, return 0.
+   - Handle negative numbers by ensuring the unit digits are positive before multiplication.
+
+4. **Example Implementations**:
+   ```python
+   def multiply(a: int, b: int) -> int:
+       # Extract unit digits
+       unit_digit_a = abs(a % 10)
+       unit_digit_b = abs(b % 10)
+       
+       # Multiply unit digits
+       result = unit_digit_a * unit_digit_b
+       
+       return result
+   ```
+
+5. **Test Cases**:
+   - `multiply(148, 412)` should return 16.
+   - `multiply(19, 28)` should return 72.
+   - `multiply(2020, 1851)` should return 0.
+   - `multiply(14, -15)` should return 20.
+   - `multiply(0, 123)` should return 0.
+   - `multiply(-45, 60)` should return 0.
+
+6. **Edge Cases**:
+   - Ensure the function handles negative numbers correctly by using `abs()` on the unit digits.
+   - Verify the function returns 0 when either input is 0.
+
+7. **Complexity**:
+   - Time complexity: O(1)
+   - Space complexity: O(1)
+
+Follow this checklist to ensure a correct and efficient implementation of the `multiply` function.

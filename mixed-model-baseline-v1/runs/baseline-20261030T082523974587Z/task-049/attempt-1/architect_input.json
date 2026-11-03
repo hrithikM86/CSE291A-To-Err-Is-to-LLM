@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef modp(n: int, p: int):\n    \"\"\"Return 2^n modulo p (be aware of numerics).\n    >>> modp(3, 5)\n    3\n    >>> modp(1101, 101)\n    2\n    >>> modp(0, 101)\n    1\n    >>> modp(3, 11)\n    8\n    >>> modp(100, 101)\n    1\n    \"\"\"\n",
+    "previous_stage": "product_manager",
+    "previous_artifact": "Requirements:\n- Implement the `modp` function that takes two integers `n` and `p`.\n- Return the result of \\(2^n \\mod p\\).\n- Handle large values of `n` to avoid numeric overflow.\n- Test cases include:\n  - `modp(3, 5)` should return `3`.\n  - `modp(1101, 101)` should return `2`.\n  - `modp(0, 101)` should return `1`.\n  - `modp(3, 11)` should return `8`.\n  - `modp(100, 101)` should return `1`.\n\nEdge cases:\n- Ensure the function works correctly for `n` close to the maximum integer value.\n- Verify the function handles `p` as `1` (result should be `0` for any `n` except `0`)."
+  },
+  "system_messages": [
+    "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

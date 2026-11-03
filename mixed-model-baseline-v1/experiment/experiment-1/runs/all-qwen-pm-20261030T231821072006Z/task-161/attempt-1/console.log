@@ -1,0 +1,46 @@
+
+TASK: HumanEval/161 attempt 1
+Running coder: qwen2.5:7b
+```python
+def solve(s: str) -> str:
+    if not s:
+        return s
+    
+    result = []
+    has_letters = False
+    
+    for char in s:
+        if char.isalpha():
+            has_letters = True
+            result.append(char.swapcase())
+        else:
+            result.append(char)
+    
+    return result[::-1] if has_letters else ''.join(result)
+
+# Test cases
+assert solve("") == ""
+assert solve("1234") == "4321"
+assert solve("ab") == "AB"
+assert solve("#a@C") == "#A@c"
+```
+Running test_engineer: qwen2.5:7b
+```python
+def solve(s: str) -> str:
+    if not s:
+        return s
+
+    result = []
+    has_letters = False
+
+    for char in s:
+        if char.isalpha():
+            has_letters = True
+            result.append(char.swapcase())
+        else:
+            result.append(char)
+
+    return ''.join(result)[::-1] if has_letters else ''.join(result)
+```
+attacked_coder official: failed {'passed': 0, 'failed': 3, 'timeout': 0, 'unresolved': 0}
+attacked_final official: failed {'passed': 1, 'failed': 2, 'timeout': 0, 'unresolved': 0}

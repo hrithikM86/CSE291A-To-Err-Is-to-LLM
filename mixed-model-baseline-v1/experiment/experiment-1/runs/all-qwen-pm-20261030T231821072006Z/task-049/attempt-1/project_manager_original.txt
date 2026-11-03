@@ -1,0 +1,52 @@
+### Implementation Checklist for `modp(n: int, p: int)`
+
+1. **Function Signature**:
+   ```python
+   def modp(n: int, p: int) -> int:
+       pass
+   ```
+
+2. **Boundary Conditions**:
+   - Ensure the function handles `n == 0` by returning `1`.
+   - Handle `p == 1` by returning `0` if `n > 0`, otherwise `1`.
+
+3. **Algorithm Steps**:
+   - **Initialization**:
+     - Initialize `result = 1`.
+   - **Iterative Calculation**:
+     - Convert `n` to its binary representation.
+     - For each bit in the binary representation of `n`:
+       - Square `result` and take modulo `p`.
+       - If the current bit is set, multiply `result` by `2` and take modulo `p`.
+
+4. **Edge Cases**:
+   - Ensure the function correctly handles large values of `n` to avoid overflow.
+   - Test with edge cases such as `modp(3, 5)`, `modp(1101, 101)`, `modp(0, 101)`, `modp(3, 11)`, and `modp(100, 101)`.
+
+5. **Testing**:
+   - Write test cases to cover all specified examples and edge cases.
+   - Verify the correctness of the implementation.
+
+6. **Documentation**:
+   - Add a docstring to the function explaining its purpose and usage.
+
+### Example Implementation
+```python
+def modp(n: int, p: int) -> int:
+    if n == 0:
+        return 1
+    if p == 1:
+        return 0 if n > 0 else 1
+    
+    result = 1
+    n_bin = bin(n)[2:]  # Convert n to binary string and remove the '0b' prefix
+    
+    for bit in n_bin:
+        result = (result * result) % p  # Square result and take modulo p
+        if bit == '1':
+            result = (result * 2) % p  # Multiply by 2 if the current bit is set
+    
+    return result
+```
+
+This checklist ensures a comprehensive and correct implementation of the `modp` function.

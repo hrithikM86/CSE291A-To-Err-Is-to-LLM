@@ -1,0 +1,33 @@
+### Implementation Checklist for `numerical_letter_grade(grades)`:
+
+1. **Function Signature**:
+   ```python
+   def numerical_letter_grade(grades: list) -> list:
+       pass
+   ```
+
+2. **Algorithm Steps**:
+   - **Step 1**: Define the function `numerical_letter_grade(grades)`.
+   - **Step 2**: Initialize an empty list `letter_grades` to store the resulting letter grades.
+   - **Step 3**: Iterate over each GPA in the input list `grades`:
+     - **Sub-step 3.1**: Check if the GPA is outside the valid range (0.0 to 4.0). If so, raise an error or assign a default grade ('Invalid').
+     - **Sub-step 3.2**: Use a series of if-elif statements to determine the corresponding letter grade based on the GPA-to-letter grade mapping provided.
+     - **Sub-step 3.3**: Append the determined letter grade to `letter_grades`.
+   - **Step 4**: Return the `letter_grades` list.
+
+3. **Boundary Conditions**:
+   - Handle an empty input list by returning an empty list.
+   - Validate GPA values to ensure they are within the range [0.0, 4.0]. If not, handle with an error or a default grade ('Invalid').
+
+4. **Example**:
+   ```python
+   grade_equation([4.0, 3, 1.7, 2, 3.5]) ==> ['A+', 'B', 'C-', 'C', 'A-']
+   ```
+
+5. **Edge Cases**:
+   - Ensure the function handles invalid GPA values appropriately.
+   - Test with an empty list to ensure it returns an empty list.
+
+6. **Complexity**:
+   - Time Complexity: O(n), where n is the number of GPAs in the input list.
+   - Space Complexity: O(n), for storing the resulting letter grades.

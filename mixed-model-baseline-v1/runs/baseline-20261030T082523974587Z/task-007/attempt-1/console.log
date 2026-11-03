@@ -1,0 +1,125 @@
+
+TASK: HumanEval/7 attempt 1
+Running product_manager: qwen2.5:7b
+Requirements:
+- **Inputs**: 
+  - `strings`: A list of strings.
+  - `substring`: A string to filter the list by.
+- **Outputs**: 
+  - A list of strings that contain the given `substring`.
+- **Behavior**:
+  - Return an empty list if `strings` is empty.
+  - Include strings in the output list if they contain the `substring`, regardless of case.
+- **Edge Cases**:
+  - Empty `strings` list: Return an empty list.
+  - `substring` is an empty string: Return the original `strings` list.
+  - No strings contain the `substring`: Return an empty list.
+Running architect: qwen2.5:7b
+Algorithm:
+
+1. Define the function `filter_by_substring(strings: List[str], substring: str) -> List[str]`.
+2. Check if `strings` is an empty list:
+   - If true, return an empty list.
+3. Check if `substring` is an empty string:
+   - If true, return the original `strings` list.
+4. Initialize an empty list `filtered_strings` to store the results.
+5. Iterate through each string `s` in `strings`:
+   - Convert both `s` and `substring` to lowercase for case-insensitive comparison.
+   - Check if `substring` is a substring of `s`:
+     - If true, append `s` to `filtered_strings`.
+6. Return `filtered_strings`.
+
+Complexity:
+- Time: O(n * m), where n is the number of strings and m is the average length of the strings.
+- Space: O(n), for storing the filtered strings.
+
+Edge Cases:
+- `strings` is an empty list: Return an empty list.
+- `substring` is an empty string: Return the original `strings` list.
+- No strings contain the `substring`: Return an empty list.
+- Strings contain the `substring` in different cases: Ensure case-insensitive comparison.
+Running project_manager: qwen2.5:7b
+### Implementation Checklist for `filter_by_substring`
+
+1. **Function Signature:**
+   ```python
+   from typing import List
+
+   def filter_by_substring(strings: List[str], substring: str) -> List[str]:
+       """
+       Filter an input list of strings only for ones that contain given substring
+       """
+   ```
+
+2. **Algorithm Steps:**
+   - **Step 1:** Check if `strings` is an empty list.
+     - If true, return an empty list.
+   - **Step 2:** Check if `substring` is an empty string.
+     - If true, return the original `strings` list.
+   - **Step 3:** Initialize an empty list `filtered_strings` to store the results.
+   - **Step 4:** Iterate through each string `s` in `strings`:
+     - Convert both `s` and `substring` to lowercase for case-insensitive comparison.
+     - Check if `substring` is a substring of `s`.
+       - If true, append `s` to `filtered_strings`.
+   - **Step 5:** Return `filtered_strings`.
+
+3. **Boundary Conditions:**
+   - **Empty List:** If `strings` is an empty list, return an empty list.
+   - **Empty Substring:** If `substring` is an empty string, return the original `strings` list.
+   - **No Matching Strings:** If no strings contain the `substring`, return an empty list.
+   - **Case Sensitivity:** Ensure case-insensitive comparison by converting both `s` and `substring` to lowercase.
+
+4. **Example Test Cases:**
+   ```python
+   assert filter_by_substring([], 'a') == []
+   assert filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a') == ['abc', 'bacd', 'array']
+   assert filter_by_substring(['Apple', 'Banana', 'Cherry'], 'a') == ['Apple', 'Banana']
+   assert filter_by_substring(['hello', 'world'], '') == ['hello', 'world']
+   assert filter_by_substring(['Hello', 'World'], 'hello') == []
+   ```
+
+5. **Complexity:**
+   - **Time Complexity:** O(n * m), where n is the number of strings and m is the average length of the strings.
+   - **Space Complexity:** O(n), for storing the filtered strings.
+Running coder: qwen2.5-coder:7b
+```python
+from typing import List
+
+def filter_by_substring(strings: List[str], substring: str) -> List[str]:
+    """
+    Filter an input list of strings only for ones that contain given substring
+    """
+    if not strings:
+        return []
+    if not substring:
+        return strings
+    
+    filtered_strings = []
+    for s in strings:
+        if substring.lower() in s.lower():
+            filtered_strings.append(s)
+    
+    return filtered_strings
+```
+Running test_engineer: qwen2.5:7b
+```python
+from typing import List
+
+def filter_by_substring(strings: List[str], substring: str) -> List[str]:
+    """
+    Filter an input list of strings only for ones that contain given substring
+    """
+    if not strings:
+        return []
+    if not substring:
+        return strings
+
+    filtered_strings = []
+    for s in strings:
+        if substring.lower() in s.lower():
+            filtered_strings.append(s)
+
+    return filtered_strings
+```
+baseline_coder official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}
+baseline_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

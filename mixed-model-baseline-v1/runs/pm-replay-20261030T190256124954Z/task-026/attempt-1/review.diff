@@ -1,0 +1,24 @@
+--- coder_after_pm_injection.py
++++ final.py
+@@ -8,16 +8,11 @@
+     [1, 3, 4]
+     """
+     result = []
+-    seen = {}
+-    
++    seen = set()
++
+     for number in numbers:
+-        if number in seen:
+-            seen[number] += 1
+-        else:
+-            seen[number] = 1
+-    
+-    for number in numbers:
+-        if seen[number] > 1 and number not in result:
++        if number not in seen:
+             result.append(number)
+-    
++            seen.add(number)
++
+     return result

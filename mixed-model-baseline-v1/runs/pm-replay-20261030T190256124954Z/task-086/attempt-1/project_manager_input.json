@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef anti_shuffle(s):\n    \"\"\"\n    Write a function that takes a string and returns an ordered version of it.\n    Ordered version of string, is a string where all words (separated by space)\n    are replaced by a new word where all the characters arranged in\n    ascending order based on ascii value.\n    Note: You should keep the order of words and blank spaces in the sentence.\n\n    For example:\n    anti_shuffle('Hi') returns 'Hi'\n    anti_shuffle('hello') returns 'ehllo'\n    anti_shuffle('Hello World!!!') returns 'Hello !!!Wdlor'\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `anti_shuffle(s)`:\n\n1. **Input Validation**: Check if the input string `s` is empty. If so, return an empty string.\n2. **Initialization**: \n   - Split the input string `s` into words and spaces using a regular expression to handle multiple spaces.\n   - Initialize an empty list `result` to store the processed words.\n3. **Processing Each Word**:\n   - For each word in the split string:\n     - Sort the characters of the word in ascending ASCII order.\n     - Append the sorted word to `result`.\n4. **Reconstruct the Sentence**:\n   - Join the elements of `result` back into a single string, preserving the original order of words and spaces.\n5. **Return the Result**.\n\nEdge Cases:\n- Empty string: Return an empty string.\n- Single word: Return the sorted word.\n- Punctuation: Preserve punctuation attached to words.\n- Multiple spaces: Handle multiple spaces between words correctly.\n\nComplexity:\n- Time: O(n * m log m), where n is the number of words and m is the average length of the words.\n- Space: O(n * m), for storing the result and the split words."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

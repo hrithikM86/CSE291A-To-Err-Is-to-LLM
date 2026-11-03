@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef is_happy(s):\n    \"\"\"You are given a string s.\n    Your task is to check if the string is happy or not.\n    A string is happy if its length is at least 3 and every 3 consecutive letters are distinct\n    For example:\n    is_happy(a) => False\n    is_happy(aa) => False\n    is_happy(abcd) => True\n    is_happy(aabb) => False\n    is_happy(adb) => True\n    is_happy(xyy) => False\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `is_happy(s)`:\n\n1. Check if the length of `s` is less than 3. If so, return `False`.\n2. Iterate through the string `s` from index 0 to `len(s) - 3`:\n   - For each index `i`, check if `s[i]`, `s[i+1]`, and `s[i+2]` are distinct.\n   - If any three consecutive characters are not distinct, return `False`.\n3. If the loop completes without returning `False`, return `True`.\n\nEdge Cases:\n- Empty string: Return `False`.\n- String length < 3: Return `False`.\n- Repeated characters in 3 consecutive positions: Return `False`.\n- All characters are distinct but length < 3: Return `False`.\n\nComplexity:\n- Time: O(n), where n is the length of the string.\n- Space: O(1), constant space is used."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

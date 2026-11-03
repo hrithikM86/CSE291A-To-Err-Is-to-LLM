@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef correct_bracketing(brackets: str):\n    \"\"\" brackets is a string of \"<\" and \">\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n    >>> correct_bracketing(\"<\")\n    False\n    >>> correct_bracketing(\"<>\")\n    True\n    >>> correct_bracketing(\"<<><>>\")\n    True\n    >>> correct_bracketing(\"><<>\")\n    False\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. Initialize a counter `open_brackets` to 0.\n2. Iterate through each character `c` in the input string `brackets`:\n   - If `c` is \"<\", increment `open_brackets` by 1.\n   - If `c` is \">\", decrement `open_brackets` by 1.\n   - If `open_brackets` becomes negative, return `False` (mismatched brackets).\n3. After the loop, check if `open_brackets` is 0:\n   - If 0, return `True` (all brackets are correctly matched).\n   - Otherwise, return `False` (unmatched opening brackets).\n\nEdge Cases:\n- An empty string: Return `False`.\n- A string with only opening brackets (e.g., \"<\"): Return `False`.\n- A string with only closing brackets (e.g., \">\"): Return `False`.\n- A string with mismatched brackets (e.g., \"><<>\"): Return `False`.\n\nComplexity:\n- Time: O(n), where n is the length of the input string.\n- Space: O(1), constant space used."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

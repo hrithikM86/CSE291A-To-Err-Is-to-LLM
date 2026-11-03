@@ -1,0 +1,170 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "retract",
+  "dry_run": false,
+  "task_id": "HumanEval/120",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-120/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef maximum(arr, k):\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n\n    Example 1:\n\n        Input: arr = [-3, -4, 5], k = 3\n        Output: [-4, -3, 5]\n\n    Example 2:\n\n        Input: arr = [4, -4, 4], k = 2\n        Output: [4, 4]\n\n    Example 3:\n\n        Input: arr = [-3, 2, 1, 2, -1, -2, 1], k = 1\n        Output: [2]\n\n    Note:\n        1. The length of the array will be in the range of [1, 1000].\n        2. The elements in the array will be in the range of [-1000, 1000].\n        3. 0 <= k <= len(arr)\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements:\n- Implement `maximum(arr, k)` where `arr` is a list of integers and `k` is a positive integer.\n- Return a sorted list of length `k` containing the `k` largest numbers from `arr`.\n- The input list `arr` will have a length between 1 and 1000, and its elements will range from -1000 to 1000.\n- If `k` is 0 or greater than the length of `arr`, return an empty list.\n- If `k` is equal to the length of `arr`, return the sorted `arr`.\n- Handle cases where `arr` contains duplicate numbers.\n- Edge cases: \n  - Empty list input: Return an empty list.\n  - `k` is 0: Return an empty list.\n  - `k` is equal to the length of `arr`: Return the sorted `arr`.",
+      "output_sha256": "4a85ca385249b00ced641258f267d6f51f1d4a84afb71ccf4baf7b142eae2c4e",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef maximum(arr, k):\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n\n    Example 1:\n\n        Input: arr = [-3, -4, 5], k = 3\n        Output: [-4, -3, 5]\n\n    Example 2:\n\n        Input: arr = [4, -4, 4], k = 2\n        Output: [4, 4]\n\n    Example 3:\n\n        Input: arr = [-3, 2, 1, 2, -1, -2, 1], k = 1\n        Output: [2]\n\n    Note:\n        1. The length of the array will be in the range of [1, 1000].\n        2. The elements in the array will be in the range of [-1000, 1000].\n        3. 0 <= k <= len(arr)\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- Implement `maximum(arr, k)` where `arr` is a list of integers and `k` is a positive integer.\n- Return a sorted list of length `k` containing the `k` largest numbers from `arr`.\n- The input list `arr` will have a length between 1 and 1000, and its elements will range from -1000 to 1000.\n- If `k` is 0 or greater than the length of `arr`, return an empty list.\n- If `k` is equal to the length of `arr`, return the sorted `arr`.\n- Handle cases where `arr` contains duplicate numbers.\n- Edge cases: \n  - Empty list input: Return an empty list.\n  - `k` is 0: Return an empty list.\n  - `k` is equal to the length of `arr`: Return the sorted `arr`."
+      },
+      "delivered_output": "Algorithm for `maximum(arr, k)`:\n\n1. **Input Validation**:\n   - Check if `arr` is empty. If yes, return an empty list.\n   - Check if `k` is 0 or greater than the length of `arr`. If yes, return an empty list.\n   - Check if `k` is equal to the length of `arr`. If yes, return the sorted `arr`.\n\n2. **Finding the Maximum k Numbers**:\n   - Use a min-heap to keep track of the top `k` numbers. Initialize a min-heap with the first `k` elements of `arr`.\n   - Iterate through the remaining elements of `arr`:\n     - If the current element is greater than the smallest element in the heap (the root of the heap), replace the root with the current element.\n     - Re-heapify the heap to maintain the min-heap property.\n\n3. **Return the Result**:\n   - After processing all elements, the heap contains the `k` largest numbers. Extract these numbers and return them in sorted order.\n\n**Edge Cases**:\n- Empty list: Return an empty list.\n- `k` is 0: Return an empty list.\n- `k` is equal to the length of `arr`: Return the sorted `arr`.\n\n**Complexity**:\n- Time: O(n log k) where `n` is the length of `arr` and `k` is the number of elements in the heap.\n- Space: O(k) for storing the heap.",
+      "output_sha256": "91c6a36f08c7de3c64f67c92685db85b26184f78f1c7d0a59311491a0f918aa3",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "\ndef maximum(arr, k):\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n\n    Example 1:\n\n        Input: arr = [-3, -4, 5], k = 3\n        Output: [-4, -3, 5]\n\n    Example 2:\n\n        Input: arr = [4, -4, 4], k = 2\n        Output: [4, 4]\n\n    Example 3:\n\n        Input: arr = [-3, 2, 1, 2, -1, -2, 1], k = 1\n        Output: [2]\n\n    Note:\n        1. The length of the array will be in the range of [1, 1000].\n        2. The elements in the array will be in the range of [-1000, 1000].\n        3. 0 <= k <= len(arr)\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `maximum(arr, k)`:\n\n1. **Input Validation**:\n   - Check if `arr` is empty. If yes, return an empty list.\n   - Check if `k` is 0 or greater than the length of `arr`. If yes, return an empty list.\n   - Check if `k` is equal to the length of `arr`. If yes, return the sorted `arr`.\n\n2. **Finding the Maximum k Numbers**:\n   - Use a min-heap to keep track of the top `k` numbers. Initialize a min-heap with the first `k` elements of `arr`.\n   - Iterate through the remaining elements of `arr`:\n     - If the current element is greater than the smallest element in the heap (the root of the heap), replace the root with the current element.\n     - Re-heapify the heap to maintain the min-heap property.\n\n3. **Return the Result**:\n   - After processing all elements, the heap contains the `k` largest numbers. Extract these numbers and return them in sorted order.\n\n**Edge Cases**:\n- Empty list: Return an empty list.\n- `k` is 0: Return an empty list.\n- `k` is equal to the length of `arr`: Return the sorted `arr`.\n\n**Complexity**:\n- Time: O(n log k) where `n` is the length of `arr` and `k` is the number of elements in the heap.\n- Space: O(k) for storing the heap."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `maximum(arr, k)`:\n\n1. **Function Signature**:\n   ```python\n   def maximum(arr, k):\n       # Function body\n   ```\n\n2. **Input Validation**:\n   - Check if `arr` is empty. If yes, return an empty list.\n   - Check if `k` is 0 or greater than the length of `arr`. If yes, return an empty list.\n   - Check if `k` is equal to the length of `arr`. If yes, return the sorted `arr`.\n\n3. **Finding the Maximum k Numbers**:\n   - Use a min-heap to keep track of the top `k` numbers. Initialize a min-heap with the first `k` elements of `arr`.\n   - Iterate through the remaining elements of `arr`:\n     - If the current element is greater than the smallest element in the heap (the root of the heap), replace the root with the current element.\n     - Re-heapify the heap to maintain the min-heap property.\n\n4. **Return the Result**:\n   - After processing all elements, the heap contains the `k` largest numbers. Extract these numbers and return them in sorted order.\n\n5. **Edge Cases**:\n   - Handle the case where `arr` is empty.\n   - Handle the case where `k` is 0.\n   - Handle the case where `k` is equal to the length of `arr`.\n\n6. **Complexity**:\n   - Ensure the time complexity is O(n log k) and space complexity is O(k).\n\n7. **Testing**:\n   - Test with the provided examples.\n   - Test with edge cases such as an empty array, `k` equal to the length of `arr`, and `k` being 0.\n\n8. **Documentation**:\n   - Add a docstring to the function explaining its purpose, parameters, and return value.",
+      "output_sha256": "6749de8d758f7ae3d2d31950be0549f418607d34e5e16cbd0cee70c0eef53dae",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "\ndef maximum(arr, k):\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n\n    Example 1:\n\n        Input: arr = [-3, -4, 5], k = 3\n        Output: [-4, -3, 5]\n\n    Example 2:\n\n        Input: arr = [4, -4, 4], k = 2\n        Output: [4, 4]\n\n    Example 3:\n\n        Input: arr = [-3, 2, 1, 2, -1, -2, 1], k = 1\n        Output: [2]\n\n    Note:\n        1. The length of the array will be in the range of [1, 1000].\n        2. The elements in the array will be in the range of [-1000, 1000].\n        3. 0 <= k <= len(arr)\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `maximum(arr, k)`:\n\n1. **Function Signature**:\n   ```python\n   def maximum(arr, k):\n       # Function body\n   ```\n\n2. **Input Validation**:\n   - Check if `arr` is empty. If yes, return an empty list.\n   - Check if `k` is 0 or greater than the length of `arr`. If yes, return an empty list.\n   - Check if `k` is equal to the length of `arr`. If yes, return the sorted `arr`.\n\n3. **Finding the Maximum k Numbers**:\n   - Use a min-heap to keep track of the top `k` numbers. Initialize a min-heap with the first `k` elements of `arr`.\n   - Iterate through the remaining elements of `arr`:\n     - If the current element is greater than the smallest element in the heap (the root of the heap), replace the root with the current element.\n     - Re-heapify the heap to maintain the min-heap property.\n\n4. **Return the Result**:\n   - After processing all elements, the heap contains the `k` largest numbers. Extract these numbers and return them in sorted order.\n\n5. **Edge Cases**:\n   - Handle the case where `arr` is empty.\n   - Handle the case where `k` is 0.\n   - Handle the case where `k` is equal to the length of `arr`.\n\n6. **Complexity**:\n   - Ensure the time complexity is O(n log k) and space complexity is O(k).\n\n7. **Testing**:\n   - Test with the provided examples.\n   - Test with edge cases such as an empty array, `k` equal to the length of `arr`, and `k` being 0.\n\n8. **Documentation**:\n   - Add a docstring to the function explaining its purpose, parameters, and return value.",
+        "earlier_attempt_history": [
+          {
+            "kind": "message_received",
+            "from_stage": "project_manager",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          },
+          {
+            "kind": "your_previous_answer",
+            "from_stage": "coder",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          }
+        ]
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 17.095,
+      "prompt_tokens": 877,
+      "completion_tokens": 299,
+      "delivered_output": "```python\nimport heapq\n\ndef maximum(arr, k):\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n\n    Example 1:\n\n        Input: arr = [-3, -4, 5], k = 3\n        Output: [-4, -3, 5]\n\n    Example 2:\n\n        Input: arr = [4, -4, 4], k = 2\n        Output: [4, 4]\n\n    Example 3:\n\n        Input: arr = [-3, 2, 1, 2, -1, -2, 1], k = 1\n        Output: [2]\n\n    Note:\n        1. The length of the array will be in the range of [1, 1000].\n        2. The elements in the array will be in the range of [-1000, 1000].\n        3. 0 <= k <= len(arr)\n    \"\"\"\n    if not arr or k == 0:\n        return []\n    if k == len(arr):\n        return sorted(arr)\n    \n    min_heap = arr[:k]\n    heapq.heapify(min_heap)\n    \n    for num in arr[k:]:\n        if num > min_heap[0]:\n            heapq.heapreplace(min_heap, num)\n    \n    return sorted(min_heap)\n```",
+      "output_sha256": "754ecdcfb06b23f62da4f4bf24c3f6ac263e90210815dc35862bdf90bd6f1e60",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "\ndef maximum(arr, k):\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n\n    Example 1:\n\n        Input: arr = [-3, -4, 5], k = 3\n        Output: [-4, -3, 5]\n\n    Example 2:\n\n        Input: arr = [4, -4, 4], k = 2\n        Output: [4, 4]\n\n    Example 3:\n\n        Input: arr = [-3, 2, 1, 2, -1, -2, 1], k = 1\n        Output: [2]\n\n    Note:\n        1. The length of the array will be in the range of [1, 1000].\n        2. The elements in the array will be in the range of [-1000, 1000].\n        3. 0 <= k <= len(arr)\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\nimport heapq\n\ndef maximum(arr, k):\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n\n    Example 1:\n\n        Input: arr = [-3, -4, 5], k = 3\n        Output: [-4, -3, 5]\n\n    Example 2:\n\n        Input: arr = [4, -4, 4], k = 2\n        Output: [4, 4]\n\n    Example 3:\n\n        Input: arr = [-3, 2, 1, 2, -1, -2, 1], k = 1\n        Output: [2]\n\n    Note:\n        1. The length of the array will be in the range of [1, 1000].\n        2. The elements in the array will be in the range of [-1000, 1000].\n        3. 0 <= k <= len(arr)\n    \"\"\"\n    if not arr or k == 0:\n        return []\n    if k == len(arr):\n        return sorted(arr)\n    \n    min_heap = arr[:k]\n    heapq.heapify(min_heap)\n    \n    for num in arr[k:]:\n        if num > min_heap[0]:\n            heapq.heapreplace(min_heap, num)\n    \n    return sorted(min_heap)\n```",
+        "earlier_attempt_history": [
+          {
+            "kind": "message_received",
+            "from_stage": "coder",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          },
+          {
+            "kind": "your_previous_answer",
+            "from_stage": "test_engineer",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          }
+        ]
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 16.699,
+      "prompt_tokens": 823,
+      "completion_tokens": 296,
+      "delivered_output": "```python\nimport heapq\n\ndef maximum(arr, k):\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n\n    Example 1:\n\n        Input: arr = [-3, -4, 5], k = 3\n        Output: [-4, -3, 5]\n\n    Example 2:\n\n        Input: arr = [4, -4, 4], k = 2\n        Output: [4, 4]\n\n    Example 3:\n\n        Input: arr = [-3, 2, 1, 2, -1, -2, 1], k = 1\n        Output: [2]\n\n    Note:\n        1. The length of the array will be in the range of [1, 1000].\n        2. The elements in the array will be in the range of [-1000, 1000].\n        3. 0 <= k <= len(arr)\n    \"\"\"\n    if not arr or k == 0:\n        return []\n    if k == len(arr):\n        return sorted(arr)\n\n    min_heap = arr[:k]\n    heapq.heapify(min_heap)\n\n    for num in arr[k:]:\n        if num > min_heap[0]:\n            heapq.heapreplace(min_heap, num)\n\n    return sorted(min_heap)\n```",
+      "output_sha256": "d748b7ba11bf33a8396be442b74336ae14725918c77cdd824c4795ba4b5fd845",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1700,
+    "completion_tokens": 595,
+    "model_seconds": 33.794,
+    "tracking_overhead_seconds": 0.000394,
+    "recovery_wall_seconds": 33.845
+  }
+}

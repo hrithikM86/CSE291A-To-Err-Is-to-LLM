@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef is_equal_to_sum_even(n):\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n    \"\"\"\n",
+    "previous_stage": "product_manager",
+    "previous_artifact": "Requirements:\n- **Input**: A single integer `n` (1 \u2264 n \u2264 10000).\n- **Output**: A boolean value indicating whether `n` can be written as the sum of exactly 4 positive even numbers.\n- **Behavior**:\n  - If `n` can be expressed as the sum of exactly 4 positive even numbers, return `True`.\n  - Otherwise, return `False`.\n- **Edge Cases**:\n  - `n < 8`: Always return `False` since the smallest sum of 4 positive even numbers is 2 + 2 + 2 + 2 = 8.\n  - `n % 2 != 0`: Return `False` since the sum of even numbers is always even.\n  - `n == 8`: Return `True` as 8 can be expressed as 2 + 2 + 2 + 2.\n  - `n > 8`: Check if `n - 8` is even and non-negative, which would mean `n` can be expressed as the sum of 4 even numbers (2 + 2 + 2 + (n - 8))."
+  },
+  "system_messages": [
+    "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

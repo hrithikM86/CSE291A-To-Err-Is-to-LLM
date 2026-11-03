@@ -1,0 +1,146 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "drop",
+  "dry_run": false,
+  "task_id": "HumanEval/50",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-050/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\n\ndef encode_shift(s: str):\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    \"\"\"\n    return \"\".join([chr(((ord(ch) + 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n\n\ndef decode_shift(s: str):\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements for `encode_shift`:\n- Input: `s` (a string)\n- Output: A string where each character in `s` is shifted 5 positions forward in the alphabet.\n- Behavior: Use modulo arithmetic to wrap around the alphabet if necessary.\n- Edge Cases: Handle non-alphabetic characters by leaving them unchanged.\n\nRequirements for `decode_shift`:\n- Input: `s` (a string encoded with `encode_shift`)\n- Output: A string where each character in `s` is shifted 5 positions backward in the alphabet.\n- Behavior: Use modulo arithmetic to wrap around the alphabet if necessary.\n- Edge Cases: Handle non-alphabetic characters by leaving them unchanged.",
+      "output_sha256": "777d497b2bb09e5d808a8a57f46f14c124bff4cda74877ac2ac40e6487cffa1c",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\n\ndef encode_shift(s: str):\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    \"\"\"\n    return \"\".join([chr(((ord(ch) + 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n\n\ndef decode_shift(s: str):\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements for `encode_shift`:\n- Input: `s` (a string)\n- Output: A string where each character in `s` is shifted 5 positions forward in the alphabet.\n- Behavior: Use modulo arithmetic to wrap around the alphabet if necessary.\n- Edge Cases: Handle non-alphabetic characters by leaving them unchanged.\n\nRequirements for `decode_shift`:\n- Input: `s` (a string encoded with `encode_shift`)\n- Output: A string where each character in `s` is shifted 5 positions backward in the alphabet.\n- Behavior: Use modulo arithmetic to wrap around the alphabet if necessary.\n- Edge Cases: Handle non-alphabetic characters by leaving them unchanged."
+      },
+      "delivered_output": "Algorithm for `encode_shift` and `decode_shift`:\n\n1. **Input Validation**: Ensure the input is a string.\n2. **Character Processing**:\n   - For each character `ch` in the input string `s`:\n     - If `ch` is alphabetic:\n       - Convert `ch` to its corresponding ASCII value.\n       - Shift the character by 5 positions using modulo 26 to handle wrap-around.\n       - Convert the new ASCII value back to a character.\n     - If `ch` is non-alphabetic, leave it unchanged.\n3. **Join Characters**: Join the processed characters into a new string.\n4. **Return Result**: Return the resulting string.\n\n**Edge Cases**:\n- Handle uppercase and lowercase letters separately, ensuring correct wrapping.\n- Non-alphabetic characters (e.g., spaces, punctuation) should remain unchanged.\n\n**Complexity**:\n- Time Complexity: O(n), where n is the length of the input string.\n- Space Complexity: O(n), for storing the resulting string.\n\nThis algorithm ensures that both `encode_shift` and `decode_shift` functions handle the specified requirements and edge cases effectively.",
+      "output_sha256": "fcef8e422ff8c6a6f55c6033b3ab16678261b20d8410dd438c60972421cb25b0",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "\n\ndef encode_shift(s: str):\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    \"\"\"\n    return \"\".join([chr(((ord(ch) + 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n\n\ndef decode_shift(s: str):\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `encode_shift` and `decode_shift`:\n\n1. **Input Validation**: Ensure the input is a string.\n2. **Character Processing**:\n   - For each character `ch` in the input string `s`:\n     - If `ch` is alphabetic:\n       - Convert `ch` to its corresponding ASCII value.\n       - Shift the character by 5 positions using modulo 26 to handle wrap-around.\n       - Convert the new ASCII value back to a character.\n     - If `ch` is non-alphabetic, leave it unchanged.\n3. **Join Characters**: Join the processed characters into a new string.\n4. **Return Result**: Return the resulting string.\n\n**Edge Cases**:\n- Handle uppercase and lowercase letters separately, ensuring correct wrapping.\n- Non-alphabetic characters (e.g., spaces, punctuation) should remain unchanged.\n\n**Complexity**:\n- Time Complexity: O(n), where n is the length of the input string.\n- Space Complexity: O(n), for storing the resulting string.\n\nThis algorithm ensures that both `encode_shift` and `decode_shift` functions handle the specified requirements and edge cases effectively."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `encode_shift` and `decode_shift`\n\n#### Function Signatures:\n```python\ndef encode_shift(s: str) -> str:\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    \"\"\"\n    pass\n\ndef decode_shift(s: str) -> str:\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    \"\"\"\n    pass\n```\n\n#### Algorithm Steps for `encode_shift`:\n1. **Input Validation**: Ensure the input `s` is a string.\n2. **Character Processing**:\n   - For each character `ch` in the input string `s`:\n     - If `ch` is alphabetic:\n       - Convert `ch` to its corresponding ASCII value.\n       - Shift the character by 5 positions using modulo 26 to handle wrap-around.\n       - Convert the new ASCII value back to a character.\n     - If `ch` is non-alphabetic, leave it unchanged.\n3. **Join Characters**: Join the processed characters into a new string.\n4. **Return Result**: Return the resulting string.\n\n#### Algorithm Steps for `decode_shift`:\n1. **Input Validation**: Ensure the input `s` is a string.\n2. **Character Processing**:\n   - For each character `ch` in the input string `s`:\n     - If `ch` is alphabetic:\n       - Convert `ch` to its corresponding ASCII value.\n       - Shift the character back by 5 positions using modulo 26 to handle wrap-around.\n       - Convert the new ASCII value back to a character.\n     - If `ch` is non-alphabetic, leave it unchanged.\n3. **Join Characters**: Join the processed characters into a new string.\n4. **Return Result**: Return the resulting string.\n\n#### Boundary Conditions:\n- Handle uppercase and lowercase letters separately, ensuring correct wrapping.\n- Non-alphabetic characters (e.g., spaces, punctuation) should remain unchanged.\n- Empty strings should return an empty string.\n\n#### Complexity:\n- Time Complexity: O(n), where n is the length of the input string.\n- Space Complexity: O(n), for storing the resulting string.\n\nFollow these steps to implement the functions correctly.",
+      "output_sha256": "d9c2c4aea9d34777efa6c89eb6425f0a43db194aa51a8f723ae932bfdaac1a7f",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "\n\ndef encode_shift(s: str):\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    \"\"\"\n    return \"\".join([chr(((ord(ch) + 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n\n\ndef decode_shift(s: str):\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `encode_shift` and `decode_shift`\n\n#### Function Signatures:\n```python\ndef encode_shift(s: str) -> str:\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    \"\"\"\n    pass\n\ndef decode_shift(s: str) -> str:\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    \"\"\"\n    pass\n```\n\n#### Algorithm Steps for `encode_shift`:\n1. **Input Validation**: Ensure the input `s` is a string.\n2. **Character Processing**:\n   - For each character `ch` in the input string `s`:\n     - If `ch` is alphabetic:\n       - Convert `ch` to its corresponding ASCII value.\n       - Shift the character by 5 positions using modulo 26 to handle wrap-around.\n       - Convert the new ASCII value back to a character.\n     - If `ch` is non-alphabetic, leave it unchanged.\n3. **Join Characters**: Join the processed characters into a new string.\n4. **Return Result**: Return the resulting string.\n\n#### Algorithm Steps for `decode_shift`:\n1. **Input Validation**: Ensure the input `s` is a string.\n2. **Character Processing**:\n   - For each character `ch` in the input string `s`:\n     - If `ch` is alphabetic:\n       - Convert `ch` to its corresponding ASCII value.\n       - Shift the character back by 5 positions using modulo 26 to handle wrap-around.\n       - Convert the new ASCII value back to a character.\n     - If `ch` is non-alphabetic, leave it unchanged.\n3. **Join Characters**: Join the processed characters into a new string.\n4. **Return Result**: Return the resulting string.\n\n#### Boundary Conditions:\n- Handle uppercase and lowercase letters separately, ensuring correct wrapping.\n- Non-alphabetic characters (e.g., spaces, punctuation) should remain unchanged.\n- Empty strings should return an empty string.\n\n#### Complexity:\n- Time Complexity: O(n), where n is the length of the input string.\n- Space Complexity: O(n), for storing the resulting string.\n\nFollow these steps to implement the functions correctly."
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 34.159,
+      "prompt_tokens": 746,
+      "completion_tokens": 205,
+      "delivered_output": "```python\ndef encode_shift(s: str) -> str:\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    \"\"\"\n    return \"\".join([chr(((ord(ch) + 5 - ord(\"a\")) % 26) + ord(\"a\")) if ch.islower() else\n                    chr(((ord(ch) + 5 - ord(\"A\")) % 26) + ord(\"A\")) if ch.isupper() else ch for ch in s])\n\ndef decode_shift(s: str) -> str:\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    \"\"\"\n    return \"\".join([chr(((ord(ch) - 5 - ord(\"a\")) % 26) + ord(\"a\")) if ch.islower() else\n                    chr(((ord(ch) - 5 - ord(\"A\")) % 26) + ord(\"A\")) if ch.isupper() else ch for ch in s])\n```",
+      "output_sha256": "13fabb828f5dd35c1b2cd04106f83319d54f7f3e162086bfc3766855a30eaa6f",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "\n\ndef encode_shift(s: str):\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    \"\"\"\n    return \"\".join([chr(((ord(ch) + 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n\n\ndef decode_shift(s: str):\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\ndef encode_shift(s: str) -> str:\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    \"\"\"\n    return \"\".join([chr(((ord(ch) + 5 - ord(\"a\")) % 26) + ord(\"a\")) if ch.islower() else\n                    chr(((ord(ch) + 5 - ord(\"A\")) % 26) + ord(\"A\")) if ch.isupper() else ch for ch in s])\n\ndef decode_shift(s: str) -> str:\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    \"\"\"\n    return \"\".join([chr(((ord(ch) - 5 - ord(\"a\")) % 26) + ord(\"a\")) if ch.islower() else\n                    chr(((ord(ch) - 5 - ord(\"A\")) % 26) + ord(\"A\")) if ch.isupper() else ch for ch in s])\n```"
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 34.437,
+      "prompt_tokens": 499,
+      "completion_tokens": 129,
+      "delivered_output": "```python\ndef encode_shift(s: str) -> str:\n    \"\"\"\n    returns encoded string by shifting every character by 5 in the alphabet.\n    \"\"\"\n    return \"\".join([chr(((ord(ch) + 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n\ndef decode_shift(s: str) -> str:\n    \"\"\"\n    takes as input string encoded with encode_shift function. Returns decoded string.\n    \"\"\"\n    return \"\".join([chr(((ord(ch) - 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n```",
+      "output_sha256": "7907dba394b5af25fbf2bf815152d08c2bc90975825edfe9c70229a2393cc6b8",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1245,
+    "completion_tokens": 334,
+    "model_seconds": 68.596,
+    "tracking_overhead_seconds": 0.000611,
+    "recovery_wall_seconds": 68.647
+  }
+}

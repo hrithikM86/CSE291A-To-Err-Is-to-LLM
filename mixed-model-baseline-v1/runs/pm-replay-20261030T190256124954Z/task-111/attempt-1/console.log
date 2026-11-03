@@ -1,0 +1,45 @@
+
+TASK: HumanEval/111 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def histogram(test: str) -> dict:
+    if not test:
+        return {}
+
+    letter_counts = {}
+    max_count = 0
+    for letter in test.split():
+        if letter in letter_counts:
+            letter_counts[letter] += 1
+        else:
+            letter_counts[letter] = 1
+        max_count = max(max_count, letter_counts[letter])
+
+    result = {letter: count for letter, count in letter_counts.items() if count == max_count}
+    return result
+```
+Running test_engineer: qwen2.5:7b
+```python
+def histogram(test: str) -> dict:
+    if not test:
+        return {}
+
+    letter_counts = {}
+    max_counts = []
+
+    for letter in test.split():
+        if letter in letter_counts:
+            letter_counts[letter] += 1
+        else:
+            letter_counts[letter] = 1
+
+    max_count = max(letter_counts.values(), default=0)
+    for letter, count in letter_counts.items():
+        if count == max_count:
+            max_counts.append((letter, count))
+
+    result = dict(max_counts)
+    return result
+```
+attacked_coder official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

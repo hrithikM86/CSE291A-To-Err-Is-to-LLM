@@ -1,0 +1,42 @@
+
+TASK: HumanEval/18 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def how_many_times(string: str, substring: str) -> int:
+    if not string or not substring:
+        return 0
+    if len(substring) > len(string):
+        return 0
+    
+    count = 0
+    start = 0
+    while True:
+        start = string.find(substring, start)
+        if start == -1:
+            break
+        count += 1
+        start += 1
+    
+    return count
+```
+Running test_engineer: qwen2.5:7b
+```python
+def how_many_times(string: str, substring: str) -> int:
+    if not string or not substring:
+        return 0
+    if len(substring) > len(string):
+        return 0
+
+    count = 0
+    start = 0
+    while True:
+        start = string.find(substring, start)
+        if start == -1:
+            break
+        count += 1
+        start += 1
+
+    return count
+```
+attacked_coder official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

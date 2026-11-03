@@ -1,0 +1,46 @@
+### Implementation Checklist for `prime_fib(n: int)`
+
+1. **Function Signature**
+   - Ensure the function is defined as `def prime_fib(n: int) -> int:`
+
+2. **Input Validation**
+   - Check if `n` is an integer.
+   - Check if `n < 1` and return an error message or raise an exception.
+   - Check if `n > 20` and return an error message or raise an exception.
+
+3. **Initialization**
+   - Initialize `fibonacci` list to store prime Fibonacci numbers.
+   - Initialize `a, b = 0, 1` for generating Fibonacci sequence.
+   - Initialize `count = 0` to keep track of prime Fibonacci numbers found.
+
+4. **Generate Fibonacci Sequence and Check for Primes**
+   - Use a loop to generate Fibonacci numbers until `count` reaches `n`.
+   - For each Fibonacci number:
+     - Compute the next Fibonacci number: `next_fib = a + b`.
+     - Check if `next_fib` is prime.
+     - If `next_fib` is prime, add it to the `fibonacci` list and increment `count`.
+     - Update `a, b = b, next_fib`.
+
+5. **Return the Result**
+   - Return the `n`-th element from the `fibonacci` list.
+
+6. **Edge Cases**
+   - Handle invalid inputs as specified.
+   - For `n > 20`, return an appropriate error message or handle as specified.
+
+7. **Primality Check**
+   - Implement a primality check function with complexity O(sqrt(fibonacci_number)).
+
+8. **Complexity**
+   - Ensure the overall complexity is O(n * sqrt(fibonacci_number)).
+
+9. **Test Cases**
+   - Verify the function with the provided test cases:
+     - `prime_fib(1) == 2`
+     - `prime_fib(2) == 3`
+     - `prime_fib(3) == 5`
+     - `prime_fib(4) == 13`
+     - `prime_fib(5) == 89`
+
+10. **Documentation**
+    - Ensure the docstring matches the original specification.

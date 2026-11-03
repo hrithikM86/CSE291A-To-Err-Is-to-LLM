@@ -1,0 +1,47 @@
+### Implementation Checklist for `by_length(arr)`
+
+1. **Function Signature**
+   ```python
+   def by_length(arr):
+       # Function body
+   ```
+
+2. **Step-by-Step Algorithm**
+   - **Step 1:** Initialize an empty list `valid_digits` to store digits between 1 and 9.
+   - **Step 2:** Iterate through `arr`:
+     - If the current element is between 1 and 9, append it to `valid_digits`.
+   - **Step 3:** If `valid_digits` is empty, return an empty list.
+   - **Step 4:** Sort `valid_digits` in ascending order.
+   - **Step 5:** Reverse the sorted `valid_digits` list.
+   - **Step 6:** Initialize an empty list `result` to store the final output.
+   - **Step 7:** For each digit in the reversed `valid_digits` list:
+     - Append the corresponding name from `["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"]` to `result`.
+   - **Step 8:** Return `result`.
+
+3. **Boundary Conditions**
+   - **Empty Array:** If `arr` is empty, return an empty list.
+   - **Out-of-Range Numbers:** If `arr` contains numbers outside the range 1-9, ignore them.
+   - **Single Valid Digit:** If `arr` contains only numbers outside the range 1-9, return a list with the corresponding name of the smallest number (if any).
+
+4. **Example Scenarios**
+   - **Example 1:** 
+     ```python
+     arr = [2, 1, 1, 4, 5, 8, 2, 3]
+     return ["Eight", "Five", "Four", "Three", "Two", "Two", "One", "One"]
+     ```
+   - **Example 2:**
+     ```python
+     arr = []
+     return []
+     ```
+   - **Example 3:**
+     ```python
+     arr = [1, -1, 55]
+     return ["One"]
+     ```
+
+5. **Complexity**
+   - **Time Complexity:** O(n log n) due to sorting.
+   - **Space Complexity:** O(n) for storing `valid_digits` and `result`.
+
+Follow this checklist to ensure a correct and efficient implementation of the `by_length` function.

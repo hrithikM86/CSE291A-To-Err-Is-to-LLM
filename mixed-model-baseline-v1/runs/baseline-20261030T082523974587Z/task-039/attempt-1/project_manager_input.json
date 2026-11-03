@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef prime_fib(n: int):\n    \"\"\"\n    prime_fib returns n-th number that is a Fibonacci number and it's also prime.\n    >>> prime_fib(1)\n    2\n    >>> prime_fib(2)\n    3\n    >>> prime_fib(3)\n    5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `prime_fib(n: int)`:\n\n1. Validate input:\n   - If `n` is not an integer or `n < 1`, return an error message or raise an exception.\n   - If `n > 20`, return an error message or raise an exception.\n\n2. Initialize variables:\n   - `fibonacci` list to store prime Fibonacci numbers.\n   - `a, b = 0, 1` for generating Fibonacci sequence.\n   - `count = 0` to keep track of prime Fibonacci numbers found.\n\n3. Generate Fibonacci sequence and check for primes:\n   - While `count < n`:\n     - Compute next Fibonacci number: `next_fib = a + b`.\n     - If `next_fib` is prime:\n       - Add `next_fib` to `fibonacci` list.\n       - Increment `count`.\n     - Update `a, b = b, next_fib`.\n\n4. Return the `n`-th element from the `fibonacci` list.\n\nEdge cases:\n- Handle invalid inputs as specified.\n- For `n > 20`, return an appropriate error message or handle as specified.\n\nComplexity:\n- Primality check: O(sqrt(fibonacci_number))\n- Overall complexity: O(n * sqrt(fibonacci_number)) for generating and checking `n` prime Fibonacci numbers."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

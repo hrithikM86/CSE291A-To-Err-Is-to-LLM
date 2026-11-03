@@ -1,0 +1,35 @@
+--- coder_after_pm_injection.py
++++ final.py
+@@ -1,7 +1,8 @@
+ from typing import List
+ 
+ def parse_nested_parens(paren_string: str) -> List[int]:
+-    """ Input to this function is a string represented multiple groups for nested parentheses separated by spaces.
++    """
++    Input to this function is a string represented multiple groups for nested parentheses separated by spaces.
+     For each of the group, output the deepest level of nesting of parentheses.
+     E.g. (()()) has maximum two levels of nesting while ((())) has three.
+ 
+@@ -14,14 +15,16 @@
+ 
+     groups = paren_string.split()
+     for group in groups:
+-        pair_count = 0
++        max_depth = 0
++        current_depth = 0
+         for char in group:
+             if char == '(':
+-                pair_count += 1
++                current_depth += 1
++                max_depth = max(max_depth, current_depth)
+             elif char == ')':
+-                pair_count -= 1
+-            if pair_count < 0:
+-                raise ValueError("Unbalanced parentheses")
+-        depths.append(pair_count)
++                current_depth -= 1
++                if current_depth < 0:
++                    raise ValueError("Unbalanced parentheses")
++        depths.append(max_depth)
+ 
+     return depths

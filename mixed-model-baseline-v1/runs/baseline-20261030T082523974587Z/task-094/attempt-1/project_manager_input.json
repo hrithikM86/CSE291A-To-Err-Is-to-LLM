@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef skjkasdkd(lst):\n    \"\"\"You are given a list of integers.\n    You need to find the largest prime value and return the sum of its digits.\n\n    Examples:\n    For lst = [0,3,2,1,3,5,7,4,5,5,5,2,181,32,4,32,3,2,32,324,4,3] the output should be 10\n    For lst = [1,0,1,8,2,4597,2,1,3,40,1,2,1,2,4,2,5,1] the output should be 25\n    For lst = [1,3,1,32,5107,34,83278,109,163,23,2323,32,30,1,9,3] the output should be 13\n    For lst = [0,724,32,71,99,32,6,0,5,91,83,0,5,6] the output should be 11\n    For lst = [0,81,12,3,1,21] the output should be 3\n    For lst = [0,8,1,2,1,7] the output should be 7\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. Define a helper function `is_prime(n)` to check if a number is prime.\n2. Initialize `max_prime` to -1.\n3. Iterate through each number `num` in `lst`:\n   - If `num` is positive and an integer:\n     - Use `is_prime(num)` to check if `num` is prime.\n     - If `num` is prime and greater than `max_prime`, update `max_prime` to `num`.\n4. If `max_prime` is -1, return 0 (no prime numbers found).\n5. Otherwise, sum the digits of `max_prime` and return the sum.\n\nEdge Cases:\n- Handle empty list: `max_prime` remains -1, return 0.\n- Handle list with no prime numbers: `max_prime` remains -1, return 0.\n- Handle list with negative numbers: Ignore them in the prime check.\n- Handle non-integer values: Ignore them in the iteration.\n\nComplexity:\n- Time: O(n * sqrt(max_num)), where n is the length of `lst` and max_num is the largest number in `lst`.\n- Space: O(1) for the helper function and variables."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

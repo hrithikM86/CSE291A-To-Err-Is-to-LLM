@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef fruit_distribution(s,n):\n    \"\"\"\n    In this task, you will be given a string that represents a number of apples and oranges \n    that are distributed in a basket of fruit this basket contains \n    apples, oranges, and mango fruits. Given the string that represents the total number of \n    the oranges and apples and an integer that represent the total number of the fruits \n    in the basket return the number of the mango fruits in the basket.\n    for examble:\n    fruit_distribution(\"5 apples and 6 oranges\", 19) ->19 - 5 - 6 = 8\n    fruit_distribution(\"0 apples and 1 oranges\",3) -> 3 - 0 - 1 = 2\n    fruit_distribution(\"2 apples and 3 oranges\", 100) -> 100 - 2 - 3 = 95\n    fruit_distribution(\"100 apples and 1 oranges\",120) -> 120 - 100 - 1 = 19\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `fruit_distribution(s, n)`:\n\n1. **Input Validation**:\n   - Check if `s` is empty or not in the format \"X apples and Y oranges\".\n   - If `s` is invalid, return 0.\n\n2. **Extract Numbers**:\n   - Use regular expressions to extract `X` and `Y` from `s`.\n   - Convert `X` and `Y` to integers.\n\n3. **Calculate Mango Fruits**:\n   - If `n` is less than the sum of `X` and `Y`, return 0.\n   - Otherwise, return `n - (X + Y)`.\n\n4. **Edge Cases**:\n   - If `s` is empty, return 0.\n   - If `s` does not contain \"apples and oranges\", return 0.\n   - If `X` or `Y` cannot be converted to integers, return 0.\n\n5. **Return Result**:\n   - Return the calculated number of mango fruits.\n\nComplexity:\n- **Time Complexity**: O(1) - The operations are constant time.\n- **Space Complexity**: O(1) - No additional space is used other than variables for the result and temporary storage.\n\nThis algorithm ensures that all edge cases are handled as per the requirements."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

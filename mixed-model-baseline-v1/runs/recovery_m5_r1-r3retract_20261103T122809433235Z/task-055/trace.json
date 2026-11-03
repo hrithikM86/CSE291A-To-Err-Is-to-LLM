@@ -1,0 +1,170 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "retract",
+  "dry_run": false,
+  "task_id": "HumanEval/55",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-055/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\n\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements for the `fib` function:\n\n- **Input**: A single integer `n` (1 \u2264 n \u2264 50).\n- **Output**: The n-th Fibonacci number.\n- **Behavior**:\n  - The function should return the correct Fibonacci number for the given `n`.\n  - The Fibonacci sequence starts with 0 and 1.\n- **Edge Cases**:\n  - `n = 1` should return `1`.\n  - `n = 2` should return `1`.\n  - `n = 50` should not result in an infinite loop or excessive computation time.\n  - `n < 1` should not be a valid input; the function should handle this appropriately (e.g., by raising an error or returning a specific value).",
+      "output_sha256": "d9e22062c0d185aa80f96344a9686782a34053701fd23511aa86f085e88ecedb",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\n\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements for the `fib` function:\n\n- **Input**: A single integer `n` (1 \u2264 n \u2264 50).\n- **Output**: The n-th Fibonacci number.\n- **Behavior**:\n  - The function should return the correct Fibonacci number for the given `n`.\n  - The Fibonacci sequence starts with 0 and 1.\n- **Edge Cases**:\n  - `n = 1` should return `1`.\n  - `n = 2` should return `1`.\n  - `n = 50` should not result in an infinite loop or excessive computation time.\n  - `n < 1` should not be a valid input; the function should handle this appropriately (e.g., by raising an error or returning a specific value)."
+      },
+      "delivered_output": "Algorithm for `fib(n: int)`:\n\n1. **Input Validation**: Check if `n < 1`. If true, raise an error or return a specific value (e.g., `None` or an error message).\n2. **Base Cases**:\n   - If `n == 1` or `n == 2`, return `1`.\n3. **Recursive Case**: \n   - Calculate `fib(n-1)` and `fib(n-2)`.\n   - Return the sum of `fib(n-1)` and `fib(n-2)`.\n\nEdge Cases:\n- Handle `n < 1` by raising an error or returning a specific value.\n- Ensure the function does not exceed the limit of `n = 50` to avoid excessive computation.\n\nComplexity:\n- Time Complexity: O(2^n) due to the exponential nature of the recursive calls.\n- Space Complexity: O(n) due to the recursion stack.\n\nThis algorithm ensures the function behaves as specified, handling edge cases and providing the correct Fibonacci number for valid inputs.",
+      "output_sha256": "0863703340c84f89dcd55d910a30a216ef2527e49c07fc10f338d96920a86d09",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "\n\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `fib(n: int)`:\n\n1. **Input Validation**: Check if `n < 1`. If true, raise an error or return a specific value (e.g., `None` or an error message).\n2. **Base Cases**:\n   - If `n == 1` or `n == 2`, return `1`.\n3. **Recursive Case**: \n   - Calculate `fib(n-1)` and `fib(n-2)`.\n   - Return the sum of `fib(n-1)` and `fib(n-2)`.\n\nEdge Cases:\n- Handle `n < 1` by raising an error or returning a specific value.\n- Ensure the function does not exceed the limit of `n = 50` to avoid excessive computation.\n\nComplexity:\n- Time Complexity: O(2^n) due to the exponential nature of the recursive calls.\n- Space Complexity: O(n) due to the recursion stack.\n\nThis algorithm ensures the function behaves as specified, handling edge cases and providing the correct Fibonacci number for valid inputs."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `fib(n: int)`\n\n#### Function Signature\n```python\ndef fib(n: int) -> int:\n    \"\"\"\n    Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n```\n\n#### Algorithm Steps\n1. **Input Validation**:\n   - Check if `n < 1`. If true, raise an error or return a specific value (e.g., `None` or an error message).\n2. **Base Cases**:\n   - If `n == 1` or `n == 2`, return `1`.\n3. **Recursive Case**:\n   - Calculate `fib(n-1)` and `fib(n-2)`.\n   - Return the sum of `fib(n-1)` and `fib(n-2)`.\n\n#### Boundary Conditions\n- Ensure the function handles `n < 1` by raising an error or returning a specific value.\n- Ensure the function does not exceed the limit of `n = 50` to avoid excessive computation.\n\n#### Additional Notes\n- Use a memoization technique to optimize the recursive calls and reduce the time complexity.\n- Test the function with edge cases and typical inputs to ensure correctness.\n\n#### Example Code Structure\n```python\ndef fib(n: int) -> int:\n    if n < 1:\n        raise ValueError(\"Input must be a positive integer.\")\n    if n == 1 or n == 2:\n        return 1\n    # Memoization dictionary to store previously computed values\n    memo = {1: 1, 2: 1}\n    return _fib(n, memo)\n\ndef _fib(n: int, memo: dict) -> int:\n    if n not in memo:\n        memo[n] = _fib(n-1, memo) + _fib(n-2, memo)\n    return memo[n]\n```\n\nThis checklist ensures that the implementation covers all necessary aspects of the function specification.",
+      "output_sha256": "bc92c69de75b017659dcb388ed4be19c56ce587ac92968afa8e33c034766939d",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "\n\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `fib(n: int)`\n\n#### Function Signature\n```python\ndef fib(n: int) -> int:\n    \"\"\"\n    Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n```\n\n#### Algorithm Steps\n1. **Input Validation**:\n   - Check if `n < 1`. If true, raise an error or return a specific value (e.g., `None` or an error message).\n2. **Base Cases**:\n   - If `n == 1` or `n == 2`, return `1`.\n3. **Recursive Case**:\n   - Calculate `fib(n-1)` and `fib(n-2)`.\n   - Return the sum of `fib(n-1)` and `fib(n-2)`.\n\n#### Boundary Conditions\n- Ensure the function handles `n < 1` by raising an error or returning a specific value.\n- Ensure the function does not exceed the limit of `n = 50` to avoid excessive computation.\n\n#### Additional Notes\n- Use a memoization technique to optimize the recursive calls and reduce the time complexity.\n- Test the function with edge cases and typical inputs to ensure correctness.\n\n#### Example Code Structure\n```python\ndef fib(n: int) -> int:\n    if n < 1:\n        raise ValueError(\"Input must be a positive integer.\")\n    if n == 1 or n == 2:\n        return 1\n    # Memoization dictionary to store previously computed values\n    memo = {1: 1, 2: 1}\n    return _fib(n, memo)\n\ndef _fib(n: int, memo: dict) -> int:\n    if n not in memo:\n        memo[n] = _fib(n-1, memo) + _fib(n-2, memo)\n    return memo[n]\n```\n\nThis checklist ensures that the implementation covers all necessary aspects of the function specification.",
+        "earlier_attempt_history": [
+          {
+            "kind": "message_received",
+            "from_stage": "project_manager",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          },
+          {
+            "kind": "your_previous_answer",
+            "from_stage": "coder",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          }
+        ]
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 8.572,
+      "prompt_tokens": 726,
+      "completion_tokens": 131,
+      "delivered_output": "```python\ndef fib(n: int) -> int:\n    if n < 1:\n        raise ValueError(\"Input must be a positive integer.\")\n    if n == 1 or n == 2:\n        return 1\n    # Memoization dictionary to store previously computed values\n    memo = {1: 1, 2: 1}\n    return _fib(n, memo)\n\ndef _fib(n: int, memo: dict) -> int:\n    if n not in memo:\n        memo[n] = _fib(n-1, memo) + _fib(n-2, memo)\n    return memo[n]\n```",
+      "output_sha256": "8f678b455a0f0ffad5d9d9badaa622b6042c3bad3e21f9980baf8c2a8c506dc0",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "\n\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\ndef fib(n: int) -> int:\n    if n < 1:\n        raise ValueError(\"Input must be a positive integer.\")\n    if n == 1 or n == 2:\n        return 1\n    # Memoization dictionary to store previously computed values\n    memo = {1: 1, 2: 1}\n    return _fib(n, memo)\n\ndef _fib(n: int, memo: dict) -> int:\n    if n not in memo:\n        memo[n] = _fib(n-1, memo) + _fib(n-2, memo)\n    return memo[n]\n```",
+        "earlier_attempt_history": [
+          {
+            "kind": "message_received",
+            "from_stage": "coder",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          },
+          {
+            "kind": "your_previous_answer",
+            "from_stage": "test_engineer",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          }
+        ]
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 9.028,
+      "prompt_tokens": 435,
+      "completion_tokens": 131,
+      "delivered_output": "```python\ndef fib(n: int) -> int:\n    if n < 1:\n        raise ValueError(\"Input must be a positive integer.\")\n    if n == 1 or n == 2:\n        return 1\n    # Memoization dictionary to store previously computed values\n    memo = {1: 1, 2: 1}\n    return _fib(n, memo)\n\ndef _fib(n: int, memo: dict) -> int:\n    if n not in memo:\n        memo[n] = _fib(n-1, memo) + _fib(n-2, memo)\n    return memo[n]\n```",
+      "output_sha256": "8f678b455a0f0ffad5d9d9badaa622b6042c3bad3e21f9980baf8c2a8c506dc0",
+      "matches_baseline_output": false,
+      "matches_attacked_output": false
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1161,
+    "completion_tokens": 262,
+    "model_seconds": 17.6,
+    "tracking_overhead_seconds": 0.000685,
+    "recovery_wall_seconds": 17.653
+  }
+}

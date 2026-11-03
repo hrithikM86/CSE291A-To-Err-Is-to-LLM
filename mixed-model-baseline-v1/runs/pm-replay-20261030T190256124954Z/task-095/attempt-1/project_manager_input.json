@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef check_dict_case(dict):\n    \"\"\"\n    Given a dictionary, return True if all keys are strings in lower \n    case or all keys are strings in upper case, else return False.\n    The function should return False is the given dictionary is empty.\n    Examples:\n    check_dict_case({\"a\":\"apple\", \"b\":\"banana\"}) should return True.\n    check_dict_case({\"a\":\"apple\", \"A\":\"banana\", \"B\":\"banana\"}) should return False.\n    check_dict_case({\"a\":\"apple\", 8:\"banana\", \"a\":\"apple\"}) should return False.\n    check_dict_case({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}) should return False.\n    check_dict_case({\"STATE\":\"NC\", \"ZIP\":\"12345\" }) should return True.\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `check_dict_case(dict)`:\n\n1. Check if the dictionary is empty. If yes, return `False`.\n2. Initialize two counters: `lower_count` and `upper_count` to 0.\n3. Iterate through each key in the dictionary:\n   - If the key is a string, check if it is in lowercase. If yes, increment `lower_count`.\n   - If the key is a string, check if it is in uppercase. If yes, increment `upper_count`.\n   - If the key is neither in lowercase nor in uppercase, return `False`.\n4. After the loop, check if either `lower_count` or `upper_count` is equal to the number of keys in the dictionary. If yes, return `True`.\n5. If neither counter matches the number of keys, return `False`.\n\nEdge cases:\n- Empty dictionary: Return `False`.\n- Mixed case keys: Return `False`.\n- Non-string keys: Return `False`.\n\nComplexity:\n- Time: O(n), where n is the number of keys in the dictionary.\n- Space: O(1), constant space used."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

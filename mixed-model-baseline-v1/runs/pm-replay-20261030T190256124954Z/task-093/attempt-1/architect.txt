@@ -1,0 +1,24 @@
+Algorithm:
+
+1. Define the function `encode(message)`.
+
+2. Initialize an empty string `encoded_message`.
+
+3. For each character `char` in `message`:
+   - If `char` is a letter:
+     - Swap the case of `char` (use `swapcase()` method).
+     - If `char` is a vowel ('a', 'e', 'i', 'o', 'u'):
+       - Determine the new character by finding the character 2 places ahead in the alphabet.
+       - If the new character is beyond 'z', wrap around to the beginning of the alphabet.
+       - Append the new character to `encoded_message`.
+     - Otherwise, append `char` to `encoded_message`.
+
+4. Return `encoded_message`.
+
+Edge Cases:
+- Handle vowels at the end of the alphabet ('u' and 'U') by wrapping around to the beginning ('a' and 'A').
+- Ignore non-letter characters and maintain original spacing and punctuation.
+
+Complexity:
+- Time: O(n), where n is the length of the message.
+- Space: O(n), for storing the encoded message.

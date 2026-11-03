@@ -1,0 +1,14 @@
+--- all-Qwen raw Coder
++++ all-Qwen reviewed final
+@@ -12,5 +12,11 @@
+     if not a or not b:
+         return False
+ 
++    # Step 2: Check for Rotations
++    for i in range(len(b)):
++        rotated_b = b[i:] + b[:i]
++        if rotated_b in a:
++            return True
++
+     # Step 3: Check for Substring
+     return b in a

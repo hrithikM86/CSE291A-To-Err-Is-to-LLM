@@ -1,0 +1,40 @@
+### Implementation Checklist for `greatest_common_divisor(a: int, b: int) -> int`
+
+1. **Function Signature**:
+   - Ensure the function is defined as `def greatest_common_divisor(a: int, b: int) -> int:`.
+
+2. **Input Validation**:
+   - Check if `a` and `b` are integers. Raise a `TypeError` if not.
+
+3. **Edge Cases**:
+   - If `a` or `b` is 0, return the non-zero value. If both are 0, return 0.
+
+4. **Sign Handling**:
+   - Ensure both `a` and `b` are positive by converting them to their absolute values if necessary.
+
+5. **Euclidean Algorithm**:
+   - Implement the recursive function:
+     - Base case: If `b` is 0, return `a`.
+     - Recursive case: Call `greatest_common_divisor(b, a % b)`.
+
+6. **Return Result**:
+   - The final result of the recursive calls is the GCD.
+
+7. **Test Cases**:
+   - `greatest_common_divisor(3, 5)` should return `1`.
+   - `greatest_common_divisor(25, 15)` should return `5`.
+   - `greatest_common_divisor(0, 5)` should return `5`.
+   - `greatest_common_divisor(5, 0)` should return `5`.
+   - `greatest_common_divisor(0, 0)` should return `0`.
+   - `greatest_common_divisor(-25, 15)` should return `5`.
+
+8. **Complexity**:
+   - Ensure the time and space complexity are O(log(min(a, b))).
+
+9. **Edge Cases**:
+   - Handle negative inputs by converting them to positive before processing.
+
+10. **Documentation**:
+    - Ensure the docstring matches the original specification.
+
+By following this checklist, the coder can implement the `greatest_common_divisor` function correctly.

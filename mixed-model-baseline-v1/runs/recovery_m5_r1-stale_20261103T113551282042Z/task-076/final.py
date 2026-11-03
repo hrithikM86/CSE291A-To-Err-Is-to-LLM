@@ -1,0 +1,14 @@
+def is_simple_power(x: int, n: int) -> bool:
+    if x == 0 or n == 0:
+        return False
+    if n == 1:
+        return x == 1
+    if x == 1 and n > 1:
+        return False
+    if x > 1 and n > 1:
+        power = 1
+        while power < x:
+            power *= n
+            if power == x:
+                return True
+        return False

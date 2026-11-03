@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef is_bored(S):\n    \"\"\"\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n   \n    For example:\n    >>> is_bored(\"Hello world\")\n    0\n    >>> is_bored(\"The sky is blue. The sun is shining. I love this weather\")\n    1\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `is_bored(S)`:\n\n1. **Initialization**:\n   - Set `boredom_count` to 0.\n   - Split the string `S` into sentences using `'. '?!'` as delimiters.\n\n2. **Iterate through sentences**:\n   - For each sentence, strip leading and trailing punctuation.\n   - Check if the sentence starts with the exact string \"I \".\n     - If it does, increment `boredom_count`.\n\n3. **Return the result**:\n   - Return `boredom_count`.\n\n**Edge Cases**:\n- Handle empty string: Return 0.\n- Handle multiple delimiters: Split correctly.\n- Handle leading or trailing punctuation: Strip appropriately.\n\n**Complexity**:\n- Time: O(n), where n is the length of the string `S`.\n- Space: O(n), for storing the split sentences."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

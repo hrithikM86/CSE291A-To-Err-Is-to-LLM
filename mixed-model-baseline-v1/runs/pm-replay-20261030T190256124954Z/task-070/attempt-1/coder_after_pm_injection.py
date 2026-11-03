@@ -1,0 +1,18 @@
+def strange_sort_list(lst: list) -> list:
+    if not lst:
+        return []
+    
+    sorted_lst = lst.copy()
+    result = []
+    
+    while sorted_lst:
+        if result and result[-1] == max(sorted_lst):
+            min_val = min(sorted_lst)
+            result.append(min_val)
+            sorted_lst.remove(min_val)
+        else:
+            max_val = max(sorted_lst)
+            result.append(max_val)
+            sorted_lst.remove(max_val)
+    
+    return result

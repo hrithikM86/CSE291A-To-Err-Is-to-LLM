@@ -1,0 +1,23 @@
+def greatest_common_divisor(a: int, b: int) -> int:
+    """
+    Return a greatest common divisor of two integers a and b
+    >>> greatest_common_divisor(3, 5)
+    1
+    >>> greatest_common_divisor(25, 15)
+    5
+    """
+    def gcd_helper(x: int, y: int) -> int:
+        while y:
+            x, y = y, x % y
+        return x
+
+    if not isinstance(a, int) or not isinstance(b, int):
+        raise TypeError("Both inputs must be integers")
+
+    if a == 0 and b == 0:
+        return 0
+
+    a, b = abs(a), abs(b)
+
+    gcd_value = gcd_helper(a, b)
+    return abs(a * b) // gcd_value

@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef choose_num(x, y):\n    \"\"\"This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If \n    there's no such number, then the function should return -1.\n\n    For example:\n    choose_num(12, 15) = 14\n    choose_num(13, 12) = -1\n    \"\"\"\n",
+    "previous_stage": "coder",
+    "previous_artifact": "```python\ndef choose_num(x: int, y: int) -> int:\n    # Input validation\n    if not (isinstance(x, int) and isinstance(y, int) and x > 0 and y > 0):\n        raise ValueError(\"Both x and y must be positive integers.\")\n    if x > y:\n        return -1\n\n    # Finding the largest even number\n    if y % 2 == 0:\n        return y\n    elif y - 1 >= x:\n        return y - 1\n    else:\n        return -1\n```"
+  },
+  "system_messages": [
+    "You are a Test Engineer, named test_engineer, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

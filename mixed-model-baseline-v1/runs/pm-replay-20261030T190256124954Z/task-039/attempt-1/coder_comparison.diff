@@ -1,0 +1,32 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -14,21 +14,20 @@
+         return True
+ 
+     if not isinstance(n, int):
+-        raise ValueError("Input must be an integer.")
++        raise ValueError("Input must be an integer")
+     if n < 1:
+-        raise ValueError("Input must be greater than 0.")
++        raise ValueError("Input must be greater than 0")
+     if n > 20:
+-        raise ValueError("Input must be less than or equal to 20.")
++        raise ValueError("Input must be less than or equal to 20")
+ 
+     fibonacci = []
+     a, b = 0, 1
+     count = 0
+ 
+-    while count < n:
+-        next_fib = a + b
+-        if is_prime(next_fib):
+-            fibonacci.append(next_fib)
++    while count < n + 1:
++        if is_prime(b):
++            fibonacci.append(b)
+             count += 1
+-        a, b = b, next_fib
++        a, b = b, a + b
+ 
+-    return fibonacci[-1]
++    return fibonacci[n]

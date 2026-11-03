@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef sum_to_n(n: int):\n    \"\"\"sum_to_n is a function that sums numbers from 1 to n.\n    >>> sum_to_n(30)\n    465\n    >>> sum_to_n(100)\n    5050\n    >>> sum_to_n(5)\n    15\n    >>> sum_to_n(10)\n    55\n    >>> sum_to_n(1)\n    1\n    \"\"\"\n",
+    "previous_stage": "product_manager",
+    "previous_artifact": "Requirements for `sum_to_n(n: int)`:\n\n- **Input**: A single integer `n` (1 \u2264 n \u2264 10000).\n- **Output**: An integer representing the sum of all numbers from 1 to `n`.\n- **Behavior**:\n  - Use the formula for the sum of the first `n` natural numbers: `n * (n + 1) // 2`.\n  - Ensure the function handles edge cases, such as `n = 1`, correctly.\n- **Edge Cases**:\n  - `n = 1` should return `1`.\n  - `n` within the range [1, 10000] should return the correct sum.\n  - `n` outside the range should not be handled as the function is constrained to this range."
+  },
+  "system_messages": [
+    "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

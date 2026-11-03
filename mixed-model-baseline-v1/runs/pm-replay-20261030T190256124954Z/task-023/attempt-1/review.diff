@@ -1,0 +1,13 @@
+--- coder_after_pm_injection.py
++++ final.py
+@@ -7,7 +7,7 @@
+     """
+     if string is None:
+         raise TypeError("Input cannot be None")
+-    if isinstance(string, int):
++    if not isinstance(string, str):
+         raise TypeError("Input must be a string")
+-    
+-    return len(string.strip())
++
++    return len(string)

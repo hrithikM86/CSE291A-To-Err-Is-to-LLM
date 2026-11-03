@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef order_by_points(nums):\n    \"\"\"\n    Write a function which sorts the given list of integers\n    in ascending order according to the sum of their digits.\n    Note: if there are several items with similar sum of their digits,\n    order them based on their index in original list.\n\n    For example:\n    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n    >>> order_by_points([]) == []\n    \"\"\"\n",
+    "previous_stage": "coder",
+    "previous_artifact": "```python\ndef order_by_points(nums: list) -> list:\n    def digit_sum(n: int) -> int:\n        return sum(int(digit) for digit in str(abs(n)))\n\n    if not nums:\n        return []\n\n    indexed_nums = [(index, digit_sum(num)) for index, num in enumerate(nums)]\n    sorted_nums = sorted(indexed_nums, key=lambda x: (x[1], x[0]))\n    result = [num for index, num in sorted_nums]\n\n    return result\n\n# Example test cases\nassert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\nassert order_by_points([]) == []\nassert order_by_points([0, 10, -10, 100, -100]) == [0, 10, -10, -100, 100]\n```"
+  },
+  "system_messages": [
+    "You are a Test Engineer, named test_engineer, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

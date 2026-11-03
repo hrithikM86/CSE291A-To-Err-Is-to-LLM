@@ -1,0 +1,38 @@
+### Implementation Checklist for `split_words(txt)`
+
+1. **Function Signature**
+   ```python
+   def split_words(txt: str) -> Union[List[str], int]:
+       pass
+   ```
+
+2. **Whitespace Check**:
+
+   - **Required implementation:** Give comma splitting priority: if txt contains a comma, split on commas and return those pieces. Only when there is no comma may you split on whitespace. You must preserve spaces inside comma-separated pieces; retain the existing no-delimiter count branch.
+
+3. **Comma Check**:
+
+   - Apply the required behavior in **Whitespace Check** when producing this result.
+
+4. **Odd ASCII Count**
+   - If no whitespace or commas, iterate through each character in the string.
+   - For each lowercase letter, calculate its ASCII value and check if it is odd.
+   - Count and return the number of such letters.
+
+5. **Edge Cases**
+   - **Empty String**: Return an empty list.
+   - **String with only whitespace or commas**: Handle as per the rules.
+   - **String with only non-alphabetic characters**: Return 0.
+
+6. **Complexity**
+   - Time: O(n), where n is the length of the string.
+   - Space: O(n) for storing the split words or the count of letters.
+
+7. **Example Implementations**
+
+   - Implement the checklist above directly and use the existing task validation suite.
+
+8. **Test Cases**
+
+   - Implement the checklist above directly and use the existing task validation suite.
+

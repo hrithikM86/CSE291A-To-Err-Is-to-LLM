@@ -1,0 +1,19 @@
+--- baseline_final.py
++++ final.py
+@@ -9,12 +9,14 @@
+     """
+     if not numbers:
+         return []
++    if len(numbers) == 1:
++        return numbers
+ 
+     rolling_max_values = []
+     current_max = float('-inf')
+ 
+-    for number in numbers:
+-        current_max = max(current_max, number)
++    for i in range(len(numbers)):
++        current_max = max(current_max, numbers[i])
+         rolling_max_values.append(current_max)
+ 
+     return rolling_max_values

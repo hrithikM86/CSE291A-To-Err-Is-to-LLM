@@ -1,0 +1,27 @@
+### Implementation Checklist for `eat` Function
+
+1. **Function Signature**
+   ```python
+   def eat(number: int, need: int, remaining: int) -> List[int]:
+       pass
+   ```
+
+2. **Algorithm Steps**:
+
+   - **Required implementation:** Compute total_eaten as number + need and remaining_stock as max(remaining - need, 0). You must credit the entire requested need even when stock is insufficient. Return [total_eaten, remaining_stock].
+
+3. **Boundary Conditions**
+
+   - Keep the current state when need == 0. Otherwise credit number + need eaten carrots even when remaining is insufficient; clamp remaining stock to zero.
+
+4. **Example Test Cases**
+
+   - Implement the checklist above directly and use the existing task validation suite.
+
+5. **Edge Cases**
+
+   - Insufficient or zero stock does not limit credited consumption; the remaining-stock field cannot be negative.
+
+6. **Complexity**
+   - Time: O(1) - Constant time operations.
+   - Space: O(1) - Constant space used.

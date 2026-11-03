@@ -1,0 +1,146 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "drop",
+  "dry_run": false,
+  "task_id": "HumanEval/86",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-086/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef anti_shuffle(s):\n    \"\"\"\n    Write a function that takes a string and returns an ordered version of it.\n    Ordered version of string, is a string where all words (separated by space)\n    are replaced by a new word where all the characters arranged in\n    ascending order based on ascii value.\n    Note: You should keep the order of words and blank spaces in the sentence.\n\n    For example:\n    anti_shuffle('Hi') returns 'Hi'\n    anti_shuffle('hello') returns 'ehllo'\n    anti_shuffle('Hello World!!!') returns 'Hello !!!Wdlor'\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements:\n- The function `anti_shuffle(s)` takes a single string `s` as input.\n- It returns a new string where each word in the input string is replaced by a new word formed by sorting the characters of the original word in ascending ASCII order.\n- The order of words and spaces in the sentence must be preserved.\n- The function should handle punctuation and maintain its position relative to the words.\n- Edge cases:\n  - Empty string: Returns an empty string.\n  - Single word: Returns the sorted word.\n  - Punctuation: Preserves punctuation attached to words.\n  - Multiple spaces: Handles multiple spaces between words correctly.",
+      "output_sha256": "e4f727b5a621845c0428e4d7e450f59992e8d8815882b327d0a0cb4ada485e07",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef anti_shuffle(s):\n    \"\"\"\n    Write a function that takes a string and returns an ordered version of it.\n    Ordered version of string, is a string where all words (separated by space)\n    are replaced by a new word where all the characters arranged in\n    ascending order based on ascii value.\n    Note: You should keep the order of words and blank spaces in the sentence.\n\n    For example:\n    anti_shuffle('Hi') returns 'Hi'\n    anti_shuffle('hello') returns 'ehllo'\n    anti_shuffle('Hello World!!!') returns 'Hello !!!Wdlor'\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- The function `anti_shuffle(s)` takes a single string `s` as input.\n- It returns a new string where each word in the input string is replaced by a new word formed by sorting the characters of the original word in ascending ASCII order.\n- The order of words and spaces in the sentence must be preserved.\n- The function should handle punctuation and maintain its position relative to the words.\n- Edge cases:\n  - Empty string: Returns an empty string.\n  - Single word: Returns the sorted word.\n  - Punctuation: Preserves punctuation attached to words.\n  - Multiple spaces: Handles multiple spaces between words correctly."
+      },
+      "delivered_output": "Algorithm for `anti_shuffle(s)`:\n\n1. **Input Validation**: Check if the input string `s` is empty. If so, return an empty string.\n2. **Initialization**: \n   - Split the input string `s` into words and spaces using a regular expression to handle multiple spaces.\n   - Initialize an empty list `result` to store the processed words.\n3. **Processing Each Word**:\n   - For each word in the split string:\n     - Sort the characters of the word in ascending ASCII order.\n     - Append the sorted word to `result`.\n4. **Reconstruct the Sentence**:\n   - Join the elements of `result` back into a single string, preserving the original order of words and spaces.\n5. **Return the Result**.\n\nEdge Cases:\n- Empty string: Return an empty string.\n- Single word: Return the sorted word.\n- Punctuation: Preserve punctuation attached to words.\n- Multiple spaces: Handle multiple spaces between words correctly.\n\nComplexity:\n- Time: O(n * m log m), where n is the number of words and m is the average length of the words.\n- Space: O(n * m), for storing the result and the split words.",
+      "output_sha256": "22fd823d690f7db6c62404818de49ad6d0583c19b75b2ee0525b4c65063fab51",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "\ndef anti_shuffle(s):\n    \"\"\"\n    Write a function that takes a string and returns an ordered version of it.\n    Ordered version of string, is a string where all words (separated by space)\n    are replaced by a new word where all the characters arranged in\n    ascending order based on ascii value.\n    Note: You should keep the order of words and blank spaces in the sentence.\n\n    For example:\n    anti_shuffle('Hi') returns 'Hi'\n    anti_shuffle('hello') returns 'ehllo'\n    anti_shuffle('Hello World!!!') returns 'Hello !!!Wdlor'\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `anti_shuffle(s)`:\n\n1. **Input Validation**: Check if the input string `s` is empty. If so, return an empty string.\n2. **Initialization**: \n   - Split the input string `s` into words and spaces using a regular expression to handle multiple spaces.\n   - Initialize an empty list `result` to store the processed words.\n3. **Processing Each Word**:\n   - For each word in the split string:\n     - Sort the characters of the word in ascending ASCII order.\n     - Append the sorted word to `result`.\n4. **Reconstruct the Sentence**:\n   - Join the elements of `result` back into a single string, preserving the original order of words and spaces.\n5. **Return the Result**.\n\nEdge Cases:\n- Empty string: Return an empty string.\n- Single word: Return the sorted word.\n- Punctuation: Preserve punctuation attached to words.\n- Multiple spaces: Handle multiple spaces between words correctly.\n\nComplexity:\n- Time: O(n * m log m), where n is the number of words and m is the average length of the words.\n- Space: O(n * m), for storing the result and the split words."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `anti_shuffle(s)`\n\n1. **Function Signature**:\n   ```python\n   def anti_shuffle(s: str) -> str:\n       pass\n   ```\n\n2. **Algorithm Steps**:\n   - **Input Validation**:\n     - Check if `s` is an empty string. If so, return an empty string.\n   - **Initialization**:\n     - Split the input string `s` into words and spaces using a regular expression to handle multiple spaces.\n     - Initialize an empty list `result` to store the processed words.\n   - **Processing Each Word**:\n     - For each word in the split string:\n       - Sort the characters of the word in ascending ASCII order.\n       - Append the sorted word to `result`.\n   - **Reconstruct the Sentence**:\n     - Join the elements of `result` back into a single string, preserving the original order of words and spaces.\n   - **Return the Result**.\n\n3. **Boundary Conditions**:\n   - Handle empty strings.\n   - Handle single-word strings.\n   - Preserve punctuation attached to words.\n   - Handle multiple spaces between words correctly.\n\n4. **Example Implementations**:\n   - For `s = 'Hi'`, return `'Hi'`.\n   - For `s = 'hello'`, return `'ehllo'`.\n   - For `s = 'Hello World!!!'`, return `'Hello !!!Wdlor'`.\n\n5. **Complexity**:\n   - Time: O(n * m log m), where n is the number of words and m is the average length of the words.\n   - Space: O(n * m), for storing the result and the split words.\n\n6. **Testing**:\n   - Test with various inputs including empty strings, single words, multiple spaces, and punctuation.",
+      "output_sha256": "33a4870d832305d475c3de6538aceeae1dc6b4279cd94b5e488bdfb62a3f4868",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "\ndef anti_shuffle(s):\n    \"\"\"\n    Write a function that takes a string and returns an ordered version of it.\n    Ordered version of string, is a string where all words (separated by space)\n    are replaced by a new word where all the characters arranged in\n    ascending order based on ascii value.\n    Note: You should keep the order of words and blank spaces in the sentence.\n\n    For example:\n    anti_shuffle('Hi') returns 'Hi'\n    anti_shuffle('hello') returns 'ehllo'\n    anti_shuffle('Hello World!!!') returns 'Hello !!!Wdlor'\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `anti_shuffle(s)`\n\n1. **Function Signature**:\n   ```python\n   def anti_shuffle(s: str) -> str:\n       pass\n   ```\n\n2. **Algorithm Steps**:\n   - **Input Validation**:\n     - Check if `s` is an empty string. If so, return an empty string.\n   - **Initialization**:\n     - Split the input string `s` into words and spaces using a regular expression to handle multiple spaces.\n     - Initialize an empty list `result` to store the processed words.\n   - **Processing Each Word**:\n     - For each word in the split string:\n       - Sort the characters of the word in ascending ASCII order.\n       - Append the sorted word to `result`.\n   - **Reconstruct the Sentence**:\n     - Join the elements of `result` back into a single string, preserving the original order of words and spaces.\n   - **Return the Result**.\n\n3. **Boundary Conditions**:\n   - Handle empty strings.\n   - Handle single-word strings.\n   - Preserve punctuation attached to words.\n   - Handle multiple spaces between words correctly.\n\n4. **Example Implementations**:\n   - For `s = 'Hi'`, return `'Hi'`.\n   - For `s = 'hello'`, return `'ehllo'`.\n   - For `s = 'Hello World!!!'`, return `'Hello !!!Wdlor'`.\n\n5. **Complexity**:\n   - Time: O(n * m log m), where n is the number of words and m is the average length of the words.\n   - Space: O(n * m), for storing the result and the split words.\n\n6. **Testing**:\n   - Test with various inputs including empty strings, single words, multiple spaces, and punctuation."
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 6.078,
+      "prompt_tokens": 674,
+      "completion_tokens": 86,
+      "delivered_output": "```python\nimport re\n\ndef anti_shuffle(s: str) -> str:\n    if not s:\n        return s\n    \n    words = re.split(r'(\\s+)', s)\n    result = []\n    \n    for word in words:\n        if word.strip():\n            sorted_word = ''.join(sorted(word))\n            result.append(sorted_word)\n        else:\n            result.append(word)\n    \n    return ''.join(result)\n```",
+      "output_sha256": "7b00404a538f2d70607d3ed6bebff33c32b459272484424e98b7b620734b3d87",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "\ndef anti_shuffle(s):\n    \"\"\"\n    Write a function that takes a string and returns an ordered version of it.\n    Ordered version of string, is a string where all words (separated by space)\n    are replaced by a new word where all the characters arranged in\n    ascending order based on ascii value.\n    Note: You should keep the order of words and blank spaces in the sentence.\n\n    For example:\n    anti_shuffle('Hi') returns 'Hi'\n    anti_shuffle('hello') returns 'ehllo'\n    anti_shuffle('Hello World!!!') returns 'Hello !!!Wdlor'\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\nimport re\n\ndef anti_shuffle(s: str) -> str:\n    if not s:\n        return s\n    \n    words = re.split(r'(\\s+)', s)\n    result = []\n    \n    for word in words:\n        if word.strip():\n            sorted_word = ''.join(sorted(word))\n            result.append(sorted_word)\n        else:\n            result.append(word)\n    \n    return ''.join(result)\n```"
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 6.327,
+      "prompt_tokens": 398,
+      "completion_tokens": 98,
+      "delivered_output": "```python\nimport re\n\ndef anti_shuffle(s: str) -> str:\n    if not s:\n        return s\n    \n    words = re.split(r'(\\s+)', s)\n    result = []\n    \n    for word in words:\n        if word.strip():  # Check if the word is not just a space\n            sorted_word = ''.join(sorted(word))\n            result.append(sorted_word)\n        else:\n            result.append(word)\n    \n    return ''.join(result)\n```",
+      "output_sha256": "96483ff03ef94cc0ff977c804583ccae897bf2168cccd07b176232f584cb79bf",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1072,
+    "completion_tokens": 184,
+    "model_seconds": 12.405,
+    "tracking_overhead_seconds": 0.000721,
+    "recovery_wall_seconds": 12.452
+  }
+}

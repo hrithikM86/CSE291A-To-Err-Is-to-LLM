@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n",
+    "previous_stage": "coder",
+    "previous_artifact": "```python\nfrom typing import Optional\n\ndef fib(n: int) -> Optional[int]:\n    if n < 1:\n        return None\n    \n    # Memoization dictionary to store previously computed Fibonacci numbers\n    memo = {1: 1, 2: 2}\n    \n    def fib_memo(n: int) -> int:\n        if n not in memo:\n            memo[n] = fib_memo(n - 1) + fib_memo(n - 2)\n        return memo[n]\n    \n    # Limit the computation to n = 50\n    if n > 50:\n        raise ValueError(\"Input value is too large. Please provide n <= 50.\")\n    \n    return fib_memo(n)\n```\n\nThis implementation follows the provided checklist by including input validation, base cases, and a memoization technique to optimize the recursive calls. It also handles the boundary condition of `n < 1` and limits the computation to avoid excessive processing."
+  },
+  "system_messages": [
+    "You are a Test Engineer, named test_engineer, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

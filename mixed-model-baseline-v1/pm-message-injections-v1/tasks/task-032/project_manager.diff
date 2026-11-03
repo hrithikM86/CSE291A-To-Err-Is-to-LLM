@@ -1,0 +1,36 @@
+--- tasks/task-032/project_manager_original.txt
++++ tasks/task-032/project_manager_corrupted.txt
+@@ -3,9 +3,6 @@
+ #### Function Signature
+ ```python
+ def find_zero(xs: list) -> float:
+-    """
+-    Finds a zero point of a polynomial with coefficients xs.
+-    """
+     pass
+ ```
+ 
+@@ -24,9 +21,9 @@
+    - Implement Newton's method to find the root.
+    - Iterate until convergence within a small tolerance (e.g., 1e-6).
+ 
+-5. **Return the Root:**
+-   - Round the root to 2 decimal places and return it.
+-   - If the method fails to converge, return `None`.
++5. **Return the Root:**:
++
++   - **Required implementation:** After the numerical root search converges, you must round the root to the nearest integer using round(root), then return it as a float. Do not retain a fractional component in the returned root.
+ 
+ #### Boundary Conditions
+ - **Odd Length:** Raise `ValueError` if the length of `xs` is odd.
+@@ -34,8 +31,8 @@
+ - **Convergence Failure:** Return `None` if the method fails to converge.
+ 
+ #### Example Cases
+-- `find_zero([1, 2])` should return `-0.5`.
+-- `find_zero([-6, 11, -6, 1])` should return `1.0`.
++
++   - Implement the checklist above directly and use the existing task validation suite.
+ 
+ #### Complexity
+ - The numerical method has a complexity of O(n) per iteration, where n is the degree of the polynomial. The number of iterations required for convergence depends on the initial guess and the polynomial's properties.

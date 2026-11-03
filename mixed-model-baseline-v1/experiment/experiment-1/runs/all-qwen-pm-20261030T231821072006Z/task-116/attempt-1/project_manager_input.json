@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef sort_array(arr):\n    \"\"\"\n    In this Kata, you have to sort an array of non-negative integers according to\n    number of ones in their binary representation in ascending order.\n    For similar number of ones, sort based on decimal value.\n\n    It must be implemented like this:\n    >>> sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]\n    >>> sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]\n    >>> sort_array([1, 0, 2, 3, 4]) [0, 1, 2, 3, 4]\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `sort_array`:\n\n1. **Input Validation**: Check if the input list is empty. If so, return an empty list.\n2. **Negative Handling**: Separate negative integers from non-negative integers. Sort the negative integers based on their decimal value in ascending order.\n3. **Binary Ones Counting**: For each non-negative integer, count the number of ones in its binary representation.\n4. **Sorting**: Use a custom sorting key that first sorts by the count of ones in binary representation (ascending) and then by the decimal value (ascending).\n5. **Combine Results**: Combine the sorted negative and non-negative integers into a single list and return it.\n\nEdge Cases:\n- Empty input list: Return an empty list.\n- List with only negative integers: Sort them based on their decimal value.\n- List with only non-negative integers: Sort them based on the number of ones in binary representation and then by decimal value.\n\nComplexity:\n- Counting ones in binary: O(n) for each number, where n is the number of bits.\n- Sorting: O(m log m), where m is the number of elements in the list.\n\nThis algorithm ensures the function meets the specified requirements and handles edge cases appropriately."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

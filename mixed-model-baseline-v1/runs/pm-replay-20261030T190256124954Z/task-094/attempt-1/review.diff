@@ -1,0 +1,20 @@
+--- coder_after_pm_injection.py
++++ final.py
+@@ -9,11 +9,11 @@
+     return True
+ 
+ def skjkasdkd(lst):
+-    min_prime = float('inf')
++    max_prime = -1
+     for num in lst:
+-        if num > 1 and is_prime(num):
+-            if num < min_prime:
+-                min_prime = num
+-    if min_prime == float('inf'):
++        if is_prime(num):
++            if num > max_prime:
++                max_prime = num
++    if max_prime == -1:
+         return 0
+-    return sum(int(digit) for digit in str(min_prime))
++    return sum(int(digit) for digit in str(max_prime))

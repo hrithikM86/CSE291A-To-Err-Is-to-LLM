@@ -1,0 +1,23 @@
+Algorithm for `anti_shuffle(s)`:
+
+1. **Input Validation**: Check if the input string `s` is empty. If so, return an empty string.
+2. **Initialization**: 
+   - Split the input string `s` into words and spaces using a regular expression to handle multiple spaces.
+   - Initialize an empty list `result` to store the processed words.
+3. **Processing Each Word**:
+   - For each word in the split string:
+     - Sort the characters of the word in ascending ASCII order.
+     - Append the sorted word to `result`.
+4. **Reconstruct the Sentence**:
+   - Join the elements of `result` back into a single string, preserving the original order of words and spaces.
+5. **Return the Result**.
+
+Edge Cases:
+- Empty string: Return an empty string.
+- Single word: Return the sorted word.
+- Punctuation: Preserve punctuation attached to words.
+- Multiple spaces: Handle multiple spaces between words correctly.
+
+Complexity:
+- Time: O(n * m log m), where n is the number of words and m is the average length of the words.
+- Space: O(n * m), for storing the result and the split words.

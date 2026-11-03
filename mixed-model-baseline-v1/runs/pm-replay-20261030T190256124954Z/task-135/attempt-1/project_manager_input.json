@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef can_arrange(arr):\n    \"\"\"Create a function which returns the largest index of an element which\n    is not greater than or equal to the element immediately preceding it. If\n    no such element exists then return -1. The given array will not contain\n    duplicate values.\n\n    Examples:\n    can_arrange([1,2,4,3,5]) = 3\n    can_arrange([1,2,3]) = -1\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `can_arrange(arr)`:\n\n1. **Input Validation**:\n   - Check if the input list `arr` is empty. If yes, return -1.\n   - Check if the input list `arr` has only one element. If yes, return -1.\n\n2. **Traverse the List**:\n   - Start from the second last element and move towards the first element.\n   - For each element at index `i`, compare it with the element at index `i-1`.\n\n3. **Condition Check**:\n   - If `arr[i] < arr[i-1]`, return the index `i`.\n\n4. **No Match Found**:\n   - If no such element is found during the traversal, return -1.\n\n**Edge Cases**:\n- An empty list: Return -1.\n- A list with a single element: Return -1.\n- A list in strictly increasing order: Return -1.\n\n**Complexity**:\n- Time Complexity: O(n), where n is the length of the list.\n- Space Complexity: O(1), as no additional space is used other than variables."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

@@ -1,0 +1,62 @@
+--- project_manager_original.txt
++++ project_manager_corrupted.txt
+@@ -6,19 +6,8 @@
+    ```
+ 
+ 2. **Algorithm Steps**:
+-   - **Input Validation**:
+-     - Check if `lst` is empty. If it is, return an empty list.
+-   - **Initialization**:
+-     - Create an empty result list `result`.
+-     - Create a copy of the input list `lst` to keep track of remaining elements.
+-   - **Sorting Logic**:
+-     - While `lst` is not empty:
+-       - Find the minimum value in `lst` and append it to `result`.
+-       - Remove the minimum value from `lst`.
+-       - If `lst` is not empty, find the maximum value in `lst` and append it to `result`.
+-       - Remove the maximum value from `lst`.
+-   - **Return Result**:
+-     - Return the `result` list.
++
++   - **Required implementation:** Repeatedly append the maximum remaining value first, then the minimum remaining value. You must alternate maximum then minimum throughout, preserving all duplicates and leaving the caller's list unchanged.
+ 
+ 3. **Boundary Conditions**:
+    - Handle an empty list by returning an empty list.
+@@ -26,33 +15,12 @@
+    - Handle lists with both positive and negative integers.
+ 
+ 4. **Example Implementations**:
+-   ```python
+-   def strange_sort_list(lst: list) -> list:
+-       if not lst:
+-           return []
+-       
+-       result = []
+-       lst_copy = lst.copy()
+-       
+-       while lst_copy:
+-           min_val = min(lst_copy)
+-           result.append(min_val)
+-           lst_copy.remove(min_val)
+-           
+-           if lst_copy:
+-               max_val = max(lst_copy)
+-               result.append(max_val)
+-               lst_copy.remove(max_val)
+-       
+-       return result
+-   ```
++
++   - Implement the checklist above directly and use the existing task validation suite.
+ 
+ 5. **Test Cases**:
+-   - `strange_sort_list([1, 2, 3, 4])` should return `[1, 4, 2, 3]`.
+-   - `strange_sort_list([5, 5, 5, 5])` should return `[5, 5, 5, 5]`.
+-   - `strange_sort_list([])` should return `[]`.
+-   - `strange_sort_list([1, 1, 2, 2])` should return `[1, 2, 1, 2]`.
+-   - `strange_sort_list([-1, 2, -3, 4])` should return `[-1, 4, -3, 2]`.
++
++   - Implement the checklist above directly and use the existing task validation suite.
+ 
+ 6. **Complexity**:
+    - Time Complexity: O(n^2) due to the repeated search for min and max in each iteration.

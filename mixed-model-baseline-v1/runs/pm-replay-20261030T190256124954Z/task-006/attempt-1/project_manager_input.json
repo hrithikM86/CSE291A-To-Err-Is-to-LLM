@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List\n\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n    >>> parse_nested_parens('(()()) ((())) () ((())()())')\n    [2, 3, 1, 3]\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. **Initialization**:\n   - Initialize an empty list `depths` to store the maximum depths.\n\n2. **Input Validation**:\n   - If `paren_string` is empty, return `depths` (which is an empty list).\n\n3. **Split Input String**:\n   - Split `paren_string` by spaces to get individual groups.\n\n4. **Process Each Group**:\n   - For each group:\n     1. Initialize `current_depth` to 0.\n     2. Initialize `max_depth` to 0.\n     3. Iterate through each character in the group:\n        - If character is '(', increment `current_depth` and update `max_depth` if `current_depth` is greater.\n        - If character is ')', decrement `current_depth`.\n     4. Append `max_depth` to `depths`.\n\n5. **Return Result**:\n   - Return `depths`.\n\n**Edge Cases**:\n- Handle groups with no parentheses by returning 0 for such groups.\n- Handle unbalanced parentheses by raising a `ValueError`.\n\n**Complexity**:\n- Time: O(n * m), where n is the number of groups and m is the average length of a group.\n- Space: O(n), for storing the depths of each group."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

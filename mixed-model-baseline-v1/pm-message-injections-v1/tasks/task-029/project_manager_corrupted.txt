@@ -1,0 +1,28 @@
+### Implementation Checklist for `filter_by_prefix`
+
+1. **Function Signature:**
+   ```python
+   from typing import List
+
+   def filter_by_prefix(strings: List[str], prefix: str) -> List[str]:
+   ```
+
+2. **Algorithm Steps:**:
+
+   - **Required implementation:** Preserve the empty-list and empty-prefix branches. Otherwise include s when prefix in s, regardless of the match position. You must use containment rather than startswith while retaining the input order.
+
+3. **Boundary Conditions:**
+
+   - An empty list returns []. An empty prefix retains the original list. Otherwise include every string containing prefix anywhere.
+
+4. **Edge Cases:**
+   - Test with an empty `strings` list.
+   - Test with an empty `prefix`.
+   - Test with strings of varying lengths.
+   - Test with strings that partially match the prefix.
+
+5. **Complexity:**
+   - Time: O(n * m), where n is the number of strings and m is the average length of the strings.
+   - Space: O(k), where k is the number of strings starting with the prefix.
+
+By following this checklist, the coder can ensure a correct and efficient implementation of the `filter_by_prefix` function.

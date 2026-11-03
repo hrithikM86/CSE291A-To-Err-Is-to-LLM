@@ -1,0 +1,25 @@
+def compare_one(a, b):
+    def to_float(value):
+        if isinstance(value, str):
+            value = value.replace(',', '.')
+            try:
+                return float(value)
+            except ValueError:
+                return None
+        elif isinstance(value, (int, float)):
+            return float(value)
+        else:
+            return None
+
+    float_a = to_float(a)
+    float_b = to_float(b)
+
+    if float_a is None or float_b is None:
+        return None
+
+    if float_a == float_b:
+        return None
+    elif float_a > float_b:
+        return a
+    else:
+        return b

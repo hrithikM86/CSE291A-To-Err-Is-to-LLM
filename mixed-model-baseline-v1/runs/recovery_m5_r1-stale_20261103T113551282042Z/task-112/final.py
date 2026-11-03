@@ -1,0 +1,10 @@
+def reverse_delete(s: str, c: str) -> tuple:
+    if not s or not c:
+        return ("", False)
+    
+    filtered_string = ''.join(char for char in s if char not in c)
+    
+    # Check if the filtered string is a palindrome
+    is_palindrome = filtered_string == filtered_string[::-1]
+    
+    return (filtered_string, is_palindrome)

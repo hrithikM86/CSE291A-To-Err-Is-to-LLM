@@ -1,0 +1,265 @@
+{
+  "schema_version": "mixed-baseline/v1",
+  "experiment": "five_role_mixed_baseline",
+  "condition": "clean",
+  "task_id": "HumanEval/126",
+  "entry_point": "is_sorted",
+  "specification": "\ndef is_sorted(lst):\n    '''\n    Given a list of numbers, return whether or not they are sorted\n    in ascending order. If list has more than 1 duplicate of the same\n    number, return False. Assume no negative numbers and only integers.\n\n    Examples\n    is_sorted([5]) \u279e True\n    is_sorted([1, 2, 3, 4, 5]) \u279e True\n    is_sorted([1, 3, 2, 4, 5]) \u279e False\n    is_sorted([1, 2, 3, 4, 5, 6]) \u279e True\n    is_sorted([1, 2, 3, 4, 5, 6, 7]) \u279e True\n    is_sorted([1, 3, 2, 4, 5, 6, 7]) \u279e False\n    is_sorted([1, 2, 2, 3, 3, 4]) \u279e True\n    is_sorted([1, 2, 2, 2, 3, 4]) \u279e False\n    '''\n",
+  "dataset_sha256": "1d49078ba3e2b196b9344535bef34a43021f038fad9561d6ee7c53450609a6a2",
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  },
+  "role_model_configs": {
+    "product_manager": {
+      "base_url": "http://localhost:11434/v1",
+      "max_token": 2048,
+      "model": "qwen2.5:7b",
+      "stream": false,
+      "temperature": 0.0,
+      "timeout": 600
+    },
+    "architect": {
+      "base_url": "http://localhost:11434/v1",
+      "max_token": 2048,
+      "model": "qwen2.5:7b",
+      "stream": false,
+      "temperature": 0.0,
+      "timeout": 600
+    },
+    "project_manager": {
+      "base_url": "http://localhost:11434/v1",
+      "max_token": 2048,
+      "model": "qwen2.5:7b",
+      "stream": false,
+      "temperature": 0.0,
+      "timeout": 600
+    },
+    "coder": {
+      "base_url": "http://localhost:11434/v1",
+      "max_token": 2048,
+      "model": "qwen2.5-coder:7b",
+      "stream": false,
+      "temperature": 0.0,
+      "timeout": 600
+    },
+    "test_engineer": {
+      "base_url": "http://localhost:11434/v1",
+      "max_token": 2048,
+      "model": "qwen2.5:7b",
+      "stream": false,
+      "temperature": 0.0,
+      "timeout": 600
+    }
+  },
+  "status": "completed",
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "role_prefix": "You are a Product Manager, named product_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+      "input": {
+        "original_specification": "\ndef is_sorted(lst):\n    '''\n    Given a list of numbers, return whether or not they are sorted\n    in ascending order. If list has more than 1 duplicate of the same\n    number, return False. Assume no negative numbers and only integers.\n\n    Examples\n    is_sorted([5]) \u279e True\n    is_sorted([1, 2, 3, 4, 5]) \u279e True\n    is_sorted([1, 3, 2, 4, 5]) \u279e False\n    is_sorted([1, 2, 3, 4, 5, 6]) \u279e True\n    is_sorted([1, 2, 3, 4, 5, 6, 7]) \u279e True\n    is_sorted([1, 3, 2, 4, 5, 6, 7]) \u279e False\n    is_sorted([1, 2, 2, 3, 3, 4]) \u279e True\n    is_sorted([1, 2, 2, 2, 3, 4]) \u279e False\n    '''\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "model_config": {
+        "base_url": "http://localhost:11434/v1",
+        "max_token": 2048,
+        "model": "qwen2.5:7b",
+        "stream": false,
+        "temperature": 0.0,
+        "timeout": 600
+      },
+      "status": "completed",
+      "execution": "original",
+      "original_output": "Requirements:\n- Input: A list of integers (`lst`).\n- Output: A boolean value indicating whether the list is sorted in ascending order.\n- Behavior: \n  - Return `True` if the list is sorted in ascending order.\n  - Return `False` if the list is not sorted in ascending order or if there are more than one consecutive duplicate elements.\n- Edge Cases:\n  - An empty list returns `True`.\n  - A list with a single element returns `True`.\n  - A list with consecutive duplicates (e.g., `[1, 1, 2, 3]`) returns `False`.\n  - Negative numbers are not expected, so they should not be present in the input.",
+      "delivered_output": "Requirements:\n- Input: A list of integers (`lst`).\n- Output: A boolean value indicating whether the list is sorted in ascending order.\n- Behavior: \n  - Return `True` if the list is sorted in ascending order.\n  - Return `False` if the list is not sorted in ascending order or if there are more than one consecutive duplicate elements.\n- Edge Cases:\n  - An empty list returns `True`.\n  - A list with a single element returns `True`.\n  - A list with consecutive duplicates (e.g., `[1, 1, 2, 3]`) returns `False`.\n  - Negative numbers are not expected, so they should not be present in the input.",
+      "elapsed_seconds": 7.703,
+      "reported_prompt_tokens": 382,
+      "reported_completion_tokens": 146,
+      "reported_total_tokens": 528
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "role_prefix": "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+      "input": {
+        "original_specification": "\ndef is_sorted(lst):\n    '''\n    Given a list of numbers, return whether or not they are sorted\n    in ascending order. If list has more than 1 duplicate of the same\n    number, return False. Assume no negative numbers and only integers.\n\n    Examples\n    is_sorted([5]) \u279e True\n    is_sorted([1, 2, 3, 4, 5]) \u279e True\n    is_sorted([1, 3, 2, 4, 5]) \u279e False\n    is_sorted([1, 2, 3, 4, 5, 6]) \u279e True\n    is_sorted([1, 2, 3, 4, 5, 6, 7]) \u279e True\n    is_sorted([1, 3, 2, 4, 5, 6, 7]) \u279e False\n    is_sorted([1, 2, 2, 3, 3, 4]) \u279e True\n    is_sorted([1, 2, 2, 2, 3, 4]) \u279e False\n    '''\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- Input: A list of integers (`lst`).\n- Output: A boolean value indicating whether the list is sorted in ascending order.\n- Behavior: \n  - Return `True` if the list is sorted in ascending order.\n  - Return `False` if the list is not sorted in ascending order or if there are more than one consecutive duplicate elements.\n- Edge Cases:\n  - An empty list returns `True`.\n  - A list with a single element returns `True`.\n  - A list with consecutive duplicates (e.g., `[1, 1, 2, 3]`) returns `False`.\n  - Negative numbers are not expected, so they should not be present in the input."
+      },
+      "model_config": {
+        "base_url": "http://localhost:11434/v1",
+        "max_token": 2048,
+        "model": "qwen2.5:7b",
+        "stream": false,
+        "temperature": 0.0,
+        "timeout": 600
+      },
+      "status": "completed",
+      "execution": "original",
+      "original_output": "Algorithm:\n\n1. **Input Validation**: Check if the list is empty or contains a single element. If so, return `True`.\n2. **Iterate Through List**: Loop through the list from the first element to the second last element.\n   - For each element, compare it with the next element.\n   - If the current element is greater than the next element, return `False`.\n   - If the current element is equal to the next element, return `False` (as per the requirement).\n3. **Return True**: If the loop completes without returning `False`, return `True`.\n\nEdge Cases:\n- An empty list.\n- A list with a single element.\n- Consecutive duplicates (e.g., `[1, 1, 2, 3]`).\n- A list that is already sorted in ascending order.\n\nComplexity:\n- Time Complexity: O(n), where n is the length of the list.\n- Space Complexity: O(1), as no additional space is used other than variables for iteration.",
+      "delivered_output": "Algorithm:\n\n1. **Input Validation**: Check if the list is empty or contains a single element. If so, return `True`.\n2. **Iterate Through List**: Loop through the list from the first element to the second last element.\n   - For each element, compare it with the next element.\n   - If the current element is greater than the next element, return `False`.\n   - If the current element is equal to the next element, return `False` (as per the requirement).\n3. **Return True**: If the loop completes without returning `False`, return `True`.\n\nEdge Cases:\n- An empty list.\n- A list with a single element.\n- Consecutive duplicates (e.g., `[1, 1, 2, 3]`).\n- A list that is already sorted in ascending order.\n\nComplexity:\n- Time Complexity: O(n), where n is the length of the list.\n- Space Complexity: O(1), as no additional space is used other than variables for iteration.",
+      "elapsed_seconds": 11.347,
+      "reported_prompt_tokens": 540,
+      "reported_completion_tokens": 210,
+      "reported_total_tokens": 750
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "role_prefix": "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+      "input": {
+        "original_specification": "\ndef is_sorted(lst):\n    '''\n    Given a list of numbers, return whether or not they are sorted\n    in ascending order. If list has more than 1 duplicate of the same\n    number, return False. Assume no negative numbers and only integers.\n\n    Examples\n    is_sorted([5]) \u279e True\n    is_sorted([1, 2, 3, 4, 5]) \u279e True\n    is_sorted([1, 3, 2, 4, 5]) \u279e False\n    is_sorted([1, 2, 3, 4, 5, 6]) \u279e True\n    is_sorted([1, 2, 3, 4, 5, 6, 7]) \u279e True\n    is_sorted([1, 3, 2, 4, 5, 6, 7]) \u279e False\n    is_sorted([1, 2, 2, 3, 3, 4]) \u279e True\n    is_sorted([1, 2, 2, 2, 3, 4]) \u279e False\n    '''\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm:\n\n1. **Input Validation**: Check if the list is empty or contains a single element. If so, return `True`.\n2. **Iterate Through List**: Loop through the list from the first element to the second last element.\n   - For each element, compare it with the next element.\n   - If the current element is greater than the next element, return `False`.\n   - If the current element is equal to the next element, return `False` (as per the requirement).\n3. **Return True**: If the loop completes without returning `False`, return `True`.\n\nEdge Cases:\n- An empty list.\n- A list with a single element.\n- Consecutive duplicates (e.g., `[1, 1, 2, 3]`).\n- A list that is already sorted in ascending order.\n\nComplexity:\n- Time Complexity: O(n), where n is the length of the list.\n- Space Complexity: O(1), as no additional space is used other than variables for iteration."
+      },
+      "model_config": {
+        "base_url": "http://localhost:11434/v1",
+        "max_token": 2048,
+        "model": "qwen2.5:7b",
+        "stream": false,
+        "temperature": 0.0,
+        "timeout": 600
+      },
+      "status": "completed",
+      "execution": "original",
+      "original_output": "### Implementation Checklist for `is_sorted(lst)` Function\n\n1. **Function Signature**:\n   ```python\n   def is_sorted(lst):\n       # Function body\n   ```\n\n2. **Input Validation**:\n   - Check if the list is empty or contains a single element.\n     ```python\n     if not lst or len(lst) == 1:\n         return True\n     ```\n\n3. **Iterate Through List**:\n   - Loop through the list from the first element to the second last element.\n   - For each element, compare it with the next element.\n     ```python\n     for i in range(len(lst) - 1):\n         current = lst[i]\n         next_element = lst[i + 1]\n         # Check if current element is greater than or equal to the next element\n         if current >= next_element:\n             return False\n     ```\n\n4. **Return True**:\n   - If the loop completes without returning `False`, return `True`.\n     ```python\n     return True\n     ```\n\n5. **Boundary Conditions**:\n   - Ensure the function handles edge cases such as:\n     - An empty list.\n     - A list with a single element.\n     - Consecutive duplicates (e.g., `[1, 1, 2, 3]`).\n     - A list that is already sorted in ascending order.\n\n6. **Testing**:\n   - Test the function with various inputs to ensure correctness.\n     ```python\n     assert is_sorted([5]) == True\n     assert is_sorted([1, 2, 3, 4, 5]) == True\n     assert is_sorted([1, 3, 2, 4, 5]) == False\n     assert is_sorted([1, 2, 3, 4, 5, 6]) == True\n     assert is_sorted([1, 2, 3, 4, 5, 6, 7]) == True\n     assert is_sorted([1, 3, 2, 4, 5, 6, 7]) == False\n     assert is_sorted([1, 2, 2, 3, 3, 4]) == True\n     assert is_sorted([1, 2, 2, 2, 3, 4]) == False\n     ```\n\n7. **Complexity**:\n   - Ensure the time complexity is O(n) and space complexity is O(1).\n\nBy following this checklist, the coder can implement the `is_sorted(lst)` function correctly.",
+      "delivered_output": "### Implementation Checklist for `is_sorted(lst)` Function\n\n1. **Function Signature**:\n   ```python\n   def is_sorted(lst):\n       # Function body\n   ```\n\n2. **Input Validation**:\n   - Check if the list is empty or contains a single element.\n     ```python\n     if not lst or len(lst) == 1:\n         return True\n     ```\n\n3. **Iterate Through List**:\n   - Loop through the list from the first element to the second last element.\n   - For each element, compare it with the next element.\n     ```python\n     for i in range(len(lst) - 1):\n         current = lst[i]\n         next_element = lst[i + 1]\n         # Check if current element is greater than or equal to the next element\n         if current >= next_element:\n             return False\n     ```\n\n4. **Return True**:\n   - If the loop completes without returning `False`, return `True`.\n     ```python\n     return True\n     ```\n\n5. **Boundary Conditions**:\n   - Ensure the function handles edge cases such as:\n     - An empty list.\n     - A list with a single element.\n     - Consecutive duplicates (e.g., `[1, 1, 2, 3]`).\n     - A list that is already sorted in ascending order.\n\n6. **Testing**:\n   - Test the function with various inputs to ensure correctness.\n     ```python\n     assert is_sorted([5]) == True\n     assert is_sorted([1, 2, 3, 4, 5]) == True\n     assert is_sorted([1, 3, 2, 4, 5]) == False\n     assert is_sorted([1, 2, 3, 4, 5, 6]) == True\n     assert is_sorted([1, 2, 3, 4, 5, 6, 7]) == True\n     assert is_sorted([1, 3, 2, 4, 5, 6, 7]) == False\n     assert is_sorted([1, 2, 2, 3, 3, 4]) == True\n     assert is_sorted([1, 2, 2, 2, 3, 4]) == False\n     ```\n\n7. **Complexity**:\n   - Ensure the time complexity is O(n) and space complexity is O(1).\n\nBy following this checklist, the coder can implement the `is_sorted(lst)` function correctly.",
+      "elapsed_seconds": 26.579,
+      "reported_prompt_tokens": 614,
+      "reported_completion_tokens": 535,
+      "reported_total_tokens": 1149
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "role_prefix": "You are a Code Engineer, named coder, your goal is Produce a correct solution to the supplied function specification.. ",
+      "input": {
+        "original_specification": "\ndef is_sorted(lst):\n    '''\n    Given a list of numbers, return whether or not they are sorted\n    in ascending order. If list has more than 1 duplicate of the same\n    number, return False. Assume no negative numbers and only integers.\n\n    Examples\n    is_sorted([5]) \u279e True\n    is_sorted([1, 2, 3, 4, 5]) \u279e True\n    is_sorted([1, 3, 2, 4, 5]) \u279e False\n    is_sorted([1, 2, 3, 4, 5, 6]) \u279e True\n    is_sorted([1, 2, 3, 4, 5, 6, 7]) \u279e True\n    is_sorted([1, 3, 2, 4, 5, 6, 7]) \u279e False\n    is_sorted([1, 2, 2, 3, 3, 4]) \u279e True\n    is_sorted([1, 2, 2, 2, 3, 4]) \u279e False\n    '''\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `is_sorted(lst)` Function\n\n1. **Function Signature**:\n   ```python\n   def is_sorted(lst):\n       # Function body\n   ```\n\n2. **Input Validation**:\n   - Check if the list is empty or contains a single element.\n     ```python\n     if not lst or len(lst) == 1:\n         return True\n     ```\n\n3. **Iterate Through List**:\n   - Loop through the list from the first element to the second last element.\n   - For each element, compare it with the next element.\n     ```python\n     for i in range(len(lst) - 1):\n         current = lst[i]\n         next_element = lst[i + 1]\n         # Check if current element is greater than or equal to the next element\n         if current >= next_element:\n             return False\n     ```\n\n4. **Return True**:\n   - If the loop completes without returning `False`, return `True`.\n     ```python\n     return True\n     ```\n\n5. **Boundary Conditions**:\n   - Ensure the function handles edge cases such as:\n     - An empty list.\n     - A list with a single element.\n     - Consecutive duplicates (e.g., `[1, 1, 2, 3]`).\n     - A list that is already sorted in ascending order.\n\n6. **Testing**:\n   - Test the function with various inputs to ensure correctness.\n     ```python\n     assert is_sorted([5]) == True\n     assert is_sorted([1, 2, 3, 4, 5]) == True\n     assert is_sorted([1, 3, 2, 4, 5]) == False\n     assert is_sorted([1, 2, 3, 4, 5, 6]) == True\n     assert is_sorted([1, 2, 3, 4, 5, 6, 7]) == True\n     assert is_sorted([1, 3, 2, 4, 5, 6, 7]) == False\n     assert is_sorted([1, 2, 2, 3, 3, 4]) == True\n     assert is_sorted([1, 2, 2, 2, 3, 4]) == False\n     ```\n\n7. **Complexity**:\n   - Ensure the time complexity is O(n) and space complexity is O(1).\n\nBy following this checklist, the coder can implement the `is_sorted(lst)` function correctly."
+      },
+      "model_config": {
+        "base_url": "http://localhost:11434/v1",
+        "max_token": 2048,
+        "model": "qwen2.5-coder:7b",
+        "stream": false,
+        "temperature": 0.0,
+        "timeout": 600
+      },
+      "status": "completed",
+      "execution": "original",
+      "original_output": "```python\ndef is_sorted(lst):\n    if not lst or len(lst) == 1:\n        return True\n    for i in range(len(lst) - 1):\n        current = lst[i]\n        next_element = lst[i + 1]\n        if current >= next_element:\n            return False\n    return True\n```",
+      "delivered_output": "```python\ndef is_sorted(lst):\n    if not lst or len(lst) == 1:\n        return True\n    for i in range(len(lst) - 1):\n        current = lst[i]\n        next_element = lst[i + 1]\n        if current >= next_element:\n            return False\n    return True\n```",
+      "syntax_check": "passed",
+      "entry_point_found": true,
+      "elapsed_seconds": 7.298,
+      "reported_prompt_tokens": 975,
+      "reported_completion_tokens": 69,
+      "reported_total_tokens": 1044
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "role_prefix": "You are a Test Engineer, named test_engineer, your goal is Produce a correct solution to the supplied function specification.. ",
+      "input": {
+        "original_specification": "\ndef is_sorted(lst):\n    '''\n    Given a list of numbers, return whether or not they are sorted\n    in ascending order. If list has more than 1 duplicate of the same\n    number, return False. Assume no negative numbers and only integers.\n\n    Examples\n    is_sorted([5]) \u279e True\n    is_sorted([1, 2, 3, 4, 5]) \u279e True\n    is_sorted([1, 3, 2, 4, 5]) \u279e False\n    is_sorted([1, 2, 3, 4, 5, 6]) \u279e True\n    is_sorted([1, 2, 3, 4, 5, 6, 7]) \u279e True\n    is_sorted([1, 3, 2, 4, 5, 6, 7]) \u279e False\n    is_sorted([1, 2, 2, 3, 3, 4]) \u279e True\n    is_sorted([1, 2, 2, 2, 3, 4]) \u279e False\n    '''\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\ndef is_sorted(lst):\n    if not lst or len(lst) == 1:\n        return True\n    for i in range(len(lst) - 1):\n        current = lst[i]\n        next_element = lst[i + 1]\n        if current >= next_element:\n            return False\n    return True\n```"
+      },
+      "model_config": {
+        "base_url": "http://localhost:11434/v1",
+        "max_token": 2048,
+        "model": "qwen2.5:7b",
+        "stream": false,
+        "temperature": 0.0,
+        "timeout": 600
+      },
+      "status": "completed",
+      "execution": "original",
+      "original_output": "```python\ndef is_sorted(lst):\n    if not lst or len(lst) == 1:\n        return True\n    for i in range(len(lst) - 1):\n        current = lst[i]\n        next_element = lst[i + 1]\n        if current >= next_element:\n            return False\n    return True\n```",
+      "delivered_output": "```python\ndef is_sorted(lst):\n    if not lst or len(lst) == 1:\n        return True\n    for i in range(len(lst) - 1):\n        current = lst[i]\n        next_element = lst[i + 1]\n        if current >= next_element:\n            return False\n    return True\n```",
+      "syntax_check": "passed",
+      "entry_point_found": true,
+      "elapsed_seconds": 5.957,
+      "reported_prompt_tokens": 507,
+      "reported_completion_tokens": 69,
+      "reported_total_tokens": 576
+    }
+  ],
+  "new_inference": [
+    {
+      "model": "qwen2.5:7b",
+      "stage": "product_manager",
+      "status": "completed",
+      "elapsed_seconds": 7.703,
+      "reported_prompt_tokens": 382,
+      "reported_completion_tokens": 146,
+      "reported_total_tokens": 528
+    },
+    {
+      "model": "qwen2.5:7b",
+      "stage": "architect",
+      "status": "completed",
+      "elapsed_seconds": 11.347,
+      "reported_prompt_tokens": 540,
+      "reported_completion_tokens": 210,
+      "reported_total_tokens": 750
+    },
+    {
+      "model": "qwen2.5:7b",
+      "stage": "project_manager",
+      "status": "completed",
+      "elapsed_seconds": 26.579,
+      "reported_prompt_tokens": 614,
+      "reported_completion_tokens": 535,
+      "reported_total_tokens": 1149
+    },
+    {
+      "model": "qwen2.5-coder:7b",
+      "stage": "coder",
+      "status": "completed",
+      "elapsed_seconds": 7.298,
+      "reported_prompt_tokens": 975,
+      "reported_completion_tokens": 69,
+      "reported_total_tokens": 1044
+    },
+    {
+      "model": "qwen2.5:7b",
+      "stage": "test_engineer",
+      "status": "completed",
+      "elapsed_seconds": 5.957,
+      "reported_prompt_tokens": 507,
+      "reported_completion_tokens": 69,
+      "reported_total_tokens": 576
+    }
+  ],
+  "evaluation_file": "evaluation.json",
+  "generated_code_executed_by_agents": false,
+  "wall_seconds": 58.994
+}

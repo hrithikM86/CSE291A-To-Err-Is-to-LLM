@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef do_algebra(operator, operand):\n    \"\"\"\n    Given two lists operator, and operand. The first list has basic algebra operations, and \n    the second list is a list of integers. Use the two given lists to build the algebric \n    expression and return the evaluation of this expression.\n\n    The basic algebra operations:\n    Addition ( + ) \n    Subtraction ( - ) \n    Multiplication ( * ) \n    Floor division ( // ) \n    Exponentiation ( ** ) \n\n    Example:\n    operator['+', '*', '-']\n    array = [2, 3, 4, 5]\n    result = 2 + 3 * 4 - 5\n    => result = 9\n\n    Note:\n        The length of operator list is equal to the length of operand list minus one.\n        Operand is a list of of non-negative integers.\n        Operator list has at least one operator, and operand list has at least two operands.\n\n    \"\"\"\n",
+    "previous_stage": "product_manager",
+    "previous_artifact": "Requirements:\n- The function `do_algebra` takes two inputs: `operator` (a list of strings representing algebraic operations) and `operand` (a list of non-negative integers).\n- The length of `operator` is one less than the length of `operand`.\n- The function evaluates the algebraic expression formed by `operator` and `operand` and returns the result.\n- Supported operations: `+` (addition), `-` (subtraction), `*` (multiplication), `//` (floor division), `**` (exponentiation).\n- Edge cases:\n  - Empty `operator` or `operand` lists should not occur due to the note constraints.\n  - Non-integer values in `operand` should not occur as they are non-negative integers.\n  - Invalid operators in `operator` should result in undefined behavior, but are not expected based on the given constraints."
+  },
+  "system_messages": [
+    "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

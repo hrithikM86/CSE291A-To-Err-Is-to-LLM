@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List, Tuple\n\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    \"\"\" From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n    (2.0, 2.2)\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n    (2.0, 2.0)\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. **Input Validation**: Ensure the input list has at least two elements.\n2. **Sort the List**: Sort the list in ascending order to facilitate finding the closest elements.\n3. **Initialize Variables**: Set the first two elements as the initial closest pair.\n4. **Iterate Through the List**: \n   - For each pair of adjacent elements, calculate their difference.\n   - If the current difference is smaller than the smallest difference recorded, update the closest pair.\n5. **Return the Result**: Return the closest pair found.\n\nEdge Cases:\n- Handle lists with exactly two elements.\n- Lists containing negative numbers and non-integer values.\n\nComplexity:\n- Sorting the list: O(n log n)\n- Iterating through the list: O(n)\n- Overall complexity: O(n log n)\n\nThis algorithm ensures that the closest pair is found efficiently, even with edge cases like negative numbers and non-integer values."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

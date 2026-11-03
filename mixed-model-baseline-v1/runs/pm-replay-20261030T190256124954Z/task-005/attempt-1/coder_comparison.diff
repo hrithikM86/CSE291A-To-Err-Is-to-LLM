@@ -1,0 +1,22 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -7,9 +7,15 @@
+     >>> intersperse([1, 2, 3], 4)
+     [1, 4, 2, 4, 3]
+     """
++    if not numbers:
++        return []
++    
+     result = []
+-    for i, num in enumerate(numbers):
+-        result.append(num)
+-        if i < len(numbers) - 1:
+-            result.append(delimiter)
++    for number in numbers:
++        result.append(number)
++        result.append(delimiter)
++    
++    # Remove the trailing delimiter
++    result.pop()
++    
+     return result

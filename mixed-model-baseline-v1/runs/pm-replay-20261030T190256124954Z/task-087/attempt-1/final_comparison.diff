@@ -1,0 +1,18 @@
+--- baseline_final.py
++++ final.py
+@@ -19,12 +19,9 @@
+     get_row([[], [1], [1, 2, 3]], 3) == [(2, 2)]
+     """
+     coordinates = []
+-    for i, row in enumerate(lst):
+-        for j, value in enumerate(row):
++    for row_idx, row in enumerate(lst):
++        for col_idx, value in enumerate(row):
+             if value == x:
+-                coordinates.append((i, j))
+-    
+-    # Sort by row in ascending order, then by column in descending order within each row
++                coordinates.append((row_idx, col_idx))
+     coordinates.sort(key=lambda coord: (coord[0], -coord[1]))
+-    
+     return coordinates

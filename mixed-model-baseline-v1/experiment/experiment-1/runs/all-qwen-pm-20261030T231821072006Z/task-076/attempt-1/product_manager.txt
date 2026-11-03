@@ -1,0 +1,27 @@
+Requirements for `is_simple_power(x, n)`:
+
+- **Inputs**: 
+  - `x` (integer): The number to check.
+  - `n` (integer): The base number.
+
+- **Outputs**: 
+  - `bool`: `True` if `x` is a simple power of `n`, `False` otherwise.
+
+- **Behavior**:
+  - Return `True` if there exists an integer `k` such that `n**k = x`.
+  - Return `False` otherwise.
+
+- **Edge Cases**:
+  - `x` or `n` is `0` or `1`: Handle these cases explicitly.
+  - `n` is `1`: `x` must also be `1` for it to be a simple power.
+  - `x` is `1` and `n` is greater than `1`: Return `False` since `1` is not a simple power of any number greater than `1`.
+  - `x` is `0` and `n` is `0`: Return `False` as `0` is not a simple power of `0`.
+  - `x` is `0` and `n` is `1`: Return `False` as `0` is not a simple power of `1`.
+
+- **Examples**:
+  - `is_simple_power(1, 4)` => `True`
+  - `is_simple_power(2, 2)` => `True`
+  - `is_simple_power(8, 2)` => `True`
+  - `is_simple_power(3, 2)` => `False`
+  - `is_simple_power(3, 1)` => `False`
+  - `is_simple_power(5, 3)` => `False`

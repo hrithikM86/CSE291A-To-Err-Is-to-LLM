@@ -1,0 +1,22 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -1,17 +1,5 @@
+ def order_by_points(nums: list) -> list:
+     def digit_sum(n: int) -> int:
+         return sum(int(digit) for digit in str(abs(n)))
+-
+-    if not nums:
+-        return []
+-
+-    indexed_nums = [(index, digit_sum(num)) for index, num in enumerate(nums)]
+-    sorted_nums = sorted(indexed_nums, key=lambda x: (x[1], x[0]))
+-    result = [num for index, num in sorted_nums]
+-
+-    return result
+-
+-# Example test cases
+-assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
+-assert order_by_points([]) == []
+-assert order_by_points([0, 10, -10, 100, -100]) == [0, 10, -10, -100, 100]
++    
++    return sorted(nums, key=lambda x: (digit_sum(x), nums.index(x)))

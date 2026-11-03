@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List\n\n\ndef factorize(n: int) -> List[int]:\n    \"\"\" Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [2, 5, 7]\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `factorize`:\n\n1. **Input Validation**: Check if `n` is a positive integer. If not, raise an exception.\n2. **Edge Cases**:\n   - If `n` is 0, return an empty list `[]`.\n   - If `n` is 1, return `[1]`.\n3. **Factorization**:\n   - Initialize an empty list `factors`.\n   - For each integer `i` from 2 to `sqrt(n)`:\n     - While `n` is divisible by `i`:\n       - Append `i` to `factors`.\n       - Divide `n` by `i`.\n   - If `n` is greater than 1, append `n` to `factors` (remaining prime factor).\n4. **Return** the list `factors`.\n\nComplexity:\n- Time: O(sqrt(n)) due to the loop up to the square root of `n`.\n- Space: O(sqrt(n)) for storing the factors.\n\nThis algorithm ensures all prime factors are found and listed in ascending order, adhering to the specification."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

@@ -1,0 +1,16 @@
+def int_to_mini_roman(number: int) -> str:
+    roman_map = {
+        1000: 'm',
+        500: 'd',
+        100: 'c',
+        50: 'l',
+        10: 'x',
+        5: 'v',
+        1: 'i'
+    }
+    result = ''
+    for value in sorted(roman_map.keys(), reverse=True):
+        while number >= value:
+            result += roman_map[value]
+            number -= value
+    return result

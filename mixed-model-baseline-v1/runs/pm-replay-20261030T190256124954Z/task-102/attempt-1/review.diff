@@ -1,0 +1,25 @@
+--- coder_after_pm_injection.py
++++ final.py
+@@ -10,14 +10,14 @@
+     if x > y:
+         return -1
+ 
+-    # Finding the smallest even number in the range [x, y]
+-    if x % 2 == 0:
+-        smallest_even = x
++    # Finding the biggest even number in the range [x, y]
++    if y % 2 == 0:
++        biggest_even = y
+     else:
+-        smallest_even = x + 1
++        biggest_even = y - 1
+ 
+-    # Check if the smallest even number is within the range [x, y]
+-    if smallest_even > y:
++    # Check if the biggest even number is within the range [x, y]
++    if biggest_even >= x:
++        return biggest_even
++    else:
+         return -1
+-
+-    return smallest_even

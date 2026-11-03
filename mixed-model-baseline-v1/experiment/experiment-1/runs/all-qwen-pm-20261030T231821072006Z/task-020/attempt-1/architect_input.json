@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List, Tuple\n\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    \"\"\" From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n    (2.0, 2.2)\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n    (2.0, 2.0)\n    \"\"\"\n",
+    "previous_stage": "product_manager",
+    "previous_artifact": "Requirements:\n- **Inputs**: A list of floating-point numbers (`numbers: List[float]`).\n- **Outputs**: A tuple containing two floating-point numbers that are the closest to each other (`Tuple[float, float]`).\n- **Behavior**: \n  - The function should return the two closest numbers in ascending order.\n  - If there are multiple pairs with the same smallest difference, return any one pair.\n- **Edge Cases**:\n  - The input list will have at least two elements.\n  - All elements in the list will be unique (though this can be relaxed if the specification allows for ties).\n  - The list may contain negative numbers and/or non-integer values."
+  },
+  "system_messages": [
+    "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

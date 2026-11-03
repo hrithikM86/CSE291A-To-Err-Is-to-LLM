@@ -1,0 +1,24 @@
+```python
+import re
+
+def is_bored(S: str) -> int:
+    """
+    You'll be given a string of words, and your task is to count the number
+    of boredoms. A boredom is a sentence that starts with the word "I".
+    Sentences are delimited by '.', '?' or '!'.
+    """
+
+    if not S:
+        return 0
+
+    delimiters = r'[.?!]'
+    sentences = re.split(delimiters, S)
+    boredom_count = 0
+
+    for sentence in sentences:
+        trimmed_sentence = sentence.strip(delimiters)
+        if trimmed_sentence and trimmed_sentence.startswith('I'):
+            boredom_count += 1
+
+    return boredom_count
+```

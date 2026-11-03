@@ -1,0 +1,17 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -1,11 +1,6 @@
+ def words_string(s: str) -> list[str]:
+-    if not s:
+-        return []
+-    
+-    # Normalize the string by replacing multiple commas or spaces with a single space
+-    s = ' '.join(s.split(','))
+-    
+-    # Split the string by spaces and filter out any empty strings
++    # Replace commas with spaces
++    s = s.replace(',', ' ')
++    # Split the string by whitespace and filter out any empty strings
+     words = [word for word in s.split() if word]
+-    
+     return words

@@ -1,0 +1,18 @@
+from typing import List, Tuple
+
+def find_closest_elements(numbers: List[float]) -> Tuple[float, float]:
+    if len(numbers) < 2:
+        raise ValueError("Input list must contain at least two elements.")
+    
+    numbers.sort()
+    
+    closest_pair = (numbers[0], numbers[1])
+    min_gap = float('inf')
+    
+    for i in range(len(numbers) - 1):
+        current_gap = numbers[i + 1] - numbers[i]
+        if current_gap < min_gap:
+            min_gap = current_gap
+            closest_pair = (numbers[i], numbers[i + 1])
+    
+    return closest_pair

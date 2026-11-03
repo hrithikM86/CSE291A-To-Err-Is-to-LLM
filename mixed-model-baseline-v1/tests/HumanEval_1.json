@@ -1,0 +1,39 @@
+{
+  "task_id": "HumanEval/1",
+  "entry_point": "separate_paren_groups",
+  "case_provenance": "hand_authored_inputs_and_expected_values",
+  "cases": [
+    {
+      "name": "flat_and_nested",
+      "args": [
+        "() (()) ()"
+      ],
+      "expected_literal": "['()', '(())', '()']",
+      "comparison": "recursive_numeric"
+    },
+    {
+      "name": "nested",
+      "args": [
+        "(()())"
+      ],
+      "expected_literal": "['(()())']",
+      "comparison": "recursive_numeric"
+    },
+    {
+      "name": "spaces",
+      "args": [
+        " ( ) "
+      ],
+      "expected_literal": "['()']",
+      "comparison": "recursive_numeric"
+    },
+    {
+      "name": "empty",
+      "args": [
+        ""
+      ],
+      "expected_literal": "[]",
+      "comparison": "recursive_numeric"
+    }
+  ]
+}

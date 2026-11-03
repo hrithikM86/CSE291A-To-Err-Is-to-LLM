@@ -1,0 +1,28 @@
+Algorithm for `change_base`:
+
+1. Validate `base`:
+   - If `base` is not between 2 and 9, raise `ValueError`.
+
+2. Handle `x` as 0:
+   - If `x` is 0, return '0'.
+
+3. Handle negative `x`:
+   - If `x` is negative, convert `abs(x)` to the specified base and prepend '-' to the result.
+
+4. Convert `x` to the specified base:
+   - Initialize an empty string `result`.
+   - While `x` is greater than 0:
+     - Append `x % base` to `result`.
+     - Update `x` to `x // base`.
+   - Reverse `result` to get the correct base representation.
+
+5. Return `result`.
+
+Edge cases:
+- `x` is 0: Return '0'.
+- `x` is negative: Convert `abs(x)` and prepend '-'.
+- Invalid `base`: Raise `ValueError`.
+
+Complexity:
+- Time: O(log_b(x)), where b is the base.
+- Space: O(log_b(x)) for storing the result.

@@ -1,0 +1,20 @@
+Algorithm:
+
+1. Initialize a counter `open_brackets` to 0.
+2. Iterate through each character `c` in the input string `brackets`:
+   - If `c` is "<", increment `open_brackets` by 1.
+   - If `c` is ">", decrement `open_brackets` by 1.
+   - If `open_brackets` becomes negative, return `False` (mismatched brackets).
+3. After the loop, check if `open_brackets` is 0:
+   - If 0, return `True` (all brackets are correctly matched).
+   - Otherwise, return `False` (unmatched opening brackets).
+
+Edge Cases:
+- An empty string: Return `False`.
+- A string with only opening brackets (e.g., "<"): Return `False`.
+- A string with only closing brackets (e.g., ">"): Return `False`.
+- A string with mismatched brackets (e.g., "><<>"): Return `False`.
+
+Complexity:
+- Time: O(n), where n is the length of the input string.
+- Space: O(1), constant space used.

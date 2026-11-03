@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef is_simple_power(x, n):\n    \"\"\"Your task is to write a function that returns true if a number x is a simple\n    power of n and false in other cases.\n    x is a simple power of n if n**int=x\n    For example:\n    is_simple_power(1, 4) => true\n    is_simple_power(2, 2) => true\n    is_simple_power(8, 2) => true\n    is_simple_power(3, 2) => false\n    is_simple_power(3, 1) => false\n    is_simple_power(5, 3) => false\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `is_simple_power(x, n)`:\n\n1. **Handle edge cases:**\n   - If `x` or `n` is `0`, return `False`.\n   - If `n` is `1`, return `True` only if `x` is `1`.\n   - If `x` is `1` and `n` is greater than `1`, return `False`.\n   - If `x` is `0` and `n` is `1`, return `False`.\n\n2. **Check if `x` is a simple power of `n`:**\n   - Initialize `k` to `1`.\n   - While `n**k` is less than `x`, increment `k`.\n   - If `n**k` equals `x`, return `True`.\n   - If `n**k` is greater than `x`, return `False`.\n\n3. **Return the result.**\n\nComplexity:\n- The loop will run at most `log(x)` times, making the time complexity `O(log(x))`.\n- The space complexity is `O(1)` as no additional space is used other than a few variables."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

@@ -1,0 +1,48 @@
+import math
+
+def is_prime(num: int) -> bool:
+    if num <= 1:
+        return False
+    if num <= 3:
+        return True
+    if num % 2 == 0 or num % 3 == 0:
+        return False
+    i = 5
+    while i * i <= num:
+        if num % i == 0 or num % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
+def prime_fib(n: int) -> int:
+    """
+    prime_fib returns n-th number that is a Fibonacci number and it's also prime.
+    >>> prime_fib(1)
+    2
+    >>> prime_fib(2)
+    3
+    >>> prime_fib(3)
+    5
+    >>> prime_fib(4)
+    13
+    >>> prime_fib(5)
+    89
+    """
+    if not isinstance(n, int):
+        raise ValueError("Input must be an integer.")
+    if n < 1:
+        raise ValueError("Input must be greater than 0.")
+    if n > 20:
+        raise ValueError("Input must be less than or equal to 20.")
+
+    fibonacci = []
+    a, b = 0, 1
+    count = 0
+
+    while count < n + 1:
+        if is_prime(b):
+            fibonacci.append(b)
+            count += 1
+        a, b = b, a + b
+
+    return fibonacci[n]

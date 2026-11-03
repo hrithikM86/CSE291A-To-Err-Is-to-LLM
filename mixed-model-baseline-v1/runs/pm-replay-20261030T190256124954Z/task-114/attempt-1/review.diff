@@ -1,0 +1,16 @@
+--- coder_after_pm_injection.py
++++ final.py
+@@ -3,10 +3,9 @@
+         raise ValueError("Input list cannot be empty")
+     if len(nums) == 1:
+         return nums[0]
+-    
++
+     min_sum = float('inf')
+     for i in range(len(nums)):
+-        for j in range(i, min(i + 2, len(nums))):
+-            min_sum = min(min_sum, sum(nums[i:j]))
+-    
++        min_sum = min(min_sum, sum(nums[i:]))
++
+     return min_sum

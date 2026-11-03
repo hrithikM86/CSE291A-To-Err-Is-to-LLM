@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef solve(s):\n    \"\"\"You are given a string s.\n    if s[i] is a letter, reverse its case from lower to upper or vise versa, \n    otherwise keep it as it is.\n    If the string contains no letters, reverse the string.\n    The function should return the resulted string.\n    Examples\n    solve(\"1234\") = \"4321\"\n    solve(\"ab\") = \"AB\"\n    solve(\"#a@C\") = \"#A@c\"\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. Initialize an empty list `result` to store the transformed characters.\n2. Initialize a boolean `has_letters` to False.\n3. For each character `c` in the input string `s`:\n   - If `c` is a letter:\n     - Reverse its case and add to `result`.\n     - Set `has_letters` to True.\n   - If `c` is not a letter:\n     - Add `c` to `result` as is.\n4. If `has_letters` is False, reverse the entire `result` list.\n5. Join the characters in `result` to form the final string and return it.\n\nEdge Cases:\n- Empty string: Return an empty string.\n- String with only non-letter characters: Reverse the string.\n- String with only letters: Each letter's case is reversed.\n- String with a mix of letters and non-letter characters: Apply the case reversal to letters and keep non-letters unchanged.\n\nComplexity:\n- Time: O(n), where n is the length of the string.\n- Space: O(n) for the `result` list."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

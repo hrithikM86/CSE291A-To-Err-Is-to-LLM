@@ -1,0 +1,170 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "retract",
+  "dry_run": false,
+  "task_id": "HumanEval/4",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-004/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "from typing import List\n\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements:\n- **Inputs**: A list of `float` numbers.\n- **Outputs**: A single `float` representing the Mean Absolute Deviation (MAD) of the input numbers.\n- **Behavior**:\n  - Calculate the mean of the input numbers.\n  - Compute the absolute difference between each number and the mean.\n  - Calculate the average of these absolute differences.\n- **Edge Cases**:\n  - Empty list: Return `0.0`.\n  - List with a single element: Return `0.0` since there are no differences to calculate.",
+      "output_sha256": "5ee1f1b578e2b01650e371ae9927c9950a33a5bc688a56c174e97ff1b601da25",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "from typing import List\n\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- **Inputs**: A list of `float` numbers.\n- **Outputs**: A single `float` representing the Mean Absolute Deviation (MAD) of the input numbers.\n- **Behavior**:\n  - Calculate the mean of the input numbers.\n  - Compute the absolute difference between each number and the mean.\n  - Calculate the average of these absolute differences.\n- **Edge Cases**:\n  - Empty list: Return `0.0`.\n  - List with a single element: Return `0.0` since there are no differences to calculate."
+      },
+      "delivered_output": "Algorithm:\n\n1. **Input Validation**:\n   - Check if the input list is empty. If yes, return `0.0`.\n\n2. **Calculate the Mean**:\n   - Compute the mean of the input numbers.\n\n3. **Calculate Absolute Differences**:\n   - For each number in the list, calculate the absolute difference from the mean.\n\n4. **Compute Mean Absolute Deviation (MAD)**:\n   - Calculate the average of the absolute differences.\n\n5. **Return the Result**:\n   - Return the computed MAD as a float.\n\nEdge Cases:\n- **Empty List**: Return `0.0`.\n- **Single Element List**: Return `0.0` since there are no differences to calculate.\n\nComplexity:\n- **Time Complexity**: O(n), where n is the number of elements in the list.\n- **Space Complexity**: O(1), as no additional space is used other than variables for calculations.\n\nThis algorithm ensures the correct calculation of the Mean Absolute Deviation while handling edge cases as specified.",
+      "output_sha256": "272b25d5563e9baaca449d16553eba9e9dd1a34d838dcbb942190e893a03b272",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "from typing import List\n\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm:\n\n1. **Input Validation**:\n   - Check if the input list is empty. If yes, return `0.0`.\n\n2. **Calculate the Mean**:\n   - Compute the mean of the input numbers.\n\n3. **Calculate Absolute Differences**:\n   - For each number in the list, calculate the absolute difference from the mean.\n\n4. **Compute Mean Absolute Deviation (MAD)**:\n   - Calculate the average of the absolute differences.\n\n5. **Return the Result**:\n   - Return the computed MAD as a float.\n\nEdge Cases:\n- **Empty List**: Return `0.0`.\n- **Single Element List**: Return `0.0` since there are no differences to calculate.\n\nComplexity:\n- **Time Complexity**: O(n), where n is the number of elements in the list.\n- **Space Complexity**: O(1), as no additional space is used other than variables for calculations.\n\nThis algorithm ensures the correct calculation of the Mean Absolute Deviation while handling edge cases as specified."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `mean_absolute_deviation`\n\n1. **Function Signature**:\n   - Ensure the function is defined as `def mean_absolute_deviation(numbers: List[float]) -> float:`.\n\n2. **Input Validation**:\n   - Check if the input list `numbers` is empty.\n     - If empty, return `0.0`.\n\n3. **Calculate the Mean**:\n   - Compute the mean of the input numbers using the formula: `mean = sum(numbers) / len(numbers)`.\n\n4. **Calculate Absolute Differences**:\n   - Initialize a variable `total_diff` to `0.0`.\n   - For each number in the list, calculate the absolute difference from the mean and add it to `total_diff`.\n\n5. **Compute Mean Absolute Deviation (MAD)**:\n   - Calculate the average of the absolute differences: `MAD = total_diff / len(numbers)`.\n\n6. **Return the Result**:\n   - Return the computed MAD as a float.\n\n7. **Edge Cases**:\n   - **Empty List**: Ensure the function returns `0.0` when the input list is empty.\n   - **Single Element List**: Ensure the function returns `0.0` when the input list contains only one element.\n\n8. **Testing**:\n   - Test the function with various inputs, including edge cases, to ensure correctness.\n\n9. **Documentation**:\n   - Ensure the docstring is updated to reflect the implementation details and examples.\n\n10. **Complexity**:\n    - Verify that the time complexity is O(n) and the space complexity is O(1).\n\nBy following this checklist, you can ensure a correct and efficient implementation of the `mean_absolute_deviation` function.",
+      "output_sha256": "a6380d691e20e28d12f9ad8f2d1dee432703cb9f7dc4a0190e74e260eb781890",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "from typing import List\n\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `mean_absolute_deviation`\n\n1. **Function Signature**:\n   - Ensure the function is defined as `def mean_absolute_deviation(numbers: List[float]) -> float:`.\n\n2. **Input Validation**:\n   - Check if the input list `numbers` is empty.\n     - If empty, return `0.0`.\n\n3. **Calculate the Mean**:\n   - Compute the mean of the input numbers using the formula: `mean = sum(numbers) / len(numbers)`.\n\n4. **Calculate Absolute Differences**:\n   - Initialize a variable `total_diff` to `0.0`.\n   - For each number in the list, calculate the absolute difference from the mean and add it to `total_diff`.\n\n5. **Compute Mean Absolute Deviation (MAD)**:\n   - Calculate the average of the absolute differences: `MAD = total_diff / len(numbers)`.\n\n6. **Return the Result**:\n   - Return the computed MAD as a float.\n\n7. **Edge Cases**:\n   - **Empty List**: Ensure the function returns `0.0` when the input list is empty.\n   - **Single Element List**: Ensure the function returns `0.0` when the input list contains only one element.\n\n8. **Testing**:\n   - Test the function with various inputs, including edge cases, to ensure correctness.\n\n9. **Documentation**:\n   - Ensure the docstring is updated to reflect the implementation details and examples.\n\n10. **Complexity**:\n    - Verify that the time complexity is O(n) and the space complexity is O(1).\n\nBy following this checklist, you can ensure a correct and efficient implementation of the `mean_absolute_deviation` function.",
+        "earlier_attempt_history": [
+          {
+            "kind": "message_received",
+            "from_stage": "project_manager",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          },
+          {
+            "kind": "your_previous_answer",
+            "from_stage": "coder",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          }
+        ]
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 11.164,
+      "prompt_tokens": 713,
+      "completion_tokens": 176,
+      "delivered_output": "```python\nfrom typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n    if not numbers:\n        return 0.0\n    \n    mean = sum(numbers) / len(numbers)\n    total_diff = 0.0\n    \n    for number in numbers:\n        total_diff += abs(number - mean)\n    \n    mad = total_diff / len(numbers)\n    return mad\n```",
+      "output_sha256": "413111a9d03684c808806f69c3d33b921483cc9e552555342fa7a0bd39035852",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "from typing import List\n\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\nfrom typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n    if not numbers:\n        return 0.0\n    \n    mean = sum(numbers) / len(numbers)\n    total_diff = 0.0\n    \n    for number in numbers:\n        total_diff += abs(number - mean)\n    \n    mad = total_diff / len(numbers)\n    return mad\n```",
+        "earlier_attempt_history": [
+          {
+            "kind": "message_received",
+            "from_stage": "coder",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          },
+          {
+            "kind": "your_previous_answer",
+            "from_stage": "test_engineer",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          }
+        ]
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 10.484,
+      "prompt_tokens": 555,
+      "completion_tokens": 176,
+      "delivered_output": "```python\nfrom typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\"\n    For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n    if not numbers:\n        return 0.0\n\n    mean = sum(numbers) / len(numbers)\n    total_diff = 0.0\n\n    for number in numbers:\n        total_diff += abs(number - mean)\n\n    mad = total_diff / len(numbers)\n    return mad\n```",
+      "output_sha256": "258b3956d6649fcf75d2653d4f060d5ffbec989ec4c1e8abc01d8534a64abab2",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1268,
+    "completion_tokens": 352,
+    "model_seconds": 21.648,
+    "tracking_overhead_seconds": 0.000565,
+    "recovery_wall_seconds": 21.695
+  }
+}

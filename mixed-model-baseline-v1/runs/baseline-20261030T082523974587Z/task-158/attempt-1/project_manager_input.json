@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef find_max(words):\n    \"\"\"Write a function that accepts a list of strings.\n    The list contains different words. Return the word with maximum number\n    of unique characters. If multiple strings have maximum number of unique\n    characters, return the one which comes first in lexicographical order.\n\n    find_max([\"name\", \"of\", \"string\"]) == \"string\"\n    find_max([\"name\", \"enam\", \"game\"]) == \"enam\"\n    find_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"\"aaaaaaa\"\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `find_max(words)`:\n\n1. **Input Validation**:\n   - Check if `words` is empty. If so, return `None` or raise an error.\n\n2. **Initialization**:\n   - Set `max_unique` to 0.\n   - Set `result` to an empty string.\n\n3. **Iterate through each word in `words`**:\n   - For each word, initialize `unique_chars` as an empty set.\n   - For each character in the word, add it to `unique_chars`.\n   - Count the number of unique characters in `unique_chars`.\n\n4. **Update `result`**:\n   - If the current word has more unique characters than `max_unique`, update `max_unique` and set `result` to the current word.\n   - If the current word has the same number of unique characters as `max_unique`, compare it lexicographically with `result` and update `result` if the current word is lexicographically smaller.\n\n5. **Return `result`**.\n\n**Edge Cases**:\n- Handle an empty list by returning `None` or raising an error.\n- Handle a list with a single word by returning that word.\n- Handle a list with words of the same length and unique character count by returning the lexicographically smallest word.\n\n**Complexity**:\n- Time: O(n * m), where n is the number of words and m is the average length of the words.\n- Space: O(m) for storing unique characters in each word."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

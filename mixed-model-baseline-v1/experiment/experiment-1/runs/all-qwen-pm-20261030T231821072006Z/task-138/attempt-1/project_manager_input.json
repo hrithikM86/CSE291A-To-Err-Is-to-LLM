@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef is_equal_to_sum_even(n):\n    \"\"\"Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `is_equal_to_sum_even(n)`:\n\n1. **Input Validation**: Ensure `n` is within the range [1, 10000].\n2. **Edge Cases**:\n   - If `n < 8`, return `False`.\n   - If `n % 2 != 0`, return `False`.\n3. **General Case**:\n   - If `n == 8`, return `True`.\n   - For `n > 8`, check if `(n - 8) % 2 == 0` and `(n - 8) >= 0`. If true, return `True`; otherwise, return `False`.\n\nComplexity:\n- Time: O(1) - The operations are constant time.\n- Space: O(1) - No additional space is used beyond a few variables.\n\nThis algorithm covers all specified edge cases and the general behavior as required."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

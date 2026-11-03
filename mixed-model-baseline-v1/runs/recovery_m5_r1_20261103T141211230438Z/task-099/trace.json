@@ -1,0 +1,146 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "drop",
+  "dry_run": false,
+  "task_id": "HumanEval/99",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-099/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements:\n- The function `closest_integer` takes a single input `value` (string).\n- The function returns an integer.\n- If `value` is equidistant from two integers, round it away from zero.\n- Examples:\n  - `closest_integer(\"10\")` returns `10`\n  - `closest_integer(\"15.3\")` returns `15`\n  - `closest_integer(\"14.5\")` returns `15`\n  - `closest_integer(\"-14.5\")` returns `-15`\n- Handle cases where `value` is a valid numeric string.\n- Handle edge cases where `value` is an invalid string, returning `None` or raising an appropriate error.",
+      "output_sha256": "403fe064114df158e99761772f5cfbdc60b35569cbe1f54b32bb9337ceb9b908",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- The function `closest_integer` takes a single input `value` (string).\n- The function returns an integer.\n- If `value` is equidistant from two integers, round it away from zero.\n- Examples:\n  - `closest_integer(\"10\")` returns `10`\n  - `closest_integer(\"15.3\")` returns `15`\n  - `closest_integer(\"14.5\")` returns `15`\n  - `closest_integer(\"-14.5\")` returns `-15`\n- Handle cases where `value` is a valid numeric string.\n- Handle edge cases where `value` is an invalid string, returning `None` or raising an appropriate error."
+      },
+      "delivered_output": "Algorithm for `closest_integer(value)`:\n\n1. Validate input:\n   - Check if `value` is a valid numeric string.\n   - If not, return `None` or raise an error.\n\n2. Convert `value` to a float.\n\n3. Determine the closest integers:\n   - Calculate the floor and ceiling of the float value.\n   - If the difference between the float value and the floor is exactly 0.5, choose the ceiling.\n   - If the difference between the float value and the ceiling is exactly 0.5, choose the floor.\n\n4. Return the chosen integer.\n\nEdge cases:\n- Empty string: Return `None` or raise an error.\n- Non-numeric string: Return `None` or raise an error.\n- Very large or very small numbers: Ensure no overflow or underflow occurs.\n\nComplexity:\n- Input validation: O(1)\n- Conversion and calculation: O(1)\n- Total: O(1)",
+      "output_sha256": "fdd7f6b013c9fa1d1f540cfd46a9902de7e0619703726ce36f03400c2e6f47b1",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `closest_integer(value)`:\n\n1. Validate input:\n   - Check if `value` is a valid numeric string.\n   - If not, return `None` or raise an error.\n\n2. Convert `value` to a float.\n\n3. Determine the closest integers:\n   - Calculate the floor and ceiling of the float value.\n   - If the difference between the float value and the floor is exactly 0.5, choose the ceiling.\n   - If the difference between the float value and the ceiling is exactly 0.5, choose the floor.\n\n4. Return the chosen integer.\n\nEdge cases:\n- Empty string: Return `None` or raise an error.\n- Non-numeric string: Return `None` or raise an error.\n- Very large or very small numbers: Ensure no overflow or underflow occurs.\n\nComplexity:\n- Input validation: O(1)\n- Conversion and calculation: O(1)\n- Total: O(1)"
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `closest_integer(value)`:\n\n1. **Function Signature:**\n   ```python\n   def closest_integer(value: str) -> int:\n       pass\n   ```\n\n2. **Algorithm Steps:**\n   - **Input Validation:**\n     - Check if `value` is a valid numeric string.\n     - If not, return `None` or raise a `ValueError`.\n   - **Conversion:**\n     - Convert `value` to a float.\n   - **Determine Closest Integers:**\n     - Calculate the floor and ceiling of the float value.\n     - If the difference between the float value and the floor is exactly 0.5, choose the ceiling.\n     - If the difference between the float value and the ceiling is exactly 0.5, choose the floor.\n   - **Return the Chosen Integer:**\n     - Return the chosen integer.\n\n3. **Boundary Conditions:**\n   - **Empty String:**\n     - Return `None` or raise a `ValueError`.\n   - **Non-Numeric String:**\n     - Return `None` or raise a `ValueError`.\n   - **Very Large or Very Small Numbers:**\n     - Ensure no overflow or underflow occurs during conversion and calculation.\n\n4. **Example Implementations:**\n   ```python\n   def closest_integer(value: str) -> int:\n       if not value or not value.replace('.', '', 1).isdigit():\n           raise ValueError(\"Invalid input\")\n       \n       num = float(value)\n       floor_val = int(num // 1)\n       ceil_val = int(num // 1) + 1\n       \n       if num - floor_val == 0.5 or ceil_val - num == 0.5:\n           return ceil_val if num > 0 else floor_val\n       else:\n           return round(num)\n   ```\n\n5. **Test Cases:**\n   - `closest_integer(\"10\")` should return `10`.\n   - `closest_integer(\"15.3\")` should return `15`.\n   - `closest_integer(\"14.5\")` should return `15`.\n   - `closest_integer(\"-14.5\")` should return `-15`.\n   - `closest_integer(\"\")` should raise a `ValueError`.\n   - `closest_integer(\"abc\")` should raise a `ValueError`.\n   - `closest_integer(\"1e308\")` should handle large numbers without overflow.",
+      "output_sha256": "456c63dae03f0e4978bdfb24f67c9b263d9318d1895455de3d98b1e5f69940d2",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `closest_integer(value)`:\n\n1. **Function Signature:**\n   ```python\n   def closest_integer(value: str) -> int:\n       pass\n   ```\n\n2. **Algorithm Steps:**\n   - **Input Validation:**\n     - Check if `value` is a valid numeric string.\n     - If not, return `None` or raise a `ValueError`.\n   - **Conversion:**\n     - Convert `value` to a float.\n   - **Determine Closest Integers:**\n     - Calculate the floor and ceiling of the float value.\n     - If the difference between the float value and the floor is exactly 0.5, choose the ceiling.\n     - If the difference between the float value and the ceiling is exactly 0.5, choose the floor.\n   - **Return the Chosen Integer:**\n     - Return the chosen integer.\n\n3. **Boundary Conditions:**\n   - **Empty String:**\n     - Return `None` or raise a `ValueError`.\n   - **Non-Numeric String:**\n     - Return `None` or raise a `ValueError`.\n   - **Very Large or Very Small Numbers:**\n     - Ensure no overflow or underflow occurs during conversion and calculation.\n\n4. **Example Implementations:**\n   ```python\n   def closest_integer(value: str) -> int:\n       if not value or not value.replace('.', '', 1).isdigit():\n           raise ValueError(\"Invalid input\")\n       \n       num = float(value)\n       floor_val = int(num // 1)\n       ceil_val = int(num // 1) + 1\n       \n       if num - floor_val == 0.5 or ceil_val - num == 0.5:\n           return ceil_val if num > 0 else floor_val\n       else:\n           return round(num)\n   ```\n\n5. **Test Cases:**\n   - `closest_integer(\"10\")` should return `10`.\n   - `closest_integer(\"15.3\")` should return `15`.\n   - `closest_integer(\"14.5\")` should return `15`.\n   - `closest_integer(\"-14.5\")` should return `-15`.\n   - `closest_integer(\"\")` should raise a `ValueError`.\n   - `closest_integer(\"abc\")` should raise a `ValueError`.\n   - `closest_integer(\"1e308\")` should handle large numbers without overflow."
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 10.505,
+      "prompt_tokens": 864,
+      "completion_tokens": 111,
+      "delivered_output": "```python\ndef closest_integer(value: str) -> int:\n    if not value or not value.replace('.', '', 1).isdigit():\n        raise ValueError(\"Invalid input\")\n    \n    num = float(value)\n    floor_val = int(num // 1)\n    ceil_val = int(num // 1) + 1\n    \n    if num - floor_val == 0.5 or ceil_val - num == 0.5:\n        return ceil_val if num > 0 else floor_val\n    else:\n        return round(num)\n```",
+      "output_sha256": "a1bf2e7afbb7636eee5e86cfed2bd803de579f25a17517ddd215954e8cb54317",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "\ndef closest_integer(value):\n    '''\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n    from two integers, round it away from zero.\n\n    Examples\n    >>> closest_integer(\"10\")\n    10\n    >>> closest_integer(\"15.3\")\n    15\n\n    Note:\n    Rounding away from zero means that if the given number is equidistant\n    from two integers, the one you should return is the one that is the\n    farthest from zero. For example closest_integer(\"14.5\") should\n    return 15 and closest_integer(\"-14.5\") should return -15.\n    '''\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\ndef closest_integer(value: str) -> int:\n    if not value or not value.replace('.', '', 1).isdigit():\n        raise ValueError(\"Invalid input\")\n    \n    num = float(value)\n    floor_val = int(num // 1)\n    ceil_val = int(num // 1) + 1\n    \n    if num - floor_val == 0.5 or ceil_val - num == 0.5:\n        return ceil_val if num > 0 else floor_val\n    else:\n        return round(num)\n```"
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 9.33,
+      "prompt_tokens": 449,
+      "completion_tokens": 110,
+      "delivered_output": "```python\ndef closest_integer(value: str) -> int:\n    if not value or not value.replace('.', '', 1).isdigit():\n        raise ValueError(\"Invalid input\")\n\n    num = float(value)\n    floor_val = int(num // 1)\n    ceil_val = int(num // 1) + 1\n\n    if num - floor_val == 0.5 or ceil_val - num == 0.5:\n        return ceil_val if num > 0 else floor_val\n    else:\n        return round(num)\n```",
+      "output_sha256": "f11473b3444bf7af7d0c6d7d108532075963dd3b01665f4d0a11c0804a98a476",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1313,
+    "completion_tokens": 221,
+    "model_seconds": 19.835,
+    "tracking_overhead_seconds": 0.000612,
+    "recovery_wall_seconds": 19.886
+  }
+}

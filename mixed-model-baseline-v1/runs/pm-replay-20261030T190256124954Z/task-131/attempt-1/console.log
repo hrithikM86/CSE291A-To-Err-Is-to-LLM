@@ -1,0 +1,40 @@
+
+TASK: HumanEval/131 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def digits(n: int) -> int:
+    if n <= 0:
+        return 0
+    
+    product = 1
+    seen = set()
+    
+    while n > 0:
+        digit = n % 10
+        if digit % 2 != 0 and digit not in seen:
+            product *= digit
+            seen.add(digit)
+        n //= 10
+    
+    return product if product != 1 else 0
+```
+Running test_engineer: qwen2.5:7b
+```python
+def digits(n: int) -> int:
+    if n <= 0:
+        return 0
+    
+    product = 1
+    seen = set()
+    
+    while n > 0:
+        digit = n % 10
+        if digit % 2 != 0 and digit not in seen:
+            product *= digit
+            seen.add(digit)
+        n //= 10
+    
+    return product if product != 1 else 0
+```
+attacked_coder official: failed {'passed': 2, 'failed': 1, 'timeout': 0, 'unresolved': 0}
+attacked_final official: failed {'passed': 2, 'failed': 1, 'timeout': 0, 'unresolved': 0}

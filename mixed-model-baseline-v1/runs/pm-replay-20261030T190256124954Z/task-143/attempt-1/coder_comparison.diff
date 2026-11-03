@@ -1,0 +1,18 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -11,11 +11,10 @@
+         return ""
+     
+     words = sentence.split()
+-    prime_length_words = []
++    prime_length_words = [word for word in words if is_prime(len(word))]
+     
+-    for word in words:
+-        length = len(word)
+-        if is_prime(length):
+-            prime_length_words.append(word)
++    if not prime_length_words:
++        return ""
+     
++    prime_length_words.sort()
+     return " ".join(prime_length_words)

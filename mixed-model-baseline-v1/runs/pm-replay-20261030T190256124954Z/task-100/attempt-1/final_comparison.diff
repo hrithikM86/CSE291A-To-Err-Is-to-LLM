@@ -1,0 +1,24 @@
+--- baseline_final.py
++++ final.py
+@@ -1,18 +1,14 @@
+ def make_a_pile(n: int) -> list:
+-    if not isinstance(n, int) or n < 1 or n > 1000:
+-        raise ValueError("n must be a positive integer within the range [1, 1000].")
+-
+-    if n == 1:
+-        return [1]
++    if not isinstance(n, int) or n <= 0 or n > 1000:
++        raise ValueError("Input must be a positive integer within the range [1, 1000].")
+ 
+     pile = []
+     current_stones = n
+-
+     for _ in range(n):
+         pile.append(current_stones)
+         if current_stones % 2 == 0:
+             current_stones += 2
+         else:
+-            current_stones += 2
++            current_stones += 4
+ 
+     return pile

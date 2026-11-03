@@ -1,0 +1,20 @@
+def histogram(test: str) -> dict:
+    if not test:
+        return {}
+
+    letter_counts = {}
+    max_counts = []
+
+    for letter in test.split():
+        if letter in letter_counts:
+            letter_counts[letter] += 1
+        else:
+            letter_counts[letter] = 1
+
+    max_count = max(letter_counts.values(), default=0)
+    for letter, count in letter_counts.items():
+        if count == max_count:
+            max_counts.append((letter, count))
+
+    result = dict(max_counts)
+    return result

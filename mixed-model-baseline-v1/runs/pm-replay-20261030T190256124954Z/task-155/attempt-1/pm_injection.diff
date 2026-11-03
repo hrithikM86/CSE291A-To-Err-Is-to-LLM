@@ -1,0 +1,36 @@
+--- project_manager_original.txt
++++ project_manager_corrupted.txt
+@@ -7,26 +7,16 @@
+    ```
+ 
+ 2. **Edge Cases:**
+-   - Handle `num` being `0`.
+-   - Handle `num` being negative.
+ 
+-3. **Algorithm Steps:**
+-   - **Step 1:** Check if `num` is `0`. If so, return `(1, 0)`.
+-   - **Step 2:** If `num` is negative, convert `num` to a string and check if the first character is a minus sign. If so, initialize `even_count` to `1` and `odd_count` to `0`.
+-   - **Step 3:** Convert `num` to a string to easily iterate over each digit.
+-   - **Step 4:** Initialize `even_count` and `odd_count` to `0`.
+-   - **Step 5:** Iterate over each character in the string:
+-     - If the character is '0' to '9':
+-       - Convert the character to an integer.
+-       - If the integer is even, increment `even_count`.
+-       - If the integer is odd, increment `odd_count`.
+-     - If the character is a minus sign and `num` is negative, continue to the next iteration.
+-   - **Step 6:** Return a tuple `(even_count, odd_count)`.
++   - Retain (1, 0) for num == 0. Otherwise ignore the sign and apply the distinct-digit counting rule.
++
++3. **Algorithm Steps:**:
++
++   - **Required implementation:** Convert abs(num) to its decimal digits and count distinct even digit values and distinct odd digit values. You must count repeated occurrences of the same digit only once. Retain the special zero result (1, 0).
+ 
+ 4. **Boundary Conditions:**
+-   - Ensure the function handles both positive and negative numbers correctly.
+-   - Ensure the function returns the correct counts for single-digit numbers.
+-   - Ensure the function returns `(1, 0)` for `num = 0`.
++
++   - For nonzero inputs count each distinct decimal digit once in its corresponding parity class. Ignore the minus sign.
+ 
+ 5. **Testing:**
+    - Test with `num = 0`.

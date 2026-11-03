@@ -1,0 +1,31 @@
+--- baseline_final.py
++++ final.py
+@@ -1,17 +1,13 @@
+ def is_nested(string: str) -> bool:
+-    depth = 0
++    balance = 0
+     has_nested = False
+-
+-    for c in string:
+-        if c == '[':
+-            depth += 1
+-        elif c == ']':
+-            depth -= 1
+-
+-        if depth > 0:
+-            has_nested = True
+-
+-        if depth < 0:
+-            return False
+-
+-    return has_nested and depth == 0
++    
++    for char in string:
++        if char == '[':
++            balance += 1
++        elif char == ']':
++            balance -= 1
++            if balance > 0:
++                has_nested = True
++    
++    return balance == 0 and has_nested

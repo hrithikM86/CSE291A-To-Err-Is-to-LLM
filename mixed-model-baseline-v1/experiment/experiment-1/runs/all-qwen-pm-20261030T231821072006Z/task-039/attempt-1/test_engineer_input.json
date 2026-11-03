@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef prime_fib(n: int):\n    \"\"\"\n    prime_fib returns n-th number that is a Fibonacci number and it's also prime.\n    >>> prime_fib(1)\n    2\n    >>> prime_fib(2)\n    3\n    >>> prime_fib(3)\n    5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n    \"\"\"\n",
+    "previous_stage": "coder",
+    "previous_artifact": "```python\nimport math\n\ndef is_prime(num: int) -> bool:\n    if num <= 1:\n        return False\n    if num <= 3:\n        return True\n    if num % 2 == 0 or num % 3 == 0:\n        return False\n    i = 5\n    while i * i <= num:\n        if num % i == 0 or num % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n\ndef prime_fib(n: int) -> int:\n    \"\"\"\n    prime_fib returns n-th number that is a Fibonacci number and it's also prime.\n    >>> prime_fib(1)\n    2\n    >>> prime_fib(2)\n    3\n    >>> prime_fib(3)\n    5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n    \"\"\"\n    if not isinstance(n, int):\n        raise ValueError(\"Input must be an integer.\")\n    if n < 1:\n        raise ValueError(\"Input must be greater than 0.\")\n    if n > 20:\n        raise ValueError(\"Input must be less than or equal to 20.\")\n\n    fibonacci = []\n    a, b = 0, 1\n    count = 0\n\n    while count < n + 1:\n        if is_prime(b):\n            fibonacci.append(b)\n            count += 1\n        a, b = b, a + b\n\n    return fibonacci[n]\n\n# Test cases\nprint(prime_fib(1))  # 2\nprint(prime_fib(2))  # 3\nprint(prime_fib(3))  # 5\nprint(prime_fib(4))  # 13\nprint(prime_fib(5))  # 89\n```"
+  },
+  "system_messages": [
+    "You are a Test Engineer, named test_engineer, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

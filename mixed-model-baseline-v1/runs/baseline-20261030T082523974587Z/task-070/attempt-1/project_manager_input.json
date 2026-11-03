@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef strange_sort_list(lst):\n    '''\n    Given list of integers, return list in strange order.\n    Strange sorting, is when you start with the minimum value,\n    then maximum of the remaining integers, then minimum and so on.\n\n    Examples:\n    strange_sort_list([1, 2, 3, 4]) == [1, 4, 2, 3]\n    strange_sort_list([5, 5, 5, 5]) == [5, 5, 5, 5]\n    strange_sort_list([]) == []\n    '''\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `strange_sort_list(lst)`:\n\n1. **Input Validation**: Check if the input list `lst` is empty. If it is, return an empty list.\n2. **Initialization**: \n   - Create an empty result list `result`.\n   - Create a copy of the input list `lst` to keep track of remaining elements.\n3. **Sorting Logic**:\n   - While `lst` is not empty:\n     - Find the minimum value in `lst` and append it to `result`.\n     - Remove the minimum value from `lst`.\n     - If `lst` is not empty, find the maximum value in `lst` and append it to `result`.\n     - Remove the maximum value from `lst`.\n4. **Return Result**: Return the `result` list.\n\n**Edge Cases**:\n- An empty list should return an empty list.\n- A list with duplicate values should handle them as per the described sorting logic (e.g., `[1, 1, 2, 2]` should result in `[1, 2, 1, 2]`).\n- The list can contain both positive and negative integers, which will be handled by the min and max functions.\n\n**Complexity**:\n- Time Complexity: O(n^2) due to the repeated search for min and max in each iteration.\n- Space Complexity: O(n) for the result list and the copy of the input list."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

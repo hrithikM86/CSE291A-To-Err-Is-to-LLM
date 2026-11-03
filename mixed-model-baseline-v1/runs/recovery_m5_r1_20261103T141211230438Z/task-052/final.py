@@ -1,0 +1,12 @@
+def below_threshold(l: list, t: int) -> bool:
+    if not isinstance(l, list) or not isinstance(t, int):
+        raise TypeError("Input must be a list and an integer")
+    
+    if not l:
+        return True
+    
+    for num in l:
+        if num >= t:
+            return False
+    
+    return True

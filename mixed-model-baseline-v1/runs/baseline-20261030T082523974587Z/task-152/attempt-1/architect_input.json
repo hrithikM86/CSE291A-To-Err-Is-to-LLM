@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef compare(game,guess):\n    \"\"\"I think we all remember that feeling when the result of some long-awaited\n    event is finally known. The feelings and thoughts you have at that moment are\n    definitely worth noting down and comparing.\n    Your task is to determine if a person correctly guessed the results of a number of matches.\n    You are given two arrays of scores and guesses of equal length, where each index shows a match. \n    Return an array of the same length denoting how far off each guess was. If they have guessed correctly,\n    the value is 0, and if not, the value is the absolute difference between the guess and the score.\n    \n    \n    example:\n\n    compare([1,2,3,4,5,1],[1,2,3,4,2,-2]) -> [0,0,0,0,3,3]\n    compare([0,5,0,0,0,4],[4,1,1,0,0,-2]) -> [4,4,1,0,0,6]\n    \"\"\"\n",
+    "previous_stage": "product_manager",
+    "previous_artifact": "Requirements:\n- The function `compare` takes two inputs: `game` (a list of integers) and `guess` (a list of integers).\n- Both lists are of equal length, representing scores and guesses for a series of matches.\n- The function returns a list of integers where each element represents the accuracy of the corresponding guess:\n  - `0` if the guess is correct.\n  - The absolute difference between the guess and the actual score if the guess is incorrect.\n- Edge cases:\n  - Empty lists: Return an empty list.\n  - Lists with negative numbers: Handle these as part of the absolute difference calculation.\n  - Lists with zeros: Correct guesses of zero are represented as `0`."
+  },
+  "system_messages": [
+    "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

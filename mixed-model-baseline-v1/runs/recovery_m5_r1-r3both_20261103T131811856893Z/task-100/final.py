@@ -1,0 +1,18 @@
+def make_a_pile(n: int) -> list:
+    if not isinstance(n, int) or n < 1 or n > 1000:
+        raise ValueError("n must be a positive integer within the range [1, 1000].")
+
+    if n == 1:
+        return [1]
+
+    pile = []
+    current_stones = n
+
+    for _ in range(n):
+        pile.append(current_stones)
+        if current_stones % 2 == 0:
+            current_stones += 2
+        else:
+            current_stones += 2
+
+    return pile

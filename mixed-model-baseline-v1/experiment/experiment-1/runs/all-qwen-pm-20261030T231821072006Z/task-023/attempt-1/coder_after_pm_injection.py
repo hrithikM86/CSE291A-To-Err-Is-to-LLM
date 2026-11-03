@@ -1,0 +1,14 @@
+def strlen(string: str) -> int:
+    """
+    Return length of given string
+    >>> strlen('')
+    0
+    >>> strlen('abc')
+    3
+    """
+    if string is None:
+        raise TypeError("Input cannot be None")
+    if not isinstance(string, str):
+        raise TypeError("Input must be a string")
+    
+    return len(string.strip())

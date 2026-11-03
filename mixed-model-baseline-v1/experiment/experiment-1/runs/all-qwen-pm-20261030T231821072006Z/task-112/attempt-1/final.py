@@ -1,0 +1,16 @@
+def reverse_delete(s: str, c: str) -> tuple:
+    # Check for empty strings
+    if not s or not c:
+        return ("", False)
+    
+    # Create a set of characters to delete
+    chars_to_delete = set(c)
+    
+    # Filter out characters in s that are in c
+    result = [char for char in s if char not in chars_to_delete]
+    result_string = ''.join(result)
+    
+    # Check if the resulting string is a palindrome
+    result_is_palindrome = result_string == result_string[::-1]
+    
+    return (result_string, result_is_palindrome)

@@ -1,0 +1,36 @@
+### Implementation Checklist for `string_xor`
+
+#### Function Signature
+```python
+from typing import List
+
+def string_xor(a: str, b: str) -> str:
+    pass
+```
+
+#### Algorithm Steps
+1. **Input Validation:**
+   - Check if `a` or `b` is an empty string. If true, return an empty string.
+   - Check if `a` and `b` contain only '0' and '1'. If not, raise `ValueError`.
+
+2. **Initialization:**
+   - Initialize an empty string `result`.
+
+3. **Determine Maximum Length:**
+   - Determine the maximum length `max_len` between `a` and `b`.
+
+4. **Bitwise XOR Operation:**
+   - Iterate over the range of `max_len`:
+     - For each index `i`, append `a[i] ^ b[i]` to `result` if `i` is within the bounds of both strings. Otherwise, append the corresponding bit from the longer string.
+
+5. **Return Result:**
+   - Return `result`.
+
+#### Boundary Conditions
+- Ensure the function handles cases where one or both strings are empty.
+- Ensure the function raises `ValueError` if the input strings contain characters other than '0' and '1'.
+- Ensure the function correctly handles strings of different lengths by appending the appropriate bits.
+
+#### Additional Notes
+- Use list comprehension or string concatenation for appending bits to `result`.
+- Test the function with various edge cases, including empty strings, strings of different lengths, and strings with only '0' or '1'.

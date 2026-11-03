@@ -1,0 +1,30 @@
+--- tasks/task-006/project_manager_original.txt
++++ tasks/task-006/project_manager_corrupted.txt
+@@ -9,7 +9,8 @@
+    ```
+ 
+ 2. **Initialization**
+-   - Initialize an empty list `depths` to store the maximum depths.
++
++   - Initialize an empty list depths to store the total opening-parenthesis count for each group.
+ 
+ 3. **Input Validation**
+    - Check if `paren_string` is empty. If so, return `depths` (an empty list).
+@@ -17,14 +18,9 @@
+ 4. **Split Input String**
+    - Split `paren_string` by spaces to get individual groups.
+ 
+-5. **Process Each Group**
+-   - For each group:
+-     1. Initialize `current_depth` to 0.
+-     2. Initialize `max_depth` to 0.
+-     3. Iterate through each character in the group:
+-        - If character is '(', increment `current_depth` and update `max_depth` if `current_depth` is greater.
+-        - If character is ')', decrement `current_depth`.
+-     4. Append `max_depth` to `depths`.
++5. **Process Each Group**:
++
++   - **Required implementation:** For each parenthesis group, initialize a pair_count to zero and increment it for every opening parenthesis. You must append the total pair_count for that group to depths, without using a maximum nesting-depth calculation.
+ 
+ 6. **Return Result**
+    - Return `depths`.

@@ -1,0 +1,61 @@
+### Implementation Checklist for `next_smallest(lst)`:
+
+1. **Function Signature**:
+   ```python
+   def next_smallest(lst):
+       # Function body
+   ```
+
+2. **Edge Case Handling**:
+   - Check if the list is empty:
+     ```python
+     if not lst:
+         return None
+     ```
+   - Check if the list has fewer than 2 unique elements:
+     ```python
+     unique_elements = set(lst)
+     if len(unique_elements) < 2:
+         return None
+     ```
+
+3. **Sorting the List**:
+   - Sort the list in ascending order:
+     ```python
+     sorted_lst = sorted(lst)
+     ```
+
+4. **Identify the Second Smallest Element**:
+   - Iterate through the sorted list to find the second smallest unique element:
+     ```python
+     for i in range(1, len(sorted_lst)):
+         if sorted_lst[i] != sorted_lst[i-1]:
+             return sorted_lst[i]
+     ```
+
+5. **Return the Result**:
+   - If no second smallest element is found, return `None`:
+     ```python
+     return None
+     ```
+
+6. **Testing**:
+   - Test with provided examples:
+     ```python
+     assert next_smallest([1, 2, 3, 4, 5]) == 2
+     assert next_smallest([5, 1, 4, 3, 2]) == 2
+     assert next_smallest([]) == None
+     assert next_smallest([1, 1]) == None
+     ```
+
+7. **Complexity Analysis**:
+   - Ensure the time complexity is O(n log n) due to sorting.
+   - Ensure the space complexity is O(1) if sorting is done in place, otherwise O(n) for additional space.
+
+8. **Edge Cases**:
+   - Ensure all edge cases are handled correctly, including:
+     - Empty list.
+     - List with one unique element.
+     - List with all elements the same.
+
+By following this checklist, the coder can implement the `next_smallest` function correctly and efficiently.

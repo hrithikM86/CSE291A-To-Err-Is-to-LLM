@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef minSubArraySum(nums):\n    \"\"\"\n    Given an array of integers nums, find the minimum sum of any non-empty sub-array\n    of nums.\n    Example\n    minSubArraySum([2, 3, 4, 1, 2, 4]) == 1\n    minSubArraySum([-1, -2, -3]) == -6\n    \"\"\"\n",
+    "previous_stage": "coder",
+    "previous_artifact": "```python\ndef minSubArraySum(nums: list) -> int:\n    if not nums:\n        raise ValueError(\"Input list cannot be empty\")\n    \n    if len(nums) == 1:\n        return nums[0]\n    \n    # Initialize the minimum sum with the first element\n    min_sum = nums[0]\n    current_sum = nums[0]\n    \n    # Iterate through the list starting from the second element\n    for i in range(1, len(nums)):\n        # Update the current sum to be the minimum of the current element or the sum of the current element and the previous sum\n        current_sum = min(nums[i], current_sum + nums[i])\n        # Update the minimum sum found so far\n        min_sum = min(min_sum, current_sum)\n    \n    return min_sum\n```"
+  },
+  "system_messages": [
+    "You are a Test Engineer, named test_engineer, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

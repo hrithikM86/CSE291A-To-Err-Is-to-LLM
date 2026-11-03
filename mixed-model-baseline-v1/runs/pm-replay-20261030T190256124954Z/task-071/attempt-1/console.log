@@ -1,0 +1,26 @@
+
+TASK: HumanEval/71 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def triangle_area(a: float, b: float, c: float) -> float:
+    if a <= 0 or b <= 0 or c <= 0:
+        return -1
+    if (a + b <= c) or (a + c <= b) or (b + c <= a):
+        return -1
+    s = (a + b + c) / 2
+    area = (a * b) / 2
+    return round(area, 2)
+```
+Running test_engineer: qwen2.5:7b
+```python
+def triangle_area(a: float, b: float, c: float) -> float:
+    if a <= 0 or b <= 0 or c <= 0:
+        return -1
+    if (a + b <= c) or (a + c <= b) or (b + c <= a):
+        return -1
+    s = (a + b + c) / 2
+    area = (s * (s - a) * (s - b) * (s - c)) ** 0.5
+    return round(area, 2)
+```
+attacked_coder official: failed {'passed': 2, 'failed': 1, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef file_name_check(file_name):\n    \"\"\"Create a function which takes a string representing a file's name, and returns\n    'Yes' if the the file's name is valid, and returns 'No' otherwise.\n    A file's name is considered to be valid if and only if all the following conditions \n    are met:\n    - There should not be more than three digits ('0'-'9') in the file's name.\n    - The file's name contains exactly one dot '.'\n    - The substring before the dot should not be empty, and it starts with a letter from \n    the latin alphapet ('a'-'z' and 'A'-'Z').\n    - The substring after the dot should be one of these: ['txt', 'exe', 'dll']\n    Examples:\n    file_name_check(\"example.txt\") # => 'Yes'\n    file_name_check(\"1example.dll\") # => 'No' (the name should start with a latin alphapet letter)\n    \"\"\"\n",
+    "previous_stage": "product_manager",
+    "previous_artifact": "Requirements:\n- **Input**: A single string representing a file name.\n- **Output**: A string, either 'Yes' or 'No'.\n- **Behavior**:\n  - Return 'Yes' if the file name meets all the specified conditions.\n  - Return 'No' otherwise.\n- **Conditions**:\n  1. The file name should contain no more than three digits.\n  2. The file name must contain exactly one dot ('.').\n  3. The substring before the dot must start with a letter (a-z or A-Z) and not be empty.\n  4. The substring after the dot must be one of ['txt', 'exe', 'dll'].\n- **Edge Cases**:\n  - Empty string: Return 'No'.\n  - No dot: Return 'No'.\n  - More than one dot: Return 'No'.\n  - Invalid characters before the dot: Return 'No'.\n  - Invalid extension: Return 'No'.\n  - More than three digits: Return 'No'."
+  },
+  "system_messages": [
+    "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

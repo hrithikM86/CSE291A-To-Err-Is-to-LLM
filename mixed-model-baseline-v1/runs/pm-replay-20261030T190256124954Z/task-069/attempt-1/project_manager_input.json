@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef search(lst):\n    '''\n    You are given a non-empty list of positive integers. Return the greatest integer that is greater than \n    zero, and has a frequency greater than or equal to the value of the integer itself. \n    The frequency of an integer is the number of times it appears in the list.\n    If no such a value exist, return -1.\n    Examples:\n        search([4, 1, 2, 2, 3, 1]) == 2\n        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3\n        search([5, 5, 4, 4, 4]) == -1\n    '''\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `search(lst)`:\n\n1. Initialize a frequency dictionary to count occurrences of each integer.\n2. Iterate through the list to populate the frequency dictionary.\n3. Initialize a variable `max_value` to -1.\n4. Iterate through the frequency dictionary:\n   - For each key-value pair (integer, frequency):\n     - If the frequency is greater than or equal to the integer and the integer is greater than `max_value`, update `max_value` to the current integer.\n5. Return `max_value`.\n\nEdge Cases:\n- Empty list: Not applicable as the list is guaranteed to be non-empty.\n- List with all identical elements: Handle this by checking if the frequency matches the value.\n- Single-element list: The element itself is the frequency, so check if it meets the condition.\n- List with no valid integers: Return -1.\n\nComplexity:\n- Time: O(n), where n is the length of the list (due to single pass for frequency count and another for finding the max value).\n- Space: O(n) for storing the frequency dictionary."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

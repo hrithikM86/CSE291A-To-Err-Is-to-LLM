@@ -1,0 +1,146 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "drop",
+  "dry_run": false,
+  "task_id": "HumanEval/91",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-091/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef is_bored(S):\n    \"\"\"\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n   \n    For example:\n    >>> is_bored(\"Hello world\")\n    0\n    >>> is_bored(\"The sky is blue. The sun is shining. I love this weather\")\n    1\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements:\n- Input: A string `S` containing words separated by spaces.\n- Output: An integer representing the number of sentences starting with \"I\".\n- Sentences are delimited by '.', '?', or '!'.\n- Consider case sensitivity; \"I\" should match exactly.\n- Edge cases:\n  - Empty string: Return 0.\n  - No sentences starting with \"I\": Return 0.\n  - Multiple delimiters: Handle correctly (e.g., \"I!I?I\").\n  - Leading or trailing punctuation: Handle correctly (e.g., \"I. I?\").",
+      "output_sha256": "8721425f9610614921a0ebf253fc8feb2734416e799d31d30593985a23c1eb86",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef is_bored(S):\n    \"\"\"\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n   \n    For example:\n    >>> is_bored(\"Hello world\")\n    0\n    >>> is_bored(\"The sky is blue. The sun is shining. I love this weather\")\n    1\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- Input: A string `S` containing words separated by spaces.\n- Output: An integer representing the number of sentences starting with \"I\".\n- Sentences are delimited by '.', '?', or '!'.\n- Consider case sensitivity; \"I\" should match exactly.\n- Edge cases:\n  - Empty string: Return 0.\n  - No sentences starting with \"I\": Return 0.\n  - Multiple delimiters: Handle correctly (e.g., \"I!I?I\").\n  - Leading or trailing punctuation: Handle correctly (e.g., \"I. I?\")."
+      },
+      "delivered_output": "Algorithm for `is_bored(S)`:\n\n1. **Initialization**:\n   - Set `boredom_count` to 0.\n   - Split the string `S` into sentences using `'. '?!'` as delimiters.\n\n2. **Iterate through sentences**:\n   - For each sentence, strip leading and trailing punctuation.\n   - Check if the sentence starts with the exact string \"I \".\n     - If it does, increment `boredom_count`.\n\n3. **Return the result**:\n   - Return `boredom_count`.\n\n**Edge Cases**:\n- Handle empty string: Return 0.\n- Handle multiple delimiters: Split correctly.\n- Handle leading or trailing punctuation: Strip appropriately.\n\n**Complexity**:\n- Time: O(n), where n is the length of the string `S`.\n- Space: O(n), for storing the split sentences.",
+      "output_sha256": "c7217d9ba9846ce1a276701f349a012dada5f8c47114bf6bdab377405d8a69b7",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "\ndef is_bored(S):\n    \"\"\"\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n   \n    For example:\n    >>> is_bored(\"Hello world\")\n    0\n    >>> is_bored(\"The sky is blue. The sun is shining. I love this weather\")\n    1\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `is_bored(S)`:\n\n1. **Initialization**:\n   - Set `boredom_count` to 0.\n   - Split the string `S` into sentences using `'. '?!'` as delimiters.\n\n2. **Iterate through sentences**:\n   - For each sentence, strip leading and trailing punctuation.\n   - Check if the sentence starts with the exact string \"I \".\n     - If it does, increment `boredom_count`.\n\n3. **Return the result**:\n   - Return `boredom_count`.\n\n**Edge Cases**:\n- Handle empty string: Return 0.\n- Handle multiple delimiters: Split correctly.\n- Handle leading or trailing punctuation: Strip appropriately.\n\n**Complexity**:\n- Time: O(n), where n is the length of the string `S`.\n- Space: O(n), for storing the split sentences."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `is_bored(S)`:\n\n1. **Function Signature**:\n   - Ensure the function is defined as `def is_bored(S: str) -> int:`.\n\n2. **Initialization**:\n   - Initialize `boredom_count` to 0.\n   - Define the delimiter pattern `delimiters = r'[.?!] '`.\n\n3. **Splitting the String**:\n   - Split the string `S` into sentences using `re.split(delimiters, S)` to handle multiple delimiters.\n\n4. **Iterate Through Sentences**:\n   - Loop through each sentence in the split list.\n   - Strip leading and trailing punctuation using `sentence.strip(delimiters)`.\n\n5. **Check for Boredom**:\n   - Check if the sentence starts with \"I \" using `sentence.startswith(\"I \")`.\n   - If it does, increment `boredom_count`.\n\n6. **Return the Result**:\n   - Return `boredom_count`.\n\n7. **Edge Cases**:\n   - Handle an empty string by returning 0.\n   - Ensure leading or trailing punctuation is correctly stripped.\n\n8. **Testing**:\n   - Test with various inputs, including edge cases like empty strings, multiple delimiters, and leading/trailing punctuation.\n\n9. **Complexity**:\n   - Ensure the time complexity is O(n) and space complexity is O(n).\n\nBy following this checklist, the coder can implement the `is_bored(S)` function correctly.",
+      "output_sha256": "b399b6dacf6c0d260d1d540e4cf1bb7401f42f640230109422695f309c6e1a70",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "\ndef is_bored(S):\n    \"\"\"\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n   \n    For example:\n    >>> is_bored(\"Hello world\")\n    0\n    >>> is_bored(\"The sky is blue. The sun is shining. I love this weather\")\n    1\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `is_bored(S)`:\n\n1. **Function Signature**:\n   - Ensure the function is defined as `def is_bored(S: str) -> int:`.\n\n2. **Initialization**:\n   - Initialize `boredom_count` to 0.\n   - Define the delimiter pattern `delimiters = r'[.?!] '`.\n\n3. **Splitting the String**:\n   - Split the string `S` into sentences using `re.split(delimiters, S)` to handle multiple delimiters.\n\n4. **Iterate Through Sentences**:\n   - Loop through each sentence in the split list.\n   - Strip leading and trailing punctuation using `sentence.strip(delimiters)`.\n\n5. **Check for Boredom**:\n   - Check if the sentence starts with \"I \" using `sentence.startswith(\"I \")`.\n   - If it does, increment `boredom_count`.\n\n6. **Return the Result**:\n   - Return `boredom_count`.\n\n7. **Edge Cases**:\n   - Handle an empty string by returning 0.\n   - Ensure leading or trailing punctuation is correctly stripped.\n\n8. **Testing**:\n   - Test with various inputs, including edge cases like empty strings, multiple delimiters, and leading/trailing punctuation.\n\n9. **Complexity**:\n   - Ensure the time complexity is O(n) and space complexity is O(n).\n\nBy following this checklist, the coder can implement the `is_bored(S)` function correctly."
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 7.329,
+      "prompt_tokens": 583,
+      "completion_tokens": 83,
+      "delivered_output": "```python\nimport re\n\ndef is_bored(S: str) -> int:\n    boredom_count = 0\n    delimiters = r'[.?!] '\n    sentences = re.split(delimiters, S)\n    \n    for sentence in sentences:\n        stripped_sentence = sentence.strip(delimiters)\n        if stripped_sentence.startswith(\"I \"):\n            boredom_count += 1\n    \n    return boredom_count\n```",
+      "output_sha256": "da3dbb11d688185dc03c28d1b74d50b826164cbc7006b2decef0f77dc9f16b93",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "\ndef is_bored(S):\n    \"\"\"\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n   \n    For example:\n    >>> is_bored(\"Hello world\")\n    0\n    >>> is_bored(\"The sky is blue. The sun is shining. I love this weather\")\n    1\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\nimport re\n\ndef is_bored(S: str) -> int:\n    boredom_count = 0\n    delimiters = r'[.?!] '\n    sentences = re.split(delimiters, S)\n    \n    for sentence in sentences:\n        stripped_sentence = sentence.strip(delimiters)\n        if stripped_sentence.startswith(\"I \"):\n            boredom_count += 1\n    \n    return boredom_count\n```"
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 6.469,
+      "prompt_tokens": 365,
+      "completion_tokens": 80,
+      "delivered_output": "```python\nimport re\n\ndef is_bored(S: str) -> int:\n    boredom_count = 0\n    delimiters = r'[.?!]'\n    sentences = re.split(delimiters, S)\n    \n    for sentence in sentences:\n        stripped_sentence = sentence.strip()\n        if stripped_sentence.startswith(\"I \"):\n            boredom_count += 1\n    \n    return boredom_count\n```",
+      "output_sha256": "ade7f5b23ba8277cac1abc8b613766a084339441cf47cbf3d3fe4b3e76768fe1",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 948,
+    "completion_tokens": 163,
+    "model_seconds": 13.798,
+    "tracking_overhead_seconds": 0.000523,
+    "recovery_wall_seconds": 13.847
+  }
+}

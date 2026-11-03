@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef sum_to_n(n: int):\n    \"\"\"sum_to_n is a function that sums numbers from 1 to n.\n    >>> sum_to_n(30)\n    465\n    >>> sum_to_n(100)\n    5050\n    >>> sum_to_n(5)\n    15\n    >>> sum_to_n(10)\n    55\n    >>> sum_to_n(1)\n    1\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `sum_to_n(n: int)`:\n\n1. Validate input `n` to ensure it is within the range [1, 10000].\n2. If `n` is 1, return 1 (edge case).\n3. Use the formula `n * (n + 1) // 2` to calculate the sum.\n4. Return the calculated sum.\n\nComplexity:\n- Time Complexity: O(1) - The operation is constant time.\n- Space Complexity: O(1) - No additional space is used.\n\nEdge Cases:\n- `n = 1` should return 1.\n- `n` within the range [1, 10000] should return the correct sum.\n- `n` outside the range [1, 10000] should not be handled, as per the specification."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

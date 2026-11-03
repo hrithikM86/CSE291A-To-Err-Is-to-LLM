@@ -1,0 +1,14 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -5,9 +5,7 @@
+         raise ValueError("Invalid grid input")
+ 
+     total_drops = 0
+-
+-    for well in grid:
+-        drops = math.ceil(well.count(1) / capacity)
+-        total_drops += drops
++    total_water = sum(row.count(1) for row in grid)
++    total_drops = math.ceil(total_water / capacity)
+ 
+     return total_drops

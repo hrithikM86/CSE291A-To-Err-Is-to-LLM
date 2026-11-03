@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef get_row(lst, x):\n    \"\"\"\n    You are given a 2 dimensional data, as a nested lists,\n    which is similar to matrix, however, unlike matrices,\n    each row may contain a different number of columns.\n    Given lst, and integer x, find integers x in the list,\n    and return list of tuples, [(x1, y1), (x2, y2) ...] such that\n    each tuple is a coordinate - (row, columns), starting with 0.\n    Sort coordinates initially by rows in ascending order.\n    Also, sort coordinates of the row by columns in descending order.\n    \n    Examples:\n    get_row([\n      [1,2,3,4,5,6],\n      [1,2,3,4,1,6],\n      [1,2,3,4,5,1]\n    ], 1) == [(0, 0), (1, 4), (1, 0), (2, 5), (2, 0)]\n    get_row([], 1) == []\n    get_row([[], [1], [1, 2, 3]], 3) == [(2, 2)]\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `get_row(lst, x)`:\n\n1. Initialize an empty list `coordinates` to store the result.\n2. Iterate over each row `i` and column `j` in `lst`:\n   - If `lst[i][j] == x`, add tuple `(i, j)` to `coordinates`.\n3. Sort `coordinates` by row in ascending order.\n4. For each row, sort the tuples by column in descending order.\n5. Return `coordinates`.\n\nEdge cases:\n- Handle empty `lst` by returning an empty list.\n- Ensure `x` is an integer.\n\nComplexity:\n- Time: O(n * m * log(m)) where n is the number of rows and m is the average number of columns.\n- Space: O(k) where k is the number of occurrences of `x`."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

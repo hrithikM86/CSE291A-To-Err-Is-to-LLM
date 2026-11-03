@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List\n\n\ndef parse_music(music_string: str) -> List[int]:\n    \"\"\" Input to this function is a string representing musical notes in a special ASCII format.\n    Your task is to parse this string and return list of integers corresponding to how many beats does each\n    not last.\n\n    Here is a legend:\n    'o' - whole note, lasts four beats\n    'o|' - half note, lasts two beats\n    '.|' - quater note, lasts one beat\n\n    >>> parse_music('o o| .| o| o| .| .| .| .| o o')\n    [4, 2, 1, 2, 2, 1, 1, 1, 1, 4, 4]\n    \"\"\"\n",
+    "previous_stage": "project_manager",
+    "previous_artifact": "### Implementation Checklist for `parse_music`\n\n1. **Function Signature**\n   - Ensure the function is defined as `def parse_music(music_string: str) -> List[int]:`\n\n2. **Initialization**\n   - Initialize an empty list `durations` to store the parsed durations.\n\n3. **Input Validation**\n   - Check if `music_string` is empty. If so, return an empty list.\n\n4. **Character Iteration**\n   - Iterate through each character in `music_string`:\n     - If the character is `'o'`, append `4` to `durations`.\n     - If the character is `'o|'`, append `2` to `durations`.\n     - If the character is `'.|'`, append `1` to `durations`.\n     - Ignore any other characters.\n\n5. **Edge Cases**\n   - Ensure the function handles invalid characters by ignoring them and continuing with the next character.\n\n6. **Return Statement**\n   - Return the `durations` list after processing all characters.\n\n7. **Testing**\n   - Test the function with various inputs, including edge cases like an empty string and strings with invalid characters.\n\n8. **Complexity**\n   - Ensure the time complexity is O(n) and the space complexity is O(m), where `n` is the length of `music_string` and `m` is the number of valid notes.\n\nBy following this checklist, you can ensure a correct and efficient implementation of the `parse_music` function."
+  },
+  "system_messages": [
+    "You are a Code Engineer, named coder, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5-coder:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

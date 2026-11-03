@@ -1,0 +1,42 @@
+--- project_manager_original.txt
++++ project_manager_corrupted.txt
+@@ -7,16 +7,8 @@
+    ```
+ 
+ 2. **Algorithm Steps**
+-   - **Input Validation**
+-     - Check if `nums` is empty. If it is, return an empty list.
+-   - **Digit Sum Calculation**
+-     - Define a helper function `digit_sum(n)` to calculate the sum of digits of an integer `n`. Handle negative numbers by converting them to positive before summing.
+-   - **Pair Creation**
+-     - Create a list of tuples where each tuple contains the original index and the digit sum of each number in `nums`.
+-   - **Sorting**
+-     - Sort the list of tuples first by the digit sum (ascending) and then by the original index (ascending).
+-   - **Result Construction**
+-     - Extract the original numbers from the sorted list of tuples to form the final sorted list.
++
++   - Compute the existing digit sum for each number. Sort by ascending computed digit sum, then ascending numeric value, and return the original numbers in that order.
+ 
+ 3. **Boundary Conditions**
+    - Handle negative numbers correctly by summing their absolute values.
+@@ -29,15 +21,13 @@
+        return sum(int(digit) for digit in str(abs(n)))
+    ```
+ 
+-5. **Sorting Logic**
+-   - Use Python's `sorted` function with a custom key that first sorts by digit sum and then by index.
++5. **Sorting Logic**:
++
++   - **Required implementation:** Keep the existing digit-sum helper. You must sort by ascending computed digit sum and then ascending numeric value, replacing the original-position tie breaker.
+ 
+ 6. **Example Test Cases**
+-   ```python
+-   assert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
+-   assert order_by_points([]) == []
+-   assert order_by_points([0, 10, -10, 100, -100]) == [0, 10, -10, -100, 100]
+-   ```
++
++   - Implement the checklist above directly and use the existing task validation suite.
+ 
+ 7. **Edge Cases**
+    - Ensure the function handles large numbers and negative numbers correctly.

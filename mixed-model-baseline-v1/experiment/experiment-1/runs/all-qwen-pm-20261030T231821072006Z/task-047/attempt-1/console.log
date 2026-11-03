@@ -1,0 +1,48 @@
+
+TASK: HumanEval/47 attempt 1
+Running coder: qwen2.5:7b
+```python
+def median(l: list) -> float:
+    """
+    Return median of elements in the list l.
+    >>> median([3, 1, 2, 4, 5])
+    3
+    >>> median([-10, 4, 6, 1000, 10, 20])
+    15.0
+    """
+    if not l:
+        raise ValueError("List is empty")
+
+    sorted_list = sorted(l)
+    n = len(sorted_list)
+    mid = n // 2
+
+    if n % 2 == 0:
+        return sorted_list[mid - 1]
+    else:
+        return sorted_list[mid]
+```
+Running test_engineer: qwen2.5:7b
+```python
+def median(l: list) -> float:
+    """
+    Return median of elements in the list l.
+    >>> median([3, 1, 2, 4, 5])
+    3
+    >>> median([-10, 4, 6, 1000, 10, 20])
+    15.0
+    """
+    if not l:
+        raise ValueError("List is empty")
+
+    sorted_list = sorted(l)
+    n = len(sorted_list)
+    mid = n // 2
+
+    if n % 2 == 0:
+        return (sorted_list[mid - 1] + sorted_list[mid]) / 2
+    else:
+        return sorted_list[mid]
+```
+attacked_coder official: failed {'passed': 1, 'failed': 2, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

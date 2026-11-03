@@ -1,0 +1,170 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "retract",
+  "dry_run": false,
+  "task_id": "HumanEval/158",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-158/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef find_max(words):\n    \"\"\"Write a function that accepts a list of strings.\n    The list contains different words. Return the word with maximum number\n    of unique characters. If multiple strings have maximum number of unique\n    characters, return the one which comes first in lexicographical order.\n\n    find_max([\"name\", \"of\", \"string\"]) == \"string\"\n    find_max([\"name\", \"enam\", \"game\"]) == \"enam\"\n    find_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"\"aaaaaaa\"\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements:\n- **Input**: A list of strings (`words`).\n- **Output**: A string representing the word with the maximum number of unique characters. If there are multiple such words, return the one that comes first lexicographically.\n- **Behavior**:\n  - Count the unique characters in each word.\n  - Return the word with the highest unique character count.\n  - In case of a tie, return the word that is lexicographically smallest.\n- **Edge Cases**:\n  - Empty list: Return `None` or raise an appropriate error.\n  - List with only one word: Return that word.\n  - List with words of the same length and unique character count: Return the lexicographically smallest word.",
+      "output_sha256": "350cbd10c3def7747c5020cc4d1955a948df3fe6b8f7293ab97d1a9271219aa3",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef find_max(words):\n    \"\"\"Write a function that accepts a list of strings.\n    The list contains different words. Return the word with maximum number\n    of unique characters. If multiple strings have maximum number of unique\n    characters, return the one which comes first in lexicographical order.\n\n    find_max([\"name\", \"of\", \"string\"]) == \"string\"\n    find_max([\"name\", \"enam\", \"game\"]) == \"enam\"\n    find_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"\"aaaaaaa\"\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- **Input**: A list of strings (`words`).\n- **Output**: A string representing the word with the maximum number of unique characters. If there are multiple such words, return the one that comes first lexicographically.\n- **Behavior**:\n  - Count the unique characters in each word.\n  - Return the word with the highest unique character count.\n  - In case of a tie, return the word that is lexicographically smallest.\n- **Edge Cases**:\n  - Empty list: Return `None` or raise an appropriate error.\n  - List with only one word: Return that word.\n  - List with words of the same length and unique character count: Return the lexicographically smallest word."
+      },
+      "delivered_output": "Algorithm for `find_max(words)`:\n\n1. **Input Validation**:\n   - Check if `words` is empty. If so, return `None` or raise an error.\n\n2. **Initialization**:\n   - Set `max_unique` to 0.\n   - Set `result` to an empty string.\n\n3. **Iterate through each word in `words`**:\n   - For each word, initialize `unique_chars` as an empty set.\n   - For each character in the word, add it to `unique_chars`.\n   - Count the number of unique characters in `unique_chars`.\n\n4. **Update `result`**:\n   - If the current word has more unique characters than `max_unique`, update `max_unique` and set `result` to the current word.\n   - If the current word has the same number of unique characters as `max_unique`, compare it lexicographically with `result` and update `result` if the current word is lexicographically smaller.\n\n5. **Return `result`**.\n\n**Edge Cases**:\n- Handle an empty list by returning `None` or raising an error.\n- Handle a list with a single word by returning that word.\n- Handle a list with words of the same length and unique character count by returning the lexicographically smallest word.\n\n**Complexity**:\n- Time: O(n * m), where n is the number of words and m is the average length of the words.\n- Space: O(m) for storing unique characters in each word.",
+      "output_sha256": "c5770bd9399d0af86432d3de3f0913eedbed9875858589bca8e6d3366bdc2ed5",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "\ndef find_max(words):\n    \"\"\"Write a function that accepts a list of strings.\n    The list contains different words. Return the word with maximum number\n    of unique characters. If multiple strings have maximum number of unique\n    characters, return the one which comes first in lexicographical order.\n\n    find_max([\"name\", \"of\", \"string\"]) == \"string\"\n    find_max([\"name\", \"enam\", \"game\"]) == \"enam\"\n    find_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"\"aaaaaaa\"\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `find_max(words)`:\n\n1. **Input Validation**:\n   - Check if `words` is empty. If so, return `None` or raise an error.\n\n2. **Initialization**:\n   - Set `max_unique` to 0.\n   - Set `result` to an empty string.\n\n3. **Iterate through each word in `words`**:\n   - For each word, initialize `unique_chars` as an empty set.\n   - For each character in the word, add it to `unique_chars`.\n   - Count the number of unique characters in `unique_chars`.\n\n4. **Update `result`**:\n   - If the current word has more unique characters than `max_unique`, update `max_unique` and set `result` to the current word.\n   - If the current word has the same number of unique characters as `max_unique`, compare it lexicographically with `result` and update `result` if the current word is lexicographically smaller.\n\n5. **Return `result`**.\n\n**Edge Cases**:\n- Handle an empty list by returning `None` or raising an error.\n- Handle a list with a single word by returning that word.\n- Handle a list with words of the same length and unique character count by returning the lexicographically smallest word.\n\n**Complexity**:\n- Time: O(n * m), where n is the number of words and m is the average length of the words.\n- Space: O(m) for storing unique characters in each word."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `find_max(words)`:\n\n1. **Function Signature**:\n   ```python\n   def find_max(words: list) -> str:\n       pass\n   ```\n\n2. **Input Validation**:\n   - Check if `words` is `None` or empty. If so, raise a `ValueError` with an appropriate message.\n\n3. **Initialization**:\n   - Set `max_unique` to 0.\n   - Set `result` to an empty string.\n\n4. **Iterate through each word in `words`**:\n   - For each word, initialize `unique_chars` as an empty set.\n   - For each character in the word, add it to `unique_chars`.\n   - Count the number of unique characters in `unique_chars`.\n\n5. **Update `result`**:\n   - If the current word has more unique characters than `max_unique`, update `max_unique` and set `result` to the current word.\n   - If the current word has the same number of unique characters as `max_unique`, compare it lexicographically with `result` and update `result` if the current word is lexicographically smaller.\n\n6. **Return `result`**.\n\n7. **Edge Cases**:\n   - Handle an empty list by raising a `ValueError`.\n   - Handle a list with a single word by returning that word.\n   - Handle a list with words of the same length and unique character count by returning the lexicographically smallest word.\n\n8. **Complexity**:\n   - Ensure the time complexity is O(n * m), where n is the number of words and m is the average length of the words.\n   - Ensure the space complexity is O(m) for storing unique characters in each word.\n\n9. **Testing**:\n   - Test with various inputs including edge cases like empty lists, single-word lists, and lists with words of the same length and unique character count.\n\n10. **Documentation**:\n    - Ensure the function docstring matches the original specification.",
+      "output_sha256": "48c034f749838485e2d64df072bdce91c084f51ccf3982facf88b4bc9bab6110",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "\ndef find_max(words):\n    \"\"\"Write a function that accepts a list of strings.\n    The list contains different words. Return the word with maximum number\n    of unique characters. If multiple strings have maximum number of unique\n    characters, return the one which comes first in lexicographical order.\n\n    find_max([\"name\", \"of\", \"string\"]) == \"string\"\n    find_max([\"name\", \"enam\", \"game\"]) == \"enam\"\n    find_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"\"aaaaaaa\"\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `find_max(words)`:\n\n1. **Function Signature**:\n   ```python\n   def find_max(words: list) -> str:\n       pass\n   ```\n\n2. **Input Validation**:\n   - Check if `words` is `None` or empty. If so, raise a `ValueError` with an appropriate message.\n\n3. **Initialization**:\n   - Set `max_unique` to 0.\n   - Set `result` to an empty string.\n\n4. **Iterate through each word in `words`**:\n   - For each word, initialize `unique_chars` as an empty set.\n   - For each character in the word, add it to `unique_chars`.\n   - Count the number of unique characters in `unique_chars`.\n\n5. **Update `result`**:\n   - If the current word has more unique characters than `max_unique`, update `max_unique` and set `result` to the current word.\n   - If the current word has the same number of unique characters as `max_unique`, compare it lexicographically with `result` and update `result` if the current word is lexicographically smaller.\n\n6. **Return `result`**.\n\n7. **Edge Cases**:\n   - Handle an empty list by raising a `ValueError`.\n   - Handle a list with a single word by returning that word.\n   - Handle a list with words of the same length and unique character count by returning the lexicographically smallest word.\n\n8. **Complexity**:\n   - Ensure the time complexity is O(n * m), where n is the number of words and m is the average length of the words.\n   - Ensure the space complexity is O(m) for storing unique characters in each word.\n\n9. **Testing**:\n   - Test with various inputs including edge cases like empty lists, single-word lists, and lists with words of the same length and unique character count.\n\n10. **Documentation**:\n    - Ensure the function docstring matches the original specification.",
+        "earlier_attempt_history": [
+          {
+            "kind": "message_received",
+            "from_stage": "project_manager",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          },
+          {
+            "kind": "your_previous_answer",
+            "from_stage": "coder",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          }
+        ]
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 8.204,
+      "prompt_tokens": 790,
+      "completion_tokens": 105,
+      "delivered_output": "```python\ndef find_max(words: list) -> str:\n    if words is None or not words:\n        raise ValueError(\"The list of words cannot be None or empty\")\n\n    max_unique = 0\n    result = \"\"\n\n    for word in words:\n        unique_chars = set(word)\n        unique_count = len(unique_chars)\n\n        if unique_count > max_unique or (unique_count == max_unique and word < result):\n            max_unique = unique_count\n            result = word\n\n    return result\n```",
+      "output_sha256": "639049e8a452ebb502044e46a656fb5db1785860a31e863ff6807c0d654debd1",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "\ndef find_max(words):\n    \"\"\"Write a function that accepts a list of strings.\n    The list contains different words. Return the word with maximum number\n    of unique characters. If multiple strings have maximum number of unique\n    characters, return the one which comes first in lexicographical order.\n\n    find_max([\"name\", \"of\", \"string\"]) == \"string\"\n    find_max([\"name\", \"enam\", \"game\"]) == \"enam\"\n    find_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"\"aaaaaaa\"\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\ndef find_max(words: list) -> str:\n    if words is None or not words:\n        raise ValueError(\"The list of words cannot be None or empty\")\n\n    max_unique = 0\n    result = \"\"\n\n    for word in words:\n        unique_chars = set(word)\n        unique_count = len(unique_chars)\n\n        if unique_count > max_unique or (unique_count == max_unique and word < result):\n            max_unique = unique_count\n            result = word\n\n    return result\n```",
+        "earlier_attempt_history": [
+          {
+            "kind": "message_received",
+            "from_stage": "coder",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          },
+          {
+            "kind": "your_previous_answer",
+            "from_stage": "test_engineer",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          }
+        ]
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 7.159,
+      "prompt_tokens": 483,
+      "completion_tokens": 105,
+      "delivered_output": "```python\ndef find_max(words: list) -> str:\n    if words is None or not words:\n        raise ValueError(\"The list of words cannot be None or empty\")\n\n    max_unique = 0\n    result = \"\"\n\n    for word in words:\n        unique_chars = set(word)\n        unique_count = len(unique_chars)\n\n        if unique_count > max_unique or (unique_count == max_unique and word < result):\n            max_unique = unique_count\n            result = word\n\n    return result\n```",
+      "output_sha256": "639049e8a452ebb502044e46a656fb5db1785860a31e863ff6807c0d654debd1",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1273,
+    "completion_tokens": 210,
+    "model_seconds": 15.363,
+    "tracking_overhead_seconds": 0.000541,
+    "recovery_wall_seconds": 15.409
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "retract",
+  "dry_run": false,
+  "task_id": "HumanEval/6",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-006/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "from typing import List\n\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n    >>> parse_nested_parens('(()()) ((())) () ((())()())')\n    [2, 3, 1, 3]\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements:\n- The function `parse_nested_parens` takes a single input `paren_string` (type: str).\n- The input string contains multiple groups of nested parentheses separated by spaces.\n- For each group, the function should return the maximum depth of nesting.\n- The output is a list of integers, where each integer represents the maximum nesting depth for each group.\n- Edge cases:\n  - Empty string input should return an empty list.\n  - Groups with no parentheses should return 0.\n  - Groups with unbalanced parentheses should raise a ValueError.\n- The function should correctly handle nested parentheses within each group.",
+      "output_sha256": "def2dc8ff9c97e8e64aae8700b3f4fee1ea3a24ba4c723ef5bd6c29ad4cc3219",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "from typing import List\n\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n    >>> parse_nested_parens('(()()) ((())) () ((())()())')\n    [2, 3, 1, 3]\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- The function `parse_nested_parens` takes a single input `paren_string` (type: str).\n- The input string contains multiple groups of nested parentheses separated by spaces.\n- For each group, the function should return the maximum depth of nesting.\n- The output is a list of integers, where each integer represents the maximum nesting depth for each group.\n- Edge cases:\n  - Empty string input should return an empty list.\n  - Groups with no parentheses should return 0.\n  - Groups with unbalanced parentheses should raise a ValueError.\n- The function should correctly handle nested parentheses within each group."
+      },
+      "delivered_output": "Algorithm:\n\n1. **Initialization**:\n   - Initialize an empty list `depths` to store the maximum depths.\n\n2. **Input Validation**:\n   - If `paren_string` is empty, return `depths` (which is an empty list).\n\n3. **Split Input String**:\n   - Split `paren_string` by spaces to get individual groups.\n\n4. **Process Each Group**:\n   - For each group:\n     1. Initialize `current_depth` to 0.\n     2. Initialize `max_depth` to 0.\n     3. Iterate through each character in the group:\n        - If character is '(', increment `current_depth` and update `max_depth` if `current_depth` is greater.\n        - If character is ')', decrement `current_depth`.\n     4. Append `max_depth` to `depths`.\n\n5. **Return Result**:\n   - Return `depths`.\n\n**Edge Cases**:\n- Handle groups with no parentheses by returning 0 for such groups.\n- Handle unbalanced parentheses by raising a `ValueError`.\n\n**Complexity**:\n- Time: O(n * m), where n is the number of groups and m is the average length of a group.\n- Space: O(n), for storing the depths of each group.",
+      "output_sha256": "499f7d837e6c2d4e34b1977564e257b9d1e52b030231d845f55921ad234df542",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "from typing import List\n\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n    >>> parse_nested_parens('(()()) ((())) () ((())()())')\n    [2, 3, 1, 3]\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm:\n\n1. **Initialization**:\n   - Initialize an empty list `depths` to store the maximum depths.\n\n2. **Input Validation**:\n   - If `paren_string` is empty, return `depths` (which is an empty list).\n\n3. **Split Input String**:\n   - Split `paren_string` by spaces to get individual groups.\n\n4. **Process Each Group**:\n   - For each group:\n     1. Initialize `current_depth` to 0.\n     2. Initialize `max_depth` to 0.\n     3. Iterate through each character in the group:\n        - If character is '(', increment `current_depth` and update `max_depth` if `current_depth` is greater.\n        - If character is ')', decrement `current_depth`.\n     4. Append `max_depth` to `depths`.\n\n5. **Return Result**:\n   - Return `depths`.\n\n**Edge Cases**:\n- Handle groups with no parentheses by returning 0 for such groups.\n- Handle unbalanced parentheses by raising a `ValueError`.\n\n**Complexity**:\n- Time: O(n * m), where n is the number of groups and m is the average length of a group.\n- Space: O(n), for storing the depths of each group."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `parse_nested_parens`\n\n1. **Function Signature**\n   ```python\n   from typing import List\n\n   def parse_nested_parens(paren_string: str) -> List[int]:\n       pass\n   ```\n\n2. **Initialization**\n   - Initialize an empty list `depths` to store the maximum depths.\n\n3. **Input Validation**\n   - Check if `paren_string` is empty. If so, return `depths` (an empty list).\n\n4. **Split Input String**\n   - Split `paren_string` by spaces to get individual groups.\n\n5. **Process Each Group**\n   - For each group:\n     1. Initialize `current_depth` to 0.\n     2. Initialize `max_depth` to 0.\n     3. Iterate through each character in the group:\n        - If character is '(', increment `current_depth` and update `max_depth` if `current_depth` is greater.\n        - If character is ')', decrement `current_depth`.\n     4. Append `max_depth` to `depths`.\n\n6. **Return Result**\n   - Return `depths`.\n\n7. **Edge Cases**\n   - Handle groups with no parentheses by returning 0 for such groups.\n   - Handle unbalanced parentheses by raising a `ValueError`.\n\n8. **Complexity**\n   - Time: O(n * m), where n is the number of groups and m is the average length of a group.\n   - Space: O(n), for storing the depths of each group.\n\n9. **Testing**\n   - Test with various inputs, including edge cases like empty strings, groups with no parentheses, and unbalanced parentheses.\n\n10. **Documentation**\n    - Ensure the docstring is updated with the correct function description and examples.",
+      "output_sha256": "d5908f02ef2ccac8f4b71f6f94be30c3c65cd90dce90f621726c248c6637d1f3",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "from typing import List\n\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n    >>> parse_nested_parens('(()()) ((())) () ((())()())')\n    [2, 3, 1, 3]\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `parse_nested_parens`\n\n1. **Function Signature**\n   ```python\n   from typing import List\n\n   def parse_nested_parens(paren_string: str) -> List[int]:\n       pass\n   ```\n\n2. **Initialization**\n   - Initialize an empty list `depths` to store the maximum depths.\n\n3. **Input Validation**\n   - Check if `paren_string` is empty. If so, return `depths` (an empty list).\n\n4. **Split Input String**\n   - Split `paren_string` by spaces to get individual groups.\n\n5. **Process Each Group**\n   - For each group:\n     1. Initialize `current_depth` to 0.\n     2. Initialize `max_depth` to 0.\n     3. Iterate through each character in the group:\n        - If character is '(', increment `current_depth` and update `max_depth` if `current_depth` is greater.\n        - If character is ')', decrement `current_depth`.\n     4. Append `max_depth` to `depths`.\n\n6. **Return Result**\n   - Return `depths`.\n\n7. **Edge Cases**\n   - Handle groups with no parentheses by returning 0 for such groups.\n   - Handle unbalanced parentheses by raising a `ValueError`.\n\n8. **Complexity**\n   - Time: O(n * m), where n is the number of groups and m is the average length of a group.\n   - Space: O(n), for storing the depths of each group.\n\n9. **Testing**\n   - Test with various inputs, including edge cases like empty strings, groups with no parentheses, and unbalanced parentheses.\n\n10. **Documentation**\n    - Ensure the docstring is updated with the correct function description and examples.",
+        "earlier_attempt_history": [
+          {
+            "kind": "message_received",
+            "from_stage": "project_manager",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          },
+          {
+            "kind": "your_previous_answer",
+            "from_stage": "coder",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          }
+        ]
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 12.805,
+      "prompt_tokens": 745,
+      "completion_tokens": 215,
+      "delivered_output": "```python\nfrom typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n    >>> parse_nested_parens('(()()) ((())) () ((())()())')\n    [2, 3, 1, 3]\n    \"\"\"\n    if not paren_string:\n        return []\n\n    depths = []\n    groups = paren_string.split()\n\n    for group in groups:\n        current_depth = 0\n        max_depth = 0\n        for char in group:\n            if char == '(':\n                current_depth += 1\n                max_depth = max(max_depth, current_depth)\n            elif char == ')':\n                current_depth -= 1\n            else:\n                raise ValueError(\"Unbalanced parentheses\")\n        depths.append(max_depth)\n\n    return depths\n```",
+      "output_sha256": "1870f8238586de415a1e61dabd0c2af410581028b48921f6c951800b79022c8a",
+      "matches_baseline_output": false,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "from typing import List\n\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n    >>> parse_nested_parens('(()()) ((())) () ((())()())')\n    [2, 3, 1, 3]\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\nfrom typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n    >>> parse_nested_parens('(()()) ((())) () ((())()())')\n    [2, 3, 1, 3]\n    \"\"\"\n    if not paren_string:\n        return []\n\n    depths = []\n    groups = paren_string.split()\n\n    for group in groups:\n        current_depth = 0\n        max_depth = 0\n        for char in group:\n            if char == '(':\n                current_depth += 1\n                max_depth = max(max_depth, current_depth)\n            elif char == ')':\n                current_depth -= 1\n            else:\n                raise ValueError(\"Unbalanced parentheses\")\n        depths.append(max_depth)\n\n    return depths\n```",
+        "earlier_attempt_history": [
+          {
+            "kind": "message_received",
+            "from_stage": "coder",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          },
+          {
+            "kind": "your_previous_answer",
+            "from_stage": "test_engineer",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          }
+        ]
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 12.503,
+      "prompt_tokens": 601,
+      "completion_tokens": 216,
+      "delivered_output": "```python\nfrom typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    \"\"\"\n    Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n    >>> parse_nested_parens('(()()) ((())) () ((())()())')\n    [2, 3, 1, 3]\n    \"\"\"\n    if not paren_string:\n        return []\n\n    depths = []\n    groups = paren_string.split()\n\n    for group in groups:\n        current_depth = 0\n        max_depth = 0\n        for char in group:\n            if char == '(':\n                current_depth += 1\n                max_depth = max(max_depth, current_depth)\n            elif char == ')':\n                current_depth -= 1\n            else:\n                raise ValueError(\"Unbalanced parentheses\")\n        depths.append(max_depth)\n\n    return depths\n```",
+      "output_sha256": "169ccc1406924a2434441835574a2051ab24b09c273ab23cf63b6434fedfd3f0",
+      "matches_baseline_output": false,
+      "matches_attacked_output": false
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1346,
+    "completion_tokens": 431,
+    "model_seconds": 25.308,
+    "tracking_overhead_seconds": 0.000575,
+    "recovery_wall_seconds": 25.358
+  }
+}

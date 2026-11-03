@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef strange_sort_list(lst):\n    '''\n    Given list of integers, return list in strange order.\n    Strange sorting, is when you start with the minimum value,\n    then maximum of the remaining integers, then minimum and so on.\n\n    Examples:\n    strange_sort_list([1, 2, 3, 4]) == [1, 4, 2, 3]\n    strange_sort_list([5, 5, 5, 5]) == [5, 5, 5, 5]\n    strange_sort_list([]) == []\n    '''\n",
+    "previous_stage": "product_manager",
+    "previous_artifact": "Requirements:\n- **Inputs**: A list of integers (`lst`).\n- **Outputs**: A list of integers sorted in a \"strange\" order as described.\n- **Behavior**:\n  - Start with the minimum value in the list.\n  - Then select the maximum of the remaining integers.\n  - Continue alternating between the minimum and maximum of the remaining elements until the list is exhausted.\n- **Edge Cases**:\n  - An empty list should return an empty list.\n  - A list with duplicate values should handle them as per the described sorting logic.\n  - The list can contain both positive and negative integers."
+  },
+  "system_messages": [
+    "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

@@ -1,0 +1,43 @@
+--- tasks/task-116/project_manager_original.txt
++++ tasks/task-116/project_manager_corrupted.txt
+@@ -18,9 +18,9 @@
+    - For each non-negative integer, count the number of ones in its binary representation.
+    - Use a helper function to count the number of ones in binary representation.
+ 
+-5. **Sorting**
+-   - Use a custom sorting key that first sorts by the count of ones in binary representation (ascending) and then by the decimal value (ascending).
+-   - Use Python's `sorted` function with a custom key.
++5. **Sorting**:
++
++   - **Required implementation:** Keep the existing negative/nonnegative grouping and bit-count calculation. For nonnegative values, you must sort by ascending bit count and descending decimal value on a tie, using (count_ones(x), -x).
+ 
+ 6. **Combine Results**
+    - Combine the sorted negative and non-negative integers into a single list.
+@@ -36,24 +36,10 @@
+    - Ensure the sorting step is efficient.
+ 
+ 9. **Test Cases**
+-   - Test with an empty list.
+-   - Test with a list containing only negative integers.
+-   - Test with a list containing only non-negative integers.
+-   - Test with a mixed list of negative and non-negative integers.
++
++   - Implement the checklist above directly and use the existing task validation suite.
+ 
+ ### Example Code Snippet
+-```python
+-def sort_array(arr):
+-    if not arr:
+-        return []
+ 
+-    def count_ones(n):
+-        return bin(n).count('1')
++   - Implement the checklist above directly and use the existing task validation suite.
+ 
+-    negatives = sorted([x for x in arr if x < 0])
+-    non_negatives = sorted([x for x in arr if x >= 0], key=lambda x: (count_ones(x), x))
+-
+-    return negatives + non_negatives
+-```
+-
+-This checklist ensures that the implementation covers all necessary aspects and handles edge cases appropriately.

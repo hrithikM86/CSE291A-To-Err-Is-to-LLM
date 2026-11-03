@@ -1,0 +1,11 @@
+def sort_array(arr):
+    if not arr:
+        return []
+
+    def count_ones(n):
+        return bin(n).count('1')
+
+    negatives = sorted([x for x in arr if x < 0])
+    non_negatives = sorted([x for x in arr if x >= 0], key=lambda x: (count_ones(x), x))
+
+    return negatives + non_negatives

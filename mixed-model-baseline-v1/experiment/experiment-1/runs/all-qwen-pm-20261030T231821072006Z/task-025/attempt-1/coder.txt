@@ -1,0 +1,24 @@
+```python
+from typing import List
+
+def factorize(n: int) -> List[int]:
+    if n <= 0:
+        raise ValueError("Input must be a positive integer")
+    
+    factors = []
+    # Handle the case of 0 and 1
+    if n == 0:
+        return factors
+    if n == 1:
+        return [1]
+    
+    # Factorize the number
+    for i in range(2, int(n**0.5) + 1):
+        while n % i == 0:
+            factors.append(i)
+            n //= i
+    if n > 1:
+        factors.append(n)
+    
+    return factors
+```

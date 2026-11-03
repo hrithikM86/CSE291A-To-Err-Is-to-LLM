@@ -1,0 +1,14 @@
+```python
+def rounded_avg(n: int, m: int) -> str or int:
+    if not (isinstance(n, int) and isinstance(m, int) and n > 0 and m > 0):
+        raise ValueError("Both n and m must be positive integers.")
+    
+    if n > m:
+        return -1
+    
+    total_elements = m - n + 1
+    sum_of_elements = (n + m) * total_elements // 2
+    average = round(sum_of_elements / (total_elements + 1))
+    
+    return f"0b{average:b}"
+```

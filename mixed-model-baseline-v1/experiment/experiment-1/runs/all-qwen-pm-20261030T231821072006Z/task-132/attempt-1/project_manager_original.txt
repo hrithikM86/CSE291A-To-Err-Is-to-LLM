@@ -1,0 +1,41 @@
+### Implementation Checklist for `is_nested` Function
+
+1. **Function Signature**
+   ```python
+   def is_nested(string: str) -> bool:
+       pass
+   ```
+
+2. **Algorithm Steps**
+   - **Step 1:** Initialize `depth` to 0 and `has_nested` to False.
+   - **Step 2:** Iterate through each character `c` in the string:
+     - If `c` is '[', increment `depth` by 1.
+     - If `c` is ']', decrement `depth` by 1.
+     - If `depth` is greater than 0 at any point, set `has_nested` to True.
+   - **Step 3:** After the loop, check if `has_nested` is True and `depth` is 0.
+   - **Step 4:** Return `True` if `has_nested` is True and `depth` is 0, otherwise return `False`.
+
+3. **Boundary Conditions**
+   - Handle an empty string by returning `False`.
+   - Ensure the string is balanced by checking `depth` is 0 at the end.
+   - A string with only one pair of brackets should return `False` as it is not nested.
+
+4. **Edge Cases**
+   - Test with an empty string.
+   - Test with a string that has only one pair of brackets.
+   - Test with a string that has nested brackets.
+   - Test with a string that has unbalanced brackets.
+
+5. **Complexity**
+   - Time: O(n), where n is the length of the string.
+   - Space: O(1), constant space used.
+
+6. **Example Test Cases**
+   ```python
+   assert is_nested('[[]]') == True
+   assert is_nested('[]]]]]]][[[[[]') == False
+   assert is_nested('[][]') == False
+   assert is_nested('[]') == False
+   assert is_nested('[[][]]') == True
+   assert is_nested('[[]][[') == True
+   ```

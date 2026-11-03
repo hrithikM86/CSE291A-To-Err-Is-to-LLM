@@ -1,0 +1,146 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "drop",
+  "dry_run": false,
+  "task_id": "HumanEval/12",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-012/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "from typing import List, Optional\n\n\ndef longest(strings: List[str]) -> Optional[str]:\n    \"\"\" Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    >>> longest([])\n\n    >>> longest(['a', 'b', 'c'])\n    'a'\n    >>> longest(['a', 'bb', 'ccc'])\n    'ccc'\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements:\n- **Inputs**: A list of strings (`strings: List[str]`).\n- **Outputs**: The longest string in the list. If multiple strings have the same maximum length, return the first one. Return `None` if the input list is empty.\n- **Behavior**:\n  - If the input list is empty, return `None`.\n  - If the list contains only one string, return that string.\n  - If the list contains multiple strings of the same maximum length, return the first one.\n- **Edge Cases**:\n  - An empty list should return `None`.\n  - A list with a single string should return that string.\n  - A list with multiple strings of the same maximum length should return the first one.",
+      "output_sha256": "7881ad5d11ade82bdd51e6db3535e907affca0865803866896fddad00a04dd3d",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "from typing import List, Optional\n\n\ndef longest(strings: List[str]) -> Optional[str]:\n    \"\"\" Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    >>> longest([])\n\n    >>> longest(['a', 'b', 'c'])\n    'a'\n    >>> longest(['a', 'bb', 'ccc'])\n    'ccc'\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- **Inputs**: A list of strings (`strings: List[str]`).\n- **Outputs**: The longest string in the list. If multiple strings have the same maximum length, return the first one. Return `None` if the input list is empty.\n- **Behavior**:\n  - If the input list is empty, return `None`.\n  - If the list contains only one string, return that string.\n  - If the list contains multiple strings of the same maximum length, return the first one.\n- **Edge Cases**:\n  - An empty list should return `None`.\n  - A list with a single string should return that string.\n  - A list with multiple strings of the same maximum length should return the first one."
+      },
+      "delivered_output": "Algorithm:\n\n1. Check if the input list `strings` is empty.\n   - If true, return `None`.\n2. Initialize `longest_string` to `None` and `max_length` to 0.\n3. Iterate through each string `s` in `strings`:\n   - If `s` is longer than `max_length`, update `longest_string` to `s` and `max_length` to the length of `s`.\n4. Return `longest_string`.\n\nEdge Cases:\n- An empty list should return `None`.\n- A list with a single string should return that string.\n- A list with multiple strings of the same maximum length should return the first one.\n\nComplexity:\n- Time: O(n), where n is the number of strings in the list.\n- Space: O(1), as only a few variables are used.",
+      "output_sha256": "f1122c543d0b2af2a9eefa25c7f26820fa0ae941dbb9e223e5783ca572b7024c",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "from typing import List, Optional\n\n\ndef longest(strings: List[str]) -> Optional[str]:\n    \"\"\" Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    >>> longest([])\n\n    >>> longest(['a', 'b', 'c'])\n    'a'\n    >>> longest(['a', 'bb', 'ccc'])\n    'ccc'\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm:\n\n1. Check if the input list `strings` is empty.\n   - If true, return `None`.\n2. Initialize `longest_string` to `None` and `max_length` to 0.\n3. Iterate through each string `s` in `strings`:\n   - If `s` is longer than `max_length`, update `longest_string` to `s` and `max_length` to the length of `s`.\n4. Return `longest_string`.\n\nEdge Cases:\n- An empty list should return `None`.\n- A list with a single string should return that string.\n- A list with multiple strings of the same maximum length should return the first one.\n\nComplexity:\n- Time: O(n), where n is the number of strings in the list.\n- Space: O(1), as only a few variables are used."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `longest(strings: List[str]) -> Optional[str]`\n\n1. **Function Signature:**\n   - Ensure the function is defined as `def longest(strings: List[str]) -> Optional[str]:`.\n\n2. **Input Validation:**\n   - Check if the input list `strings` is empty.\n     - If `strings` is empty, return `None`.\n\n3. **Initialization:**\n   - Initialize `longest_string` to `None`.\n   - Initialize `max_length` to 0.\n\n4. **Iteration:**\n   - Iterate through each string `s` in `strings`:\n     - If `len(s)` is greater than `max_length`, update `longest_string` to `s` and `max_length` to `len(s)`.\n\n5. **Return Statement:**\n   - After the loop, return `longest_string`.\n\n6. **Edge Cases:**\n   - Handle an empty list by returning `None`.\n   - Handle a list with a single string by returning that string.\n   - Handle a list with multiple strings of the same maximum length by returning the first one.\n\n7. **Testing:**\n   - Test with an empty list: `assert longest([]) is None`\n   - Test with a single string: `assert longest(['a']) == 'a'`\n   - Test with multiple strings of varying lengths: `assert longest(['a', 'bb', 'ccc']) == 'ccc'`\n\n8. **Complexity:**\n   - Ensure the time complexity is O(n) and space complexity is O(1).\n\nBy following this checklist, you can ensure that your implementation meets the requirements and handles all specified edge cases.",
+      "output_sha256": "61dfb7f73409edac5e297fc8392e4297c398d5b30f3089e3f342224e05307d04",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "from typing import List, Optional\n\n\ndef longest(strings: List[str]) -> Optional[str]:\n    \"\"\" Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    >>> longest([])\n\n    >>> longest(['a', 'b', 'c'])\n    'a'\n    >>> longest(['a', 'bb', 'ccc'])\n    'ccc'\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `longest(strings: List[str]) -> Optional[str]`\n\n1. **Function Signature:**\n   - Ensure the function is defined as `def longest(strings: List[str]) -> Optional[str]:`.\n\n2. **Input Validation:**\n   - Check if the input list `strings` is empty.\n     - If `strings` is empty, return `None`.\n\n3. **Initialization:**\n   - Initialize `longest_string` to `None`.\n   - Initialize `max_length` to 0.\n\n4. **Iteration:**\n   - Iterate through each string `s` in `strings`:\n     - If `len(s)` is greater than `max_length`, update `longest_string` to `s` and `max_length` to `len(s)`.\n\n5. **Return Statement:**\n   - After the loop, return `longest_string`.\n\n6. **Edge Cases:**\n   - Handle an empty list by returning `None`.\n   - Handle a list with a single string by returning that string.\n   - Handle a list with multiple strings of the same maximum length by returning the first one.\n\n7. **Testing:**\n   - Test with an empty list: `assert longest([]) is None`\n   - Test with a single string: `assert longest(['a']) == 'a'`\n   - Test with multiple strings of varying lengths: `assert longest(['a', 'bb', 'ccc']) == 'ccc'`\n\n8. **Complexity:**\n   - Ensure the time complexity is O(n) and space complexity is O(1).\n\nBy following this checklist, you can ensure that your implementation meets the requirements and handles all specified edge cases."
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 17.206,
+      "prompt_tokens": 619,
+      "completion_tokens": 79,
+      "delivered_output": "```python\nfrom typing import List, Optional\n\ndef longest(strings: List[str]) -> Optional[str]:\n    if not strings:\n        return None\n    \n    longest_string = None\n    max_length = 0\n    \n    for s in strings:\n        if len(s) > max_length:\n            longest_string = s\n            max_length = len(s)\n    \n    return longest_string\n```",
+      "output_sha256": "d6d0e371c1feb601f80647781ba48af0ea6eb17061251462d3647a94cfc35a58",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "from typing import List, Optional\n\n\ndef longest(strings: List[str]) -> Optional[str]:\n    \"\"\" Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    >>> longest([])\n\n    >>> longest(['a', 'b', 'c'])\n    'a'\n    >>> longest(['a', 'bb', 'ccc'])\n    'ccc'\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\nfrom typing import List, Optional\n\ndef longest(strings: List[str]) -> Optional[str]:\n    if not strings:\n        return None\n    \n    longest_string = None\n    max_length = 0\n    \n    for s in strings:\n        if len(s) > max_length:\n            longest_string = s\n            max_length = len(s)\n    \n    return longest_string\n```"
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 25.693,
+      "prompt_tokens": 358,
+      "completion_tokens": 159,
+      "delivered_output": "```python\nfrom typing import List, Optional\n\ndef longest(strings: List[str]) -> Optional[str]:\n    \"\"\"\n    Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    >>> longest([])\n    None\n    >>> longest(['a', 'b', 'c'])\n    'a'\n    >>> longest(['a', 'bb', 'ccc'])\n    'ccc'\n    \"\"\"\n    if not strings:\n        return None\n\n    longest_string = None\n    max_length = 0\n\n    for s in strings:\n        if len(s) > max_length:\n            longest_string = s\n            max_length = len(s)\n\n    return longest_string\n```",
+      "output_sha256": "21b336fe9e21c61259ce4e196cb338aedbd0ba3e40f0fc2d5910aaddf828c7ee",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 977,
+    "completion_tokens": 238,
+    "model_seconds": 42.899,
+    "tracking_overhead_seconds": 0.000485,
+    "recovery_wall_seconds": 42.945
+  }
+}

@@ -1,0 +1,14 @@
+def sort_even(l: list) -> list:
+    if not l:
+        return []
+
+    even_elements = [l[i] for i in range(0, len(l), 2)]
+    sorted_even_elements = sorted(even_elements)
+
+    result = l[:]
+    even_index = 0
+    for i in range(0, len(result), 2):
+        result[i] = sorted_even_elements[even_index]
+        even_index += 1
+
+    return result

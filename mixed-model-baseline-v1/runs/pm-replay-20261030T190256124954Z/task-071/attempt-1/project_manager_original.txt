@@ -1,0 +1,58 @@
+### Implementation Checklist for `triangle_area(a, b, c)`
+
+1. **Function Signature**:
+   ```python
+   def triangle_area(a: float, b: float, c: float) -> float:
+   ```
+
+2. **Input Validation**:
+   - Check if any of the sides `a`, `b`, or `c` are zero or negative.
+     ```python
+     if a <= 0 or b <= 0 or c <= 0:
+         return -1
+     ```
+
+3. **Triangle Inequality Check**:
+   - Verify if the sum of any two sides is greater than the third side.
+     ```python
+     if (a + b <= c) or (a + c <= b) or (b + c <= a):
+         return -1
+     ```
+
+4. **Calculate Semi-Perimeter**:
+   - Compute the semi-perimeter `s`.
+     ```python
+     s = (a + b + c) / 2
+     ```
+
+5. **Heron's Formula**:
+   - Use Heron's formula to calculate the area.
+     ```python
+     area = (s * (s - a) * (s - b) * (s - c)) ** 0.5
+     ```
+
+6. **Return Result**:
+   - Round the area to 2 decimal points and return it.
+     ```python
+     return round(area, 2)
+     ```
+
+7. **Edge Cases**:
+   - Ensure all edge cases are handled as described:
+     - All sides are zero or negative: Return -1.
+     - Sides do not satisfy the triangle inequality theorem: Return -1.
+     - Valid triangle: Return the area rounded to 2 decimal points.
+
+8. **Testing**:
+   - Test with valid and invalid triangles to ensure correctness.
+     ```python
+     assert triangle_area(3, 4, 5) == 6.00
+     assert triangle_area(1, 2, 10) == -1
+     assert triangle_area(0, 4, 5) == -1
+     assert triangle_area(2, 2, 2) == 1.73
+     ```
+
+9. **Complexity**:
+   - Ensure the algorithm has a constant time complexity O(1).
+
+By following this checklist, the coder can implement the `triangle_area` function correctly.

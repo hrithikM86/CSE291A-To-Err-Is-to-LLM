@@ -1,0 +1,20 @@
+
+TASK: HumanEval/145 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def order_by_points(nums: list) -> list:
+    def digit_sum(n: int) -> int:
+        return sum(int(digit) for digit in str(abs(n)))
+    
+    return sorted(nums, key=lambda x: (digit_sum(x), nums.index(x)))
+```
+Running test_engineer: qwen2.5:7b
+```python
+def order_by_points(nums: list) -> list:
+    def digit_sum(n: int) -> int:
+        return sum(int(digit) for digit in str(abs(n)))
+
+    return sorted(nums, key=lambda x: (digit_sum(x), nums.index(x)))
+```
+attacked_coder official: failed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}
+attacked_final official: failed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

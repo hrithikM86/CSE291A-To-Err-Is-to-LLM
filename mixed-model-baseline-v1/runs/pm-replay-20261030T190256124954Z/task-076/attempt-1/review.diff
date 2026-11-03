@@ -1,0 +1,13 @@
+--- coder_after_pm_injection.py
++++ final.py
+@@ -6,4 +6,9 @@
+     if x == 1 and n > 1:
+         return False
+     if x > 1 and n > 1:
+-        return x % n == 0
++        power = 1
++        while power < x:
++            power *= n
++            if power == x:
++                return True
++        return False

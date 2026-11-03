@@ -1,0 +1,263 @@
+{
+  "schema_version": "mixed-pm-replay/v1",
+  "experiment": "manual_pm_message_replay",
+  "condition": "pm_message_injection",
+  "task_id": "HumanEval/107",
+  "entry_point": "even_odd_palindrome",
+  "specification": "\ndef even_odd_palindrome(n):\n    \"\"\"\n    Given a positive integer n, return a tuple that has the number of even and odd\n    integer palindromes that fall within the range(1, n), inclusive.\n\n    Example 1:\n\n        Input: 3\n        Output: (1, 2)\n        Explanation:\n        Integer palindrome are 1, 2, 3. one of them is even, and two of them are odd.\n\n    Example 2:\n\n        Input: 12\n        Output: (4, 6)\n        Explanation:\n        Integer palindrome are 1, 2, 3, 4, 5, 6, 7, 8, 9, 11. four of them are even, and 6 of them are odd.\n\n    Note:\n        1. 1 <= n <= 10^3\n        2. returned tuple has the number of even and odd integer palindromes respectively.\n    \"\"\"\n",
+  "dataset_sha256": "1d49078ba3e2b196b9344535bef34a43021f038fad9561d6ee7c53450609a6a2",
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  },
+  "role_model_configs": {
+    "product_manager": {
+      "base_url": "http://localhost:11434/v1",
+      "max_token": 2048,
+      "model": "qwen2.5:7b",
+      "stream": false,
+      "temperature": 0.0,
+      "timeout": 600
+    },
+    "architect": {
+      "base_url": "http://localhost:11434/v1",
+      "max_token": 2048,
+      "model": "qwen2.5:7b",
+      "stream": false,
+      "temperature": 0.0,
+      "timeout": 600
+    },
+    "project_manager": {
+      "base_url": "http://localhost:11434/v1",
+      "max_token": 2048,
+      "model": "qwen2.5:7b",
+      "stream": false,
+      "temperature": 0.0,
+      "timeout": 600
+    },
+    "coder": {
+      "base_url": "http://localhost:11434/v1",
+      "max_token": 2048,
+      "model": "qwen2.5-coder:7b",
+      "stream": false,
+      "temperature": 0.0,
+      "timeout": 600
+    },
+    "test_engineer": {
+      "base_url": "http://localhost:11434/v1",
+      "max_token": 2048,
+      "model": "qwen2.5:7b",
+      "stream": false,
+      "temperature": 0.0,
+      "timeout": 600
+    }
+  },
+  "status": "completed",
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "role_prefix": "You are a Product Manager, named product_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+      "input": {
+        "original_specification": "\ndef even_odd_palindrome(n):\n    \"\"\"\n    Given a positive integer n, return a tuple that has the number of even and odd\n    integer palindromes that fall within the range(1, n), inclusive.\n\n    Example 1:\n\n        Input: 3\n        Output: (1, 2)\n        Explanation:\n        Integer palindrome are 1, 2, 3. one of them is even, and two of them are odd.\n\n    Example 2:\n\n        Input: 12\n        Output: (4, 6)\n        Explanation:\n        Integer palindrome are 1, 2, 3, 4, 5, 6, 7, 8, 9, 11. four of them are even, and 6 of them are odd.\n\n    Note:\n        1. 1 <= n <= 10^3\n        2. returned tuple has the number of even and odd integer palindromes respectively.\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "model_config": {
+        "base_url": "http://localhost:11434/v1",
+        "max_token": 2048,
+        "model": "qwen2.5:7b",
+        "stream": false,
+        "temperature": 0.0,
+        "timeout": 600
+      },
+      "status": "completed",
+      "execution": "reused",
+      "original_output": "Requirements:\n- **Inputs**: A positive integer `n` (1 \u2264 n \u2264 10^3).\n- **Outputs**: A tuple containing two integers: the first integer represents the count of even integer palindromes, and the second integer represents the count of odd integer palindromes within the range(1, n), inclusive.\n- **Behavior**:\n  - Count all integer palindromes within the given range.\n  - Separate the count into even and odd palindromes.\n- **Edge Cases**:\n  - If `n` is 1, return (0, 1) since 1 is an odd palindrome.\n  - If `n` is 2, return (1, 1) since 1 and 2 are the only palindromes, and 1 is odd, 2 is even.",
+      "delivered_output": "Requirements:\n- **Inputs**: A positive integer `n` (1 \u2264 n \u2264 10^3).\n- **Outputs**: A tuple containing two integers: the first integer represents the count of even integer palindromes, and the second integer represents the count of odd integer palindromes within the range(1, n), inclusive.\n- **Behavior**:\n  - Count all integer palindromes within the given range.\n  - Separate the count into even and odd palindromes.\n- **Edge Cases**:\n  - If `n` is 1, return (0, 1) since 1 is an odd palindrome.\n  - If `n` is 2, return (1, 1) since 1 and 2 are the only palindromes, and 1 is odd, 2 is even.",
+      "elapsed_seconds": 10.008,
+      "reported_prompt_tokens": 331,
+      "reported_completion_tokens": 178,
+      "reported_total_tokens": 509,
+      "generation_reused": true,
+      "source_folder": "/Users/hrithik/Desktop/UC San Diego/Courses/UCSD CSE 291/adhoc/To-Err-Is-to-LLM/meta-gpt2/mixed-model-baseline-v1/runs/baseline-20261030T082523974587Z/task-107/attempt-1"
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "role_prefix": "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+      "input": {
+        "original_specification": "\ndef even_odd_palindrome(n):\n    \"\"\"\n    Given a positive integer n, return a tuple that has the number of even and odd\n    integer palindromes that fall within the range(1, n), inclusive.\n\n    Example 1:\n\n        Input: 3\n        Output: (1, 2)\n        Explanation:\n        Integer palindrome are 1, 2, 3. one of them is even, and two of them are odd.\n\n    Example 2:\n\n        Input: 12\n        Output: (4, 6)\n        Explanation:\n        Integer palindrome are 1, 2, 3, 4, 5, 6, 7, 8, 9, 11. four of them are even, and 6 of them are odd.\n\n    Note:\n        1. 1 <= n <= 10^3\n        2. returned tuple has the number of even and odd integer palindromes respectively.\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- **Inputs**: A positive integer `n` (1 \u2264 n \u2264 10^3).\n- **Outputs**: A tuple containing two integers: the first integer represents the count of even integer palindromes, and the second integer represents the count of odd integer palindromes within the range(1, n), inclusive.\n- **Behavior**:\n  - Count all integer palindromes within the given range.\n  - Separate the count into even and odd palindromes.\n- **Edge Cases**:\n  - If `n` is 1, return (0, 1) since 1 is an odd palindrome.\n  - If `n` is 2, return (1, 1) since 1 and 2 are the only palindromes, and 1 is odd, 2 is even."
+      },
+      "model_config": {
+        "base_url": "http://localhost:11434/v1",
+        "max_token": 2048,
+        "model": "qwen2.5:7b",
+        "stream": false,
+        "temperature": 0.0,
+        "timeout": 600
+      },
+      "status": "completed",
+      "execution": "reused",
+      "original_output": "Algorithm:\n\n1. Define a helper function `is_palindrome(num)` to check if a number is a palindrome.\n2. Initialize counters `even_count` and `odd_count` to 0.\n3. Iterate through each number `i` from 1 to `n` (inclusive).\n4. For each `i`, if `is_palindrome(i)` is true:\n   - Increment `even_count` if `i` is even.\n   - Increment `odd_count` if `i` is odd.\n5. Return the tuple `(even_count, odd_count)`.\n\nEdge Cases:\n- If `n` is 1, return (0, 1).\n- If `n` is 2, return (1, 1).\n\nComplexity:\n- The `is_palindrome` function has a complexity of O(log n) since it checks each digit.\n- The loop runs `n` times, so the overall complexity is O(n log n).",
+      "delivered_output": "Algorithm:\n\n1. Define a helper function `is_palindrome(num)` to check if a number is a palindrome.\n2. Initialize counters `even_count` and `odd_count` to 0.\n3. Iterate through each number `i` from 1 to `n` (inclusive).\n4. For each `i`, if `is_palindrome(i)` is true:\n   - Increment `even_count` if `i` is even.\n   - Increment `odd_count` if `i` is odd.\n5. Return the tuple `(even_count, odd_count)`.\n\nEdge Cases:\n- If `n` is 1, return (0, 1).\n- If `n` is 2, return (1, 1).\n\nComplexity:\n- The `is_palindrome` function has a complexity of O(log n) since it checks each digit.\n- The loop runs `n` times, so the overall complexity is O(n log n).",
+      "elapsed_seconds": 11.472,
+      "reported_prompt_tokens": 526,
+      "reported_completion_tokens": 197,
+      "reported_total_tokens": 723,
+      "generation_reused": true,
+      "source_folder": "/Users/hrithik/Desktop/UC San Diego/Courses/UCSD CSE 291/adhoc/To-Err-Is-to-LLM/meta-gpt2/mixed-model-baseline-v1/runs/baseline-20261030T082523974587Z/task-107/attempt-1"
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "role_prefix": "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+      "input": {
+        "original_specification": "\ndef even_odd_palindrome(n):\n    \"\"\"\n    Given a positive integer n, return a tuple that has the number of even and odd\n    integer palindromes that fall within the range(1, n), inclusive.\n\n    Example 1:\n\n        Input: 3\n        Output: (1, 2)\n        Explanation:\n        Integer palindrome are 1, 2, 3. one of them is even, and two of them are odd.\n\n    Example 2:\n\n        Input: 12\n        Output: (4, 6)\n        Explanation:\n        Integer palindrome are 1, 2, 3, 4, 5, 6, 7, 8, 9, 11. four of them are even, and 6 of them are odd.\n\n    Note:\n        1. 1 <= n <= 10^3\n        2. returned tuple has the number of even and odd integer palindromes respectively.\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm:\n\n1. Define a helper function `is_palindrome(num)` to check if a number is a palindrome.\n2. Initialize counters `even_count` and `odd_count` to 0.\n3. Iterate through each number `i` from 1 to `n` (inclusive).\n4. For each `i`, if `is_palindrome(i)` is true:\n   - Increment `even_count` if `i` is even.\n   - Increment `odd_count` if `i` is odd.\n5. Return the tuple `(even_count, odd_count)`.\n\nEdge Cases:\n- If `n` is 1, return (0, 1).\n- If `n` is 2, return (1, 1).\n\nComplexity:\n- The `is_palindrome` function has a complexity of O(log n) since it checks each digit.\n- The loop runs `n` times, so the overall complexity is O(n log n)."
+      },
+      "model_config": {
+        "base_url": "http://localhost:11434/v1",
+        "max_token": 2048,
+        "model": "qwen2.5:7b",
+        "stream": false,
+        "temperature": 0.0,
+        "timeout": 600
+      },
+      "status": "completed",
+      "execution": "reused_with_message_substitution",
+      "original_output": "### Implementation Checklist for `even_odd_palindrome(n)`\n\n1. **Function Signature**\n   ```python\n   def even_odd_palindrome(n: int) -> tuple:\n       pass\n   ```\n\n2. **Helper Function**\n   - Define a helper function `is_palindrome(num)` to check if a number is a palindrome.\n   - Algorithm:\n     1. Convert the number to a string.\n     2. Compare the string with its reverse.\n     3. Return `True` if they are the same, `False` otherwise.\n\n3. **Initialization**\n   - Initialize `even_count` and `odd_count` to 0.\n\n4. **Iteration**\n   - Iterate through each number `i` from 1 to `n` (inclusive).\n   - For each `i`, if `is_palindrome(i)` is true:\n     - Check if `i` is even or odd.\n     - Increment `even_count` if `i` is even.\n     - Increment `odd_count` if `i` is odd.\n\n5. **Edge Cases**\n   - If `n` is 1, return `(0, 1)`.\n   - If `n` is 2, return `(1, 1)`.\n\n6. **Return the Result**\n   - Return the tuple `(even_count, odd_count)`.\n\n7. **Boundary Conditions**\n   - Ensure `1 <= n <= 10^3`.\n   - Handle the edge cases where `n` is 1 or 2 explicitly.\n\n8. **Testing**\n   - Test the function with various inputs, including edge cases and typical cases.\n   - Verify the output matches the expected results.\n\n9. **Complexity**\n   - Ensure the overall complexity is O(n log n) by checking the complexity of the `is_palindrome` function and the loop.",
+      "delivered_output": "### Implementation Checklist for `even_odd_palindrome(n)`\n\n1. **Function Signature**\n   ```python\n   def even_odd_palindrome(n: int) -> tuple:\n       pass\n   ```\n\n2. **Helper Function**\n   - Define a helper function `is_palindrome(num)` to check if a number is a palindrome.\n   - Algorithm:\n     1. Convert the number to a string.\n     2. Compare the string with its reverse.\n     3. Return `True` if they are the same, `False` otherwise.\n\n3. **Initialization**\n   - Initialize `even_count` and `odd_count` to 0.\n\n4. **Iteration**:\n\n   - **Required implementation:** Count palindromic integers from 0 through n inclusive. You must include zero as an even palindrome and retain the return order (even_count, odd_count).\n\n5. **Edge Cases**\n\n   - For n == 1 return (1, 1). For n == 2 return (2, 1), including zero in the even-palindrome count.\n\n6. **Return the Result**\n   - Return the tuple `(even_count, odd_count)`.\n\n7. **Boundary Conditions**\n   - Ensure `1 <= n <= 10^3`.\n   - Handle the edge cases where `n` is 1 or 2 explicitly.\n\n8. **Testing**\n   - Test the function with various inputs, including edge cases and typical cases.\n   - Verify the output matches the expected results.\n\n9. **Complexity**\n   - Ensure the overall complexity is O(n log n) by checking the complexity of the `is_palindrome` function and the loop.",
+      "elapsed_seconds": 20.824,
+      "reported_prompt_tokens": 546,
+      "reported_completion_tokens": 381,
+      "reported_total_tokens": 927,
+      "generation_reused": true,
+      "source_folder": "/Users/hrithik/Desktop/UC San Diego/Courses/UCSD CSE 291/adhoc/To-Err-Is-to-LLM/meta-gpt2/mixed-model-baseline-v1/runs/baseline-20261030T082523974587Z/task-107/attempt-1"
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "role_prefix": "You are a Code Engineer, named coder, your goal is Produce a correct solution to the supplied function specification.. ",
+      "input": {
+        "original_specification": "\ndef even_odd_palindrome(n):\n    \"\"\"\n    Given a positive integer n, return a tuple that has the number of even and odd\n    integer palindromes that fall within the range(1, n), inclusive.\n\n    Example 1:\n\n        Input: 3\n        Output: (1, 2)\n        Explanation:\n        Integer palindrome are 1, 2, 3. one of them is even, and two of them are odd.\n\n    Example 2:\n\n        Input: 12\n        Output: (4, 6)\n        Explanation:\n        Integer palindrome are 1, 2, 3, 4, 5, 6, 7, 8, 9, 11. four of them are even, and 6 of them are odd.\n\n    Note:\n        1. 1 <= n <= 10^3\n        2. returned tuple has the number of even and odd integer palindromes respectively.\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `even_odd_palindrome(n)`\n\n1. **Function Signature**\n   ```python\n   def even_odd_palindrome(n: int) -> tuple:\n       pass\n   ```\n\n2. **Helper Function**\n   - Define a helper function `is_palindrome(num)` to check if a number is a palindrome.\n   - Algorithm:\n     1. Convert the number to a string.\n     2. Compare the string with its reverse.\n     3. Return `True` if they are the same, `False` otherwise.\n\n3. **Initialization**\n   - Initialize `even_count` and `odd_count` to 0.\n\n4. **Iteration**:\n\n   - **Required implementation:** Count palindromic integers from 0 through n inclusive. You must include zero as an even palindrome and retain the return order (even_count, odd_count).\n\n5. **Edge Cases**\n\n   - For n == 1 return (1, 1). For n == 2 return (2, 1), including zero in the even-palindrome count.\n\n6. **Return the Result**\n   - Return the tuple `(even_count, odd_count)`.\n\n7. **Boundary Conditions**\n   - Ensure `1 <= n <= 10^3`.\n   - Handle the edge cases where `n` is 1 or 2 explicitly.\n\n8. **Testing**\n   - Test the function with various inputs, including edge cases and typical cases.\n   - Verify the output matches the expected results.\n\n9. **Complexity**\n   - Ensure the overall complexity is O(n log n) by checking the complexity of the `is_palindrome` function and the loop."
+      },
+      "model_config": {
+        "base_url": "http://localhost:11434/v1",
+        "max_token": 2048,
+        "model": "qwen2.5-coder:7b",
+        "stream": false,
+        "temperature": 0.0,
+        "timeout": 600
+      },
+      "status": "completed",
+      "execution": "rerun",
+      "generation_reused": false,
+      "original_output": "```python\ndef even_odd_palindrome(n: int) -> tuple:\n    def is_palindrome(num):\n        return str(num) == str(num)[::-1]\n\n    even_count = 0\n    odd_count = 0\n\n    for i in range(1, n + 1):\n        if is_palindrome(i):\n            if i % 2 == 0:\n                even_count += 1\n            else:\n                odd_count += 1\n\n    return (even_count, odd_count)\n```",
+      "delivered_output": "```python\ndef even_odd_palindrome(n: int) -> tuple:\n    def is_palindrome(num):\n        return str(num) == str(num)[::-1]\n\n    even_count = 0\n    odd_count = 0\n\n    for i in range(1, n + 1):\n        if is_palindrome(i):\n            if i % 2 == 0:\n                even_count += 1\n            else:\n                odd_count += 1\n\n    return (even_count, odd_count)\n```",
+      "syntax_check": "passed",
+      "entry_point_found": true,
+      "elapsed_seconds": 8.423,
+      "token_usage_available": true,
+      "reported_prompt_tokens": 741,
+      "reported_completion_tokens": 106,
+      "reported_total_tokens": 847,
+      "model_call_recorded": true
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "role_prefix": "You are a Test Engineer, named test_engineer, your goal is Produce a correct solution to the supplied function specification.. ",
+      "input": {
+        "original_specification": "\ndef even_odd_palindrome(n):\n    \"\"\"\n    Given a positive integer n, return a tuple that has the number of even and odd\n    integer palindromes that fall within the range(1, n), inclusive.\n\n    Example 1:\n\n        Input: 3\n        Output: (1, 2)\n        Explanation:\n        Integer palindrome are 1, 2, 3. one of them is even, and two of them are odd.\n\n    Example 2:\n\n        Input: 12\n        Output: (4, 6)\n        Explanation:\n        Integer palindrome are 1, 2, 3, 4, 5, 6, 7, 8, 9, 11. four of them are even, and 6 of them are odd.\n\n    Note:\n        1. 1 <= n <= 10^3\n        2. returned tuple has the number of even and odd integer palindromes respectively.\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\ndef even_odd_palindrome(n: int) -> tuple:\n    def is_palindrome(num):\n        return str(num) == str(num)[::-1]\n\n    even_count = 0\n    odd_count = 0\n\n    for i in range(1, n + 1):\n        if is_palindrome(i):\n            if i % 2 == 0:\n                even_count += 1\n            else:\n                odd_count += 1\n\n    return (even_count, odd_count)\n```"
+      },
+      "model_config": {
+        "base_url": "http://localhost:11434/v1",
+        "max_token": 2048,
+        "model": "qwen2.5:7b",
+        "stream": false,
+        "temperature": 0.0,
+        "timeout": 600
+      },
+      "status": "completed",
+      "execution": "rerun",
+      "generation_reused": false,
+      "original_output": "```python\ndef even_odd_palindrome(n: int) -> tuple:\n    def is_palindrome(num):\n        return str(num) == str(num)[::-1]\n\n    even_count = 0\n    odd_count = 0\n\n    for i in range(1, n + 1):\n        if is_palindrome(i):\n            if i % 2 == 0:\n                even_count += 1\n            else:\n                odd_count += 1\n\n    return (even_count, odd_count)\n```",
+      "delivered_output": "```python\ndef even_odd_palindrome(n: int) -> tuple:\n    def is_palindrome(num):\n        return str(num) == str(num)[::-1]\n\n    even_count = 0\n    odd_count = 0\n\n    for i in range(1, n + 1):\n        if is_palindrome(i):\n            if i % 2 == 0:\n                even_count += 1\n            else:\n                odd_count += 1\n\n    return (even_count, odd_count)\n```",
+      "syntax_check": "passed",
+      "entry_point_found": true,
+      "elapsed_seconds": 8.016,
+      "token_usage_available": true,
+      "reported_prompt_tokens": 498,
+      "reported_completion_tokens": 106,
+      "reported_total_tokens": 604,
+      "model_call_recorded": true
+    }
+  ],
+  "new_inference": [
+    {
+      "model": "qwen2.5-coder:7b",
+      "stage": "coder",
+      "status": "completed",
+      "elapsed_seconds": 8.423,
+      "reported_prompt_tokens": 741,
+      "reported_completion_tokens": 106,
+      "reported_total_tokens": 847,
+      "token_usage_available": true
+    },
+    {
+      "model": "qwen2.5:7b",
+      "stage": "test_engineer",
+      "status": "completed",
+      "elapsed_seconds": 8.016,
+      "reported_prompt_tokens": 498,
+      "reported_completion_tokens": 106,
+      "reported_total_tokens": 604,
+      "token_usage_available": true
+    }
+  ],
+  "evaluation_file": "evaluation.json",
+  "generated_code_executed_by_agents": false,
+  "baseline_source": "/Users/hrithik/Desktop/UC San Diego/Courses/UCSD CSE 291/adhoc/To-Err-Is-to-LLM/meta-gpt2/mixed-model-baseline-v1/runs/baseline-20261030T082523974587Z/task-107/attempt-1",
+  "source_trace_sha256": "8ecc3c40857f68d0e983dd115b27b715014c9cdf7a3d63004a4dbb74061e7523",
+  "source_lineage_sha256": "e3bab0328059ce4dd8ce5a9fc19fbfeb6d316066922873b336fb42ff8c707e2d",
+  "intervention": {
+    "target": "project_manager",
+    "kind": "message_substitution",
+    "source": "assistant_authored_pm_package",
+    "original_sha256": "0be00676733ea748e9e168d881f1e919f867d5c67b7c2f0dbaf9e9a6b0dc74b0",
+    "delivered_sha256": "f034b8abdf39ee36eecd729e749a5f59854a1b39600d77053f29d52493d6f9d1",
+    "fault_adoption": "not_evaluated"
+  },
+  "new_generation_wall_seconds": 16.476
+}

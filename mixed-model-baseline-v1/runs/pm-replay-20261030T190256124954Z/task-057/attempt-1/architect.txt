@@ -1,0 +1,22 @@
+Algorithm for `monotonic` function:
+
+1. **Input Validation**: Check if the input list `l` is empty or has only one element. If so, return `True`.
+
+2. **Direction Determination**:
+   - Initialize `increasing` and `decreasing` flags to `True`.
+   - Iterate through the list from the first element to the second last element.
+     - If `l[i] < l[i+1]`, set `decreasing` to `False`.
+     - If `l[i] > l[i+1]`, set `increasing` to `False`.
+
+3. **Output Determination**:
+   - If both `increasing` and `decreasing` are `False`, return `False`.
+   - Otherwise, return `True`.
+
+**Edge Cases**:
+- An empty list: Return `True`.
+- A list with one element: Return `True`.
+- Lists with repeated elements that maintain the same order: Considered monotonically increasing or decreasing.
+
+**Complexity**:
+- Time Complexity: O(n), where n is the length of the list.
+- Space Complexity: O(1), constant space used.

@@ -1,0 +1,265 @@
+{
+  "schema_version": "mixed-baseline/v1",
+  "experiment": "five_role_mixed_baseline",
+  "condition": "clean",
+  "task_id": "HumanEval/88",
+  "entry_point": "sort_array",
+  "specification": "\ndef sort_array(array):\n    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n    Note:\n    * don't change the given array.\n\n    Examples:\n    * sort_array([]) => []\n    * sort_array([5]) => [5]\n    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]\n    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]\n    \"\"\"\n",
+  "dataset_sha256": "1d49078ba3e2b196b9344535bef34a43021f038fad9561d6ee7c53450609a6a2",
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  },
+  "role_model_configs": {
+    "product_manager": {
+      "base_url": "http://localhost:11434/v1",
+      "max_token": 2048,
+      "model": "qwen2.5:7b",
+      "stream": false,
+      "temperature": 0.0,
+      "timeout": 600
+    },
+    "architect": {
+      "base_url": "http://localhost:11434/v1",
+      "max_token": 2048,
+      "model": "qwen2.5:7b",
+      "stream": false,
+      "temperature": 0.0,
+      "timeout": 600
+    },
+    "project_manager": {
+      "base_url": "http://localhost:11434/v1",
+      "max_token": 2048,
+      "model": "qwen2.5:7b",
+      "stream": false,
+      "temperature": 0.0,
+      "timeout": 600
+    },
+    "coder": {
+      "base_url": "http://localhost:11434/v1",
+      "max_token": 2048,
+      "model": "qwen2.5-coder:7b",
+      "stream": false,
+      "temperature": 0.0,
+      "timeout": 600
+    },
+    "test_engineer": {
+      "base_url": "http://localhost:11434/v1",
+      "max_token": 2048,
+      "model": "qwen2.5:7b",
+      "stream": false,
+      "temperature": 0.0,
+      "timeout": 600
+    }
+  },
+  "status": "completed",
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "role_prefix": "You are a Product Manager, named product_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+      "input": {
+        "original_specification": "\ndef sort_array(array):\n    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n    Note:\n    * don't change the given array.\n\n    Examples:\n    * sort_array([]) => []\n    * sort_array([5]) => [5]\n    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]\n    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "model_config": {
+        "base_url": "http://localhost:11434/v1",
+        "max_token": 2048,
+        "model": "qwen2.5:7b",
+        "stream": false,
+        "temperature": 0.0,
+        "timeout": 600
+      },
+      "status": "completed",
+      "execution": "original",
+      "original_output": "Requirements:\n- **Inputs**: A list of non-negative integers.\n- **Outputs**: A new list, sorted based on the specified conditions.\n- **Behavior**:\n  - If the sum of the first and last elements is odd, sort the list in ascending order.\n  - If the sum is even, sort the list in descending order.\n  - Return a copy of the sorted list.\n- **Edge Cases**:\n  - An empty list should return an empty list.\n  - A list with a single element should return the same element.\n  - Lists with multiple elements should be sorted according to the sum condition.",
+      "delivered_output": "Requirements:\n- **Inputs**: A list of non-negative integers.\n- **Outputs**: A new list, sorted based on the specified conditions.\n- **Behavior**:\n  - If the sum of the first and last elements is odd, sort the list in ascending order.\n  - If the sum is even, sort the list in descending order.\n  - Return a copy of the sorted list.\n- **Edge Cases**:\n  - An empty list should return an empty list.\n  - A list with a single element should return the same element.\n  - Lists with multiple elements should be sorted according to the sum condition.",
+      "elapsed_seconds": 6.965,
+      "reported_prompt_tokens": 317,
+      "reported_completion_tokens": 126,
+      "reported_total_tokens": 443
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "role_prefix": "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+      "input": {
+        "original_specification": "\ndef sort_array(array):\n    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n    Note:\n    * don't change the given array.\n\n    Examples:\n    * sort_array([]) => []\n    * sort_array([5]) => [5]\n    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]\n    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- **Inputs**: A list of non-negative integers.\n- **Outputs**: A new list, sorted based on the specified conditions.\n- **Behavior**:\n  - If the sum of the first and last elements is odd, sort the list in ascending order.\n  - If the sum is even, sort the list in descending order.\n  - Return a copy of the sorted list.\n- **Edge Cases**:\n  - An empty list should return an empty list.\n  - A list with a single element should return the same element.\n  - Lists with multiple elements should be sorted according to the sum condition."
+      },
+      "model_config": {
+        "base_url": "http://localhost:11434/v1",
+        "max_token": 2048,
+        "model": "qwen2.5:7b",
+        "stream": false,
+        "temperature": 0.0,
+        "timeout": 600
+      },
+      "status": "completed",
+      "execution": "original",
+      "original_output": "Algorithm for `sort_array(array)`:\n\n1. **Input Validation**: Check if the input array is empty. If so, return an empty array.\n2. **Edge Case Handling**:\n   - If the array has only one element, return the array as is.\n3. **Determine Sorting Order**:\n   - Calculate the sum of the first and last elements of the array.\n   - If the sum is odd, sort the array in ascending order.\n   - If the sum is even, sort the array in descending order.\n4. **Return the Sorted Array**: Return a new list that is a sorted copy of the original array.\n\nComplexity:\n- **Time Complexity**: O(n log n) due to the sorting operation.\n- **Space Complexity**: O(n) for storing the sorted array.\n\nThis algorithm ensures that the original array is not modified and handles all specified edge cases.",
+      "delivered_output": "Algorithm for `sort_array(array)`:\n\n1. **Input Validation**: Check if the input array is empty. If so, return an empty array.\n2. **Edge Case Handling**:\n   - If the array has only one element, return the array as is.\n3. **Determine Sorting Order**:\n   - Calculate the sum of the first and last elements of the array.\n   - If the sum is odd, sort the array in ascending order.\n   - If the sum is even, sort the array in descending order.\n4. **Return the Sorted Array**: Return a new list that is a sorted copy of the original array.\n\nComplexity:\n- **Time Complexity**: O(n log n) due to the sorting operation.\n- **Space Complexity**: O(n) for storing the sorted array.\n\nThis algorithm ensures that the original array is not modified and handles all specified edge cases.",
+      "elapsed_seconds": 10.107,
+      "reported_prompt_tokens": 452,
+      "reported_completion_tokens": 181,
+      "reported_total_tokens": 633
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "role_prefix": "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+      "input": {
+        "original_specification": "\ndef sort_array(array):\n    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n    Note:\n    * don't change the given array.\n\n    Examples:\n    * sort_array([]) => []\n    * sort_array([5]) => [5]\n    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]\n    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `sort_array(array)`:\n\n1. **Input Validation**: Check if the input array is empty. If so, return an empty array.\n2. **Edge Case Handling**:\n   - If the array has only one element, return the array as is.\n3. **Determine Sorting Order**:\n   - Calculate the sum of the first and last elements of the array.\n   - If the sum is odd, sort the array in ascending order.\n   - If the sum is even, sort the array in descending order.\n4. **Return the Sorted Array**: Return a new list that is a sorted copy of the original array.\n\nComplexity:\n- **Time Complexity**: O(n log n) due to the sorting operation.\n- **Space Complexity**: O(n) for storing the sorted array.\n\nThis algorithm ensures that the original array is not modified and handles all specified edge cases."
+      },
+      "model_config": {
+        "base_url": "http://localhost:11434/v1",
+        "max_token": 2048,
+        "model": "qwen2.5:7b",
+        "stream": false,
+        "temperature": 0.0,
+        "timeout": 600
+      },
+      "status": "completed",
+      "execution": "original",
+      "original_output": "### Implementation Checklist for `sort_array(array)`\n\n1. **Function Signature**:\n   ```python\n   def sort_array(array):\n       # Function body\n   ```\n\n2. **Input Validation**:\n   - Check if the input `array` is empty.\n   - If empty, return an empty list.\n\n3. **Edge Case Handling**:\n   - If the `array` has only one element, return the array as is.\n\n4. **Determine Sorting Order**:\n   - Calculate the sum of the first and last elements of the array.\n   - If the sum is odd, sort the array in ascending order using `sorted(array)`.\n   - If the sum is even, sort the array in descending order using `sorted(array, reverse=True)`.\n\n5. **Return the Sorted Array**:\n   - Return a new list that is a sorted copy of the original array.\n\n6. **Boundary Conditions**:\n   - Ensure the function handles arrays with zero, one, and multiple elements.\n   - Verify the function works correctly with both even and odd sums of the first and last elements.\n\n7. **Testing**:\n   - Test with empty arrays.\n   - Test with single-element arrays.\n   - Test with arrays of various lengths and values.\n   - Test with arrays where the sum of the first and last elements is both even and odd.\n\n8. **Documentation**:\n   - Ensure the docstring is updated to reflect the function's behavior and examples.\n\nBy following this checklist, the coder can implement the `sort_array(array)` function correctly and efficiently.",
+      "delivered_output": "### Implementation Checklist for `sort_array(array)`\n\n1. **Function Signature**:\n   ```python\n   def sort_array(array):\n       # Function body\n   ```\n\n2. **Input Validation**:\n   - Check if the input `array` is empty.\n   - If empty, return an empty list.\n\n3. **Edge Case Handling**:\n   - If the `array` has only one element, return the array as is.\n\n4. **Determine Sorting Order**:\n   - Calculate the sum of the first and last elements of the array.\n   - If the sum is odd, sort the array in ascending order using `sorted(array)`.\n   - If the sum is even, sort the array in descending order using `sorted(array, reverse=True)`.\n\n5. **Return the Sorted Array**:\n   - Return a new list that is a sorted copy of the original array.\n\n6. **Boundary Conditions**:\n   - Ensure the function handles arrays with zero, one, and multiple elements.\n   - Verify the function works correctly with both even and odd sums of the first and last elements.\n\n7. **Testing**:\n   - Test with empty arrays.\n   - Test with single-element arrays.\n   - Test with arrays of various lengths and values.\n   - Test with arrays where the sum of the first and last elements is both even and odd.\n\n8. **Documentation**:\n   - Ensure the docstring is updated to reflect the function's behavior and examples.\n\nBy following this checklist, the coder can implement the `sort_array(array)` function correctly and efficiently.",
+      "elapsed_seconds": 17.07,
+      "reported_prompt_tokens": 515,
+      "reported_completion_tokens": 321,
+      "reported_total_tokens": 836
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "role_prefix": "You are a Code Engineer, named coder, your goal is Produce a correct solution to the supplied function specification.. ",
+      "input": {
+        "original_specification": "\ndef sort_array(array):\n    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n    Note:\n    * don't change the given array.\n\n    Examples:\n    * sort_array([]) => []\n    * sort_array([5]) => [5]\n    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]\n    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `sort_array(array)`\n\n1. **Function Signature**:\n   ```python\n   def sort_array(array):\n       # Function body\n   ```\n\n2. **Input Validation**:\n   - Check if the input `array` is empty.\n   - If empty, return an empty list.\n\n3. **Edge Case Handling**:\n   - If the `array` has only one element, return the array as is.\n\n4. **Determine Sorting Order**:\n   - Calculate the sum of the first and last elements of the array.\n   - If the sum is odd, sort the array in ascending order using `sorted(array)`.\n   - If the sum is even, sort the array in descending order using `sorted(array, reverse=True)`.\n\n5. **Return the Sorted Array**:\n   - Return a new list that is a sorted copy of the original array.\n\n6. **Boundary Conditions**:\n   - Ensure the function handles arrays with zero, one, and multiple elements.\n   - Verify the function works correctly with both even and odd sums of the first and last elements.\n\n7. **Testing**:\n   - Test with empty arrays.\n   - Test with single-element arrays.\n   - Test with arrays of various lengths and values.\n   - Test with arrays where the sum of the first and last elements is both even and odd.\n\n8. **Documentation**:\n   - Ensure the docstring is updated to reflect the function's behavior and examples.\n\nBy following this checklist, the coder can implement the `sort_array(array)` function correctly and efficiently."
+      },
+      "model_config": {
+        "base_url": "http://localhost:11434/v1",
+        "max_token": 2048,
+        "model": "qwen2.5-coder:7b",
+        "stream": false,
+        "temperature": 0.0,
+        "timeout": 600
+      },
+      "status": "completed",
+      "execution": "original",
+      "original_output": "```python\ndef sort_array(array):\n    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n    Note:\n    * don't change the given array.\n\n    Examples:\n    * sort_array([]) => []\n    * sort_array([5]) => [5]\n    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]\n    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]\n    \"\"\"\n    if not array:\n        return []\n    \n    if len(array) == 1:\n        return array\n    \n    if (array[0] + array[-1]) % 2 == 0:\n        return sorted(array, reverse=True)\n    else:\n        return sorted(array)\n```",
+      "delivered_output": "```python\ndef sort_array(array):\n    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n    Note:\n    * don't change the given array.\n\n    Examples:\n    * sort_array([]) => []\n    * sort_array([5]) => [5]\n    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]\n    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]\n    \"\"\"\n    if not array:\n        return []\n    \n    if len(array) == 1:\n        return array\n    \n    if (array[0] + array[-1]) % 2 == 0:\n        return sorted(array, reverse=True)\n    else:\n        return sorted(array)\n```",
+      "syntax_check": "passed",
+      "entry_point_found": true,
+      "elapsed_seconds": 16.74,
+      "reported_prompt_tokens": 692,
+      "reported_completion_tokens": 259,
+      "reported_total_tokens": 951
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "role_prefix": "You are a Test Engineer, named test_engineer, your goal is Produce a correct solution to the supplied function specification.. ",
+      "input": {
+        "original_specification": "\ndef sort_array(array):\n    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n    Note:\n    * don't change the given array.\n\n    Examples:\n    * sort_array([]) => []\n    * sort_array([5]) => [5]\n    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]\n    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\ndef sort_array(array):\n    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n    Note:\n    * don't change the given array.\n\n    Examples:\n    * sort_array([]) => []\n    * sort_array([5]) => [5]\n    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]\n    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]\n    \"\"\"\n    if not array:\n        return []\n    \n    if len(array) == 1:\n        return array\n    \n    if (array[0] + array[-1]) % 2 == 0:\n        return sorted(array, reverse=True)\n    else:\n        return sorted(array)\n```"
+      },
+      "model_config": {
+        "base_url": "http://localhost:11434/v1",
+        "max_token": 2048,
+        "model": "qwen2.5:7b",
+        "stream": false,
+        "temperature": 0.0,
+        "timeout": 600
+      },
+      "status": "completed",
+      "execution": "original",
+      "original_output": "```python\ndef sort_array(array):\n    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n    Note:\n    * don't change the given array.\n\n    Examples:\n    * sort_array([]) => []\n    * sort_array([5]) => [5]\n    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]\n    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]\n    \"\"\"\n    if not array:\n        return []\n\n    if len(array) == 1:\n        return array\n\n    if (array[0] + array[-1]) % 2 == 0:\n        return sorted(array, reverse=True)\n    else:\n        return sorted(array)\n```",
+      "delivered_output": "```python\ndef sort_array(array):\n    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n    Note:\n    * don't change the given array.\n\n    Examples:\n    * sort_array([]) => []\n    * sort_array([5]) => [5]\n    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]\n    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]\n    \"\"\"\n    if not array:\n        return []\n\n    if len(array) == 1:\n        return array\n\n    if (array[0] + array[-1]) % 2 == 0:\n        return sorted(array, reverse=True)\n    else:\n        return sorted(array)\n```",
+      "syntax_check": "passed",
+      "entry_point_found": true,
+      "elapsed_seconds": 16.586,
+      "reported_prompt_tokens": 659,
+      "reported_completion_tokens": 258,
+      "reported_total_tokens": 917
+    }
+  ],
+  "new_inference": [
+    {
+      "model": "qwen2.5:7b",
+      "stage": "product_manager",
+      "status": "completed",
+      "elapsed_seconds": 6.965,
+      "reported_prompt_tokens": 317,
+      "reported_completion_tokens": 126,
+      "reported_total_tokens": 443
+    },
+    {
+      "model": "qwen2.5:7b",
+      "stage": "architect",
+      "status": "completed",
+      "elapsed_seconds": 10.107,
+      "reported_prompt_tokens": 452,
+      "reported_completion_tokens": 181,
+      "reported_total_tokens": 633
+    },
+    {
+      "model": "qwen2.5:7b",
+      "stage": "project_manager",
+      "status": "completed",
+      "elapsed_seconds": 17.07,
+      "reported_prompt_tokens": 515,
+      "reported_completion_tokens": 321,
+      "reported_total_tokens": 836
+    },
+    {
+      "model": "qwen2.5-coder:7b",
+      "stage": "coder",
+      "status": "completed",
+      "elapsed_seconds": 16.74,
+      "reported_prompt_tokens": 692,
+      "reported_completion_tokens": 259,
+      "reported_total_tokens": 951
+    },
+    {
+      "model": "qwen2.5:7b",
+      "stage": "test_engineer",
+      "status": "completed",
+      "elapsed_seconds": 16.586,
+      "reported_prompt_tokens": 659,
+      "reported_completion_tokens": 258,
+      "reported_total_tokens": 917
+    }
+  ],
+  "evaluation_file": "evaluation.json",
+  "generated_code_executed_by_agents": false,
+  "wall_seconds": 67.595
+}

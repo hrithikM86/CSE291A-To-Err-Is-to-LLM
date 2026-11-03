@@ -1,0 +1,23 @@
+```python
+def strange_sort_list(lst: list) -> list:
+    if not lst:
+        return []
+
+    sorted_lst = []
+    remaining = lst.copy()
+
+    while remaining:
+        # Append the minimum value
+        if remaining:
+            min_val = min(remaining)
+            sorted_lst.append(min_val)
+            remaining.remove(min_val)
+
+        # Append the maximum value
+        if remaining:
+            max_val = max(remaining)
+            sorted_lst.append(max_val)
+            remaining.remove(max_val)
+
+    return sorted_lst
+```

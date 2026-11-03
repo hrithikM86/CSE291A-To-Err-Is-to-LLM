@@ -1,0 +1,37 @@
+--- all-Qwen raw Coder
++++ all-Qwen reviewed final
+@@ -2,7 +2,7 @@
+     """
+     Given a string text, replace all spaces in it with underscores, and if a string has more than 2 consecutive spaces,
+     then replace all consecutive spaces with -
+-    
++
+     fix_spaces("Example") == "Example"
+     fix_spaces("Example 1") == "Example_1"
+     fix_spaces(" Example 2") == "_Example_2"
+@@ -10,10 +10,10 @@
+     """
+     if not text:
+         return ""
+-    
++
+     result = ""
+     count = 0
+-    
++
+     for char in text:
+         if char == " ":
+             count += 1
+@@ -24,10 +24,10 @@
+                 result += "-"
+             result += char
+             count = 0
+-    
++
+     if count == 1:
+         result += "_"
+     elif count >= 2:
+         result += "-"
+-    
++
+     return result

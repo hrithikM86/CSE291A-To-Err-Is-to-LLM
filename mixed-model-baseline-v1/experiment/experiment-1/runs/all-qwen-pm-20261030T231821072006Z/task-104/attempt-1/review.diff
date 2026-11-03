@@ -1,0 +1,11 @@
+--- all-Qwen raw Coder
++++ all-Qwen reviewed final
+@@ -3,7 +3,7 @@
+         raise ValueError("All elements in the list must be positive integers.")
+     
+     def has_odd_digit(n):
+-        return any(int(digit) % 2 != 0 for digit in str(n))
++        return all(int(digit) % 2 != 0 for digit in str(n))
+     
+     result = [num for num in x if has_odd_digit(num)]
+     return sorted(result)

@@ -1,0 +1,11 @@
+def minSubArraySum(nums: list) -> int:
+    if not nums:
+        raise ValueError("Input list cannot be empty")
+    if len(nums) == 1:
+        return nums[0]
+
+    min_sum = float('inf')
+    for i in range(len(nums)):
+        min_sum = min(min_sum, sum(nums[i:]))
+
+    return min_sum

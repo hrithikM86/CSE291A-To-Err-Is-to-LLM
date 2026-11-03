@@ -1,0 +1,41 @@
+--- baseline_final.py
++++ final.py
+@@ -1,4 +1,5 @@
+ from typing import List
++
+ 
+ def parse_music(music_string: str) -> List[int]:
+     """
+@@ -9,7 +10,7 @@
+     Here is a legend:
+     'o' - whole note, lasts four beats
+     'o|' - half note, lasts two beats
+-    '.|' - quater note, lasts one beat
++    '.|' - quarter note, lasts one beat
+ 
+     >>> parse_music('o o| .| o| o| .| .| .| .| o o')
+     [4, 2, 1, 2, 2, 1, 1, 1, 1, 4, 4]
+@@ -18,18 +19,10 @@
+     if not music_string:
+         return durations
+ 
+-    i = 0
+-    while i < len(music_string):
+-        if music_string[i] == 'o':
+-            durations.append(4)
+-            i += 1
+-        elif music_string[i:i+2] == 'o|':
+-            durations.append(2)
+-            i += 2
+-        elif music_string[i:i+2] == '.|':
+-            durations.append(1)
+-            i += 2
+-        else:
+-            i += 1
++    note_map = {'o': 4, 'o|': 2, '.|': 1}
++
++    for note in music_string.split():
++        if note in note_map:
++            durations.append(note_map[note])
+ 
+     return durations

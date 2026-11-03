@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef split_words(txt):\n    '''\n    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you\n    should split on commas ',' if no commas exists you should return the number of lower-case letters with odd order in the\n    alphabet, ord('a') = 0, ord('b') = 1, ... ord('z') = 25\n    Examples\n    split_words(\"Hello world!\") \u279e [\"Hello\", \"world!\"]\n    split_words(\"Hello,world!\") \u279e [\"Hello\", \"world!\"]\n    split_words(\"abcdef\") == 3 \n    '''\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `split_words(txt)`:\n\n1. **Whitespace Check**: \n   - If the string contains any whitespace, split the string on whitespace and return the resulting list.\n\n2. **Comma Check**: \n   - If no whitespace, check if the string contains any commas. If so, split the string on commas and return the resulting list.\n\n3. **Odd ASCII Count**:\n   - If no whitespace or commas, iterate through each character in the string.\n   - For each lowercase letter, calculate its ASCII value and check if it is odd.\n   - Count and return the number of such letters.\n\n**Edge Cases**:\n- Empty string: Return an empty list.\n- String with only whitespace or commas: Handle as per the rules.\n- String with only non-alphabetic characters: Return 0.\n\n**Complexity**:\n- Time: O(n), where n is the length of the string.\n- Space: O(n) for storing the split words or the count of letters."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

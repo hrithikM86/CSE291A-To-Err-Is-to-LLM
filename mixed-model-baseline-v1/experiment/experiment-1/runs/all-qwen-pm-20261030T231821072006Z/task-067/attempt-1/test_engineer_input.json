@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef fruit_distribution(s,n):\n    \"\"\"\n    In this task, you will be given a string that represents a number of apples and oranges \n    that are distributed in a basket of fruit this basket contains \n    apples, oranges, and mango fruits. Given the string that represents the total number of \n    the oranges and apples and an integer that represent the total number of the fruits \n    in the basket return the number of the mango fruits in the basket.\n    for examble:\n    fruit_distribution(\"5 apples and 6 oranges\", 19) ->19 - 5 - 6 = 8\n    fruit_distribution(\"0 apples and 1 oranges\",3) -> 3 - 0 - 1 = 2\n    fruit_distribution(\"2 apples and 3 oranges\", 100) -> 100 - 2 - 3 = 95\n    fruit_distribution(\"100 apples and 1 oranges\",120) -> 120 - 100 - 1 = 19\n    \"\"\"\n",
+    "previous_stage": "coder",
+    "previous_artifact": "```python\nimport re\n\ndef fruit_distribution(s: str, n: int) -> int:\n    \"\"\"\n    Given a string that represents the number of apples and oranges in a basket of fruit,\n    and an integer representing the total number of fruits in the basket, return the number\n    of mango fruits in the basket.\n    \n    The string is in the format \"X apples and Y oranges\".\n    \n    Parameters:\n    s (str): A string representing the number of apples and oranges.\n    n (int): The total number of fruits in the basket.\n    \n    Returns:\n    int: The number of mango fruits in the basket.\n    \"\"\"\n    # Check if the input string is valid\n    if not s or \"apples and oranges\" not in s:\n        return 0\n    \n    # Extract the numbers using regular expressions\n    match = re.search(r'(\\d+) apples and (\\d+) oranges', s)\n    if not match:\n        return 0\n    \n    # Convert the extracted strings to integers\n    apples, oranges = map(int, match.groups())\n    \n    # Calculate the number of mango fruits\n    if n < apples + oranges:\n        return 0\n    return n - apples - oranges\n\n# Example usage:\nprint(fruit_distribution(\"5 apples and 6 oranges\", 19))  # Output: 8\nprint(fruit_distribution(\"0 apples and 1 oranges\", 3))   # Output: 2\nprint(fruit_distribution(\"2 apples and 3 oranges\", 100)) # Output: 95\nprint(fruit_distribution(\"100 apples and 1 oranges\", 120)) # Output: 19\n```"
+  },
+  "system_messages": [
+    "You are a Test Engineer, named test_engineer, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

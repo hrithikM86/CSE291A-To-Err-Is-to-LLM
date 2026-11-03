@@ -1,0 +1,13 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -1,9 +1,4 @@
+ def count_distinct_characters(string: str) -> int:
+     if not string:
+         return 0
+-    
+-    unique_chars = set()
+-    for char in string.lower():
+-        unique_chars.add(char)
+-    
+-    return len(unique_chars)
++    return len(set(string))

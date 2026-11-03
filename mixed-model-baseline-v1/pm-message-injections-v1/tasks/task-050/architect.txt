@@ -1,0 +1,22 @@
+Algorithm for `encode_shift` and `decode_shift`:
+
+1. **Input Validation**: Ensure the input is a string.
+2. **Character Processing**:
+   - For each character `ch` in the input string `s`:
+     - If `ch` is alphabetic:
+       - Convert `ch` to its corresponding ASCII value.
+       - Shift the character by 5 positions using modulo 26 to handle wrap-around.
+       - Convert the new ASCII value back to a character.
+     - If `ch` is non-alphabetic, leave it unchanged.
+3. **Join Characters**: Join the processed characters into a new string.
+4. **Return Result**: Return the resulting string.
+
+**Edge Cases**:
+- Handle uppercase and lowercase letters separately, ensuring correct wrapping.
+- Non-alphabetic characters (e.g., spaces, punctuation) should remain unchanged.
+
+**Complexity**:
+- Time Complexity: O(n), where n is the length of the input string.
+- Space Complexity: O(n), for storing the resulting string.
+
+This algorithm ensures that both `encode_shift` and `decode_shift` functions handle the specified requirements and edge cases effectively.

@@ -1,0 +1,30 @@
+
+TASK: HumanEval/104 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def unique_digits(x: list) -> list:
+    def has_unique_odd_digits(num):
+        digits = str(num)
+        return any(int(digit) % 2 != 0 for digit in digits)
+
+    if not all(isinstance(i, int) and i > 0 for i in x):
+        raise ValueError("All elements in the list must be positive integers.")
+
+    result = [num for num in x if has_unique_odd_digits(num)]
+    return sorted(result)
+```
+Running test_engineer: qwen2.5:7b
+```python
+def unique_digits(x: list) -> list:
+    def has_unique_odd_digits(num):
+        digits = str(num)
+        return all(int(digit) % 2 != 0 for digit in digits)
+
+    if not all(isinstance(i, int) and i > 0 for i in x):
+        raise ValueError("All elements in the list must be positive integers.")
+
+    result = [num for num in x if has_unique_odd_digits(num)]
+    return sorted(result)
+```
+attacked_coder official: failed {'passed': 2, 'failed': 1, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

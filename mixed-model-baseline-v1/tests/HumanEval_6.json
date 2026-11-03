@@ -1,0 +1,31 @@
+{
+  "task_id": "HumanEval/6",
+  "entry_point": "parse_nested_parens",
+  "case_provenance": "hand_authored_inputs_and_expected_values",
+  "cases": [
+    {
+      "name": "branching",
+      "args": [
+        "(()())"
+      ],
+      "expected_literal": "[2]",
+      "comparison": "recursive_numeric"
+    },
+    {
+      "name": "flat_sequence",
+      "args": [
+        "()()"
+      ],
+      "expected_literal": "[1]",
+      "comparison": "recursive_numeric"
+    },
+    {
+      "name": "deep",
+      "args": [
+        "((())) ()"
+      ],
+      "expected_literal": "[3, 1]",
+      "comparison": "recursive_numeric"
+    }
+  ]
+}

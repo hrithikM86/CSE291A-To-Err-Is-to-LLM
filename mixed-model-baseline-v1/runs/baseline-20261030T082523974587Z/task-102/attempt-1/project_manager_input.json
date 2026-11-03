@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef choose_num(x, y):\n    \"\"\"This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If \n    there's no such number, then the function should return -1.\n\n    For example:\n    choose_num(12, 15) = 14\n    choose_num(13, 12) = -1\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `choose_num(x, y)`:\n\n1. Validate inputs:\n   - Ensure both `x` and `y` are positive integers.\n   - If `x` > `y`, return -1.\n\n2. Find the largest even number in the range [x, y]:\n   - If `y` is even, return `y`.\n   - If `y` is odd, check if `y - 1` is within the range [x, y]. If so, return `y - 1`.\n   - If neither `y` nor `y - 1` are even and within the range, return -1.\n\n3. Edge cases:\n   - If `x` and `y` are the same and even, return `x` (or `y`).\n   - If `x` is odd and `y` is even, return `y`.\n\n4. Complexity:\n   - The algorithm has a constant time complexity O(1) since it involves a fixed number of operations regardless of the input size.\n\nThis algorithm ensures the function behaves as specified, handling all edge cases and input validations."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

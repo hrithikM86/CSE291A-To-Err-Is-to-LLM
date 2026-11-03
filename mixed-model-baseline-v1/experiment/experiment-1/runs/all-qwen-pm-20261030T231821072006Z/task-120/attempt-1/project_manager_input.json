@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef maximum(arr, k):\n    \"\"\"\n    Given an array arr of integers and a positive integer k, return a sorted list \n    of length k with the maximum k numbers in arr.\n\n    Example 1:\n\n        Input: arr = [-3, -4, 5], k = 3\n        Output: [-4, -3, 5]\n\n    Example 2:\n\n        Input: arr = [4, -4, 4], k = 2\n        Output: [4, 4]\n\n    Example 3:\n\n        Input: arr = [-3, 2, 1, 2, -1, -2, 1], k = 1\n        Output: [2]\n\n    Note:\n        1. The length of the array will be in the range of [1, 1000].\n        2. The elements in the array will be in the range of [-1000, 1000].\n        3. 0 <= k <= len(arr)\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `maximum(arr, k)`:\n\n1. **Input Validation**:\n   - Check if `arr` is empty. If yes, return an empty list.\n   - Check if `k` is 0 or greater than the length of `arr`. If yes, return an empty list.\n   - Check if `k` is equal to the length of `arr`. If yes, return the sorted `arr`.\n\n2. **Finding the Maximum k Numbers**:\n   - Use a min-heap to keep track of the top `k` numbers. Initialize a min-heap with the first `k` elements of `arr`.\n   - Iterate through the remaining elements of `arr`:\n     - If the current element is greater than the smallest element in the heap (the root of the heap), replace the root with the current element.\n     - Re-heapify the heap to maintain the min-heap property.\n\n3. **Return the Result**:\n   - After processing all elements, the heap contains the `k` largest numbers. Extract these numbers and return them in sorted order.\n\n**Edge Cases**:\n- Empty list: Return an empty list.\n- `k` is 0: Return an empty list.\n- `k` is equal to the length of `arr`: Return the sorted `arr`.\n\n**Complexity**:\n- Time: O(n log k) where `n` is the length of `arr` and `k` is the number of elements in the heap.\n- Space: O(k) for storing the heap."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

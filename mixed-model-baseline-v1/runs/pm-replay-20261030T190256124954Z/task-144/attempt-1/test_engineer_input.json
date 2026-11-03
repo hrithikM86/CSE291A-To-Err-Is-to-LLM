@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef simplify(x, n):\n    \"\"\"Your task is to implement a function that will simplify the expression\n    x * n. The function returns True if x * n evaluates to a whole number and False\n    otherwise. Both x and n, are string representation of a fraction, and have the following format,\n    <numerator>/<denominator> where both numerator and denominator are positive whole numbers.\n\n    You can assume that x, and n are valid fractions, and do not have zero as denominator.\n\n    simplify(\"1/5\", \"5/1\") = True\n    simplify(\"1/6\", \"2/1\") = False\n    simplify(\"7/10\", \"10/2\") = False\n    \"\"\"\n",
+    "previous_stage": "coder",
+    "previous_artifact": "```python\ndef simplify(x: str, n: str) -> bool:\n    def parse_fraction(fraction: str) -> tuple:\n        numerator, denominator = fraction.split('/')\n        return int(numerator), int(denominator)\n\n    def is_whole_number(numerator: int, denominator: int) -> bool:\n        return numerator % denominator == 0\n\n    if not x or not n:\n        raise ValueError(\"Input strings cannot be empty\")\n\n    if '/' not in x or '/' not in n:\n        raise ValueError(\"Input strings must be in the format <numerator>/<denominator>\")\n\n    x_numerator, x_denominator = parse_fraction(x)\n    n_numerator, n_denominator = parse_fraction(n)\n\n    return is_whole_number(x_numerator, x_denominator) and is_whole_number(n_numerator, n_denominator)\n```"
+  },
+  "system_messages": [
+    "You are a Test Engineer, named test_engineer, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

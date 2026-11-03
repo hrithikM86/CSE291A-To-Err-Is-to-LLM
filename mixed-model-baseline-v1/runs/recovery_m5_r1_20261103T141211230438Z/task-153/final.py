@@ -1,0 +1,19 @@
+def Strongest_Extension(class_name: str, extensions: list) -> str:
+    if not class_name:
+        return "Invalid class name"
+    if not extensions:
+        return class_name
+
+    strongest_extension = None
+    max_strength = -float('inf')
+
+    for extension in extensions:
+        cap = sum(1 for char in extension if char.isupper())
+        sm = sum(1 for char in extension if char.islower())
+        strength = cap - sm
+
+        if strength > max_strength or (strength == max_strength and strongest_extension is None):
+            max_strength = strength
+            strongest_extension = extension
+
+    return f"{class_name}.{strongest_extension}"

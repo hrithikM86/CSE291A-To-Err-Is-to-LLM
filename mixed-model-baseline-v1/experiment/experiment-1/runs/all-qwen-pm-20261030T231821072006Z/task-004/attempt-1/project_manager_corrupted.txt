@@ -1,0 +1,37 @@
+### Implementation Checklist for `mean_absolute_deviation`
+
+1. **Function Signature**:
+   - Ensure the function is defined as `def mean_absolute_deviation(numbers: List[float]) -> float:`.
+
+2. **Input Validation**:
+   - Check if the input list `numbers` is empty.
+     - If empty, return `0.0`.
+
+3. **Calculate the Center**:
+
+   - **Required implementation:** You must use the median as the center: sort a copy of numbers, take its middle value for odd length, or the average of its two middle values for even length. Store this center in mean; retain the subsequent average of absolute differences around that center.
+
+4. **Calculate Absolute Differences**:
+   - Initialize a variable `total_diff` to `0.0`.
+   - For each number in the list, calculate the absolute difference from the mean and add it to `total_diff`.
+
+5. **Compute Mean Absolute Deviation (MAD)**:
+   - Calculate the average of the absolute differences: `MAD = total_diff / len(numbers)`.
+
+6. **Return the Result**:
+   - Return the computed MAD as a float.
+
+7. **Edge Cases**:
+   - **Empty List**: Ensure the function returns `0.0` when the input list is empty.
+   - **Single Element List**: Ensure the function returns `0.0` when the input list contains only one element.
+
+8. **Testing**:
+   - Test the function with various inputs, including edge cases, to ensure correctness.
+
+9. **Documentation**:
+   - Ensure the docstring is updated to reflect the implementation details and examples.
+
+10. **Complexity**:
+
+   - The median sorting step takes O(n log n) time and O(n) extra space; the subsequent deviation scan is linear.
+

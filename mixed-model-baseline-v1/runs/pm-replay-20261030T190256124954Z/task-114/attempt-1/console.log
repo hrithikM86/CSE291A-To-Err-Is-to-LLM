@@ -1,0 +1,33 @@
+
+TASK: HumanEval/114 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def minSubArraySum(nums: list) -> int:
+    if not nums:
+        raise ValueError("Input list cannot be empty")
+    if len(nums) == 1:
+        return nums[0]
+    
+    min_sum = float('inf')
+    for i in range(len(nums)):
+        for j in range(i, min(i + 2, len(nums))):
+            min_sum = min(min_sum, sum(nums[i:j]))
+    
+    return min_sum
+```
+Running test_engineer: qwen2.5:7b
+```python
+def minSubArraySum(nums: list) -> int:
+    if not nums:
+        raise ValueError("Input list cannot be empty")
+    if len(nums) == 1:
+        return nums[0]
+
+    min_sum = float('inf')
+    for i in range(len(nums)):
+        min_sum = min(min_sum, sum(nums[i:]))
+
+    return min_sum
+```
+attacked_coder official: failed {'passed': 1, 'failed': 2, 'timeout': 0, 'unresolved': 0}
+attacked_final official: failed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

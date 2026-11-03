@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef get_closest_vowel(word):\n    \"\"\"You are given a word. Your task is to find the closest vowel that stands between \n    two consonants from the right side of the word (case sensitive).\n    \n    Vowels in the beginning and ending doesn't count. Return empty string if you didn't\n    find any vowel met the above condition. \n\n    You may assume that the given string contains English letter only.\n\n    Example:\n    get_closest_vowel(\"yogurt\") ==> \"u\"\n    get_closest_vowel(\"FULL\") ==> \"U\"\n    get_closest_vowel(\"quick\") ==> \"\"\n    get_closest_vowel(\"ab\") ==> \"\"\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `get_closest_vowel(word)`:\n\n1. **Input Validation**: \n   - If `word` is empty, return an empty string.\n\n2. **Initialize Variables**:\n   - `n` = length of `word`\n   - `closest_vowel` = empty string\n\n3. **Iterate from Right to Left**:\n   - For `i` from `n-2` to `0` (inclusive):\n     - Check if `word[i]` is a vowel and `word[i+1]` is a consonant.\n     - If true, set `closest_vowel` to `word[i]` and break the loop.\n\n4. **Return Result**:\n   - Return `closest_vowel`.\n\n**Edge Cases**:\n- Handle empty string: Return an empty string.\n- Handle single character: Return an empty string.\n- Handle no valid vowels: Return an empty string.\n- Handle vowels at the beginning or end: Return an empty string.\n\n**Complexity**:\n- Time: O(n), where n is the length of the word.\n- Space: O(1), constant space used."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

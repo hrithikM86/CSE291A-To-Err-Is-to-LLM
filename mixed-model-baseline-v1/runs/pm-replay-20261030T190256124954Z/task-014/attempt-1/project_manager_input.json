@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List\n\n\ndef all_prefixes(string: str) -> List[str]:\n    \"\"\" Return list of all prefixes from shortest to longest of the input string\n    >>> all_prefixes('abc')\n    ['a', 'ab', 'abc']\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `all_prefixes`:\n\n1. Initialize an empty list `prefixes`.\n2. If the input string is empty, return `prefixes` (which is an empty list).\n3. For each index `i` from 0 to the length of the string (inclusive):\n   - Append the substring from the start to index `i` to `prefixes`.\n4. Return the list `prefixes`.\n\nEdge cases:\n- If the input string is empty, return an empty list.\n- If the input string is a single character, return a list containing the string and an empty string.\n\nComplexity:\n- Time: O(n^2) due to substring operations in the loop.\n- Space: O(n) for storing the list of prefixes, where n is the length of the input string."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

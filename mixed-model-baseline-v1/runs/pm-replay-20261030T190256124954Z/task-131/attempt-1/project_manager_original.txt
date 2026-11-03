@@ -1,0 +1,43 @@
+### Implementation Checklist for `digits(n)` Function
+
+1. **Function Signature**:
+   ```python
+   def digits(n: int) -> int:
+       pass
+   ```
+
+2. **Input Validation**:
+   - Ensure `n` is a positive integer.
+   - Handle the case where `n` is 0 by returning 0.
+
+3. **Edge Case Handling**:
+   - If `n` is a single digit, check if it's odd or even:
+     - Return `n` if odd.
+     - Return 0 if even.
+
+4. **Digit Extraction and Product Calculation**:
+   - Initialize `product` to 1.
+   - While `n` is greater than 0:
+     - Extract the last digit of `n` using `n % 10`.
+     - If the digit is odd (i.e., `digit % 2 != 0`), multiply it with `product`.
+     - Remove the last digit from `n` using `n //= 10`.
+   - If `product` remains 1 after the loop, all digits were even, so return 0.
+   - Otherwise, return `product`.
+
+5. **Boundary Conditions**:
+   - Ensure the function handles the edge case where `n` is 0.
+   - Verify the function works correctly for single-digit numbers.
+   - Test with various multi-digit numbers to ensure the product of odd digits is calculated correctly.
+
+6. **Example Test Cases**:
+   - `digits(1)` should return `1`.
+   - `digits(4)` should return `0`.
+   - `digits(235)` should return `15`.
+   - `digits(2468)` should return `0`.
+   - `digits(13579)` should return `945`.
+
+7. **Complexity**:
+   - Time: O(d), where d is the number of digits in `n`.
+   - Space: O(1), constant space is used.
+
+Follow this checklist to implement the `digits` function correctly.

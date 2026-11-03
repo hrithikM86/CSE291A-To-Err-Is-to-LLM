@@ -1,0 +1,47 @@
+### Implementation Checklist for `fruit_distribution(s, n)`
+
+1. **Function Signature**:
+   ```python
+   def fruit_distribution(s: str, n: int) -> int:
+       pass
+   ```
+
+2. **Input Validation**:
+   - Check if `s` is empty or not in the format "X apples and Y oranges".
+   - If `s` is invalid, return 0.
+
+3. **Extract Numbers**:
+   - Use regular expressions to extract `X` and `Y` from `s`.
+   - Convert `X` and `Y` to integers.
+   - If `X` or `Y` cannot be converted to integers, return 0.
+
+4. **Calculate Mango Fruits**:
+   - If `n` is less than the sum of `X` and `Y`, return 0.
+   - Otherwise, return `n - (X + Y)`.
+
+5. **Edge Cases**:
+   - If `s` is empty, return 0.
+   - If `s` does not contain "apples and oranges", return 0.
+
+6. **Return Result**:
+   - Return the calculated number of mango fruits.
+
+7. **Boundary Conditions**:
+   - Ensure that the function handles edge cases such as invalid input formats, non-integer values, and negative numbers.
+
+8. **Testing**:
+   - Test with various inputs including edge cases:
+     - `fruit_distribution("5 apples and 6 oranges", 19)` -> 8
+     - `fruit_distribution("0 apples and 1 oranges", 3)` -> 2
+     - `fruit_distribution("2 apples and 3 oranges", 100)` -> 95
+     - `fruit_distribution("100 apples and 1 oranges", 120)` -> 19
+     - `fruit_distribution("", 10)` -> 0
+     - `fruit_distribution("10 apples and oranges", 15)` -> 0
+     - `fruit_distribution("10 apples and 20 oranges", 10)` -> 0
+
+9. **Code Review**:
+   - Ensure the code is clean, readable, and follows best practices.
+   - Use comments to explain complex parts of the code.
+
+10. **Documentation**:
+    - Add docstring to the function explaining its purpose and parameters.

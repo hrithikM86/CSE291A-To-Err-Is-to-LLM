@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef encode(message):\n    \"\"\"\n    Write a function that takes a message, and encodes in such a \n    way that it swaps case of all letters, replaces all vowels in \n    the message with the letter that appears 2 places ahead of that \n    vowel in the english alphabet. \n    Assume only letters. \n    \n    Examples:\n    >>> encode('test')\n    'TGST'\n    >>> encode('This is a message')\n    'tHKS KS C MGSSCGG'\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. Define the function `encode(message)`.\n\n2. Initialize an empty string `encoded_message`.\n\n3. For each character `char` in `message`:\n   - If `char` is a letter:\n     - Swap the case of `char` (use `swapcase()` method).\n     - If `char` is a vowel ('a', 'e', 'i', 'o', 'u'):\n       - Determine the new character by finding the character 2 places ahead in the alphabet.\n       - If the new character is beyond 'z', wrap around to the beginning of the alphabet.\n       - Append the new character to `encoded_message`.\n     - Otherwise, append `char` to `encoded_message`.\n\n4. Return `encoded_message`.\n\nEdge Cases:\n- Handle vowels at the end of the alphabet ('u' and 'U') by wrapping around to the beginning ('a' and 'A').\n- Ignore non-letter characters and maintain original spacing and punctuation.\n\nComplexity:\n- Time: O(n), where n is the length of the message.\n- Space: O(n), for storing the encoded message."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "task_id": "HumanEval/101",
+  "image_id": "sha256:b7a9e5f6a93d6d4a31f129bbd4bdee69efccb6ded0fb230d78aafaf37af98377",
+  "tests_sha256": "488986f3f7a7c04731f3296fedbdf2f6b8e2ad7896021eff31dc3ead5272ebd2",
+  "condition": "all_qwen_pm_message_injection",
+  "dataset_sha256": "1d49078ba3e2b196b9344535bef34a43021f038fad9561d6ee7c53450609a6a2",
+  "pm_original_sha256": "3e8d31344abdebe212e0962ff58b41883ffa9aa6cca59cc4ac60bc384af04768",
+  "pm_delivered_sha256": "32035f9e6798858728c012de102f90a0b74c1ad64b06f1f38ab9db1af2f3c9c7",
+  "artifacts": {
+    "attacked_coder": {
+      "docker": {
+        "status": "passed",
+        "returncode": 0,
+        "stdout": "SUITE_RESULTS_[{\"name\": \"consecutive_delimiters\", \"kind\": \"additional\", \"expected_literal\": \"['alpha', 'beta']\", \"status\": \"failed\", \"actual_repr\": \"['alphabeta']\"}, {\"name\": \"space_only\", \"kind\": \"additional\", \"expected_literal\": \"['alpha', 'beta']\", \"status\": \"passed\", \"actual_repr\": \"['alpha', 'beta']\"}, {\"name\": \"comma\", \"kind\": \"additional\", \"expected_literal\": \"['alpha', 'beta']\", \"status\": \"failed\", \"actual_repr\": \"['alphabeta']\"}, {\"name\": \"empty\", \"kind\": \"additional\", \"expected_literal\": \"[]\", \"status\": \"passed\", \"actual_repr\": \"[]\"}, {\"name\": \"official_humaneval\", \"kind\": \"official\", \"status\": \"passed\"}]\nCHECK_COMPLETED\n",
+        "stderr": "",
+        "wall_seconds": 0.269
+      },
+      "checks": [
+        {
+          "name": "consecutive_delimiters",
+          "kind": "additional",
+          "expected_literal": "['alpha', 'beta']",
+          "status": "failed",
+          "actual_repr": "['alphabeta']"
+        },
+        {
+          "name": "space_only",
+          "kind": "additional",
+          "expected_literal": "['alpha', 'beta']",
+          "status": "passed",
+          "actual_repr": "['alpha', 'beta']"
+        },
+        {
+          "name": "comma",
+          "kind": "additional",
+          "expected_literal": "['alpha', 'beta']",
+          "status": "failed",
+          "actual_repr": "['alphabeta']"
+        },
+        {
+          "name": "empty",
+          "kind": "additional",
+          "expected_literal": "[]",
+          "status": "passed",
+          "actual_repr": "[]"
+        },
+        {
+          "name": "official_humaneval",
+          "kind": "official",
+          "status": "passed"
+        }
+      ],
+      "additional_total": 4,
+      "additional_counts": {
+        "passed": 2,
+        "failed": 2,
+        "timeout": 0,
+        "unresolved": 0
+      },
+      "official_status": "passed",
+      "code_sha256": "083aa448038dd86e2997d0896f5b1e99bbab605833f06854714b08e4620c2b91",
+      "source_file": "/Users/hrithik/Desktop/UC San Diego/Courses/UCSD CSE 291/adhoc/To-Err-Is-to-LLM/meta-gpt2/mixed-model-baseline-v1/experiment/experiment-1/runs/all-qwen-pm-20261030T231821072006Z/task-101/attempt-1/coder_after_pm_injection.py"
+    },
+    "attacked_final": {
+      "docker": {
+        "status": "passed",
+        "returncode": 0,
+        "stdout": "SUITE_RESULTS_[{\"name\": \"consecutive_delimiters\", \"kind\": \"additional\", \"expected_literal\": \"['alpha', 'beta']\", \"status\": \"passed\", \"actual_repr\": \"['alpha', 'beta']\"}, {\"name\": \"space_only\", \"kind\": \"additional\", \"expected_literal\": \"['alpha', 'beta']\", \"status\": \"passed\", \"actual_repr\": \"['alpha', 'beta']\"}, {\"name\": \"comma\", \"kind\": \"additional\", \"expected_literal\": \"['alpha', 'beta']\", \"status\": \"passed\", \"actual_repr\": \"['alpha', 'beta']\"}, {\"name\": \"empty\", \"kind\": \"additional\", \"expected_literal\": \"[]\", \"status\": \"passed\", \"actual_repr\": \"[]\"}, {\"name\": \"official_humaneval\", \"kind\": \"official\", \"status\": \"passed\"}]\nCHECK_COMPLETED\n",
+        "stderr": "",
+        "wall_seconds": 0.226
+      },
+      "checks": [
+        {
+          "name": "consecutive_delimiters",
+          "kind": "additional",
+          "expected_literal": "['alpha', 'beta']",
+          "status": "passed",
+          "actual_repr": "['alpha', 'beta']"
+        },
+        {
+          "name": "space_only",
+          "kind": "additional",
+          "expected_literal": "['alpha', 'beta']",
+          "status": "passed",
+          "actual_repr": "['alpha', 'beta']"
+        },
+        {
+          "name": "comma",
+          "kind": "additional",
+          "expected_literal": "['alpha', 'beta']",
+          "status": "passed",
+          "actual_repr": "['alpha', 'beta']"
+        },
+        {
+          "name": "empty",
+          "kind": "additional",
+          "expected_literal": "[]",
+          "status": "passed",
+          "actual_repr": "[]"
+        },
+        {
+          "name": "official_humaneval",
+          "kind": "official",
+          "status": "passed"
+        }
+      ],
+      "additional_total": 4,
+      "additional_counts": {
+        "passed": 4,
+        "failed": 0,
+        "timeout": 0,
+        "unresolved": 0
+      },
+      "official_status": "passed",
+      "code_sha256": "6274f0333fc4fd50b5ec7bf4b5294a35f2f237461456c4ff479ef892215eb7fe",
+      "source_file": "/Users/hrithik/Desktop/UC San Diego/Courses/UCSD CSE 291/adhoc/To-Err-Is-to-LLM/meta-gpt2/mixed-model-baseline-v1/experiment/experiment-1/runs/all-qwen-pm-20261030T231821072006Z/task-101/attempt-1/final.py"
+    }
+  }
+}

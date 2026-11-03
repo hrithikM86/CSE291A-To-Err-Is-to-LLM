@@ -1,0 +1,16 @@
+Algorithm for `get_row(lst, x)`:
+
+1. Initialize an empty list `coordinates` to store the result.
+2. Iterate over each row `i` and column `j` in `lst`:
+   - If `lst[i][j] == x`, add tuple `(i, j)` to `coordinates`.
+3. Sort `coordinates` by row in ascending order.
+4. For each row, sort the tuples by column in descending order.
+5. Return `coordinates`.
+
+Edge cases:
+- Handle empty `lst` by returning an empty list.
+- Ensure `x` is an integer.
+
+Complexity:
+- Time: O(n * m * log(m)) where n is the number of rows and m is the average number of columns.
+- Space: O(k) where k is the number of occurrences of `x`.

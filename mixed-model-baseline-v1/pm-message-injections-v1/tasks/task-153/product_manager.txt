@@ -1,0 +1,18 @@
+Requirements:
+- **Inputs**:
+  - `class_name` (string): The name of the class.
+  - `extensions` (list of strings): A list of extension names.
+
+- **Outputs**:
+  - (string): The combined class name and the strongest extension name in the format `ClassName.StrongestExtensionName`.
+
+- **Required Behavior**:
+  - Calculate the strength of each extension using the formula: `CAP - SM`, where `CAP` is the number of uppercase letters and `SM` is the number of lowercase letters.
+  - Return the class name concatenated with the strongest extension name.
+  - If multiple extensions have the same strength, return the one that appears first in the list.
+
+- **Edge Cases**:
+  - `class_name` is an empty string or `None`.
+  - `extensions` is an empty list.
+  - All extensions have the same strength.
+  - Extensions contain only uppercase or only lowercase letters.

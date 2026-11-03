@@ -1,0 +1,28 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -7,19 +7,19 @@
+     """
+     largest_factor = 2
+     factor = 3
+-    
++
+     while n % 2 == 0:
++        largest_factor = 2
+         n //= 2
+-        largest_factor = 2
+-    
++
+     while factor * factor <= n:
+         if n % factor == 0:
++            largest_factor = factor
+             n //= factor
+-            largest_factor = factor
+         else:
+             factor += 2
+-    
++
+     if n > 1:
+         largest_factor = n
+-    
++
+     return largest_factor

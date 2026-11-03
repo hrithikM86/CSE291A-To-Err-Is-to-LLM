@@ -1,0 +1,43 @@
+### Implementation Checklist for `find_zero(xs: list)`
+
+#### Function Signature
+```python
+def find_zero(xs: list) -> float:
+    """
+    Finds a zero point of a polynomial with coefficients xs.
+    """
+    pass
+```
+
+#### Algorithm Steps
+1. **Validate Input:**
+   - Check if the length of `xs` is even and greater than 0.
+   - Raise `ValueError` if the length is odd or zero.
+
+2. **Ensure Real Root Exists:**
+   - Use the properties of the coefficients to ensure a real root exists (e.g., the polynomial changes sign).
+
+3. **Initial Guess:**
+   - Use the largest non-zero coefficient to make an initial guess for the root.
+
+4. **Newton's Method:**
+   - Implement Newton's method to find the root.
+   - Iterate until convergence within a small tolerance (e.g., 1e-6).
+
+5. **Return the Root:**
+   - Round the root to 2 decimal places and return it.
+   - If the method fails to converge, return `None`.
+
+#### Boundary Conditions
+- **Odd Length:** Raise `ValueError` if the length of `xs` is odd.
+- **Constant Polynomial:** Raise `ValueError` if all coefficients except the last are zero.
+- **Convergence Failure:** Return `None` if the method fails to converge.
+
+#### Example Cases
+- `find_zero([1, 2])` should return `-0.5`.
+- `find_zero([-6, 11, -6, 1])` should return `1.0`.
+
+#### Complexity
+- The numerical method has a complexity of O(n) per iteration, where n is the degree of the polynomial. The number of iterations required for convergence depends on the initial guess and the polynomial's properties.
+
+Follow this checklist to implement the `find_zero` function correctly.

@@ -1,0 +1,27 @@
+from typing import List
+
+def sort_numbers(numbers: str) -> str:
+    """
+    Input is a space-delimited string of numberals from 'zero' to 'nine'.
+    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.
+    Return the string with numbers sorted from smallest to largest
+    >>> sort_numbers('three one five')
+    'one three five'
+    """
+    # Step 3: Create the number_map dictionary
+    number_map = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}
+    
+    # Step 4: Split the input string into a list of number words
+    words = numbers.split()
+    
+    # Step 5: Filter out any number words that are not in the number_map
+    valid_words = [word for word in words if word in number_map]
+    
+    # Step 6: Convert the valid number words to numerical values and sort them in ascending order
+    sorted_values = sorted([number_map[word] for word in valid_words])
+    
+    # Step 7: Convert the sorted numerical values back to number words
+    sorted_words = [list(number_map.keys())[list(number_map.values()).index(value)] for value in sorted_values]
+    
+    # Step 8: Join the sorted number words with spaces and return the result
+    return ' '.join(sorted_words)

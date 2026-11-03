@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef fizz_buzz(n: int):\n    \"\"\"Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\n    >>> fizz_buzz(50)\n    0\n    >>> fizz_buzz(78)\n    2\n    >>> fizz_buzz(79)\n    3\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `fizz_buzz(n: int)`:\n\n1. Validate input `n`:\n   - If `n < 1` or `n > 10000`, return an error message or raise an exception.\n2. Initialize a counter `count` to 0.\n3. For each integer `i` from 1 to `n-1`:\n   - If `i % 11 == 0` or `i % 13 == 0`:\n     - Convert `i` to a string and count occurrences of '7'.\n     - Add the count to `count`.\n4. Return `count`.\n\nEdge Cases:\n- If `n` is less than 1 or greater than 10000, raise an exception or return an error message.\n- Handle large numbers efficiently by avoiding unnecessary string conversions and operations.\n\nTime Complexity: O(n * d), where `d` is the average number of digits in numbers less than `n` that are divisible by 11 or 13.\nSpace Complexity: O(1) - constant space is used."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

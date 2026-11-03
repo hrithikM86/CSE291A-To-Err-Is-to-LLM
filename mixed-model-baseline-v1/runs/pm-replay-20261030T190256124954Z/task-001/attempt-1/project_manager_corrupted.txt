@@ -1,0 +1,27 @@
+### Implementation Checklist for `separate_paren_groups`
+
+1. **Function Signature**
+   ```python
+   from typing import List
+
+   def separate_paren_groups(paren_string: str) -> List[str]:
+       pass
+   ```
+
+2. **Algorithm Steps**:
+
+   - **Required implementation:** Keep the existing parenthesis counter and space removal. When a complete group closes, append current_group[::-1] to groups and reset the buffer. You must reverse each completed group's characters before storing it; retain the order of the groups.
+
+3. **Boundary Conditions**
+   - **Empty Input String:** Return an empty list.
+   - **Single Group:** Return a list containing the single group.
+   - **Multiple Groups:** Correctly separate and return each group.
+   - **Unbalanced or Nested Groups:** Ignore them and only return balanced, non-nested groups.
+
+4. **Example**
+
+   - Implement the checklist above directly and use the existing task validation suite.
+
+5. **Complexity**
+   - **Time Complexity:** O(n), where n is the length of the input string.
+   - **Space Complexity:** O(n), for storing the groups and the current group.

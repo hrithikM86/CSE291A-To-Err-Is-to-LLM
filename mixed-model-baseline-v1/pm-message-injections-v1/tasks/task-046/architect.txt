@@ -1,0 +1,17 @@
+Algorithm for `fib4(n)`:
+
+1. Validate input: If `n` is negative, raise `ValueError`.
+2. Initialize a list `cache` with the first four elements of the sequence: `[0, 0, 2, 0]`.
+3. For `i` from 4 to `n`:
+   - Compute `cache[i]` as the sum of the last four elements in `cache`: `cache[i] = cache[i-1] + cache[i-2] + cache[i-3] + cache[i-4]`.
+   - Update `cache` to include the new element.
+4. Return `cache[n]`.
+
+Edge cases:
+- Handle `n < 0` by raising `ValueError`.
+
+Complexity:
+- Time: O(n), where n is the input number.
+- Space: O(n), for storing the sequence up to `n`.
+
+This algorithm efficiently computes the n-th element of the Fib4 sequence iteratively, avoiding the exponential time complexity of a naive recursive approach.

@@ -1,0 +1,43 @@
+{
+  "task_id": "HumanEval/7",
+  "entry_point": "filter_by_substring",
+  "case_provenance": "hand_authored_inputs_and_expected_values",
+  "cases": [
+    {
+      "name": "internal_match",
+      "args": [
+        [
+          "zab",
+          "abc",
+          "cab"
+        ],
+        "ab"
+      ],
+      "expected_literal": "['zab', 'abc', 'cab']",
+      "comparison": "recursive_numeric"
+    },
+    {
+      "name": "no_match",
+      "args": [
+        [
+          "xx"
+        ],
+        "a"
+      ],
+      "expected_literal": "[]",
+      "comparison": "recursive_numeric"
+    },
+    {
+      "name": "empty_substring",
+      "args": [
+        [
+          "",
+          "x"
+        ],
+        ""
+      ],
+      "expected_literal": "['', 'x']",
+      "comparison": "recursive_numeric"
+    }
+  ]
+}

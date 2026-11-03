@@ -1,0 +1,23 @@
+def factorial(i: int) -> int:
+    if i == 1:
+        return 1
+    result = 1
+    for j in range(2, i + 1):
+        result *= j
+    return result
+
+def special_factorial(n: int) -> int:
+    if not isinstance(n, int) or n <= 0:
+        raise ValueError("Input must be a positive integer")
+    
+    if n == 1:
+        return 1
+    
+    result = 1
+    for i in range(1, n):
+        result *= factorial(i)
+    
+    return result
+
+# Example usage:
+# print(special_factorial(4))  # Output: 288

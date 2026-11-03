@@ -1,0 +1,11 @@
+def unique_digits(x: list) -> list:
+    if not all(isinstance(num, int) and num > 0 for num in x):
+        raise ValueError("All elements in the list must be positive integers.")
+
+    result = []
+    for num in x:
+        num_str = str(num)
+        if not any(int(digit) % 2 == 0 for digit in num_str):
+            result.append(num)
+
+    return sorted(result)

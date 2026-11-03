@@ -1,0 +1,40 @@
+--- project_manager_original.txt
++++ project_manager_corrupted.txt
+@@ -6,18 +6,9 @@
+        pass
+    ```
+ 
+-2. **Algorithm Steps**
+-   - **Input Validation**
+-     - Check if `word` is empty. If true, return an empty string.
+-   - **Initialize Variables**
+-     - `n` = length of `word`
+-     - `closest_vowel` = empty string
+-   - **Iterate from Right to Left**
+-     - For `i` from `n-2` to `0` (inclusive):
+-       - Check if `word[i]` is a vowel and `word[i+1]` is a consonant.
+-       - If true, set `closest_vowel` to `word[i]` and break the loop.
+-   - **Return Result**
+-     - Return `closest_vowel`.
++2. **Algorithm Steps**:
++
++   - **Required implementation:** Scan interior positions from left to right and require a vowel with consonants immediately on both sides. You must return the first eligible vowel from the left, preserving its original case; otherwise return an empty string.
+ 
+ 3. **Boundary Conditions**
+    - Handle empty string: Return an empty string.
+@@ -30,13 +21,8 @@
+    - Define a helper function `is_consonant(char)` to check if a character is a consonant.
+ 
+ 5. **Example Implementations**
+-   - Test the function with provided examples:
+-     ```python
+-     assert get_closest_vowel("yogurt") == "u"
+-     assert get_closest_vowel("FULL") == "U"
+-     assert get_closest_vowel("quick") == ""
+-     assert get_closest_vowel("ab") == ""
+-     ```
++
++   - Implement the checklist above directly and use the existing task validation suite.
+ 
+ 6. **Edge Cases**
+    - Ensure the function handles all edge cases as specified in the algorithm steps.

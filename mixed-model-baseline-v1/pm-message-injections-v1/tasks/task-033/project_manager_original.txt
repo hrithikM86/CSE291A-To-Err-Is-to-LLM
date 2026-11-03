@@ -1,0 +1,57 @@
+### Implementation Checklist for `sort_third`
+
+#### Function Signature
+```python
+def sort_third(l: list) -> list:
+    pass
+```
+
+#### Algorithm Steps
+1. **Input Validation**:
+   - Check if the input list `l` is empty.
+   - If empty, return an empty list.
+
+2. **Index Identification**:
+   - Identify indices in the list that are divisible by three.
+
+3. **Selection and Sorting**:
+   - Extract elements at these indices.
+   - Sort the extracted elements.
+
+4. **Reconstruction**:
+   - Reconstruct the output list by placing the sorted elements back at their original indices.
+   - Keep other elements unchanged.
+
+5. **Return Result**:
+   - Return the reconstructed list.
+
+#### Boundary Conditions
+- **Empty List**: Return an empty list.
+- **List with Fewer than Three Elements**: Return the list unchanged.
+- **List with Elements at Indices Divisible by Three**: Ensure these elements are sorted correctly.
+
+#### Additional Notes
+- Ensure the function handles edge cases as specified.
+- Maintain the complexity of O(n log n) for sorting and O(n) for space.
+
+### Example Implementations
+```python
+def sort_third(l: list) -> list:
+    if not l:  # Input Validation
+        return []
+    
+    # Index Identification
+    indices = [i for i in range(len(l)) if i % 3 == 0]
+    
+    # Selection and Sorting
+    sorted_elements = sorted([l[i] for i in indices])
+    
+    # Reconstruction
+    result = l.copy()
+    for i, val in zip(indices, sorted_elements):
+        result[i] = val
+    
+    return result
+```
+
+This checklist ensures a clear and structured approach to implementing the `sort_third` function.

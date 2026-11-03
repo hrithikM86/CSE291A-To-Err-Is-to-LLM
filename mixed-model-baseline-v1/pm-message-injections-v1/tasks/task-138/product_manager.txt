@@ -1,0 +1,11 @@
+Requirements:
+- **Input**: A single integer `n` (1 ≤ n ≤ 10000).
+- **Output**: A boolean value indicating whether `n` can be written as the sum of exactly 4 positive even numbers.
+- **Behavior**:
+  - If `n` can be expressed as the sum of exactly 4 positive even numbers, return `True`.
+  - Otherwise, return `False`.
+- **Edge Cases**:
+  - `n < 8`: Always return `False` since the smallest sum of 4 positive even numbers is 2 + 2 + 2 + 2 = 8.
+  - `n % 2 != 0`: Return `False` since the sum of even numbers is always even.
+  - `n == 8`: Return `True` as 8 can be expressed as 2 + 2 + 2 + 2.
+  - `n > 8`: Check if `n - 8` is even and non-negative, which would mean `n` can be expressed as the sum of 4 even numbers (2 + 2 + 2 + (n - 8)).

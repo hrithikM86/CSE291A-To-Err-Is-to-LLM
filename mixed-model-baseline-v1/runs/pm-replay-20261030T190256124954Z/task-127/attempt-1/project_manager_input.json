@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef intersection(interval1, interval2):\n    \"\"\"You are given two intervals,\n    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).\n    The given intervals are closed which means that the interval (start, end)\n    includes both start and end.\n    For each given interval, it is assumed that its start is less or equal its end.\n    Your task is to determine whether the length of intersection of these two \n    intervals is a prime number.\n    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)\n    which its length is 1, which not a prime number.\n    If the length of the intersection is a prime number, return \"YES\",\n    otherwise, return \"NO\".\n    If the two intervals don't intersect, return \"NO\".\n\n\n    [input/output] samples:\n    intersection((1, 2), (2, 3)) ==> \"NO\"\n    intersection((-1, 1), (0, 4)) ==> \"NO\"\n    intersection((-3, -1), (-5, 5)) ==> \"YES\"\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. Define a helper function `is_prime(n)` to check if a number is prime.\n2. Extract start and end points from `interval1` and `interval2`.\n3. Determine the intersection interval:\n   - `start = max(interval1[0], interval2[0])`\n   - `end = min(interval1[1], interval2[1])`\n4. If `start > end`, intervals do not intersect, return \"NO\".\n5. Calculate the length of the intersection: `length = end - start + 1`.\n6. Use `is_prime(length)` to check if the length is prime.\n7. Return \"YES\" if prime, \"NO\" otherwise.\n\nEdge Cases:\n- Intervals are single points (e.g., (1, 1)).\n- One interval is completely within the other.\n- Intervals are adjacent but do not overlap.\n\nComplexity:\n- Time: O(\u221alength) for the prime check.\n- Space: O(1) for the helper function and variables."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

@@ -1,0 +1,40 @@
+### Implementation Checklist for `find_max(words)`:
+
+1. **Function Signature**:
+   ```python
+   def find_max(words: list) -> str:
+       pass
+   ```
+
+2. **Input Validation**:
+   - Check if `words` is `None` or empty. If so, raise a `ValueError` with an appropriate message.
+
+3. **Initialization**:
+   - Set `max_unique` to 0.
+   - Set `result` to an empty string.
+
+4. **Iterate through each word in `words`**:
+   - For each word, initialize `unique_chars` as an empty set.
+   - For each character in the word, add it to `unique_chars`.
+   - Count the number of unique characters in `unique_chars`.
+
+5. **Update `result`**:
+   - If the current word has more unique characters than `max_unique`, update `max_unique` and set `result` to the current word.
+   - If the current word has the same number of unique characters as `max_unique`, compare it lexicographically with `result` and update `result` if the current word is lexicographically smaller.
+
+6. **Return `result`**.
+
+7. **Edge Cases**:
+   - Handle an empty list by raising a `ValueError`.
+   - Handle a list with a single word by returning that word.
+   - Handle a list with words of the same length and unique character count by returning the lexicographically smallest word.
+
+8. **Complexity**:
+   - Ensure the time complexity is O(n * m), where n is the number of words and m is the average length of the words.
+   - Ensure the space complexity is O(m) for storing unique characters in each word.
+
+9. **Testing**:
+   - Test with various inputs including edge cases like empty lists, single-word lists, and lists with words of the same length and unique character count.
+
+10. **Documentation**:
+    - Ensure the function docstring matches the original specification.

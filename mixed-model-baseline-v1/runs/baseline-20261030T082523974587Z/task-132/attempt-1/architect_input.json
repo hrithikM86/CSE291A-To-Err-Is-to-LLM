@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef is_nested(string):\n    '''\n    Create a function that takes a string as input which contains only square brackets.\n    The function should return True if and only if there is a valid subsequence of brackets \n    where at least one bracket in the subsequence is nested.\n\n    is_nested('[[]]') \u279e True\n    is_nested('[]]]]]]][[[[[]') \u279e False\n    is_nested('[][]') \u279e False\n    is_nested('[]') \u279e False\n    is_nested('[[][]]') \u279e True\n    is_nested('[[]][[') \u279e True\n    '''\n",
+    "previous_stage": "product_manager",
+    "previous_artifact": "Requirements:\n- The function `is_nested` takes a single input `string` (a string containing only square brackets).\n- The function returns `True` if there is at least one nested pair of square brackets in the string.\n- The function returns `False` if there are no nested pairs or if the string is invalid (e.g., unbalanced brackets).\n- Edge cases:\n  - An empty string returns `False`.\n  - A string with unbalanced brackets returns `False`.\n  - A string with no nested brackets returns `False`.\n  - A string with only one pair of brackets returns `False`.\n  - A string with valid nested brackets returns `True`."
+  },
+  "system_messages": [
+    "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

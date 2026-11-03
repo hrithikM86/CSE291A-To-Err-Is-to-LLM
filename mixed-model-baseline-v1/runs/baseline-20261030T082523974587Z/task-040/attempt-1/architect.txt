@@ -1,0 +1,18 @@
+Algorithm for `triples_sum_to_zero`:
+
+1. **Input Validation**: Check if the input list `l` has fewer than 3 elements. If so, return `False` immediately.
+2. **Sorting**: Sort the list `l` to facilitate the search for triplets that sum to zero.
+3. **Two-Pointer Technique**: For each element in the list (except the last two, as we need at least three elements for a triplet):
+   - Use two pointers starting from the next element and the end of the list.
+   - Calculate the sum of the current element and the elements pointed by the two pointers.
+   - If the sum equals zero, return `True`.
+   - If the sum is less than zero, move the left pointer to the right.
+   - If the sum is greater than zero, move the right pointer to the left.
+4. **Edge Cases**:
+   - Handle duplicate elements by skipping over them to avoid counting the same triplet multiple times.
+   - Ensure the function does not modify the input list.
+5. **Return**: If no such triplet is found after checking all possibilities, return `False`.
+
+**Complexity**:
+- **Time Complexity**: O(n^2) due to the nested loops and the two-pointer technique.
+- **Space Complexity**: O(1) as no additional space is used other than a few variables.

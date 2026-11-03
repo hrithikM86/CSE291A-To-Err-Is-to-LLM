@@ -1,0 +1,46 @@
+### Implementation Checklist for `starts_one_ends(n)`
+
+1. **Function Signature**:
+   ```python
+   def starts_one_ends(n: int) -> int:
+       pass
+   ```
+
+2. **Input Validation**:
+   - Check if `n` is less than 1.
+   - If `n < 1`, return an error message or raise an exception.
+
+3. **Special Case for n = 1**:
+   - If `n` is 1, return 1.
+
+4. **General Case for n > 1**:
+   - Calculate the total number of n-digit numbers: `10**(n-1)`.
+   - Calculate the number of n-digit numbers starting with 1: `10**(n-1)`.
+   - Calculate the number of n-digit numbers ending with 1: `10**(n-1)`.
+   - Subtract the overlap (numbers starting and ending with 1): `10**(n-2)`.
+   - Total count = `2 * 10**(n-1) - 10**(n-2)`.
+
+5. **Return the Result**:
+   - Return the calculated total count.
+
+6. **Edge Cases**:
+   - Ensure the function handles `n < 1` as specified.
+
+7. **Complexity**:
+   - Ensure the function has a constant time complexity O(1).
+
+### Example Implementation
+
+```python
+def starts_one_ends(n: int) -> int:
+    if n < 1:
+        raise ValueError("Input must be a positive integer.")
+    
+    if n == 1:
+        return 1
+    
+    total_count = 2 * 10**(n-1) - 10**(n-2)
+    return total_count
+```
+
+This checklist ensures that all aspects of the function are covered, from input validation to the core algorithm and edge cases.

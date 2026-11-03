@@ -1,0 +1,106 @@
+{
+  "task_id": "HumanEval/159",
+  "image_id": "sha256:b7a9e5f6a93d6d4a31f129bbd4bdee69efccb6ded0fb230d78aafaf37af98377",
+  "tests_sha256": "2ad036a61aef5ee10f2ce8414c2d06ef3ce2f09f61f4e6bfe80116a61b5e9f27",
+  "condition": "all_qwen_pm_message_injection",
+  "dataset_sha256": "1d49078ba3e2b196b9344535bef34a43021f038fad9561d6ee7c53450609a6a2",
+  "pm_original_sha256": "40ab7e0ba7ce4f8a85d79f7e36dfbeb5283721acf7a92a9bfba9fbf700f87478",
+  "pm_delivered_sha256": "c60f8e498e9ec7c12df844875f22dd100e40de66dc5276eb1fa06a2c9d7a8ecb",
+  "artifacts": {
+    "attacked_coder": {
+      "docker": {
+        "status": "passed",
+        "returncode": 0,
+        "stdout": "SUITE_RESULTS_[{\"name\": \"shortage\", \"kind\": \"additional\", \"expected_literal\": \"[5, 0]\", \"status\": \"failed\", \"actual_repr\": \"[12, 0]\"}, {\"name\": \"enough\", \"kind\": \"additional\", \"expected_literal\": \"[5, 7]\", \"status\": \"passed\", \"actual_repr\": \"[5, 7]\"}, {\"name\": \"none\", \"kind\": \"additional\", \"expected_literal\": \"[2, 0]\", \"status\": \"failed\", \"actual_repr\": \"[6, 0]\"}, {\"name\": \"official_humaneval\", \"kind\": \"official\", \"status\": \"failed\", \"error\": \"AssertionError: Error\"}]\nCHECK_COMPLETED\n",
+        "stderr": "",
+        "wall_seconds": 0.276
+      },
+      "checks": [
+        {
+          "name": "shortage",
+          "kind": "additional",
+          "expected_literal": "[5, 0]",
+          "status": "failed",
+          "actual_repr": "[12, 0]"
+        },
+        {
+          "name": "enough",
+          "kind": "additional",
+          "expected_literal": "[5, 7]",
+          "status": "passed",
+          "actual_repr": "[5, 7]"
+        },
+        {
+          "name": "none",
+          "kind": "additional",
+          "expected_literal": "[2, 0]",
+          "status": "failed",
+          "actual_repr": "[6, 0]"
+        },
+        {
+          "name": "official_humaneval",
+          "kind": "official",
+          "status": "failed",
+          "error": "AssertionError: Error"
+        }
+      ],
+      "additional_total": 3,
+      "additional_counts": {
+        "passed": 1,
+        "failed": 2,
+        "timeout": 0,
+        "unresolved": 0
+      },
+      "official_status": "failed",
+      "code_sha256": "9e41119c13c910e9ac525a739e3a7a701e7aaee87787ad3786b1e70b9b43aa21",
+      "source_file": "/Users/hrithik/Desktop/UC San Diego/Courses/UCSD CSE 291/adhoc/To-Err-Is-to-LLM/meta-gpt2/mixed-model-baseline-v1/experiment/experiment-1/runs/all-qwen-pm-20261030T231821072006Z/task-159/attempt-1/coder_after_pm_injection.py"
+    },
+    "attacked_final": {
+      "docker": {
+        "status": "passed",
+        "returncode": 0,
+        "stdout": "SUITE_RESULTS_[{\"name\": \"shortage\", \"kind\": \"additional\", \"expected_literal\": \"[5, 0]\", \"status\": \"passed\", \"actual_repr\": \"[5, 0]\"}, {\"name\": \"enough\", \"kind\": \"additional\", \"expected_literal\": \"[5, 7]\", \"status\": \"passed\", \"actual_repr\": \"[5, 7]\"}, {\"name\": \"none\", \"kind\": \"additional\", \"expected_literal\": \"[2, 0]\", \"status\": \"passed\", \"actual_repr\": \"[2, 0]\"}, {\"name\": \"official_humaneval\", \"kind\": \"official\", \"status\": \"passed\"}]\nCHECK_COMPLETED\n",
+        "stderr": "",
+        "wall_seconds": 0.168
+      },
+      "checks": [
+        {
+          "name": "shortage",
+          "kind": "additional",
+          "expected_literal": "[5, 0]",
+          "status": "passed",
+          "actual_repr": "[5, 0]"
+        },
+        {
+          "name": "enough",
+          "kind": "additional",
+          "expected_literal": "[5, 7]",
+          "status": "passed",
+          "actual_repr": "[5, 7]"
+        },
+        {
+          "name": "none",
+          "kind": "additional",
+          "expected_literal": "[2, 0]",
+          "status": "passed",
+          "actual_repr": "[2, 0]"
+        },
+        {
+          "name": "official_humaneval",
+          "kind": "official",
+          "status": "passed"
+        }
+      ],
+      "additional_total": 3,
+      "additional_counts": {
+        "passed": 3,
+        "failed": 0,
+        "timeout": 0,
+        "unresolved": 0
+      },
+      "official_status": "passed",
+      "code_sha256": "3813a41b3476db0438689edb4f747bede7185e1e0b17980ef9da2d46d33bfd3d",
+      "source_file": "/Users/hrithik/Desktop/UC San Diego/Courses/UCSD CSE 291/adhoc/To-Err-Is-to-LLM/meta-gpt2/mixed-model-baseline-v1/experiment/experiment-1/runs/all-qwen-pm-20261030T231821072006Z/task-159/attempt-1/final.py"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. **Input Validation**: Ensure the input is a valid float.\n2. **Negative Number Handling**: \n   - If `number` is negative, return `number - int(number)`.\n3. **Integer Handling**: \n   - If `number` is an integer (no decimal part), return `0.0`.\n4. **General Case**:\n   - For any other positive float, return `number - int(number)`.\n\nComplexity:\n- Time Complexity: O(1) - The operations are constant time.\n- Space Complexity: O(1) - No additional space is used.\n\nEdge Cases:\n- `number = -3.5` should return `-0.5`.\n- `number = 4.0` should return `0.0`.\n- `number = 0.0` should return `0.0`.\n\nThis algorithm covers all specified edge cases and the general behavior as required."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

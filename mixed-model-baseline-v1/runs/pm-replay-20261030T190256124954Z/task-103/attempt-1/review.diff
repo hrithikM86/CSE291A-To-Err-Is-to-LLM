@@ -1,0 +1,13 @@
+--- coder_after_pm_injection.py
++++ final.py
+@@ -6,7 +6,7 @@
+         return -1
+     
+     total_sum = (n + m) * (m - n + 1) // 2
+-    average = round(total_sum / (m - n + 2))
+-    binary_result = bin(average)
++    average = round(total_sum / (m - n + 1))  # Corrected the denominator to (m - n + 1)
++    binary_result = bin(average)[2:]  # Remove the '0b' prefix
+     
+-    return binary_result
++    return "0b" + binary_result

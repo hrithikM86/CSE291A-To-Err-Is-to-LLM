@@ -1,0 +1,18 @@
+Algorithm for `largest_smallest_integers(lst)`:
+
+1. Initialize `largest_negative` and `smallest_positive` to `None`.
+2. Iterate through each integer `num` in the list `lst`:
+   - If `num` is negative and `largest_negative` is `None` or `num` > `largest_negative`, set `largest_negative` to `num`.
+   - If `num` is positive and `smallest_positive` is `None` or `num` < `smallest_positive`, set `smallest_positive` to `num`.
+3. Return the tuple `(largest_negative, smallest_positive)`.
+
+Edge Cases:
+- An empty list: Return `(None, None)`.
+- A list with only zero: Return `(None, None)`.
+- A list with only negative numbers: Return `(max(lst), None)`.
+- A list with only positive numbers: Return `(None, min(lst))`.
+- A list with both negative and positive numbers: Return `(largest_negative, smallest_positive)` as calculated.
+
+Complexity:
+- Time: O(n), where n is the length of the list.
+- Space: O(1), as only a few variables are used.

@@ -1,0 +1,38 @@
+### Implementation Checklist for `even_odd_count(num)`
+
+1. **Function Signature:**
+   ```python
+   def even_odd_count(num: int) -> tuple:
+       pass
+   ```
+
+2. **Edge Cases:**
+   - Handle `num` being `0`.
+   - Handle `num` being negative.
+
+3. **Algorithm Steps:**
+   - **Step 1:** Check if `num` is `0`. If so, return `(1, 0)`.
+   - **Step 2:** If `num` is negative, convert `num` to a string and check if the first character is a minus sign. If so, initialize `even_count` to `1` and `odd_count` to `0`.
+   - **Step 3:** Convert `num` to a string to easily iterate over each digit.
+   - **Step 4:** Initialize `even_count` and `odd_count` to `0`.
+   - **Step 5:** Iterate over each character in the string:
+     - If the character is '0' to '9':
+       - Convert the character to an integer.
+       - If the integer is even, increment `even_count`.
+       - If the integer is odd, increment `odd_count`.
+     - If the character is a minus sign and `num` is negative, continue to the next iteration.
+   - **Step 6:** Return a tuple `(even_count, odd_count)`.
+
+4. **Boundary Conditions:**
+   - Ensure the function handles both positive and negative numbers correctly.
+   - Ensure the function returns the correct counts for single-digit numbers.
+   - Ensure the function returns `(1, 0)` for `num = 0`.
+
+5. **Testing:**
+   - Test with `num = 0`.
+   - Test with `num = -12`.
+   - Test with `num = 123`.
+   - Test with `num = -12345`.
+   - Test with `num = 2468`.
+
+By following this checklist, the coder can ensure a correct and efficient implementation of the `even_odd_count` function.

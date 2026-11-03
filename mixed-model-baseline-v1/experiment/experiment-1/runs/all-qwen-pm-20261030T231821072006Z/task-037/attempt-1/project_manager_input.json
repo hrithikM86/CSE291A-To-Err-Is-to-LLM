@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef sort_even(l: list):\n    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the odd indicies, while its values at the even indicies are equal\n    to the values of the even indicies of l, but sorted.\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `sort_even`:\n\n1. **Input Validation**: Check if the input list `l` is empty. If it is, return an empty list.\n2. **Extract Even-Indexed Elements**: Create a new list `even_elements` containing elements at even indices (0, 2, 4, ...).\n3. **Sort Even-Indexed Elements**: Sort `even_elements` in ascending order.\n4. **Reconstruct the List**: Create a new list `sorted_list` of the same length as `l`. For each index `i`:\n   - If `i` is even, set `sorted_list[i]` to the corresponding element from `even_elements`.\n   - If `i` is odd, set `sorted_list[i]` to the corresponding element from the original list `l`.\n5. **Return the Result**: Return `sorted_list`.\n\n**Edge Cases**:\n- An empty list should return an empty list.\n- A list with only one element should return the same list.\n- A list with even length should have its even-indexed elements sorted.\n\n**Complexity**:\n- Time: O(n log n) due to the sorting step.\n- Space: O(n) for storing the `even_elements` and `sorted_list`."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

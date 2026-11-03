@@ -1,0 +1,146 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "drop",
+  "dry_run": false,
+  "task_id": "HumanEval/75",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-075/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef is_multiply_prime(a):\n    \"\"\"Write a function that returns true if the given number is the multiplication of 3 prime numbers\n    and false otherwise.\n    Knowing that (a) is less then 100. \n    Example:\n    is_multiply_prime(30) == True\n    30 = 2 * 3 * 5\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements:\n- Function: `is_multiply_prime(a)`\n- Input: `a` (an integer, where 0 < a < 100)\n- Output: Boolean value (`True` if `a` is the product of 3 prime numbers, `False` otherwise)\n- Behavior: Check if `a` can be expressed as the product of exactly 3 prime numbers.\n- Edge Cases:\n  - `a` = 2, 3, 5 (prime numbers themselves) -> `False`\n  - `a` = 30 (2 * 3 * 5) -> `True`\n  - `a` = 60 (2 * 2 * 3 * 5) -> `False`\n  - `a` = 1 (not a product of primes) -> `False`\n  - `a` = 99 (3 * 3 * 11) -> `True`",
+      "output_sha256": "b29f26df8e1fa4408666a4a12f461c8ca8ba691aee7ae643f33665fcdafaaeed",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef is_multiply_prime(a):\n    \"\"\"Write a function that returns true if the given number is the multiplication of 3 prime numbers\n    and false otherwise.\n    Knowing that (a) is less then 100. \n    Example:\n    is_multiply_prime(30) == True\n    30 = 2 * 3 * 5\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- Function: `is_multiply_prime(a)`\n- Input: `a` (an integer, where 0 < a < 100)\n- Output: Boolean value (`True` if `a` is the product of 3 prime numbers, `False` otherwise)\n- Behavior: Check if `a` can be expressed as the product of exactly 3 prime numbers.\n- Edge Cases:\n  - `a` = 2, 3, 5 (prime numbers themselves) -> `False`\n  - `a` = 30 (2 * 3 * 5) -> `True`\n  - `a` = 60 (2 * 2 * 3 * 5) -> `False`\n  - `a` = 1 (not a product of primes) -> `False`\n  - `a` = 99 (3 * 3 * 11) -> `True`"
+      },
+      "delivered_output": "Algorithm for `is_multiply_prime(a)`:\n\n1. **Prime Check Function**: Define a helper function `is_prime(n)` to check if a number `n` is prime.\n   - For each number `i` from 2 to the square root of `n`, check if `n` is divisible by `i`.\n   - Return `True` if `n` is prime, otherwise `False`.\n\n2. **Prime Factors Count**: Define a function `count_prime_factors(n)` to count the number of distinct prime factors of `n`.\n   - Initialize a counter `count` to 0.\n   - For each prime `p` from 2 to `n`:\n     - While `n` is divisible by `p`, divide `n` by `p` and increment `count`.\n     - If `count` exceeds 3, return `False` early.\n   - If `n` is greater than 1 after the loop, increment `count` (for the last prime factor).\n   - Return `count`.\n\n3. **Main Function**:\n   - If `a` is 1, return `False` (1 is not a product of primes).\n   - Use `count_prime_factors(a)`.\n   - Return `True` if the count is exactly 3, otherwise `False`.\n\n**Edge Cases**:\n- `a` = 2, 3, 5: Return `False` (single primes).\n- `a` = 30: Return `True` (2 * 3 * 5).\n- `a` = 60: Return `False` (2 * 2 * 3 * 5, more than 3 distinct primes).\n- `a` = 1: Return `False` (not a product of primes).\n- `a` = 99: Return `True` (3 * 3 * 11).\n\n**Complexity**:\n- Prime check: O(\u221an).\n- Prime factor count: O(n log log n) due to the nature of prime factorization.",
+      "output_sha256": "09e756fa89ed0c54bd58d6d7bb6850ec2a52547b36a28618d28480fa3a5db4bb",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "\ndef is_multiply_prime(a):\n    \"\"\"Write a function that returns true if the given number is the multiplication of 3 prime numbers\n    and false otherwise.\n    Knowing that (a) is less then 100. \n    Example:\n    is_multiply_prime(30) == True\n    30 = 2 * 3 * 5\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `is_multiply_prime(a)`:\n\n1. **Prime Check Function**: Define a helper function `is_prime(n)` to check if a number `n` is prime.\n   - For each number `i` from 2 to the square root of `n`, check if `n` is divisible by `i`.\n   - Return `True` if `n` is prime, otherwise `False`.\n\n2. **Prime Factors Count**: Define a function `count_prime_factors(n)` to count the number of distinct prime factors of `n`.\n   - Initialize a counter `count` to 0.\n   - For each prime `p` from 2 to `n`:\n     - While `n` is divisible by `p`, divide `n` by `p` and increment `count`.\n     - If `count` exceeds 3, return `False` early.\n   - If `n` is greater than 1 after the loop, increment `count` (for the last prime factor).\n   - Return `count`.\n\n3. **Main Function**:\n   - If `a` is 1, return `False` (1 is not a product of primes).\n   - Use `count_prime_factors(a)`.\n   - Return `True` if the count is exactly 3, otherwise `False`.\n\n**Edge Cases**:\n- `a` = 2, 3, 5: Return `False` (single primes).\n- `a` = 30: Return `True` (2 * 3 * 5).\n- `a` = 60: Return `False` (2 * 2 * 3 * 5, more than 3 distinct primes).\n- `a` = 1: Return `False` (not a product of primes).\n- `a` = 99: Return `True` (3 * 3 * 11).\n\n**Complexity**:\n- Prime check: O(\u221an).\n- Prime factor count: O(n log log n) due to the nature of prime factorization."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `is_multiply_prime(a)`\n\n#### Function Signature\n```python\ndef is_multiply_prime(a: int) -> bool:\n    pass\n```\n\n#### Algorithm Steps\n1. **Prime Check Function**\n   - Define a helper function `is_prime(n)`:\n     - For each number `i` from 2 to the square root of `n`, check if `n` is divisible by `i`.\n     - Return `True` if `n` is prime, otherwise `False`.\n\n2. **Prime Factors Count**\n   - Define a function `count_prime_factors(n)`:\n     - Initialize a counter `count` to 0.\n     - For each prime `p` from 2 to `n`:\n       - While `n` is divisible by `p`, divide `n` by `p` and increment `count`.\n       - If `count` exceeds 3, return `False` early.\n     - If `n` is greater than 1 after the loop, increment `count` (for the last prime factor).\n     - Return `count`.\n\n3. **Main Function**\n   - If `a` is 1, return `False` (1 is not a product of primes).\n   - Use `count_prime_factors(a)`.\n   - Return `True` if the count is exactly 3, otherwise `False`.\n\n#### Boundary Conditions\n- `a` = 2, 3, 5: Return `False` (single primes).\n- `a` = 30: Return `True` (2 * 3 * 5).\n- `a` = 60: Return `False` (2 * 2 * 3 * 5, more than 3 distinct primes).\n- `a` = 1: Return `False` (not a product of primes).\n- `a` = 99: Return `True` (3 * 3 * 11).\n\n#### Complexity\n- Prime check: O(\u221an).\n- Prime factor count: O(n log log n) due to the nature of prime factorization.",
+      "output_sha256": "5951b2f0ca09b0ee17251d83ed4c7c3fde1bc5df3b8de32b03b6f7afae5e2c3f",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "\ndef is_multiply_prime(a):\n    \"\"\"Write a function that returns true if the given number is the multiplication of 3 prime numbers\n    and false otherwise.\n    Knowing that (a) is less then 100. \n    Example:\n    is_multiply_prime(30) == True\n    30 = 2 * 3 * 5\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `is_multiply_prime(a)`\n\n#### Function Signature\n```python\ndef is_multiply_prime(a: int) -> bool:\n    pass\n```\n\n#### Algorithm Steps\n1. **Prime Check Function**\n   - Define a helper function `is_prime(n)`:\n     - For each number `i` from 2 to the square root of `n`, check if `n` is divisible by `i`.\n     - Return `True` if `n` is prime, otherwise `False`.\n\n2. **Prime Factors Count**\n   - Define a function `count_prime_factors(n)`:\n     - Initialize a counter `count` to 0.\n     - For each prime `p` from 2 to `n`:\n       - While `n` is divisible by `p`, divide `n` by `p` and increment `count`.\n       - If `count` exceeds 3, return `False` early.\n     - If `n` is greater than 1 after the loop, increment `count` (for the last prime factor).\n     - Return `count`.\n\n3. **Main Function**\n   - If `a` is 1, return `False` (1 is not a product of primes).\n   - Use `count_prime_factors(a)`.\n   - Return `True` if the count is exactly 3, otherwise `False`.\n\n#### Boundary Conditions\n- `a` = 2, 3, 5: Return `False` (single primes).\n- `a` = 30: Return `True` (2 * 3 * 5).\n- `a` = 60: Return `False` (2 * 2 * 3 * 5, more than 3 distinct primes).\n- `a` = 1: Return `False` (not a product of primes).\n- `a` = 99: Return `True` (3 * 3 * 11).\n\n#### Complexity\n- Prime check: O(\u221an).\n- Prime factor count: O(n log log n) due to the nature of prime factorization."
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 11.169,
+      "prompt_tokens": 684,
+      "completion_tokens": 180,
+      "delivered_output": "```python\nimport math\n\ndef is_prime(n: int) -> bool:\n    if n <= 1:\n        return False\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef count_prime_factors(n: int) -> int:\n    count = 0\n    for p in range(2, n + 1):\n        if is_prime(p):\n            while n % p == 0:\n                n //= p\n                count += 1\n                if count > 3:\n                    return False\n    if n > 1:\n        count += 1\n    return count\n\ndef is_multiply_prime(a: int) -> bool:\n    if a == 1:\n        return False\n    return count_prime_factors(a) == 3\n```",
+      "output_sha256": "04ced1fe1ecdedf0d891e670eacf06368aa30d514f1647d3238c4e13e62f710a",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "\ndef is_multiply_prime(a):\n    \"\"\"Write a function that returns true if the given number is the multiplication of 3 prime numbers\n    and false otherwise.\n    Knowing that (a) is less then 100. \n    Example:\n    is_multiply_prime(30) == True\n    30 = 2 * 3 * 5\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\nimport math\n\ndef is_prime(n: int) -> bool:\n    if n <= 1:\n        return False\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef count_prime_factors(n: int) -> int:\n    count = 0\n    for p in range(2, n + 1):\n        if is_prime(p):\n            while n % p == 0:\n                n //= p\n                count += 1\n                if count > 3:\n                    return False\n    if n > 1:\n        count += 1\n    return count\n\ndef is_multiply_prime(a: int) -> bool:\n    if a == 1:\n        return False\n    return count_prime_factors(a) == 3\n```"
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 11.355,
+      "prompt_tokens": 431,
+      "completion_tokens": 180,
+      "delivered_output": "```python\nimport math\n\ndef is_prime(n: int) -> bool:\n    if n <= 1:\n        return False\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef count_prime_factors(n: int) -> int:\n    count = 0\n    for p in range(2, n + 1):\n        if is_prime(p):\n            while n % p == 0:\n                n //= p\n                count += 1\n                if count > 3:\n                    return False\n    if n > 1:\n        count += 1\n    return count\n\ndef is_multiply_prime(a: int) -> bool:\n    if a == 1:\n        return False\n    return count_prime_factors(a) == 3\n```",
+      "output_sha256": "04ced1fe1ecdedf0d891e670eacf06368aa30d514f1647d3238c4e13e62f710a",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1115,
+    "completion_tokens": 360,
+    "model_seconds": 22.524,
+    "tracking_overhead_seconds": 0.000589,
+    "recovery_wall_seconds": 22.571
+  }
+}

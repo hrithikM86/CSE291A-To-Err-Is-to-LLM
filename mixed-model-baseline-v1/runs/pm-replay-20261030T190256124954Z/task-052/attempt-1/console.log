@@ -1,0 +1,34 @@
+
+TASK: HumanEval/52 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def below_threshold(l: list, t: int) -> bool:
+    if not isinstance(l, list) or not isinstance(t, int):
+        raise TypeError("Input must be a list and an integer")
+    
+    if not l:
+        return True
+    
+    for num in l:
+        if num >= t:
+            return False
+    
+    return True
+```
+Running test_engineer: qwen2.5:7b
+```python
+def below_threshold(l: list, t: int) -> bool:
+    if not isinstance(l, list) or not isinstance(t, int):
+        raise TypeError("Input must be a list and an integer")
+    
+    if not l:
+        return True
+    
+    for num in l:
+        if num >= t:
+            return False
+    
+    return True
+```
+attacked_coder official: passed {'passed': 4, 'failed': 0, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 4, 'failed': 0, 'timeout': 0, 'unresolved': 0}

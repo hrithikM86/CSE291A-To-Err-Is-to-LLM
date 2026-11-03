@@ -1,0 +1,17 @@
+```python
+def circular_shift(x: int, shift: int) -> str:
+    if x == 0 or shift == 0:
+        return "0"
+    if x < 0:
+        sign = '-'
+        x = -x
+    else:
+        sign = ''
+    
+    digits = len(str(x))
+    shift = shift % digits if shift > digits else shift
+    
+    shifted = str(x)[-shift:] + str(x)[:-shift]
+    
+    return sign + shifted
+```

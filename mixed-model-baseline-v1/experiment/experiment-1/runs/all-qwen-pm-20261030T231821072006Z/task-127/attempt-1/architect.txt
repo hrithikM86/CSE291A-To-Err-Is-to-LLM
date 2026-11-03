@@ -1,0 +1,20 @@
+Algorithm:
+
+1. Define a helper function `is_prime(n)` to check if a number is prime.
+2. Extract start and end points from `interval1` and `interval2`.
+3. Determine the intersection interval:
+   - `start = max(interval1[0], interval2[0])`
+   - `end = min(interval1[1], interval2[1])`
+4. If `start > end`, intervals do not intersect, return "NO".
+5. Calculate the length of the intersection: `length = end - start + 1`.
+6. Use `is_prime(length)` to check if the length is prime.
+7. Return "YES" if prime, "NO" otherwise.
+
+Edge Cases:
+- Intervals are single points (e.g., (1, 1)).
+- One interval is completely within the other.
+- Intervals are adjacent but do not overlap.
+
+Complexity:
+- Time: O(√length) for the prime check.
+- Space: O(1) for the helper function and variables.

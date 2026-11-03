@@ -1,0 +1,170 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "retract",
+  "dry_run": false,
+  "task_id": "HumanEval/141",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-141/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef file_name_check(file_name):\n    \"\"\"Create a function which takes a string representing a file's name, and returns\n    'Yes' if the the file's name is valid, and returns 'No' otherwise.\n    A file's name is considered to be valid if and only if all the following conditions \n    are met:\n    - There should not be more than three digits ('0'-'9') in the file's name.\n    - The file's name contains exactly one dot '.'\n    - The substring before the dot should not be empty, and it starts with a letter from \n    the latin alphapet ('a'-'z' and 'A'-'Z').\n    - The substring after the dot should be one of these: ['txt', 'exe', 'dll']\n    Examples:\n    file_name_check(\"example.txt\") # => 'Yes'\n    file_name_check(\"1example.dll\") # => 'No' (the name should start with a latin alphapet letter)\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements:\n- **Input**: A single string representing a file name.\n- **Output**: A string, either 'Yes' or 'No'.\n- **Behavior**:\n  - Return 'Yes' if the file name meets all the specified conditions.\n  - Return 'No' otherwise.\n- **Conditions**:\n  1. The file name should contain no more than three digits.\n  2. The file name must contain exactly one dot ('.').\n  3. The substring before the dot must start with a letter (a-z or A-Z) and not be empty.\n  4. The substring after the dot must be one of ['txt', 'exe', 'dll'].\n- **Edge Cases**:\n  - Empty string: Return 'No'.\n  - No dot: Return 'No'.\n  - More than one dot: Return 'No'.\n  - Invalid characters before the dot: Return 'No'.\n  - Invalid extension: Return 'No'.\n  - More than three digits: Return 'No'.",
+      "output_sha256": "3cf9efc4a897463d2fe94d5556fc0330dffef072c33752b9ad6889d16aa881fb",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef file_name_check(file_name):\n    \"\"\"Create a function which takes a string representing a file's name, and returns\n    'Yes' if the the file's name is valid, and returns 'No' otherwise.\n    A file's name is considered to be valid if and only if all the following conditions \n    are met:\n    - There should not be more than three digits ('0'-'9') in the file's name.\n    - The file's name contains exactly one dot '.'\n    - The substring before the dot should not be empty, and it starts with a letter from \n    the latin alphapet ('a'-'z' and 'A'-'Z').\n    - The substring after the dot should be one of these: ['txt', 'exe', 'dll']\n    Examples:\n    file_name_check(\"example.txt\") # => 'Yes'\n    file_name_check(\"1example.dll\") # => 'No' (the name should start with a latin alphapet letter)\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- **Input**: A single string representing a file name.\n- **Output**: A string, either 'Yes' or 'No'.\n- **Behavior**:\n  - Return 'Yes' if the file name meets all the specified conditions.\n  - Return 'No' otherwise.\n- **Conditions**:\n  1. The file name should contain no more than three digits.\n  2. The file name must contain exactly one dot ('.').\n  3. The substring before the dot must start with a letter (a-z or A-Z) and not be empty.\n  4. The substring after the dot must be one of ['txt', 'exe', 'dll'].\n- **Edge Cases**:\n  - Empty string: Return 'No'.\n  - No dot: Return 'No'.\n  - More than one dot: Return 'No'.\n  - Invalid characters before the dot: Return 'No'.\n  - Invalid extension: Return 'No'.\n  - More than three digits: Return 'No'."
+      },
+      "delivered_output": "Algorithm for `file_name_check(file_name)`:\n\n1. **Check for Empty String**: If `file_name` is empty, return 'No'.\n2. **Count Digits**: Count the number of digits in `file_name`. If the count is greater than 3, return 'No'.\n3. **Count Dots**: Count the number of dots in `file_name`. If the count is not exactly 1, return 'No'.\n4. **Split by Dot**: Split `file_name` by the dot. Ensure there are exactly two parts: before and after the dot.\n5. **Validate Prefix**: Check if the first part (before the dot) starts with a letter (a-z or A-Z) and is not empty. If not, return 'No'.\n6. **Validate Suffix**: Check if the second part (after the dot) is one of ['txt', 'exe', 'dll']. If not, return 'No'.\n7. **Return Valid**: If all checks pass, return 'Yes'.\n\n**Complexity**:\n- The algorithm has a time complexity of O(n) where n is the length of the file name, due to the string operations and checks.\n- The space complexity is O(1) as it uses a fixed amount of additional space.",
+      "output_sha256": "35df8b671db786729693ff24562afea23f7c27e2641761444b63b21c60dff730",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "\ndef file_name_check(file_name):\n    \"\"\"Create a function which takes a string representing a file's name, and returns\n    'Yes' if the the file's name is valid, and returns 'No' otherwise.\n    A file's name is considered to be valid if and only if all the following conditions \n    are met:\n    - There should not be more than three digits ('0'-'9') in the file's name.\n    - The file's name contains exactly one dot '.'\n    - The substring before the dot should not be empty, and it starts with a letter from \n    the latin alphapet ('a'-'z' and 'A'-'Z').\n    - The substring after the dot should be one of these: ['txt', 'exe', 'dll']\n    Examples:\n    file_name_check(\"example.txt\") # => 'Yes'\n    file_name_check(\"1example.dll\") # => 'No' (the name should start with a latin alphapet letter)\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `file_name_check(file_name)`:\n\n1. **Check for Empty String**: If `file_name` is empty, return 'No'.\n2. **Count Digits**: Count the number of digits in `file_name`. If the count is greater than 3, return 'No'.\n3. **Count Dots**: Count the number of dots in `file_name`. If the count is not exactly 1, return 'No'.\n4. **Split by Dot**: Split `file_name` by the dot. Ensure there are exactly two parts: before and after the dot.\n5. **Validate Prefix**: Check if the first part (before the dot) starts with a letter (a-z or A-Z) and is not empty. If not, return 'No'.\n6. **Validate Suffix**: Check if the second part (after the dot) is one of ['txt', 'exe', 'dll']. If not, return 'No'.\n7. **Return Valid**: If all checks pass, return 'Yes'.\n\n**Complexity**:\n- The algorithm has a time complexity of O(n) where n is the length of the file name, due to the string operations and checks.\n- The space complexity is O(1) as it uses a fixed amount of additional space."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `file_name_check(file_name)`\n\n1. **Function Signature**\n   - Define the function with the correct signature: `def file_name_check(file_name: str) -> str:`\n\n2. **Check for Empty String**\n   - Implement a condition to check if `file_name` is empty. If true, return `'No'`.\n\n3. **Count Digits**\n   - Use a loop or a regular expression to count the number of digits in `file_name`. If the count is greater than 3, return `'No'`.\n\n4. **Count Dots**\n   - Count the number of dots in `file_name` using `file_name.count('.')`. If the count is not exactly 1, return `'No'`.\n\n5. **Split by Dot**\n   - Split `file_name` by the dot using `file_name.split('.')`. Ensure there are exactly two parts: `prefix` and `suffix`.\n\n6. **Validate Prefix**\n   - Check if `prefix` is not empty and starts with a letter (a-z or A-Z). If not, return `'No'`.\n\n7. **Validate Suffix**\n   - Check if `suffix` is one of `['txt', 'exe', 'dll']`. If not, return `'No'`.\n\n8. **Return Valid**\n   - If all checks pass, return `'Yes'`.\n\n9. **Edge Cases**\n   - Test with edge cases such as `file_name` containing leading/trailing spaces, `file_name` with multiple dots, and `file_name` with no digits.\n\n10. **Examples**\n    - Ensure the function works as expected with provided examples:\n      ```python\n      assert file_name_check(\"example.txt\") == 'Yes'\n      assert file_name_check(\"1example.dll\") == 'No'\n      ```\n\n11. **Complexity**\n    - Ensure the implementation has a time complexity of O(n) and a space complexity of O(1).\n\n12. **Testing**\n    - Write additional test cases to cover all conditions and edge cases.",
+      "output_sha256": "343e81ae90d778398091531e92fa5eb503cbd9536003102f0d26207f0f1ac1a0",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "\ndef file_name_check(file_name):\n    \"\"\"Create a function which takes a string representing a file's name, and returns\n    'Yes' if the the file's name is valid, and returns 'No' otherwise.\n    A file's name is considered to be valid if and only if all the following conditions \n    are met:\n    - There should not be more than three digits ('0'-'9') in the file's name.\n    - The file's name contains exactly one dot '.'\n    - The substring before the dot should not be empty, and it starts with a letter from \n    the latin alphapet ('a'-'z' and 'A'-'Z').\n    - The substring after the dot should be one of these: ['txt', 'exe', 'dll']\n    Examples:\n    file_name_check(\"example.txt\") # => 'Yes'\n    file_name_check(\"1example.dll\") # => 'No' (the name should start with a latin alphapet letter)\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `file_name_check(file_name)`\n\n1. **Function Signature**\n   - Define the function with the correct signature: `def file_name_check(file_name: str) -> str:`\n\n2. **Check for Empty String**\n   - Implement a condition to check if `file_name` is empty. If true, return `'No'`.\n\n3. **Count Digits**\n   - Use a loop or a regular expression to count the number of digits in `file_name`. If the count is greater than 3, return `'No'`.\n\n4. **Count Dots**\n   - Count the number of dots in `file_name` using `file_name.count('.')`. If the count is not exactly 1, return `'No'`.\n\n5. **Split by Dot**\n   - Split `file_name` by the dot using `file_name.split('.')`. Ensure there are exactly two parts: `prefix` and `suffix`.\n\n6. **Validate Prefix**\n   - Check if `prefix` is not empty and starts with a letter (a-z or A-Z). If not, return `'No'`.\n\n7. **Validate Suffix**\n   - Check if `suffix` is one of `['txt', 'exe', 'dll']`. If not, return `'No'`.\n\n8. **Return Valid**\n   - If all checks pass, return `'Yes'`.\n\n9. **Edge Cases**\n   - Test with edge cases such as `file_name` containing leading/trailing spaces, `file_name` with multiple dots, and `file_name` with no digits.\n\n10. **Examples**\n    - Ensure the function works as expected with provided examples:\n      ```python\n      assert file_name_check(\"example.txt\") == 'Yes'\n      assert file_name_check(\"1example.dll\") == 'No'\n      ```\n\n11. **Complexity**\n    - Ensure the implementation has a time complexity of O(n) and a space complexity of O(1).\n\n12. **Testing**\n    - Write additional test cases to cover all conditions and edge cases.",
+        "earlier_attempt_history": [
+          {
+            "kind": "message_received",
+            "from_stage": "project_manager",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          },
+          {
+            "kind": "your_previous_answer",
+            "from_stage": "coder",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          }
+        ]
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 9.629,
+      "prompt_tokens": 908,
+      "completion_tokens": 124,
+      "delivered_output": "```python\ndef file_name_check(file_name: str) -> str:\n    if not file_name:\n        return 'No'\n    \n    if file_name.count('.') != 1:\n        return 'No'\n    \n    prefix, suffix = file_name.split('.')\n    \n    if not prefix or not prefix[0].isalpha():\n        return 'No'\n    \n    if suffix not in ['txt', 'exe', 'dll']:\n        return 'No'\n    \n    if len([char for char in file_name if char.isdigit()]) > 3:\n        return 'No'\n    \n    return 'Yes'\n```",
+      "output_sha256": "03ab38daae66aa664d86d57576f38c2c88bc776d5c3ad1f93effdd42c6cf0711",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "\ndef file_name_check(file_name):\n    \"\"\"Create a function which takes a string representing a file's name, and returns\n    'Yes' if the the file's name is valid, and returns 'No' otherwise.\n    A file's name is considered to be valid if and only if all the following conditions \n    are met:\n    - There should not be more than three digits ('0'-'9') in the file's name.\n    - The file's name contains exactly one dot '.'\n    - The substring before the dot should not be empty, and it starts with a letter from \n    the latin alphapet ('a'-'z' and 'A'-'Z').\n    - The substring after the dot should be one of these: ['txt', 'exe', 'dll']\n    Examples:\n    file_name_check(\"example.txt\") # => 'Yes'\n    file_name_check(\"1example.dll\") # => 'No' (the name should start with a latin alphapet letter)\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\ndef file_name_check(file_name: str) -> str:\n    if not file_name:\n        return 'No'\n    \n    if file_name.count('.') != 1:\n        return 'No'\n    \n    prefix, suffix = file_name.split('.')\n    \n    if not prefix or not prefix[0].isalpha():\n        return 'No'\n    \n    if suffix not in ['txt', 'exe', 'dll']:\n        return 'No'\n    \n    if len([char for char in file_name if char.isdigit()]) > 3:\n        return 'No'\n    \n    return 'Yes'\n```",
+        "earlier_attempt_history": [
+          {
+            "kind": "message_received",
+            "from_stage": "coder",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          },
+          {
+            "kind": "your_previous_answer",
+            "from_stage": "test_engineer",
+            "content": "[withdrawn: this content came from a faulty upstream result and has been removed]"
+          }
+        ]
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 8.027,
+      "prompt_tokens": 609,
+      "completion_tokens": 124,
+      "delivered_output": "```python\ndef file_name_check(file_name: str) -> str:\n    if not file_name:\n        return 'No'\n    \n    if file_name.count('.') != 1:\n        return 'No'\n    \n    prefix, suffix = file_name.split('.')\n    \n    if not prefix or not prefix[0].isalpha():\n        return 'No'\n    \n    if suffix not in ['txt', 'exe', 'dll']:\n        return 'No'\n    \n    if len([char for char in file_name if char.isdigit()]) > 3:\n        return 'No'\n    \n    return 'Yes'\n```",
+      "output_sha256": "03ab38daae66aa664d86d57576f38c2c88bc776d5c3ad1f93effdd42c6cf0711",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1517,
+    "completion_tokens": 248,
+    "model_seconds": 17.656,
+    "tracking_overhead_seconds": 0.000696,
+    "recovery_wall_seconds": 17.702
+  }
+}

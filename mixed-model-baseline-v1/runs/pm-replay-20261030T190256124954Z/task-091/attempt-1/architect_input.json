@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef is_bored(S):\n    \"\"\"\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n   \n    For example:\n    >>> is_bored(\"Hello world\")\n    0\n    >>> is_bored(\"The sky is blue. The sun is shining. I love this weather\")\n    1\n    \"\"\"\n",
+    "previous_stage": "product_manager",
+    "previous_artifact": "Requirements:\n- Input: A string `S` containing words separated by spaces.\n- Output: An integer representing the number of sentences starting with \"I\".\n- Sentences are delimited by '.', '?', or '!'.\n- Consider case sensitivity; \"I\" should match exactly.\n- Edge cases:\n  - Empty string: Return 0.\n  - No sentences starting with \"I\": Return 0.\n  - Multiple delimiters: Handle correctly (e.g., \"I!I?I\").\n  - Leading or trailing punctuation: Handle correctly (e.g., \"I. I?\")."
+  },
+  "system_messages": [
+    "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

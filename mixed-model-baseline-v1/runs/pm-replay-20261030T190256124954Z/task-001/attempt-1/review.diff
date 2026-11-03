@@ -1,0 +1,26 @@
+--- coder_after_pm_injection.py
++++ final.py
+@@ -1,6 +1,14 @@
+ from typing import List
+ 
+ def separate_paren_groups(paren_string: str) -> List[str]:
++    """
++    Input to this function is a string containing multiple groups of nested parentheses. Your goal is
++    to separate those groups into separate strings and return the list of those.
++    Separate groups are balanced (each open brace is properly closed) and not nested within each other
++    Ignore any spaces in the input string.
++    >>> separate_paren_groups('( ) (( )) (( )( ))')
++    ['()', '(())', '(()())']
++    """
+     groups = []
+     current_group = []
+     parenthesis_counter = 0
+@@ -14,7 +22,7 @@
+         current_group.append(char)
+ 
+         if parenthesis_counter == 0:
+-            groups.append(''.join(current_group[::-1]))
++            groups.append(''.join(current_group))
+             current_group = []
+ 
+     return groups

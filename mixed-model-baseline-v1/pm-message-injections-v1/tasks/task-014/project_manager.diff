@@ -1,0 +1,22 @@
+--- tasks/task-014/project_manager_original.txt
++++ tasks/task-014/project_manager_corrupted.txt
+@@ -14,14 +14,15 @@
+ 2. **Edge Case Handling**:
+    - If the input string is empty, return `prefixes` (an empty list).
+ 3. **Loop Through String**:
+-   - For each index `i` from 0 to the length of the string (inclusive):
+-     - Append the substring from the start to index `i` to `prefixes`.
++
++   - **Required implementation:** For a nonempty string, iterate prefix endpoints from 1 through len(string)-1 only. You must omit both the empty prefix and the full-length input string. Retain the empty-input result [].
++
+ 4. **Return Result**:
+    - Return the list `prefixes`.
+ 
+ #### Boundary Conditions
+-- **Empty String**: Return an empty list.
+-- **Single Character String**: Return a list containing the string and an empty string.
++
++   - Return [] for an empty or singleton input string; otherwise include only the proper nonempty prefixes.
+ 
+ #### Additional Notes
+ - Ensure substring operations are efficient.

@@ -1,0 +1,3 @@
+def remove_vowels(text: str) -> str:
+    vowels = 'aeiou'
+    return ''.join(char for char in text if char.lower() not in vowels)

@@ -1,0 +1,28 @@
+Algorithm for `smallest_change(arr)`:
+
+1. **Input Validation**:
+   - Check if the array is empty. If so, return 0.
+   - Check if the array has one element. If so, return 0.
+
+2. **Initialize Variables**:
+   - `n` = length of the array.
+   - `changes` = 0 (to count the number of changes needed).
+
+3. **Two-Pointer Technique**:
+   - Initialize `left` = 0 and `right` = n-1.
+   - While `left < right`:
+     - If `arr[left]` != `arr[right]`, increment `changes`.
+     - Increment `left` and decrement `right`.
+
+4. **Return Result**:
+   - Return `changes`.
+
+**Edge Cases**:
+- **Empty List**: Already handled by input validation.
+- **Single Element**: Already handled by input validation.
+- **All Elements the Same**: The loop will not increment `changes`, so it will return 0.
+- **Minimal Changes**: The algorithm will correctly count the minimum number of changes needed.
+
+**Complexity**:
+- Time Complexity: O(n), where n is the length of the array.
+- Space Complexity: O(1), as only a few variables are used.

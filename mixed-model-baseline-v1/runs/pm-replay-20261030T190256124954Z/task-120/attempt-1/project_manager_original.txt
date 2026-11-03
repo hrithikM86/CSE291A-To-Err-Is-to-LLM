@@ -1,0 +1,36 @@
+### Implementation Checklist for `maximum(arr, k)`:
+
+1. **Function Signature**:
+   ```python
+   def maximum(arr, k):
+       # Function body
+   ```
+
+2. **Input Validation**:
+   - Check if `arr` is empty. If yes, return an empty list.
+   - Check if `k` is 0 or greater than the length of `arr`. If yes, return an empty list.
+   - Check if `k` is equal to the length of `arr`. If yes, return the sorted `arr`.
+
+3. **Finding the Maximum k Numbers**:
+   - Use a min-heap to keep track of the top `k` numbers. Initialize a min-heap with the first `k` elements of `arr`.
+   - Iterate through the remaining elements of `arr`:
+     - If the current element is greater than the smallest element in the heap (the root of the heap), replace the root with the current element.
+     - Re-heapify the heap to maintain the min-heap property.
+
+4. **Return the Result**:
+   - After processing all elements, the heap contains the `k` largest numbers. Extract these numbers and return them in sorted order.
+
+5. **Edge Cases**:
+   - Handle the case where `arr` is empty.
+   - Handle the case where `k` is 0.
+   - Handle the case where `k` is equal to the length of `arr`.
+
+6. **Complexity**:
+   - Ensure the time complexity is O(n log k) and space complexity is O(k).
+
+7. **Testing**:
+   - Test with the provided examples.
+   - Test with edge cases such as an empty array, `k` equal to the length of `arr`, and `k` being 0.
+
+8. **Documentation**:
+   - Add a docstring to the function explaining its purpose, parameters, and return value.

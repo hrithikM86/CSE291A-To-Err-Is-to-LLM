@@ -1,0 +1,17 @@
+```python
+def get_closest_vowel(word: str) -> str:
+    vowels = "aeiouAEIOU"
+    consonants = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ"
+    
+    n = len(word)
+    if n <= 2:
+        return ""
+    
+    closest_vowel = ""
+    for i in range(n-2, 0, -1):
+        if word[i] in vowels and word[i+1] in consonants:
+            closest_vowel = word[i]
+            break
+    
+    return closest_vowel
+```

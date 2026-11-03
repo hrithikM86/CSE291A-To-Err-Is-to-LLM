@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef encrypt(s):\n    \"\"\"Create a function encrypt that takes a string as an argument and\n    returns a string encrypted with the alphabet being rotated. \n    The alphabet should be rotated in a manner such that the letters \n    shift down by two multiplied to two places.\n    For example:\n    encrypt('hi') returns 'lm'\n    encrypt('asdfghjkl') returns 'ewhjklnop'\n    encrypt('gf') returns 'kj'\n    encrypt('et') returns 'ix'\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `encrypt(s)`:\n\n1. Initialize an empty result string.\n2. For each character `c` in the input string `s`:\n   - If `c` is an alphabetic character:\n     - Determine its base character ('a' or 'A').\n     - Calculate the new character by shifting `c` down by 4 positions.\n     - If the new character exceeds 'z' or 'Z', wrap around using modulo 26.\n     - Append the new character to the result string.\n   - If `c` is not an alphabetic character, append it to the result string as is.\n3. Return the result string.\n\nEdge cases:\n- Handle empty string input by returning an empty string.\n- Preserve the case of the original letters.\n- Non-alphabetic characters remain unchanged.\n\nComplexity:\n- Time: O(n), where n is the length of the input string.\n- Space: O(n), for storing the result string."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

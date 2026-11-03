@@ -1,0 +1,13 @@
+--- coder_after_pm_injection.py
++++ final.py
+@@ -1,8 +1,9 @@
+ def pairs_sum_to_zero(l: list) -> bool:
+     if len(l) < 2:
+         return False
+-    seen = set(l)
++    seen = set()
+     for num in l:
+         if -num in seen:
+             return True
++        seen.add(num)
+     return False

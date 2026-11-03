@@ -1,0 +1,263 @@
+{
+  "schema_version": "mixed-pm-replay/v1",
+  "experiment": "manual_pm_message_replay",
+  "condition": "pm_message_injection",
+  "task_id": "HumanEval/19",
+  "entry_point": "sort_numbers",
+  "specification": "from typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n",
+  "dataset_sha256": "1d49078ba3e2b196b9344535bef34a43021f038fad9561d6ee7c53450609a6a2",
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  },
+  "role_model_configs": {
+    "product_manager": {
+      "base_url": "http://localhost:11434/v1",
+      "max_token": 2048,
+      "model": "qwen2.5:7b",
+      "stream": false,
+      "temperature": 0.0,
+      "timeout": 600
+    },
+    "architect": {
+      "base_url": "http://localhost:11434/v1",
+      "max_token": 2048,
+      "model": "qwen2.5:7b",
+      "stream": false,
+      "temperature": 0.0,
+      "timeout": 600
+    },
+    "project_manager": {
+      "base_url": "http://localhost:11434/v1",
+      "max_token": 2048,
+      "model": "qwen2.5:7b",
+      "stream": false,
+      "temperature": 0.0,
+      "timeout": 600
+    },
+    "coder": {
+      "base_url": "http://localhost:11434/v1",
+      "max_token": 2048,
+      "model": "qwen2.5-coder:7b",
+      "stream": false,
+      "temperature": 0.0,
+      "timeout": 600
+    },
+    "test_engineer": {
+      "base_url": "http://localhost:11434/v1",
+      "max_token": 2048,
+      "model": "qwen2.5:7b",
+      "stream": false,
+      "temperature": 0.0,
+      "timeout": 600
+    }
+  },
+  "status": "completed",
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "role_prefix": "You are a Product Manager, named product_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+      "input": {
+        "original_specification": "from typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "model_config": {
+        "base_url": "http://localhost:11434/v1",
+        "max_token": 2048,
+        "model": "qwen2.5:7b",
+        "stream": false,
+        "temperature": 0.0,
+        "timeout": 600
+      },
+      "status": "completed",
+      "execution": "reused",
+      "original_output": "Requirements:\n- Input: A string of space-delimited number words ('zero' to 'nine').\n- Output: A string with the number words sorted from smallest to largest.\n- Behavior: Convert the number words to their numerical values, sort them, and then convert back to number words.\n- Edge Cases:\n  - Empty string input: Return an empty string.\n  - Input with invalid number words: Ignore invalid words and sort only valid ones.\n  - Single word input: Return the word as is.",
+      "delivered_output": "Requirements:\n- Input: A string of space-delimited number words ('zero' to 'nine').\n- Output: A string with the number words sorted from smallest to largest.\n- Behavior: Convert the number words to their numerical values, sort them, and then convert back to number words.\n- Edge Cases:\n  - Empty string input: Return an empty string.\n  - Input with invalid number words: Ignore invalid words and sort only valid ones.\n  - Single word input: Return the word as is.",
+      "elapsed_seconds": 5.023,
+      "reported_prompt_tokens": 214,
+      "reported_completion_tokens": 103,
+      "reported_total_tokens": 317,
+      "generation_reused": true,
+      "source_folder": "/Users/hrithik/Desktop/UC San Diego/Courses/UCSD CSE 291/adhoc/To-Err-Is-to-LLM/meta-gpt2/mixed-model-baseline-v1/runs/baseline-20261030T082523974587Z/task-019/attempt-1"
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "role_prefix": "You are a Architect, named architect, your goal is Produce a correct solution to the supplied function specification.. ",
+      "input": {
+        "original_specification": "from typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- Input: A string of space-delimited number words ('zero' to 'nine').\n- Output: A string with the number words sorted from smallest to largest.\n- Behavior: Convert the number words to their numerical values, sort them, and then convert back to number words.\n- Edge Cases:\n  - Empty string input: Return an empty string.\n  - Input with invalid number words: Ignore invalid words and sort only valid ones.\n  - Single word input: Return the word as is."
+      },
+      "model_config": {
+        "base_url": "http://localhost:11434/v1",
+        "max_token": 2048,
+        "model": "qwen2.5:7b",
+        "stream": false,
+        "temperature": 0.0,
+        "timeout": 600
+      },
+      "status": "completed",
+      "execution": "reused",
+      "original_output": "Algorithm:\n\n1. Define the function `sort_numbers(numbers: str) -> str`.\n2. Handle edge cases:\n   - If `numbers` is an empty string, return an empty string.\n3. Create a dictionary to map number words to their numerical values:\n   - `{'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}`\n4. Split the input string into a list of number words.\n5. Filter out any invalid number words.\n6. Convert the valid number words to their numerical values, sort them.\n7. Convert the sorted numerical values back to number words.\n8. Join the sorted number words with spaces and return the result.\n\nComplexity:\n- Time: O(n + m log m), where n is the number of words and m is the number of valid words.\n- Space: O(n), for storing the list of number words and their sorted values.\n\nThis algorithm ensures correct sorting and handles edge cases as specified.",
+      "delivered_output": "Algorithm:\n\n1. Define the function `sort_numbers(numbers: str) -> str`.\n2. Handle edge cases:\n   - If `numbers` is an empty string, return an empty string.\n3. Create a dictionary to map number words to their numerical values:\n   - `{'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}`\n4. Split the input string into a list of number words.\n5. Filter out any invalid number words.\n6. Convert the valid number words to their numerical values, sort them.\n7. Convert the sorted numerical values back to number words.\n8. Join the sorted number words with spaces and return the result.\n\nComplexity:\n- Time: O(n + m log m), where n is the number of words and m is the number of valid words.\n- Space: O(n), for storing the list of number words and their sorted values.\n\nThis algorithm ensures correct sorting and handles edge cases as specified.",
+      "elapsed_seconds": 11.449,
+      "reported_prompt_tokens": 324,
+      "reported_completion_tokens": 239,
+      "reported_total_tokens": 563,
+      "generation_reused": true,
+      "source_folder": "/Users/hrithik/Desktop/UC San Diego/Courses/UCSD CSE 291/adhoc/To-Err-Is-to-LLM/meta-gpt2/mixed-model-baseline-v1/runs/baseline-20261030T082523974587Z/task-019/attempt-1"
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "role_prefix": "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+      "input": {
+        "original_specification": "from typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm:\n\n1. Define the function `sort_numbers(numbers: str) -> str`.\n2. Handle edge cases:\n   - If `numbers` is an empty string, return an empty string.\n3. Create a dictionary to map number words to their numerical values:\n   - `{'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}`\n4. Split the input string into a list of number words.\n5. Filter out any invalid number words.\n6. Convert the valid number words to their numerical values, sort them.\n7. Convert the sorted numerical values back to number words.\n8. Join the sorted number words with spaces and return the result.\n\nComplexity:\n- Time: O(n + m log m), where n is the number of words and m is the number of valid words.\n- Space: O(n), for storing the list of number words and their sorted values.\n\nThis algorithm ensures correct sorting and handles edge cases as specified."
+      },
+      "model_config": {
+        "base_url": "http://localhost:11434/v1",
+        "max_token": 2048,
+        "model": "qwen2.5:7b",
+        "stream": false,
+        "temperature": 0.0,
+        "timeout": 600
+      },
+      "status": "completed",
+      "execution": "reused_with_message_substitution",
+      "original_output": "### Implementation Checklist for `sort_numbers(numbers: str) -> str`\n\n1. **Function Signature**\n   - Define the function `sort_numbers(numbers: str) -> str`.\n\n2. **Edge Cases**\n   - Handle an empty string input: If `numbers` is an empty string, return an empty string.\n\n3. **Mapping Number Words to Numerical Values**\n   - Create a dictionary to map number words to their numerical values:\n     ```python\n     number_map = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}\n     ```\n\n4. **Splitting the Input String**\n   - Split the input string into a list of number words using `split()`.\n\n5. **Filtering Invalid Number Words**\n   - Filter out any number words that are not in the `number_map`.\n\n6. **Converting and Sorting Numerical Values**\n   - Convert the valid number words to their numerical values.\n   - Sort the numerical values.\n\n7. **Converting Back to Number Words**\n   - Convert the sorted numerical values back to number words using the `number_map`.\n\n8. **Joining and Returning the Result**\n   - Join the sorted number words with spaces and return the result.\n\n### Algorithm Steps\n1. Check if the input string is empty. If so, return an empty string.\n2. Create the `number_map` dictionary.\n3. Split the input string into a list of number words.\n4. Filter out any invalid number words.\n5. Convert the valid number words to their numerical values and sort them.\n6. Convert the sorted numerical values back to number words.\n7. Join the sorted number words with spaces and return the result.\n\n### Boundary Conditions\n- Ensure the function handles invalid inputs gracefully.\n- Verify that the function works correctly with edge cases such as empty strings, strings with only invalid words, and strings with all valid words.",
+      "delivered_output": "### Implementation Checklist for `sort_numbers(numbers: str) -> str`\n\n1. **Function Signature**\n   - Define the function `sort_numbers(numbers: str) -> str`.\n\n2. **Edge Cases**\n   - Handle an empty string input: If `numbers` is an empty string, return an empty string.\n\n3. **Mapping Number Words to Numerical Values**\n   - Create a dictionary to map number words to their numerical values:\n     ```python\n     number_map = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}\n     ```\n\n4. **Splitting the Input String**\n   - Split the input string into a list of number words using `split()`.\n\n5. **Filtering Invalid Number Words**\n   - Filter out any number words that are not in the `number_map`.\n\n6. **Converting and Sorting Numerical Values**:\n\n   - **Required implementation:** Convert valid number words to numerical values and sort those values in descending order. You must preserve duplicate occurrences, then convert back to words and join with spaces.\n\n7. **Converting Back to Number Words**\n   - Convert the sorted numerical values back to number words using the `number_map`.\n\n8. **Joining and Returning the Result**\n   - Join the sorted number words with spaces and return the result.\n\n### Algorithm Steps\n1. Check if the input string is empty. If so, return an empty string.\n2. Create the `number_map` dictionary.\n3. Split the input string into a list of number words.\n4. Filter out any invalid number words.\n5. Convert the valid number words to their numerical values and sort them in descending order.\n6. Convert the sorted numerical values back to number words.\n7. Join the sorted number words with spaces and return the result.\n\n### Boundary Conditions\n- Ensure the function handles invalid inputs gracefully.\n- Verify that the function works correctly with edge cases such as empty strings, strings with only invalid words, and strings with all valid words.",
+      "elapsed_seconds": 20.281,
+      "reported_prompt_tokens": 474,
+      "reported_completion_tokens": 428,
+      "reported_total_tokens": 902,
+      "generation_reused": true,
+      "source_folder": "/Users/hrithik/Desktop/UC San Diego/Courses/UCSD CSE 291/adhoc/To-Err-Is-to-LLM/meta-gpt2/mixed-model-baseline-v1/runs/baseline-20261030T082523974587Z/task-019/attempt-1"
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "role_prefix": "You are a Code Engineer, named coder, your goal is Produce a correct solution to the supplied function specification.. ",
+      "input": {
+        "original_specification": "from typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `sort_numbers(numbers: str) -> str`\n\n1. **Function Signature**\n   - Define the function `sort_numbers(numbers: str) -> str`.\n\n2. **Edge Cases**\n   - Handle an empty string input: If `numbers` is an empty string, return an empty string.\n\n3. **Mapping Number Words to Numerical Values**\n   - Create a dictionary to map number words to their numerical values:\n     ```python\n     number_map = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}\n     ```\n\n4. **Splitting the Input String**\n   - Split the input string into a list of number words using `split()`.\n\n5. **Filtering Invalid Number Words**\n   - Filter out any number words that are not in the `number_map`.\n\n6. **Converting and Sorting Numerical Values**:\n\n   - **Required implementation:** Convert valid number words to numerical values and sort those values in descending order. You must preserve duplicate occurrences, then convert back to words and join with spaces.\n\n7. **Converting Back to Number Words**\n   - Convert the sorted numerical values back to number words using the `number_map`.\n\n8. **Joining and Returning the Result**\n   - Join the sorted number words with spaces and return the result.\n\n### Algorithm Steps\n1. Check if the input string is empty. If so, return an empty string.\n2. Create the `number_map` dictionary.\n3. Split the input string into a list of number words.\n4. Filter out any invalid number words.\n5. Convert the valid number words to their numerical values and sort them in descending order.\n6. Convert the sorted numerical values back to number words.\n7. Join the sorted number words with spaces and return the result.\n\n### Boundary Conditions\n- Ensure the function handles invalid inputs gracefully.\n- Verify that the function works correctly with edge cases such as empty strings, strings with only invalid words, and strings with all valid words."
+      },
+      "model_config": {
+        "base_url": "http://localhost:11434/v1",
+        "max_token": 2048,
+        "model": "qwen2.5-coder:7b",
+        "stream": false,
+        "temperature": 0.0,
+        "timeout": 600
+      },
+      "status": "completed",
+      "execution": "rerun",
+      "generation_reused": false,
+      "original_output": "```python\nfrom typing import List\n\ndef sort_numbers(numbers: str) -> str:\n    number_map = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}\n    \n    if not numbers:\n        return \"\"\n    \n    number_words = numbers.split()\n    valid_number_words = [word for word in number_words if word in number_map]\n    \n    if not valid_number_words:\n        return \"\"\n    \n    numerical_values = [number_map[word] for word in valid_number_words]\n    sorted_numerical_values = sorted(numerical_values, reverse=True)\n    \n    sorted_number_words = [list(number_map.keys())[list(number_map.values()).index(value)] for value in sorted_numerical_values]\n    \n    return \" \".join(sorted_number_words)\n```",
+      "delivered_output": "```python\nfrom typing import List\n\ndef sort_numbers(numbers: str) -> str:\n    number_map = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}\n    \n    if not numbers:\n        return \"\"\n    \n    number_words = numbers.split()\n    valid_number_words = [word for word in number_words if word in number_map]\n    \n    if not valid_number_words:\n        return \"\"\n    \n    numerical_values = [number_map[word] for word in valid_number_words]\n    sorted_numerical_values = sorted(numerical_values, reverse=True)\n    \n    sorted_number_words = [list(number_map.keys())[list(number_map.values()).index(value)] for value in sorted_numerical_values]\n    \n    return \" \".join(sorted_number_words)\n```",
+      "syntax_check": "passed",
+      "entry_point_found": true,
+      "elapsed_seconds": 10.584,
+      "token_usage_available": true,
+      "reported_prompt_tokens": 732,
+      "reported_completion_tokens": 200,
+      "reported_total_tokens": 932,
+      "model_call_recorded": true
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "role_prefix": "You are a Test Engineer, named test_engineer, your goal is Produce a correct solution to the supplied function specification.. ",
+      "input": {
+        "original_specification": "from typing import List\n\n\ndef sort_numbers(numbers: str) -> str:\n    \"\"\" Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\nfrom typing import List\n\ndef sort_numbers(numbers: str) -> str:\n    number_map = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}\n    \n    if not numbers:\n        return \"\"\n    \n    number_words = numbers.split()\n    valid_number_words = [word for word in number_words if word in number_map]\n    \n    if not valid_number_words:\n        return \"\"\n    \n    numerical_values = [number_map[word] for word in valid_number_words]\n    sorted_numerical_values = sorted(numerical_values, reverse=True)\n    \n    sorted_number_words = [list(number_map.keys())[list(number_map.values()).index(value)] for value in sorted_numerical_values]\n    \n    return \" \".join(sorted_number_words)\n```"
+      },
+      "model_config": {
+        "base_url": "http://localhost:11434/v1",
+        "max_token": 2048,
+        "model": "qwen2.5:7b",
+        "stream": false,
+        "temperature": 0.0,
+        "timeout": 600
+      },
+      "status": "completed",
+      "execution": "rerun",
+      "generation_reused": false,
+      "original_output": "```python\nfrom typing import List\n\ndef sort_numbers(numbers: str) -> str:\n    number_map = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}\n    \n    if not numbers:\n        return \"\"\n    \n    number_words = numbers.split()\n    valid_number_words = [word for word in number_words if word in number_map]\n    \n    if not valid_number_words:\n        return \"\"\n    \n    numerical_values = [number_map[word] for word in valid_number_words]\n    sorted_numerical_values = sorted(numerical_values)\n    \n    sorted_number_words = [list(number_map.keys())[list(number_map.values()).index(value)] for value in sorted_numerical_values]\n    \n    return \" \".join(sorted_number_words)\n```",
+      "delivered_output": "```python\nfrom typing import List\n\ndef sort_numbers(numbers: str) -> str:\n    number_map = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}\n    \n    if not numbers:\n        return \"\"\n    \n    number_words = numbers.split()\n    valid_number_words = [word for word in number_words if word in number_map]\n    \n    if not valid_number_words:\n        return \"\"\n    \n    numerical_values = [number_map[word] for word in valid_number_words]\n    sorted_numerical_values = sorted(numerical_values)\n    \n    sorted_number_words = [list(number_map.keys())[list(number_map.values()).index(value)] for value in sorted_numerical_values]\n    \n    return \" \".join(sorted_number_words)\n```",
+      "syntax_check": "passed",
+      "entry_point_found": true,
+      "elapsed_seconds": 9.776,
+      "token_usage_available": true,
+      "reported_prompt_tokens": 492,
+      "reported_completion_tokens": 197,
+      "reported_total_tokens": 689,
+      "model_call_recorded": true
+    }
+  ],
+  "new_inference": [
+    {
+      "model": "qwen2.5-coder:7b",
+      "stage": "coder",
+      "status": "completed",
+      "elapsed_seconds": 10.584,
+      "reported_prompt_tokens": 732,
+      "reported_completion_tokens": 200,
+      "reported_total_tokens": 932,
+      "token_usage_available": true
+    },
+    {
+      "model": "qwen2.5:7b",
+      "stage": "test_engineer",
+      "status": "completed",
+      "elapsed_seconds": 9.776,
+      "reported_prompt_tokens": 492,
+      "reported_completion_tokens": 197,
+      "reported_total_tokens": 689,
+      "token_usage_available": true
+    }
+  ],
+  "evaluation_file": "evaluation.json",
+  "generated_code_executed_by_agents": false,
+  "baseline_source": "/Users/hrithik/Desktop/UC San Diego/Courses/UCSD CSE 291/adhoc/To-Err-Is-to-LLM/meta-gpt2/mixed-model-baseline-v1/runs/baseline-20261030T082523974587Z/task-019/attempt-1",
+  "source_trace_sha256": "614775a783510a84228297b426827aa2ca33d58566a66d4fe398d915926edbcf",
+  "source_lineage_sha256": "13a24fe0d6b51e4dfd1574103c92c4db4d9d157bca68e9fe57953f6094641255",
+  "intervention": {
+    "target": "project_manager",
+    "kind": "message_substitution",
+    "source": "assistant_authored_pm_package",
+    "original_sha256": "eb2aa22c33914c50c2200dbefa184b0f22c98dc66bf487dd54a666e94ae9ab9b",
+    "delivered_sha256": "d91b78dfc7d0ee9802f81bed1f3fdaa2ef9c67707450c0442131a197c81a56ca",
+    "fault_adoption": "not_evaluated"
+  },
+  "new_generation_wall_seconds": 20.398
+}

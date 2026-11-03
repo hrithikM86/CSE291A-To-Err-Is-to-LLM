@@ -1,0 +1,42 @@
+
+TASK: HumanEval/112 attempt 1
+Running coder: qwen2.5:7b
+```python
+def reverse_delete(s: str, c: str) -> tuple:
+    # Check for empty strings
+    if not s or not c:
+        return ("", False)
+    
+    # Create a set of characters to delete
+    chars_to_delete = set(c)
+    
+    # Filter out characters in s that are in c
+    result = [char for char in s if char not in chars_to_delete]
+    result_string = ''.join(result)
+    
+    # Check if the original string is a palindrome
+    original_is_palindrome = s == s[::-1]
+    
+    return (result_string, original_is_palindrome)
+```
+Running test_engineer: qwen2.5:7b
+```python
+def reverse_delete(s: str, c: str) -> tuple:
+    # Check for empty strings
+    if not s or not c:
+        return ("", False)
+    
+    # Create a set of characters to delete
+    chars_to_delete = set(c)
+    
+    # Filter out characters in s that are in c
+    result = [char for char in s if char not in chars_to_delete]
+    result_string = ''.join(result)
+    
+    # Check if the resulting string is a palindrome
+    result_is_palindrome = result_string == result_string[::-1]
+    
+    return (result_string, result_is_palindrome)
+```
+attacked_coder official: failed {'passed': 1, 'failed': 2, 'timeout': 0, 'unresolved': 0}
+attacked_final official: failed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

@@ -1,0 +1,28 @@
+
+TASK: HumanEval/125 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+from typing import List, Union
+
+def split_words(txt: str) -> Union[List[str], int]:
+    if ',' in txt:
+        return txt.split(',')
+    elif ' ' in txt:
+        return txt.split()
+    else:
+        return sum(1 for char in txt if char.islower() and (ord(char) - ord('a')) % 2 == 1)
+```
+Running test_engineer: qwen2.5:7b
+```python
+from typing import List, Union
+
+def split_words(txt: str) -> Union[List[str], int]:
+    if ',' in txt:
+        return txt.split(',')
+    elif ' ' in txt:
+        return txt.split()
+    else:
+        return sum(1 for char in txt if char.islower() and (ord(char) - ord('a')) % 2 == 1)
+```
+attacked_coder official: failed {'passed': 2, 'failed': 1, 'timeout': 0, 'unresolved': 0}
+attacked_final official: failed {'passed': 2, 'failed': 1, 'timeout': 0, 'unresolved': 0}

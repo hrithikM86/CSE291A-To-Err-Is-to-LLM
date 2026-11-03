@@ -1,0 +1,38 @@
+### Implementation Checklist for `is_multiply_prime(a)`
+
+#### Function Signature
+```python
+def is_multiply_prime(a: int) -> bool:
+    pass
+```
+
+#### Algorithm Steps
+1. **Prime Check Function**
+   - Define a helper function `is_prime(n)`:
+     - For each number `i` from 2 to the square root of `n`, check if `n` is divisible by `i`.
+     - Return `True` if `n` is prime, otherwise `False`.
+
+2. **Prime Factors Count**
+   - Define a function `count_prime_factors(n)`:
+     - Initialize a counter `count` to 0.
+     - For each prime `p` from 2 to `n`:
+       - While `n` is divisible by `p`, divide `n` by `p` and increment `count`.
+       - If `count` exceeds 3, return `False` early.
+     - If `n` is greater than 1 after the loop, increment `count` (for the last prime factor).
+     - Return `count`.
+
+3. **Main Function**
+   - If `a` is 1, return `False` (1 is not a product of primes).
+   - Use `count_prime_factors(a)`.
+   - Return `True` if the count is exactly 3, otherwise `False`.
+
+#### Boundary Conditions
+- `a` = 2, 3, 5: Return `False` (single primes).
+- `a` = 30: Return `True` (2 * 3 * 5).
+- `a` = 60: Return `False` (2 * 2 * 3 * 5, more than 3 distinct primes).
+- `a` = 1: Return `False` (not a product of primes).
+- `a` = 99: Return `True` (3 * 3 * 11).
+
+#### Complexity
+- Prime check: O(√n).
+- Prime factor count: O(n log log n) due to the nature of prime factorization.

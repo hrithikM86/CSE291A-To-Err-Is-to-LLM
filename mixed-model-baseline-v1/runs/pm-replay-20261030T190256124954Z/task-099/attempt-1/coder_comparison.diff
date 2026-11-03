@@ -1,0 +1,25 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -1,12 +1,11 @@
+ def closest_integer(value: str) -> int:
+-    if not value or not value.replace('.', '', 1).isdigit():
+-        raise ValueError("Invalid input")
+-    
+-    num = float(value)
+-    floor_val = int(num // 1)
+-    ceil_val = int(num // 1) + 1
+-    
+-    if num - floor_val == 0.5 or ceil_val - num == 0.5:
+-        return ceil_val if num > 0 else floor_val
+-    else:
+-        return round(num)
++    try:
++        num = float(value)
++        if num == 0:
++            return 0
++        elif num > 0:
++            return int(num + 0.5)
++        else:
++            return int(num - 0.5)
++    except ValueError:
++        raise ValueError("Input must be a numeric string")

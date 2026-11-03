@@ -1,0 +1,14 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -1,6 +1,6 @@
+ def digitSum(s: str) -> int:
+-    sum = 0
+-    for c in s:
+-        if 'A' <= c <= 'Z':
+-            sum += ord(c)
+-    return sum
++    total = 0
++    for char in s:
++        if char.isupper():
++            total += ord(char) - ord('A') + 1
++    return total

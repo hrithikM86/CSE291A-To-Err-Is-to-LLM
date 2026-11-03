@@ -1,0 +1,146 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "drop",
+  "dry_run": false,
+  "task_id": "HumanEval/70",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-070/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef strange_sort_list(lst):\n    '''\n    Given list of integers, return list in strange order.\n    Strange sorting, is when you start with the minimum value,\n    then maximum of the remaining integers, then minimum and so on.\n\n    Examples:\n    strange_sort_list([1, 2, 3, 4]) == [1, 4, 2, 3]\n    strange_sort_list([5, 5, 5, 5]) == [5, 5, 5, 5]\n    strange_sort_list([]) == []\n    '''\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements:\n- **Inputs**: A list of integers (`lst`).\n- **Outputs**: A list of integers sorted in a \"strange\" order as described.\n- **Behavior**:\n  - Start with the minimum value in the list.\n  - Then select the maximum of the remaining integers.\n  - Continue alternating between the minimum and maximum of the remaining elements until the list is exhausted.\n- **Edge Cases**:\n  - An empty list should return an empty list.\n  - A list with duplicate values should handle them as per the described sorting logic.\n  - The list can contain both positive and negative integers.",
+      "output_sha256": "7f3b52eb4ff7bee3c578214d6524cf5d75ed964b193c1f93ec3e466484e08f24",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef strange_sort_list(lst):\n    '''\n    Given list of integers, return list in strange order.\n    Strange sorting, is when you start with the minimum value,\n    then maximum of the remaining integers, then minimum and so on.\n\n    Examples:\n    strange_sort_list([1, 2, 3, 4]) == [1, 4, 2, 3]\n    strange_sort_list([5, 5, 5, 5]) == [5, 5, 5, 5]\n    strange_sort_list([]) == []\n    '''\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- **Inputs**: A list of integers (`lst`).\n- **Outputs**: A list of integers sorted in a \"strange\" order as described.\n- **Behavior**:\n  - Start with the minimum value in the list.\n  - Then select the maximum of the remaining integers.\n  - Continue alternating between the minimum and maximum of the remaining elements until the list is exhausted.\n- **Edge Cases**:\n  - An empty list should return an empty list.\n  - A list with duplicate values should handle them as per the described sorting logic.\n  - The list can contain both positive and negative integers."
+      },
+      "delivered_output": "Algorithm for `strange_sort_list(lst)`:\n\n1. **Input Validation**: Check if the input list `lst` is empty. If it is, return an empty list.\n2. **Initialization**: \n   - Create an empty result list `result`.\n   - Create a copy of the input list `lst` to keep track of remaining elements.\n3. **Sorting Logic**:\n   - While `lst` is not empty:\n     - Find the minimum value in `lst` and append it to `result`.\n     - Remove the minimum value from `lst`.\n     - If `lst` is not empty, find the maximum value in `lst` and append it to `result`.\n     - Remove the maximum value from `lst`.\n4. **Return Result**: Return the `result` list.\n\n**Edge Cases**:\n- An empty list should return an empty list.\n- A list with duplicate values should handle them as per the described sorting logic (e.g., `[1, 1, 2, 2]` should result in `[1, 2, 1, 2]`).\n- The list can contain both positive and negative integers, which will be handled by the min and max functions.\n\n**Complexity**:\n- Time Complexity: O(n^2) due to the repeated search for min and max in each iteration.\n- Space Complexity: O(n) for the result list and the copy of the input list.",
+      "output_sha256": "e0b7c33204dcb13f41986cfe10ed712ce04ba509a30abdf0c62821cf8b46722e",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "\ndef strange_sort_list(lst):\n    '''\n    Given list of integers, return list in strange order.\n    Strange sorting, is when you start with the minimum value,\n    then maximum of the remaining integers, then minimum and so on.\n\n    Examples:\n    strange_sort_list([1, 2, 3, 4]) == [1, 4, 2, 3]\n    strange_sort_list([5, 5, 5, 5]) == [5, 5, 5, 5]\n    strange_sort_list([]) == []\n    '''\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `strange_sort_list(lst)`:\n\n1. **Input Validation**: Check if the input list `lst` is empty. If it is, return an empty list.\n2. **Initialization**: \n   - Create an empty result list `result`.\n   - Create a copy of the input list `lst` to keep track of remaining elements.\n3. **Sorting Logic**:\n   - While `lst` is not empty:\n     - Find the minimum value in `lst` and append it to `result`.\n     - Remove the minimum value from `lst`.\n     - If `lst` is not empty, find the maximum value in `lst` and append it to `result`.\n     - Remove the maximum value from `lst`.\n4. **Return Result**: Return the `result` list.\n\n**Edge Cases**:\n- An empty list should return an empty list.\n- A list with duplicate values should handle them as per the described sorting logic (e.g., `[1, 1, 2, 2]` should result in `[1, 2, 1, 2]`).\n- The list can contain both positive and negative integers, which will be handled by the min and max functions.\n\n**Complexity**:\n- Time Complexity: O(n^2) due to the repeated search for min and max in each iteration.\n- Space Complexity: O(n) for the result list and the copy of the input list."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Concrete Implementation Checklist for `strange_sort_list(lst)`\n\n1. **Function Signature**:\n   ```python\n   def strange_sort_list(lst: list) -> list:\n   ```\n\n2. **Algorithm Steps**:\n   - **Input Validation**:\n     - Check if `lst` is empty. If it is, return an empty list.\n   - **Initialization**:\n     - Create an empty result list `result`.\n     - Create a copy of the input list `lst` to keep track of remaining elements.\n   - **Sorting Logic**:\n     - While `lst` is not empty:\n       - Find the minimum value in `lst` and append it to `result`.\n       - Remove the minimum value from `lst`.\n       - If `lst` is not empty, find the maximum value in `lst` and append it to `result`.\n       - Remove the maximum value from `lst`.\n   - **Return Result**:\n     - Return the `result` list.\n\n3. **Boundary Conditions**:\n   - Handle an empty list by returning an empty list.\n   - Handle lists with duplicate values by ensuring the correct order is maintained.\n   - Handle lists with both positive and negative integers.\n\n4. **Example Implementations**:\n   ```python\n   def strange_sort_list(lst: list) -> list:\n       if not lst:\n           return []\n       \n       result = []\n       lst_copy = lst.copy()\n       \n       while lst_copy:\n           min_val = min(lst_copy)\n           result.append(min_val)\n           lst_copy.remove(min_val)\n           \n           if lst_copy:\n               max_val = max(lst_copy)\n               result.append(max_val)\n               lst_copy.remove(max_val)\n       \n       return result\n   ```\n\n5. **Test Cases**:\n   - `strange_sort_list([1, 2, 3, 4])` should return `[1, 4, 2, 3]`.\n   - `strange_sort_list([5, 5, 5, 5])` should return `[5, 5, 5, 5]`.\n   - `strange_sort_list([])` should return `[]`.\n   - `strange_sort_list([1, 1, 2, 2])` should return `[1, 2, 1, 2]`.\n   - `strange_sort_list([-1, 2, -3, 4])` should return `[-1, 4, -3, 2]`.\n\n6. **Complexity**:\n   - Time Complexity: O(n^2) due to the repeated search for min and max in each iteration.\n   - Space Complexity: O(n) for the result list and the copy of the input list.",
+      "output_sha256": "1aef02e931c15d26bd97feba46ba6b30c5ffe0017622d0db09939faa863f123f",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "\ndef strange_sort_list(lst):\n    '''\n    Given list of integers, return list in strange order.\n    Strange sorting, is when you start with the minimum value,\n    then maximum of the remaining integers, then minimum and so on.\n\n    Examples:\n    strange_sort_list([1, 2, 3, 4]) == [1, 4, 2, 3]\n    strange_sort_list([5, 5, 5, 5]) == [5, 5, 5, 5]\n    strange_sort_list([]) == []\n    '''\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Concrete Implementation Checklist for `strange_sort_list(lst)`\n\n1. **Function Signature**:\n   ```python\n   def strange_sort_list(lst: list) -> list:\n   ```\n\n2. **Algorithm Steps**:\n   - **Input Validation**:\n     - Check if `lst` is empty. If it is, return an empty list.\n   - **Initialization**:\n     - Create an empty result list `result`.\n     - Create a copy of the input list `lst` to keep track of remaining elements.\n   - **Sorting Logic**:\n     - While `lst` is not empty:\n       - Find the minimum value in `lst` and append it to `result`.\n       - Remove the minimum value from `lst`.\n       - If `lst` is not empty, find the maximum value in `lst` and append it to `result`.\n       - Remove the maximum value from `lst`.\n   - **Return Result**:\n     - Return the `result` list.\n\n3. **Boundary Conditions**:\n   - Handle an empty list by returning an empty list.\n   - Handle lists with duplicate values by ensuring the correct order is maintained.\n   - Handle lists with both positive and negative integers.\n\n4. **Example Implementations**:\n   ```python\n   def strange_sort_list(lst: list) -> list:\n       if not lst:\n           return []\n       \n       result = []\n       lst_copy = lst.copy()\n       \n       while lst_copy:\n           min_val = min(lst_copy)\n           result.append(min_val)\n           lst_copy.remove(min_val)\n           \n           if lst_copy:\n               max_val = max(lst_copy)\n               result.append(max_val)\n               lst_copy.remove(max_val)\n       \n       return result\n   ```\n\n5. **Test Cases**:\n   - `strange_sort_list([1, 2, 3, 4])` should return `[1, 4, 2, 3]`.\n   - `strange_sort_list([5, 5, 5, 5])` should return `[5, 5, 5, 5]`.\n   - `strange_sort_list([])` should return `[]`.\n   - `strange_sort_list([1, 1, 2, 2])` should return `[1, 2, 1, 2]`.\n   - `strange_sort_list([-1, 2, -3, 4])` should return `[-1, 4, -3, 2]`.\n\n6. **Complexity**:\n   - Time Complexity: O(n^2) due to the repeated search for min and max in each iteration.\n   - Space Complexity: O(n) for the result list and the copy of the input list."
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 7.384,
+      "prompt_tokens": 889,
+      "completion_tokens": 95,
+      "delivered_output": "```python\ndef strange_sort_list(lst: list) -> list:\n    if not lst:\n        return []\n    \n    result = []\n    lst_copy = lst.copy()\n    \n    while lst_copy:\n        min_val = min(lst_copy)\n        result.append(min_val)\n        lst_copy.remove(min_val)\n        \n        if lst_copy:\n            max_val = max(lst_copy)\n            result.append(max_val)\n            lst_copy.remove(max_val)\n    \n    return result\n```",
+      "output_sha256": "20c750ae73036da43d528a0971d011a88f2aee7ec3621b328ba10ff87cd85116",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "\ndef strange_sort_list(lst):\n    '''\n    Given list of integers, return list in strange order.\n    Strange sorting, is when you start with the minimum value,\n    then maximum of the remaining integers, then minimum and so on.\n\n    Examples:\n    strange_sort_list([1, 2, 3, 4]) == [1, 4, 2, 3]\n    strange_sort_list([5, 5, 5, 5]) == [5, 5, 5, 5]\n    strange_sort_list([]) == []\n    '''\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\ndef strange_sort_list(lst: list) -> list:\n    if not lst:\n        return []\n    \n    result = []\n    lst_copy = lst.copy()\n    \n    while lst_copy:\n        min_val = min(lst_copy)\n        result.append(min_val)\n        lst_copy.remove(min_val)\n        \n        if lst_copy:\n            max_val = max(lst_copy)\n            result.append(max_val)\n            lst_copy.remove(max_val)\n    \n    return result\n```"
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 6.502,
+      "prompt_tokens": 400,
+      "completion_tokens": 91,
+      "delivered_output": "```python\ndef strange_sort_list(lst: list) -> list:\n    if not lst:\n        return []\n\n    result = []\n    lst_copy = lst.copy()\n\n    while lst_copy:\n        min_val = min(lst_copy)\n        result.append(min_val)\n        lst_copy.remove(min_val)\n\n        if lst_copy:\n            max_val = max(lst_copy)\n            result.append(max_val)\n            lst_copy.remove(max_val)\n\n    return result\n```",
+      "output_sha256": "b56812f9e5f0e4ecfe460f77cf1d0c7ead556efc37bd3b6482e66176221d179a",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1289,
+    "completion_tokens": 186,
+    "model_seconds": 13.886,
+    "tracking_overhead_seconds": 0.000593,
+    "recovery_wall_seconds": 13.927
+  }
+}

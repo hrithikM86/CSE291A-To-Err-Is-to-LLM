@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef pluck(arr):\n    \"\"\"\n    \"Given an array representing a branch of a tree that has non-negative integer nodes\n    your task is to pluck one of the nodes and return it.\n    The plucked node should be the node with the smallest even value.\n    If multiple nodes with the same smallest even value are found return the node that has smallest index.\n\n    The plucked node should be returned in a list, [ smalest_value, its index ],\n    If there are no even values or the given array is empty, return [].\n\n    Example 1:\n        Input: [4,2,3]\n        Output: [2, 1]\n        Explanation: 2 has the smallest even value, and 2 has the smallest index.\n\n    Example 2:\n        Input: [1,2,3]\n        Output: [2, 1]\n        Explanation: 2 has the smallest even value, and 2 has the smallest index. \n\n    Example 3:\n        Input: []\n        Output: []\n    \n    Example 4:\n        Input: [5, 0, 3, 0, 4, 2]\n        Output: [0, 1]\n        Explanation: 0 is the smallest value, but  there are two zeros,\n                     so we will choose the first zero, which has the smallest index.\n\n    Constraints:\n        * 1 <= nodes.length <= 10000\n        * 0 <= node.value\n    \"\"\"\n",
+    "previous_stage": "project_manager",
+    "previous_artifact": "### Implementation Checklist for `pluck` Function\n\n1. **Function Signature**\n   ```python\n   def pluck(arr):\n       # Function body\n   ```\n\n2. **Algorithm Steps**\n   - **Step 1:** Check if the input array `arr` is empty. If it is, return `[]`.\n   - **Step 2:** Initialize `smallest_even` to `None` and `smallest_index` to `-1`.\n   - **Step 3:** Iterate through the array using a for loop:\n     - For each element `node` and its index `index` in `arr`:\n       - If `node` is even and either `smallest_even` is `None` or `node < smallest_even` or `node == smallest_even and index < smallest_index`:\n         - Set `smallest_even` to `node`.\n         - Set `smallest_index` to `index`.\n   - **Step 4:** After the loop, check if `smallest_even` is still `None`. If it is, return `[]`.\n   - **Step 5:** Return `[smallest_even, smallest_index]`.\n\n3. **Boundary Conditions**\n   - **Empty Array:** Ensure the function returns `[]` when the input array is empty.\n   - **No Even Values:** Ensure the function returns `[]` when there are no even values in the array.\n   - **Multiple Nodes with the Same Smallest Even Value:** Ensure the function returns the node with the smallest index when there are multiple nodes with the same smallest even value.\n\n4. **Example Implementations**\n   - **Example 1:**\n     ```python\n     assert pluck([4, 2, 3]) == [2, 1]\n     ```\n   - **Example 2:**\n     ```python\n     assert pluck([1, 2, 3]) == [2, 1]\n     ```\n   - **Example 3:**\n     ```python\n     assert pluck([]) == []\n     ```\n   - **Example 4:**\n     ```python\n     assert pluck([5, 0, 3, 0, 4, 2]) == [0, 1]\n     ```\n\n5. **Complexity**\n   - **Time Complexity:** O(n), where n is the number of nodes in the array.\n   - **Space Complexity:** O(1), constant space is used."
+  },
+  "system_messages": [
+    "You are a Code Engineer, named coder, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5-coder:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

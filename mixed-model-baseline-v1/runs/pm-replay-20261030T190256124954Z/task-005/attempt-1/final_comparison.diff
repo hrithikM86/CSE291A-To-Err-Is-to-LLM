@@ -1,0 +1,18 @@
+--- baseline_final.py
++++ final.py
+@@ -8,9 +8,13 @@
+     >>> intersperse([1, 2, 3], 4)
+     [1, 4, 2, 4, 3]
+     """
++    if not numbers:
++        return []
++
+     result = []
+-    for i, num in enumerate(numbers):
+-        result.append(num)
++    for i, number in enumerate(numbers):
++        result.append(number)
+         if i < len(numbers) - 1:
+             result.append(delimiter)
++
+     return result

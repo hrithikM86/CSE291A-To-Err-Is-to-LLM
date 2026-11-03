@@ -1,0 +1,10 @@
+def unique_digits(x: list) -> list:
+    def has_unique_odd_digits(num):
+        digits = str(num)
+        return all(int(digit) % 2 != 0 for digit in digits)
+
+    if not all(isinstance(i, int) and i > 0 for i in x):
+        raise ValueError("All elements in the list must be positive integers.")
+
+    result = [num for num in x if has_unique_odd_digits(num)]
+    return sorted(result)

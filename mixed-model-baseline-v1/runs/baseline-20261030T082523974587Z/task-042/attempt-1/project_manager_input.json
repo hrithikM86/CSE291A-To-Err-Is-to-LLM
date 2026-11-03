@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef incr_list(l: list):\n    \"\"\"Return list with elements incremented by 1.\n    >>> incr_list([1, 2, 3])\n    [2, 3, 4]\n    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [6, 4, 6, 3, 4, 4, 10, 1, 124]\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `incr_list`:\n\n1. **Input Validation**: Check if the input `l` is a list. If not, raise a `TypeError`.\n2. **Edge Case Handling**:\n   - If `l` is empty, return an empty list.\n   - If `l` contains a single element, increment it by 1 and return the new list.\n3. **Main Logic**:\n   - Create an empty list `result`.\n   - Iterate through each element `x` in `l`.\n     - Increment `x` by 1.\n     - Append the incremented value to `result`.\n4. **Return** the `result` list.\n\nComplexity:\n- Time Complexity: O(n), where n is the length of the input list `l`.\n- Space Complexity: O(n), for storing the result list.\n\nThis algorithm ensures that all specified edge cases are handled correctly and the main functionality is implemented as required."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

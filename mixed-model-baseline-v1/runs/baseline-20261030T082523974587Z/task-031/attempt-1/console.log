@@ -1,0 +1,136 @@
+
+TASK: HumanEval/31 attempt 1
+Running product_manager: qwen2.5:7b
+Requirements for the `is_prime` function:
+
+- **Input**: A single integer `n` (where `n` is a non-negative integer).
+- **Output**: A boolean value (`True` or `False`).
+- **Behavior**:
+  - Return `True` if `n` is a prime number.
+  - Return `False` if `n` is not a prime number.
+- **Edge Cases**:
+  - `n` = 0: Return `False`.
+  - `n` = 1: Return `False`.
+  - `n` = 2: Return `True` (2 is the smallest prime number).
+  - `n` < 0: Not applicable as input is restricted to non-negative integers.
+Running architect: qwen2.5:7b
+Algorithm for `is_prime(n)`:
+
+1. **Input Validation**: Ensure `n` is a non-negative integer. If `n` is negative, return `False` (though this case is not applicable as per the specification).
+
+2. **Edge Cases**:
+   - If `n` is 0, return `False`.
+   - If `n` is 1, return `False`.
+   - If `n` is 2, return `True`.
+
+3. **General Case**:
+   - If `n` is even and not 2, return `False`.
+   - For odd `n`, check divisibility from 3 to the square root of `n` in steps of 2 (i.e., 3, 5, 7, ...). If `n` is divisible by any of these numbers, return `False`.
+   - If no divisors are found, return `True`.
+
+Complexity:
+- The algorithm has a time complexity of O(√n) due to checking divisibility up to the square root of `n`.
+- The space complexity is O(1) as it uses a constant amount of extra space.
+
+This algorithm covers all specified edge cases and behaves as expected for the given examples.
+Running project_manager: qwen2.5:7b
+### Implementation Checklist for `is_prime(n)`
+
+1. **Function Signature**:
+   ```python
+   def is_prime(n: int) -> bool:
+       pass
+   ```
+
+2. **Algorithm Steps**:
+   - **Input Validation**: Ensure `n` is a non-negative integer.
+   - **Edge Cases**:
+     - If `n` is 0, return `False`.
+     - If `n` is 1, return `False`.
+     - If `n` is 2, return `True`.
+   - **General Case**:
+     - If `n` is even and not 2, return `False`.
+     - For odd `n`, check divisibility from 3 to the square root of `n` in steps of 2 (i.e., 3, 5, 7, ...). If `n` is divisible by any of these numbers, return `False`.
+     - If no divisors are found, return `True`.
+
+3. **Boundary Conditions**:
+   - Ensure the function handles non-integer inputs by raising a `TypeError`.
+   - Handle the case where `n` is 0 or 1 explicitly.
+   - Optimize the loop to run up to the square root of `n` and only check odd numbers.
+
+4. **Example Test Cases**:
+   - `is_prime(6)` should return `False`.
+   - `is_prime(101)` should return `True`.
+   - `is_prime(11)` should return `True`.
+   - `is_prime(13441)` should return `True`.
+   - `is_prime(61)` should return `True`.
+   - `is_prime(4)` should return `False`.
+   - `is_prime(1)` should return `False`.
+
+5. **Code Structure**:
+   - Use a `for` loop to check divisibility.
+   - Use a `break` statement to exit the loop early if a divisor is found.
+   - Use a `return` statement to return `True` if no divisors are found.
+
+6. **Complexity**:
+   - Time complexity: O(√n).
+   - Space complexity: O(1).
+
+### Example Implementation
+```python
+import math
+
+def is_prime(n: int) -> bool:
+    if not isinstance(n, int):
+        raise TypeError("Input must be an integer")
+    if n < 2:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    for i in range(3, int(math.sqrt(n)) + 1, 2):
+        if n % i == 0:
+            return False
+    return True
+```
+
+This checklist ensures that the implementation covers all necessary aspects of the `is_prime` function.
+Running coder: qwen2.5-coder:7b
+```python
+import math
+
+def is_prime(n: int) -> bool:
+    if not isinstance(n, int):
+        raise TypeError("Input must be an integer")
+    if n < 2:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    for i in range(3, int(math.sqrt(n)) + 1, 2):
+        if n % i == 0:
+            return False
+    return True
+```
+Running test_engineer: qwen2.5:7b
+```python
+import math
+
+def is_prime(n: int) -> bool:
+    if not isinstance(n, int):
+        raise TypeError("Input must be an integer")
+    if n < 2:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    for i in range(3, int(math.sqrt(n)) + 1, 2):
+        if n % i == 0:
+            return False
+    return True
+```
+baseline_coder official: passed {'passed': 4, 'failed': 0, 'timeout': 0, 'unresolved': 0}
+baseline_final official: passed {'passed': 4, 'failed': 0, 'timeout': 0, 'unresolved': 0}

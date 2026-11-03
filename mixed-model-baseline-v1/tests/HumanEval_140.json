@@ -1,0 +1,31 @@
+{
+  "task_id": "HumanEval/140",
+  "entry_point": "fix_spaces",
+  "case_provenance": "hand_authored_inputs_and_expected_values",
+  "cases": [
+    {
+      "name": "three_spaces",
+      "args": [
+        "a   b"
+      ],
+      "expected_literal": "'a-b'",
+      "comparison": "recursive_numeric"
+    },
+    {
+      "name": "two_spaces",
+      "args": [
+        "a  b"
+      ],
+      "expected_literal": "'a__b'",
+      "comparison": "recursive_numeric"
+    },
+    {
+      "name": "one_space",
+      "args": [
+        "a b"
+      ],
+      "expected_literal": "'a_b'",
+      "comparison": "recursive_numeric"
+    }
+  ]
+}

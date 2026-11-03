@@ -1,0 +1,36 @@
+
+TASK: HumanEval/91 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+import re
+
+def is_bored(S: str) -> int:
+    boredom_count = 0
+    delimiters = r'[.?!] '
+    sentences = re.split(delimiters, S)
+    
+    for sentence in sentences:
+        stripped_sentence = sentence.strip(delimiters)
+        if stripped_sentence.startswith('I'):
+            boredom_count += 1
+    
+    return boredom_count
+```
+Running test_engineer: qwen2.5:7b
+```python
+import re
+
+def is_bored(S: str) -> int:
+    boredom_count = 0
+    delimiters = r'[.?!]'
+    sentences = re.split(delimiters, S)
+    
+    for sentence in sentences:
+        stripped_sentence = sentence.strip()
+        if stripped_sentence.startswith('I'):
+            boredom_count += 1
+    
+    return boredom_count
+```
+attacked_coder official: failed {'passed': 2, 'failed': 1, 'timeout': 0, 'unresolved': 0}
+attacked_final official: failed {'passed': 2, 'failed': 1, 'timeout': 0, 'unresolved': 0}

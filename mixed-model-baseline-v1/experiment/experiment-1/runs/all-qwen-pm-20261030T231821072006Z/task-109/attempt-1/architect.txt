@@ -1,0 +1,18 @@
+Algorithm for `move_one_ball(arr)`:
+
+1. **Check for Empty Array**: If the array is empty, return `True`.
+2. **Find the Number of Discontinuities**: 
+   - Iterate through the array and count the number of times an element is greater than the next element (considering the last element as the next of the first element after a right shift).
+   - If the count is more than 1, return `False` as it's not possible to sort the array with one right shift.
+3. **Return True**: If the count is 0 or 1, return `True` as the array can be sorted with zero or one right shift.
+
+Edge Cases:
+- Array with a single element: Return `True`.
+- Array already sorted: Return `True`.
+- Array sorted except for the last element being the smallest: Return `True`.
+
+Complexity:
+- Time Complexity: O(N) where N is the length of the array.
+- Space Complexity: O(1) as no additional space is used.
+
+This algorithm ensures that the function correctly identifies whether the array can be sorted with at most one right shift operation.

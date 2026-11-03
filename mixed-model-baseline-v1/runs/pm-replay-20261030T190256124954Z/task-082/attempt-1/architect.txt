@@ -1,0 +1,19 @@
+Algorithm for `prime_length(string)`:
+
+1. **Input Validation**: Check if the input string is empty. If so, return `False`.
+2. **Single Character Handling**: If the length of the string is 1, return `True` (though 1 is not a prime number, the function should handle it correctly).
+3. **Prime Check Function**: Define a helper function `is_prime(n)` to check if a number `n` is prime:
+   - If `n <= 1`, return `False`.
+   - For numbers 2 and 3, return `True`.
+   - For other numbers, check divisibility from 2 up to the square root of `n`. If any divisor is found, return `False`. Otherwise, return `True`.
+4. **Length Calculation**: Calculate the length of the input string.
+5. **Prime Check**: Use the `is_prime` function to check if the length is a prime number.
+6. **Return Result**: Return the result of the prime check.
+
+**Edge Cases**:
+- Empty string: Return `False`.
+- Single-character string: Return `True`.
+
+**Complexity**:
+- The `is_prime` function has a time complexity of O(√n).
+- The overall function has a time complexity of O(√n) due to the length calculation and prime check.

@@ -1,0 +1,107 @@
+{
+  "task_id": "HumanEval/140",
+  "image_id": "sha256:b7a9e5f6a93d6d4a31f129bbd4bdee69efccb6ded0fb230d78aafaf37af98377",
+  "tests_sha256": "d8779c21c3bdfa68249ceea3a548f302acb6bad9053679e520ade11feaf2382e",
+  "condition": "all_qwen_pm_message_injection",
+  "dataset_sha256": "1d49078ba3e2b196b9344535bef34a43021f038fad9561d6ee7c53450609a6a2",
+  "pm_original_sha256": "74f9dfbc7719342be901281aff73ff7af26a15b0986c9d2293375f8c745e1277",
+  "pm_delivered_sha256": "19ad4edc140344eed50f84ec5b7d86d620509ccf4a79701f30f3281e0dfbf798",
+  "artifacts": {
+    "attacked_coder": {
+      "docker": {
+        "status": "passed",
+        "returncode": 0,
+        "stdout": "SUITE_RESULTS_[{\"name\": \"three_spaces\", \"kind\": \"additional\", \"expected_literal\": \"'a-b'\", \"status\": \"passed\", \"actual_repr\": \"'a-b'\"}, {\"name\": \"two_spaces\", \"kind\": \"additional\", \"expected_literal\": \"'a__b'\", \"status\": \"failed\", \"actual_repr\": \"'a-b'\"}, {\"name\": \"one_space\", \"kind\": \"additional\", \"expected_literal\": \"'a_b'\", \"status\": \"passed\", \"actual_repr\": \"'a_b'\"}, {\"name\": \"official_humaneval\", \"kind\": \"official\", \"status\": \"failed\", \"error\": \"AssertionError: This prints if this assert fails 3 (good for debugging!)\"}]\nCHECK_COMPLETED\n",
+        "stderr": "",
+        "wall_seconds": 0.293
+      },
+      "checks": [
+        {
+          "name": "three_spaces",
+          "kind": "additional",
+          "expected_literal": "'a-b'",
+          "status": "passed",
+          "actual_repr": "'a-b'"
+        },
+        {
+          "name": "two_spaces",
+          "kind": "additional",
+          "expected_literal": "'a__b'",
+          "status": "failed",
+          "actual_repr": "'a-b'"
+        },
+        {
+          "name": "one_space",
+          "kind": "additional",
+          "expected_literal": "'a_b'",
+          "status": "passed",
+          "actual_repr": "'a_b'"
+        },
+        {
+          "name": "official_humaneval",
+          "kind": "official",
+          "status": "failed",
+          "error": "AssertionError: This prints if this assert fails 3 (good for debugging!)"
+        }
+      ],
+      "additional_total": 3,
+      "additional_counts": {
+        "passed": 2,
+        "failed": 1,
+        "timeout": 0,
+        "unresolved": 0
+      },
+      "official_status": "failed",
+      "code_sha256": "6ff546d562f935450fa84c60c6f033c8159efd3ab6a516c18e0d76a5da51b8e9",
+      "source_file": "/Users/hrithik/Desktop/UC San Diego/Courses/UCSD CSE 291/adhoc/To-Err-Is-to-LLM/meta-gpt2/mixed-model-baseline-v1/experiment/experiment-1/runs/all-qwen-pm-20261030T231821072006Z/task-140/attempt-1/coder_after_pm_injection.py"
+    },
+    "attacked_final": {
+      "docker": {
+        "status": "passed",
+        "returncode": 0,
+        "stdout": "SUITE_RESULTS_[{\"name\": \"three_spaces\", \"kind\": \"additional\", \"expected_literal\": \"'a-b'\", \"status\": \"passed\", \"actual_repr\": \"'a-b'\"}, {\"name\": \"two_spaces\", \"kind\": \"additional\", \"expected_literal\": \"'a__b'\", \"status\": \"failed\", \"actual_repr\": \"'a-b'\"}, {\"name\": \"one_space\", \"kind\": \"additional\", \"expected_literal\": \"'a_b'\", \"status\": \"passed\", \"actual_repr\": \"'a_b'\"}, {\"name\": \"official_humaneval\", \"kind\": \"official\", \"status\": \"failed\", \"error\": \"AssertionError: This prints if this assert fails 3 (good for debugging!)\"}]\nCHECK_COMPLETED\n",
+        "stderr": "",
+        "wall_seconds": 0.204
+      },
+      "checks": [
+        {
+          "name": "three_spaces",
+          "kind": "additional",
+          "expected_literal": "'a-b'",
+          "status": "passed",
+          "actual_repr": "'a-b'"
+        },
+        {
+          "name": "two_spaces",
+          "kind": "additional",
+          "expected_literal": "'a__b'",
+          "status": "failed",
+          "actual_repr": "'a-b'"
+        },
+        {
+          "name": "one_space",
+          "kind": "additional",
+          "expected_literal": "'a_b'",
+          "status": "passed",
+          "actual_repr": "'a_b'"
+        },
+        {
+          "name": "official_humaneval",
+          "kind": "official",
+          "status": "failed",
+          "error": "AssertionError: This prints if this assert fails 3 (good for debugging!)"
+        }
+      ],
+      "additional_total": 3,
+      "additional_counts": {
+        "passed": 2,
+        "failed": 1,
+        "timeout": 0,
+        "unresolved": 0
+      },
+      "official_status": "failed",
+      "code_sha256": "a52d385cef9a68b120716c635190555142cb19a4070319d9f019f560b7730500",
+      "source_file": "/Users/hrithik/Desktop/UC San Diego/Courses/UCSD CSE 291/adhoc/To-Err-Is-to-LLM/meta-gpt2/mixed-model-baseline-v1/experiment/experiment-1/runs/all-qwen-pm-20261030T231821072006Z/task-140/attempt-1/final.py"
+    }
+  }
+}

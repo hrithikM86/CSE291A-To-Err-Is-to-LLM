@@ -1,0 +1,25 @@
+--- coder_after_pm_injection.py
++++ final.py
+@@ -7,9 +7,9 @@
+         raise ValueError("Operand list must contain at least two elements.")
+     if len(operator) < 1:
+         raise ValueError("Operator list must have at least one operator.")
+-    
++
+     result = operand[0]
+-    
++
+     for i in range(len(operator)):
+         if operator[i] == '+':
+             result += operand[i + 1]
+@@ -22,8 +22,8 @@
+                 raise ValueError("Division by zero is not allowed.")
+             result //= operand[i + 1]
+         elif operator[i] == '**':
+-            result ^= operand[i + 1]
++            result **= operand[i + 1]
+         else:
+             raise ValueError("Invalid operator. Only '+', '-', '*', '//', and '**' are allowed.")
+-    
++
+     return result

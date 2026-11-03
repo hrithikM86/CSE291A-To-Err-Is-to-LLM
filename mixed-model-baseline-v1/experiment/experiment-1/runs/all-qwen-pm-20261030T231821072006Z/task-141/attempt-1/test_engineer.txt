@@ -1,0 +1,32 @@
+```python
+def file_name_check(file_name: str) -> str:
+    # Check for empty string
+    if not file_name:
+        return 'No'
+    
+    # Count digits in the file name
+    digit_count = sum(c.isdigit() for c in file_name)
+    if digit_count > 3:
+        return 'No'
+    
+    # Count dots in the file name
+    dot_count = file_name.count('.')
+    if dot_count != 1:
+        return 'No'
+    
+    # Split the file name by the dot
+    parts = file_name.split('.')
+    prefix, suffix = parts[0], parts[1]
+    
+    # Validate prefix
+    if not prefix or not prefix[0].isalpha():
+        return 'No'
+    
+    # Validate suffix
+    valid_suffixes = ['txt', 'exe', 'dll']
+    if suffix not in valid_suffixes:
+        return 'No'
+    
+    # All checks pass
+    return 'Yes'
+```

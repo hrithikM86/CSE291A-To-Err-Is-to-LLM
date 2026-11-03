@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef count_distinct_characters(string: str) -> int:\n    \"\"\" Given a string, find out how many distinct characters (regardless of case) does it consist of\n    >>> count_distinct_characters('xyzXYZ')\n    3\n    >>> count_distinct_characters('Jerry')\n    4\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. Convert the input string to lowercase to ensure case insensitivity.\n2. Initialize an empty set to store unique characters.\n3. Iterate through each character in the string:\n   - If the character is not already in the set, add it.\n4. Return the size of the set as the result.\n\nEdge Cases:\n- Empty string: Return 0.\n- String with only one character: Return 1.\n- String with all characters being the same: Return 1.\n- String with only spaces: Return 0.\n\nComplexity:\n- Time Complexity: O(n), where n is the length of the string.\n- Space Complexity: O(1), as the set size is bounded by the number of unique characters in the alphabet (26 for English)."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

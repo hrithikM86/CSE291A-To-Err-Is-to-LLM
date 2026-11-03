@@ -1,0 +1,22 @@
+
+TASK: HumanEval/66 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def digitSum(s: str) -> int:
+    total = 0
+    for char in s:
+        if char.isupper():
+            total += ord(char) - ord('A') + 1
+    return total
+```
+Running test_engineer: qwen2.5:7b
+```python
+def digitSum(s: str) -> int:
+    total = 0
+    for char in s:
+        if char.isupper():
+            total += ord(char)
+    return total
+```
+attacked_coder official: failed {'passed': 1, 'failed': 2, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

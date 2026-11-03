@@ -1,0 +1,15 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -5,10 +5,5 @@
+         return x == 1
+     if x == 1 and n > 1:
+         return False
+-    if x == 0 and n == 1:
+-        return False
+-    
+-    k = 1
+-    while n**k < x:
+-        k += 1
+-    return n**k == x
++    if x > 1 and n > 1:
++        return x % n == 0

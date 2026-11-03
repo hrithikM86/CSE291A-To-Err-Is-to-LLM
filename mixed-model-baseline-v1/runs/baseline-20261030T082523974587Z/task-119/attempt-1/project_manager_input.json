@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef match_parens(lst):\n    '''\n    You are given a list of two strings, both strings consist of open\n    parentheses '(' or close parentheses ')' only.\n    Your job is to check if it is possible to concatenate the two strings in\n    some order, that the resulting string will be good.\n    A string S is considered to be good if and only if all parentheses in S\n    are balanced. For example: the string '(())()' is good, while the string\n    '())' is not.\n    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.\n\n    Examples:\n    match_parens(['()(', ')']) == 'Yes'\n    match_parens([')', ')']) == 'No'\n    '''\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `match_parens(lst)`:\n\n1. **Input Validation**: Check if the input list `lst` contains exactly two strings. If not, return 'No'.\n2. **Edge Cases**:\n   - If any string in `lst` is empty, check if the other string is balanced. If yes, return 'Yes'; otherwise, return 'No'.\n   - If both strings are empty, return 'Yes'.\n3. **Concatenation and Balance Check**:\n   - Concatenate the two strings in both possible orders.\n   - For each concatenated string, use a counter to track the balance of parentheses:\n     - Increment counter for '('.\n     - Decrement counter for ')'.\n     - If at any point the counter is negative, the string is unbalanced.\n     - If the counter is zero at the end, the string is balanced.\n4. **Return Result**: If either concatenated string is balanced, return 'Yes'. Otherwise, return 'No'.\n\nComplexity:\n- **Time Complexity**: O(n), where n is the total length of the two strings.\n- **Space Complexity**: O(n) for storing the concatenated strings.\n\nThis algorithm ensures all given examples and edge cases are handled correctly."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

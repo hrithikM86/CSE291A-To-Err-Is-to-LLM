@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "from typing import List\n\n\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n    \"\"\" From a list of integers, remove all elements that occur more than once.\n    Keep order of elements left the same as in the input.\n    >>> remove_duplicates([1, 2, 3, 2, 4])\n    [1, 3, 4]\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm:\n\n1. Initialize an empty list `result` to store the final output.\n2. Initialize an empty dictionary `seen` to keep track of seen elements.\n3. Iterate through each number in the input list `numbers`:\n   - If the number is not in `seen`:\n     - Add the number to `result`.\n     - Add the number to `seen`.\n4. Return `result`.\n\nEdge Cases:\n- An empty list: Return an empty list.\n- A list with no duplicates: Return the same list.\n- A list with all elements being the same: Return a list with one instance of that element.\n\nComplexity:\n- Time Complexity: O(n), where n is the number of elements in the input list.\n- Space Complexity: O(n), for storing the `seen` dictionary and the `result` list."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

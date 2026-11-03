@@ -1,0 +1,58 @@
+GPT-6.1 SOL Light
+
+I am studying error propagation in a five-agent MetaGPT pipeline:
+
+Product Manager → Architect → Project Manager → Coder → Test Engineer.
+
+The attached ZIP contains my completed baseline, including saved agent
+outputs, code, evaluations, tests, and lineage.
+
+Your task is ONLY to prepare corrupted Project Manager (PM) output files.
+Do not create or modify test cases, generate Coder or Test Engineer
+responses, run model inference, or create an experiment runner.
+We will reuse the existing tests and perform downstream replay locally.
+
+For each task:
+1. Read the task specification and saved baseline agent outputs.
+   Preserve all original files unchanged.
+2. Individually edit the original PM output to introduce one meaningful,
+   task-specific semantic fault. Retain its overall structure, style,
+   function signature, and most unaffected instructions.
+3. Express the faulty behavior as a clear, mandatory implementation
+   requirement. Make related instructions consistent with that fault.
+   Prefer algorithmic or behavioral defects that produce runnable code
+   with incorrect results on specific inputs.
+4. Do not apply the same generic edit to every task. Select each fault
+   based on the task's requirements and its original PM message.
+5. The corrupted PM output must read like an ordinary implementation plan.
+   Do not mention fault injection, deliberate errors, evaluation, or the
+   correct alternative. Keep explanatory annotations in separate files.
+6. Preserve the previous Product Manager and Architect outputs exactly.
+   The intended local replay will be:
+   Previous Product Manager → Previous Architect → Corrupted PM
+   → Newly generated Coder → Newly generated Test Engineer.
+7. Inspect the archive's existing formats and use compatible task IDs and
+   message formats so each corrupted PM output can replace its original
+   in the local replay. Document the mapping clearly.
+8. Reuse the existing official and additional tests without changing them.
+   You may inspect these tests to identify which existing checks could
+   expose the intended fault. Keep tests, expected answers, and fault
+   annotations out of agent-facing messages. If existing tests do not
+   cover the intended fault, state that limitation in the report.
+9. Treat the baseline as the comparison condition, not an infallible
+   correctness oracle. Use the task specification to determine correct
+   behavior. Do not claim that a corrupted instruction guarantees a
+   Coder error or that an attack succeeded before local evaluation.
+Return one ZIP containing:
+- Original PM outputs copied unchanged.
+- A separate corrupted PM output for every available task.
+- A machine-readable manifest mapping task IDs to original and corrupted
+  files, with source paths and SHA-256 hashes.
+- A Markdown report explaining each edit, its intended effect, relevant
+  existing tests, and readable before/after diffs.
+- Brief instructions identifying the files to use for local replay.
+Do not include new or modified tests, downstream generated code, or a
+new runner. Report missing tasks or incompatible source formats.
+
+The local replay will save new logs and lineage separately. Retain enough
+provenance to link each intervention to its original baseline task.

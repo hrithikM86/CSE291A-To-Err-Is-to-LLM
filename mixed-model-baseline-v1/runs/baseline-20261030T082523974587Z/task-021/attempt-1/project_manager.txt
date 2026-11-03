@@ -1,0 +1,43 @@
+### Implementation Checklist for `rescale_to_unit`
+
+1. **Function Signature:**
+   ```python
+   from typing import List
+
+   def rescale_to_unit(numbers: List[float]) -> List[float]:
+       pass
+   ```
+
+2. **Algorithm Steps:**
+   - **Step 1: Validate Input**
+     - Check if the input list has at least two elements.
+     - Raise an appropriate error if the list is too short.
+   - **Step 2: Find Min and Max Values**
+     - Use built-in `min()` and `max()` functions to find the minimum and maximum values in the list.
+   - **Step 3: Handle Edge Cases**
+     - Ensure the minimum and maximum values are not the same to avoid division by zero.
+     - Handle lists with duplicate values, negative numbers, and zeros.
+   - **Step 4: Apply Linear Transformation**
+     - For each number in the list, apply the formula:
+       \[
+       \text{transformed\_value} = \frac{\text{number} - \text{min\_value}}{\text{max\_value} - \text{min\_value}}
+       \]
+   - **Step 5: Return Transformed List**
+     - Return the list of transformed values.
+
+3. **Boundary Conditions:**
+   - Ensure the function handles lists with:
+     - At least two elements.
+     - Duplicate values.
+     - Negative numbers.
+     - Zeros.
+     - Minimum and maximum values being the same (rare but possible).
+
+4. **Example Test Cases:**
+   - `rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])` should return `[0.0, 0.25, 0.5, 0.75, 1.0]`.
+   - `rescale_to_unit([-2.0, -1.0, 0.0, 1.0, 2.0])` should return `[0.0, 0.25, 0.5, 0.75, 1.0]`.
+   - `rescale_to_unit([1.0, 1.0, 1.0, 1.0])` should raise an error or handle the case appropriately.
+
+5. **Complexity:**
+   - Time: O(n) for finding min and max and iterating through the list.
+   - Space: O(n) for storing the transformed list.

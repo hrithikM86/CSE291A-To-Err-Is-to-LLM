@@ -1,0 +1,46 @@
+### Implementation Checklist for `get_closest_vowel(word)`
+
+1. **Function Signature**
+   ```python
+   def get_closest_vowel(word: str) -> str:
+       pass
+   ```
+
+2. **Algorithm Steps**
+   - **Input Validation**
+     - Check if `word` is empty. If true, return an empty string.
+   - **Initialize Variables**
+     - `n` = length of `word`
+     - `closest_vowel` = empty string
+   - **Iterate from Right to Left**
+     - For `i` from `n-2` to `0` (inclusive):
+       - Check if `word[i]` is a vowel and `word[i+1]` is a consonant.
+       - If true, set `closest_vowel` to `word[i]` and break the loop.
+   - **Return Result**
+     - Return `closest_vowel`.
+
+3. **Boundary Conditions**
+   - Handle empty string: Return an empty string.
+   - Handle single character: Return an empty string.
+   - Handle no valid vowels: Return an empty string.
+   - Handle vowels at the beginning or end: Return an empty string.
+
+4. **Helper Functions**
+   - Define a helper function `is_vowel(char)` to check if a character is a vowel.
+   - Define a helper function `is_consonant(char)` to check if a character is a consonant.
+
+5. **Example Implementations**
+   - Test the function with provided examples:
+     ```python
+     assert get_closest_vowel("yogurt") == "u"
+     assert get_closest_vowel("FULL") == "U"
+     assert get_closest_vowel("quick") == ""
+     assert get_closest_vowel("ab") == ""
+     ```
+
+6. **Edge Cases**
+   - Ensure the function handles all edge cases as specified in the algorithm steps.
+
+7. **Complexity**
+   - Time: O(n), where n is the length of the word.
+   - Space: O(1), constant space used.

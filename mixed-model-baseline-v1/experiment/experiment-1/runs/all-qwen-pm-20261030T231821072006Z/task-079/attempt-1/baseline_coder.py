@@ -1,0 +1,13 @@
+def decimal_to_binary(decimal: int) -> str:
+    if not isinstance(decimal, int) or decimal < 0:
+        raise ValueError("Input must be a non-negative integer.")
+    
+    if decimal == 0:
+        return "db0db"
+    
+    binary = ""
+    while decimal > 0:
+        binary += str(decimal % 2)
+        decimal //= 2
+    
+    return "db" + binary[::-1] + "db"

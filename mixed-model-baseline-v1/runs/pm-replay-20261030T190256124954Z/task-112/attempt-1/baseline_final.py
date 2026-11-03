@@ -1,0 +1,7 @@
+def reverse_delete(s: str, c: str) -> tuple:
+    if not s or not c:
+        return ('', False)
+    
+    result = ''.join(char for char in s if char not in c)
+    
+    return (result, result == result[::-1])

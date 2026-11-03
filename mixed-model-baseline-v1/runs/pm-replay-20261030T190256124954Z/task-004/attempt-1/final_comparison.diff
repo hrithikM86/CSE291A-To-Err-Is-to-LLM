@@ -1,0 +1,18 @@
+--- baseline_final.py
++++ final.py
+@@ -13,11 +13,9 @@
+     if not numbers:
+         return 0.0
+ 
+-    mean = sum(numbers) / len(numbers)
+-    total_diff = 0.0
++    n = len(numbers)
++    mean = sum(numbers) / n
++    total_diff = sum(abs(number - mean) for number in numbers)
+ 
+-    for number in numbers:
+-        total_diff += abs(number - mean)
+-
+-    mad = total_diff / len(numbers)
++    mad = total_diff / n
+     return mad

@@ -1,0 +1,33 @@
+--- tasks/task-087/project_manager_original.txt
++++ tasks/task-087/project_manager_corrupted.txt
+@@ -6,23 +6,17 @@
+        pass
+    ```
+ 
+-2. **Algorithm Steps**
+-   - **Step 1:** Initialize an empty list `coordinates` to store the result.
+-   - **Step 2:** Iterate over each row `i` and column `j` in `lst`:
+-     - If `lst[i][j] == x`, add tuple `(i, j)` to `coordinates`.
+-   - **Step 3:** Sort `coordinates` by row in ascending order.
+-   - **Step 4:** For each row, sort the tuples by column in descending order.
+-   - **Step 5:** Return `coordinates`.
++2. **Algorithm Steps**:
++
++   - **Required implementation:** Collect all matching (row, column) coordinates. You must order rows ascending and columns within each row ascending as well, using the key (row, column).
+ 
+ 3. **Boundary Conditions and Edge Cases**
+-   - Handle empty `lst` by returning an empty list.
+-   - Ensure `x` is an integer.
+-   - Handle cases where `x` does not appear in `lst`.
++
++   - Handle empty and ragged rows. Order matches by ascending row and ascending column, preserving tuple coordinates.
+ 
+ 4. **Example Test Cases**
+-   - `get_row([], 1) == []`
+-   - `get_row([[], [1], [1, 2, 3]], 3) == [(2, 2)]`
+-   - `get_row([[1,2,3,4,5,6], [1,2,3,4,1,6], [1,2,3,4,5,1]], 1) == [(0, 0), (1, 4), (1, 0), (2, 5), (2, 0)]`
++
++   - Implement the checklist above directly and use the existing task validation suite.
+ 
+ 5. **Complexity**
+    - Time: O(n * m * log(m)) where n is the number of rows and m is the average number of columns.

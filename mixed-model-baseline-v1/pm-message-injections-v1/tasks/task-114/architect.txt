@@ -1,0 +1,27 @@
+Algorithm for `minSubArraySum(nums)`:
+
+1. **Input Validation**:
+   - Check if `nums` is empty. If yes, raise `ValueError`.
+   - If `nums` has only one element, return that element.
+
+2. **Initialization**:
+   - Set `min_sum` to the first element of `nums`.
+   - Set `current_sum` to 0.
+
+3. **Iterate Through the List**:
+   - For each element in `nums`:
+     - Add the current element to `current_sum`.
+     - If `current_sum` is less than `min_sum`, update `min_sum` to `current_sum`.
+     - If `current_sum` is negative, reset `current_sum` to 0 (to avoid adding negative values to subsequent elements).
+
+4. **Return the Result**:
+   - After the loop, return `min_sum`.
+
+**Edge Cases**:
+- Handling an empty list by raising `ValueError`.
+- Handling a single-element list by returning that element.
+- Properly handling negative numbers to ensure the minimum sum is found.
+
+**Complexity**:
+- Time: O(n), where n is the length of `nums`.
+- Space: O(1), as only a few variables are used.

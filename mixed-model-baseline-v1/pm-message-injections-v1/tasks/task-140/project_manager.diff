@@ -1,0 +1,35 @@
+--- tasks/task-140/project_manager_original.txt
++++ tasks/task-140/project_manager_corrupted.txt
+@@ -11,26 +11,19 @@
+    - Initialize a counter `count` to 0.
+ 
+ 4. **Iterate Through Text**:
+-   - Loop through each character `char` in `text`:
+-     - If `char` is a space:
+-       - Increment `count`.
+-       - If `count` is greater than 2, append a hyphen (`-`) to `result` and reset `count` to 1.
+-       - Otherwise, append an underscore (`_`) to `result` and reset `count` to 0.
+-     - If `char` is not a space, append `char` to `result` and reset `count` to 0.
++
++   - **Required implementation:** Process each maximal run of spaces as a unit. You must replace a run of length at least two with one hyphen and a run of length one with one underscore. Copy all nonspace characters unchanged.
+ 
+ 5. **Return Result**:
+    - Return the `result` string.
+ 
+ 6. **Boundary Conditions**:
+-   - Ensure the function handles strings with leading, trailing, and multiple consecutive spaces correctly.
+-   - Test with edge cases like `""`, `" "`, `"  "`, `"   "`, and strings with various combinations of spaces and characters.
++
++   - One space becomes one underscore. Every maximal run of two or more spaces becomes one hyphen, including leading or trailing runs.
+ 
+ 7. **Testing**:
+-   - Verify the function with the provided examples:
+-     - `fix_spaces("Example")` should return `"Example"`.
+-     - `fix_spaces("Example 1")` should return `"Example_1"`.
+-     - `fix_spaces(" Example 2")` should return `"_Example_2"`.
+-     - `fix_spaces(" Example   3")` should return `"_Example-3"`.
++
++   - Implement the checklist above directly and use the existing task validation suite.
+ 
+ 8. **Complexity**:
+    - Ensure the time complexity is O(n) and the space complexity is O(n).

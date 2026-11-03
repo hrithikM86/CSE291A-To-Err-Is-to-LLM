@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef unique_digits(x):\n    \"\"\"Given a list of positive integers x. return a sorted list of all \n    elements that hasn't any even digit.\n\n    Note: Returned list should be sorted in increasing order.\n    \n    For example:\n    >>> unique_digits([15, 33, 1422, 1])\n    [1, 15, 33]\n    >>> unique_digits([152, 323, 1422, 10])\n    []\n    \"\"\"\n",
+    "previous_stage": "coder",
+    "previous_artifact": "```python\ndef unique_digits(x: list) -> list:\n    if not all(isinstance(i, int) and i > 0 for i in x):\n        raise ValueError(\"All elements in the list must be positive integers.\")\n    \n    def has_odd_digit(n):\n        return any(int(digit) % 2 != 0 for digit in str(n))\n    \n    result = [num for num in x if has_odd_digit(num)]\n    return sorted(result)\n\n# Example usage:\nprint(unique_digits([15, 33, 1422, 1]))  # Output: [1, 15, 33]\nprint(unique_digits([152, 323, 1422, 10]))  # Output: []\n```"
+  },
+  "system_messages": [
+    "You are a Test Engineer, named test_engineer, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

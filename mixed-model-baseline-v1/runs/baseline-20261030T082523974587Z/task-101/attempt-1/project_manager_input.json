@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef words_string(s):\n    \"\"\"\n    You will be given a string of words separated by commas or spaces. Your task is\n    to split the string into words and return an array of the words.\n    \n    For example:\n    words_string(\"Hi, my name is John\") == [\"Hi\", \"my\", \"name\", \"is\", \"John\"]\n    words_string(\"One, two, three, four, five, six\") == [\"One\", \"two\", \"three\", \"four\", \"five\", \"six\"]\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `words_string(s)`:\n\n1. **Input Validation**: Check if the input string `s` is empty. If it is, return an empty list.\n2. **Normalization**: Replace multiple consecutive commas or spaces with a single space to handle edge cases.\n3. **Splitting**: Split the string `s` using spaces as delimiters.\n4. **Filtering**: Iterate through the resulting list and filter out any empty strings that may result from consecutive delimiters.\n5. **Return**: Return the filtered list of words.\n\nEdge Cases:\n- Handle an empty string input by returning an empty list.\n- Ensure that consecutive commas or spaces are treated as a single delimiter.\n- Ignore any special characters or punctuation other than commas or spaces.\n\nComplexity:\n- The time complexity is O(n), where n is the length of the input string, due to the single pass required for normalization and splitting.\n- The space complexity is O(m), where m is the number of words in the input string, for storing the resulting list of words."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

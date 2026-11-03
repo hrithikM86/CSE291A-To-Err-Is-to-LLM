@@ -1,0 +1,26 @@
+def f(n: int) -> list:
+    if n <= 0:
+        return []
+    
+    result = [0] * n
+    
+    def factorial(x):
+        if x == 0 or x == 1:
+            return 1
+        return x * factorial(x - 1)
+    
+    def sum_to(x):
+        return x * (x + 1) // 2
+    
+    for i in range(n):
+        if i % 2 == 0:
+            result[i] = factorial(i)
+        else:
+            result[i] = sum_to(i)
+    
+    return result
+
+# Test cases
+print(f(5))  # Expected: [1, 2, 6, 24, 15]
+print(f(0))  # Expected: []
+print(f(1))  # Expected: [1]

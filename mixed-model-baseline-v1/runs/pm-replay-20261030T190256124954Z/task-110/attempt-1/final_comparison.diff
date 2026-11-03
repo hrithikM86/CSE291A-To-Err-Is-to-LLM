@@ -1,0 +1,30 @@
+--- baseline_final.py
++++ final.py
+@@ -12,20 +12,17 @@
+     exchange([1, 2, 3, 4], [1, 5, 3, 4]) => "NO"
+     It is assumed that the input lists will be non-empty.
+     """
+-    # Step 1: Check if lst1 is already even
++    # Check if lst1 is already all even
+     if all(x % 2 == 0 for x in lst1):
+         return "YES"
+     
+-    # Step 2: Check if lst2 contains only odd numbers
++    # Check if lst2 has no even entries
+     if all(x % 2 != 0 for x in lst2):
+         return "NO"
+     
+-    # Step 3: Count odd numbers in lst1 and even numbers in lst2
+-    odd_count_lst1 = sum(x % 2 != 0 for x in lst1)
+-    even_count_lst2 = sum(x % 2 == 0 for x in lst2)
++    # Count odd entries in lst1 and even entries in lst2
++    odd_count_lst1 = sum(1 for x in lst1 if x % 2 != 0)
++    even_count_lst2 = sum(1 for x in lst2 if x % 2 == 0)
+     
+-    # Step 4: Determine if exchange is possible
+-    if odd_count_lst1 <= even_count_lst2:
+-        return "YES"
+-    else:
+-        return "NO"
++    # Return "YES" if we can exchange enough odd elements in lst1 with even elements in lst2
++    return "YES" if even_count_lst2 >= odd_count_lst1 else "NO"

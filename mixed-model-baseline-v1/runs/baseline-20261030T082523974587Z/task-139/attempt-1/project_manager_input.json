@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef special_factorial(n):\n    \"\"\"The Brazilian factorial is defined as:\n    brazilian_factorial(n) = n! * (n-1)! * (n-2)! * ... * 1!\n    where n > 0\n\n    For example:\n    >>> special_factorial(4)\n    288\n\n    The function will receive an integer as input and should return the special\n    factorial of this integer.\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `special_factorial(n)`:\n\n1. **Input Validation**: Check if `n` is a positive integer. If not, raise an error.\n2. **Base Case**: If `n` is 1, return 1.\n3. **Recursive Calculation**:\n   - Initialize `result` to 1.\n   - For each integer `i` from 1 to `n`:\n     - Compute `factorial(i)` and multiply it with `result`.\n4. **Factorial Calculation**:\n   - For each `i`, compute `factorial(i)` using a loop or recursion.\n   - Multiply the result by the current `factorial(i)` value.\n5. **Return Result**: After completing the loop, return `result`.\n\nEdge Cases:\n- `n = 1`: Return 1.\n- `n = 2`: Return 2.\n- Small positive integers: Ensure correct factorial computation.\n\nComplexity:\n- Time Complexity: O(n^2) due to nested factorial calculations.\n- Space Complexity: O(n) for the recursion stack."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

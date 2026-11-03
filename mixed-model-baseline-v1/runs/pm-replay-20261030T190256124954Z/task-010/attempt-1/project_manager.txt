@@ -1,0 +1,30 @@
+### Implementation Checklist for `make_palindrome`
+
+#### Function Signature
+```python
+def make_palindrome(string: str) -> str:
+    pass
+```
+
+#### Algorithm Steps
+1. **Edge Cases**:
+   - If `string` is empty, return an empty string.
+   - If `string` is a palindrome, return `string` as is.
+   - If `string` has only one character, return `string + string`.
+
+2. **General Case**:
+
+   - **Required implementation:** For a non-palindromic string, you must append the reverse of the entire input string to its end. Do not shorten the appended portion using a palindromic suffix. Preserve the existing early returns for empty or already-palindromic strings.
+
+3. **Complexity**:
+   - The palindrome check and the iteration to find the longest palindromic postfix can be done in O(n^2) in the worst case, where n is the length of the string.
+   - The overall complexity is dominated by the palindrome check, making it O(n^2).
+
+#### Boundary Conditions
+- Ensure the function handles empty strings, single-character strings, and palindromic strings correctly.
+- Test with various string lengths and characters to ensure the algorithm works as expected.
+
+#### Additional Notes
+
+   - Use a palindrome check for the early-return branch. For every other string, append the full reversed input as required.
+

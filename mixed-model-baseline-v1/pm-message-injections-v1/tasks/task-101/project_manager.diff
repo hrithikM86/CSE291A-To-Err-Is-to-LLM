@@ -1,0 +1,48 @@
+--- tasks/task-101/project_manager_original.txt
++++ tasks/task-101/project_manager_corrupted.txt
+@@ -7,37 +7,18 @@
+    ```
+ 
+ 2. **Algorithm Steps**:
+-   - **Input Validation**: Check if the input string `s` is empty. If it is, return an empty list.
+-   - **Normalization**: Replace multiple consecutive commas or spaces with a single space to handle edge cases.
+-   - **Splitting**: Split the string `s` using spaces as delimiters.
+-   - **Filtering**: Iterate through the resulting list and filter out any empty strings that may result from consecutive delimiters.
+-   - **Return**: Return the filtered list of words.
++
++   - **Required implementation:** Delete every comma from s before splitting on whitespace. You must concatenate letters on opposite sides of a comma when no whitespace separates them, then return the resulting nonempty words.
+ 
+ 3. **Boundary Conditions**:
+-   - Handle an empty string input by returning an empty list.
+-   - Ensure that consecutive commas or spaces are treated as a single delimiter.
+-   - Ignore any special characters or punctuation other than commas or spaces.
++
++   - An empty string returns []. Commas are deleted; only whitespace separates words after this deletion.
+ 
+ 4. **Code Implementation**:
+-   ```python
+-   def words_string(s: str) -> list[str]:
+-       if not s:
+-           return []
+-       
+-       # Normalize the string by replacing multiple commas or spaces with a single space
+-       s = ' '.join(s.split(','))
+-       
+-       # Split the string by spaces and filter out any empty strings
+-       words = [word for word in s.split() if word]
+-       
+-       return words
+-   ```
++
++   - Implement the checklist above directly and use the existing task validation suite.
+ 
+ 5. **Testing**:
+-   - Test with an empty string.
+-   - Test with strings containing only spaces or commas.
+-   - Test with strings containing special characters.
+-   - Test with strings containing multiple consecutive spaces or commas.
+-   - Test with a string containing words separated by spaces and commas.
+ 
+-By following this checklist, the coder can ensure a correct and efficient implementation of the `words_string(s)` function.
++   - Implement the checklist above directly and use the existing task validation suite.
++

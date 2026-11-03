@@ -1,0 +1,17 @@
+--- coder_after_pm_injection.py
++++ final.py
+@@ -1,2 +1,13 @@
+ def is_nested(string: str) -> bool:
+-    return '[[]]' in string
++    balance = 0
++    has_nested = False
++    
++    for char in string:
++        if char == '[':
++            balance += 1
++        elif char == ']':
++            balance -= 1
++            if balance > 0:
++                has_nested = True
++    
++    return balance == 0 and has_nested

@@ -1,0 +1,38 @@
+
+TASK: HumanEval/46 attempt 1
+Running coder: qwen2.5-coder:7b
+```python
+def fib4(n: int) -> int:
+    if n < 0:
+        raise ValueError("n must be a non-negative integer")
+    
+    if n < 4:
+        return [0, 0, 2, 0][n]
+    
+    fib4_values = [0, 0, 2, 0]
+    for i in range(4, n + 1):
+        next_value = sum(fib4_values)
+        fib4_values.pop(0)
+        fib4_values.append(next_value)
+    
+    return fib4_values[-1]
+```
+Running test_engineer: qwen2.5:7b
+```python
+def fib4(n: int) -> int:
+    if n < 0:
+        raise ValueError("n must be a non-negative integer")
+    
+    if n < 4:
+        return [0, 0, 2, 0][n]
+    
+    fib4_values = [0, 0, 2, 0]
+    for i in range(4, n + 1):
+        next_value = sum(fib4_values)
+        fib4_values.pop(0)
+        fib4_values.append(next_value)
+    
+    return fib4_values[-1]
+```
+attacked_coder official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

@@ -1,0 +1,18 @@
+--- baseline_final.py
++++ final.py
+@@ -3,11 +3,10 @@
+         consonants = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ"
+         return sum(1 for char in word if char in consonants)
+ 
+-    result = []
++    if not s:
++        return []
++
+     words = s.split()
+-
+-    for word in words:
+-        if word and count_consonants(word) == n:
+-            result.append(word)
++    result = [word for word in words if count_consonants(word) == n]
+ 
+     return result

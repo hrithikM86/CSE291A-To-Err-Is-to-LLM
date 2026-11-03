@@ -1,0 +1,28 @@
+Algorithm for `prime_fib(n: int)`:
+
+1. Validate input:
+   - If `n` is not an integer or `n < 1`, return an error message or raise an exception.
+   - If `n > 20`, return an error message or raise an exception.
+
+2. Initialize variables:
+   - `fibonacci` list to store prime Fibonacci numbers.
+   - `a, b = 0, 1` for generating Fibonacci sequence.
+   - `count = 0` to keep track of prime Fibonacci numbers found.
+
+3. Generate Fibonacci sequence and check for primes:
+   - While `count < n`:
+     - Compute next Fibonacci number: `next_fib = a + b`.
+     - If `next_fib` is prime:
+       - Add `next_fib` to `fibonacci` list.
+       - Increment `count`.
+     - Update `a, b = b, next_fib`.
+
+4. Return the `n`-th element from the `fibonacci` list.
+
+Edge cases:
+- Handle invalid inputs as specified.
+- For `n > 20`, return an appropriate error message or handle as specified.
+
+Complexity:
+- Primality check: O(sqrt(fibonacci_number))
+- Overall complexity: O(n * sqrt(fibonacci_number)) for generating and checking `n` prime Fibonacci numbers.

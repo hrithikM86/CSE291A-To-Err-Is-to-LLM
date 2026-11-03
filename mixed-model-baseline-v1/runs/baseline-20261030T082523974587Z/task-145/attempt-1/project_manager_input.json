@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef order_by_points(nums):\n    \"\"\"\n    Write a function which sorts the given list of integers\n    in ascending order according to the sum of their digits.\n    Note: if there are several items with similar sum of their digits,\n    order them based on their index in original list.\n\n    For example:\n    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n    >>> order_by_points([]) == []\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `order_by_points(nums)`:\n\n1. **Input Validation**: Check if the input list `nums` is empty. If it is, return an empty list.\n2. **Digit Sum Calculation**: Define a helper function `digit_sum(n)` to calculate the sum of digits of an integer `n`. Handle negative numbers by converting them to positive before summing.\n3. **Pair Creation**: Create a list of tuples where each tuple contains the original index and the digit sum of each number in `nums`.\n4. **Sorting**: Sort the list of tuples first by the digit sum (ascending) and then by the original index (ascending).\n5. **Result Construction**: Extract the original numbers from the sorted list of tuples to form the final sorted list.\n\nEdge Cases:\n- Handle negative numbers correctly by summing their absolute values.\n- Single-digit numbers are already in their simplest form.\n- An empty input list should return an empty list.\n\nComplexity:\n- The digit sum calculation for each number is O(d) where d is the number of digits.\n- The overall complexity is O(n * d) for the digit sum calculation and O(n log n) for sorting, where n is the number of elements in `nums`."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

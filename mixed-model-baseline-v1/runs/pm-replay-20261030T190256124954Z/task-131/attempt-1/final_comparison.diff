@@ -1,0 +1,25 @@
+--- baseline_final.py
++++ final.py
+@@ -1,15 +1,15 @@
+ def digits(n: int) -> int:
+     if n <= 0:
+         return 0
+-
++    
+     product = 1
+-    has_odd = False
+-
++    seen = set()
++    
+     while n > 0:
+         digit = n % 10
+-        if digit % 2 != 0:
++        if digit % 2 != 0 and digit not in seen:
+             product *= digit
+-            has_odd = True
++            seen.add(digit)
+         n //= 10
+-
+-    return product if has_odd else 0
++    
++    return product if product != 1 else 0

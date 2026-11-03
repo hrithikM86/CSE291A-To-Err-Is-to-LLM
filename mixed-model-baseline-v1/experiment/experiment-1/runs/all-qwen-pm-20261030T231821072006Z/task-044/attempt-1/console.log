@@ -1,0 +1,42 @@
+
+TASK: HumanEval/44 attempt 1
+Running coder: qwen2.5:7b
+```python
+def change_base(x: int, base: int) -> str:
+    if base < 2 or base > 9:
+        raise ValueError("Base must be between 2 and 9.")
+    
+    if x == 0:
+        return '0'
+    
+    is_negative = x < 0
+    x = abs(x)
+    result = ''
+    
+    while x > 0:
+        result = str(x % base) + result
+        x //= base
+    
+    return '-' + result if is_negative else result
+```
+Running test_engineer: qwen2.5:7b
+```python
+def change_base(x: int, base: int) -> str:
+    if base < 2 or base > 9:
+        raise ValueError("Base must be between 2 and 9.")
+    
+    if x == 0:
+        return '0'
+    
+    is_negative = x < 0
+    x = abs(x)
+    result = ''
+    
+    while x > 0:
+        result = str(x % base) + result
+        x //= base
+    
+    return '-' + result if is_negative else result
+```
+attacked_coder official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}
+attacked_final official: passed {'passed': 3, 'failed': 0, 'timeout': 0, 'unresolved': 0}

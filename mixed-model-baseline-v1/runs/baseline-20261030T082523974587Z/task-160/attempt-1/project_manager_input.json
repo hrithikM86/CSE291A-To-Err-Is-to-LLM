@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\ndef do_algebra(operator, operand):\n    \"\"\"\n    Given two lists operator, and operand. The first list has basic algebra operations, and \n    the second list is a list of integers. Use the two given lists to build the algebric \n    expression and return the evaluation of this expression.\n\n    The basic algebra operations:\n    Addition ( + ) \n    Subtraction ( - ) \n    Multiplication ( * ) \n    Floor division ( // ) \n    Exponentiation ( ** ) \n\n    Example:\n    operator['+', '*', '-']\n    array = [2, 3, 4, 5]\n    result = 2 + 3 * 4 - 5\n    => result = 9\n\n    Note:\n        The length of operator list is equal to the length of operand list minus one.\n        Operand is a list of of non-negative integers.\n        Operator list has at least one operator, and operand list has at least two operands.\n\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `do_algebra`:\n\n1. Validate inputs:\n   - Ensure `operator` and `operand` are not empty.\n   - Ensure `len(operator) == len(operand) - 1`.\n\n2. Initialize result with the first operand.\n\n3. Iterate through each operator and corresponding operand:\n   - Apply the operator to the current result and the next operand.\n   - Update the result with the new value.\n\n4. Return the final result.\n\nEdge cases:\n- Ensure all operators are valid (+, -, *, //, **).\n- Handle potential division by zero if an operand is zero and the operator is `//`.\n\nComplexity:\n- Time: O(n), where n is the length of the `operand` list.\n- Space: O(1), as no additional space is used other than variables for the result and iteration."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

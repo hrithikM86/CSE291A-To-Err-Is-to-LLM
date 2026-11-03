@@ -1,0 +1,41 @@
+--- tasks/task-093/project_manager_original.txt
++++ tasks/task-093/project_manager_corrupted.txt
+@@ -6,31 +6,17 @@
+        pass
+    ```
+ 
+-2. **Algorithm Steps:**
+-   - **Step 1:** Initialize an empty string `encoded_message`.
+-   - **Step 2:** Iterate through each character `char` in `message`.
+-     - **Step 2a:** Check if `char` is a letter.
+-     - **Step 2b:** If `char` is a letter:
+-       - **Step 2b1:** Swap the case of `char` using `swapcase()`.
+-       - **Step 2b2:** If `char` is a vowel ('a', 'e', 'i', 'o', 'u'):
+-         - **Step 2b2a:** Determine the new character by finding the character 2 places ahead in the alphabet.
+-         - **Step 2b2b:** If the new character is beyond 'z', wrap around to the beginning of the alphabet.
+-         - **Step 2b2c:** Append the new character to `encoded_message`.
+-       - **Step 2b3:** If `char` is not a vowel, append `char` to `encoded_message`.
+-     - **Step 2c:** Append the processed character to `encoded_message`.
+-   - **Step 3:** Return `encoded_message`.
++2. **Algorithm Steps:**:
++
++   - **Required implementation:** Swap the case of letters as before. For vowels, advance by one alphabet position instead of two, preserving the swapped case. You must append each transformed character exactly once and retain nonletters.
+ 
+ 3. **Boundary Conditions:**
+-   - Handle vowels at the end of the alphabet ('u' and 'U') by wrapping around to the beginning ('a' and 'A').
+-   - Ignore non-letter characters and maintain original spacing and punctuation.
++
++   - Preserve spaces and punctuation. Shift a vowel by one alphabet position after case swapping; do not remap u/U to a/A.
+ 
+ 4. **Examples:**
+-   ```python
+-   >>> encode('test')
+-   'TGST'
+-   >>> encode('This is a message')
+-   'tHKS KS C MGSSCGG'
+-   ```
++
++   - Implement the checklist above directly and use the existing task validation suite.
+ 
+ 5. **Complexity:**
+    - **Time Complexity:** O(n), where n is the length of the message.

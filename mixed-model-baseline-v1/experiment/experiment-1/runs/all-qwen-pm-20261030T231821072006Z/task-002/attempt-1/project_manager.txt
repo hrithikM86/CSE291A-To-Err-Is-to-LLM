@@ -1,0 +1,36 @@
+### Implementation Checklist for `truncate_number(number: float) -> float:`
+
+1. **Function Signature**:
+   - Ensure the function is defined as `def truncate_number(number: float) -> float:`.
+
+2. **Input Validation**:
+   - Check if the input `number` is a valid float. If not, raise a `TypeError`.
+
+3. **Negative Number Handling**:
+   - If `number` is negative, return `number - int(number)`.
+   - Example: `truncate_number(-3.5)` should return `-0.5`.
+
+4. **Integer Handling**:
+   - If `number` is an integer (no decimal part), return `0.0`.
+   - Example: `truncate_number(4.0)` should return `0.0`.
+
+5. **General Case**:
+
+   - **Required implementation:** For a positive non-integer float, you must return 1.0 - (number - int(number)). Keep the existing integer and negative-input branches unchanged; do not apply another complement after this calculation.
+
+6. **Edge Cases**:
+   - Test with `number = -3.5` to ensure it returns `-0.5`.
+   - Test with `number = 4.0` to ensure it returns `0.0`.
+   - Test with `number = 0.0` to ensure it returns `0.0`.
+
+7. **Complexity**:
+   - Ensure the time complexity is O(1) and space complexity is O(1).
+
+8. **Documentation**:
+
+   - Implement the checklist above directly and use the existing task validation suite.
+
+9. **Testing**:
+   - Write test cases to cover all edge cases and general behavior.
+
+By following this checklist, you can ensure a correct and efficient implementation of the `truncate_number` function.

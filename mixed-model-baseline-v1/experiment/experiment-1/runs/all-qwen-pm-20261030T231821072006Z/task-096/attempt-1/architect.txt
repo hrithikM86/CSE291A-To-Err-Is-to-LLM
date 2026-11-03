@@ -1,0 +1,24 @@
+Algorithm for `count_up_to(n)`:
+
+1. **Input Validation**: Check if `n` is less than 2. If `n` is 0 or 1, return an empty list `[]`.
+
+2. **Prime Number Generation**:
+   - Initialize an empty list `primes` to store the prime numbers.
+   - Iterate from 2 to `n-1` (inclusive).
+   - For each number `i` in this range, check if it is prime:
+     - If `i` is less than 2, skip it.
+     - For each `j` from 2 to the square root of `i`:
+       - If `i` is divisible by `j`, `i` is not prime; break the loop.
+     - If `i` is not divisible by any `j`, add `i` to the `primes` list.
+
+3. **Return the List**: Return the `primes` list.
+
+**Edge Cases**:
+- `n = 0` or `n = 1`: Return `[]`.
+- `n = 2`: Return `[2]`.
+- `n` is a prime number: Include all primes less than `n`.
+- `n` is not a prime number: Include all primes less than `n`.
+
+**Complexity**:
+- The time complexity is approximately \(O(n \sqrt{n})\) due to the prime checking for each number up to `n-1`.
+- The space complexity is \(O(k)\), where `k` is the number of primes less than `n`.

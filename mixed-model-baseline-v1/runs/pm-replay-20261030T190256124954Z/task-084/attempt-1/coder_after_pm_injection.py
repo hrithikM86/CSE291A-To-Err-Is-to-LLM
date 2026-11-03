@@ -1,0 +1,4 @@
+def solve(N: int) -> str:
+    if N == 0:
+        return "0"
+    return bin(N)[2:]

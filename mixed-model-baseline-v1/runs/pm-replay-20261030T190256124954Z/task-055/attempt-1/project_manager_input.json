@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "original_specification": "\n\ndef fib(n: int):\n    \"\"\"Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n    \"\"\"\n",
+    "previous_stage": "architect",
+    "previous_artifact": "Algorithm for `fib(n: int)`:\n\n1. **Input Validation**: Check if `n < 1`. If true, raise an error or return a specific value (e.g., `None` or an error message).\n2. **Base Cases**:\n   - If `n == 1` or `n == 2`, return `1`.\n3. **Recursive Case**: \n   - Calculate `fib(n-1)` and `fib(n-2)`.\n   - Return the sum of `fib(n-1)` and `fib(n-2)`.\n\nEdge Cases:\n- Handle `n < 1` by raising an error or returning a specific value.\n- Ensure the function does not exceed the limit of `n = 50` to avoid excessive computation.\n\nComplexity:\n- Time Complexity: O(2^n) due to the exponential nature of the recursive calls.\n- Space Complexity: O(n) due to the recursion stack.\n\nThis algorithm ensures the function behaves as specified, handling edge cases and providing the correct Fibonacci number for valid inputs."
+  },
+  "system_messages": [
+    "You are a Project Manager, named project_manager, your goal is Produce a correct solution to the supplied function specification.. ",
+    "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words."
+  ],
+  "model_config": {
+    "base_url": "http://localhost:11434/v1",
+    "max_token": 2048,
+    "model": "qwen2.5:7b",
+    "stream": false,
+    "temperature": 0.0,
+    "timeout": 600
+  }
+}

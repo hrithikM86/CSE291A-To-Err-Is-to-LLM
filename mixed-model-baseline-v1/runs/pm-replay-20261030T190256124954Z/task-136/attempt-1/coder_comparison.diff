@@ -1,0 +1,19 @@
+--- baseline_coder.py
++++ coder_after_pm_injection.py
+@@ -1,11 +1,8 @@
+ def largest_smallest_integers(lst):
+-    largest_negative = None
+-    smallest_positive = None
++    negative_values = [x for x in lst if x < 0]
++    positive_values = [x for x in lst if x > 0]
+ 
+-    for num in lst:
+-        if num < 0 and (largest_negative is None or num > largest_negative):
+-            largest_negative = num
+-        elif num > 0 and (smallest_positive is None or num < smallest_positive):
+-            smallest_positive = num
++    a = min(negative_values) if negative_values else None
++    b = max(positive_values) if positive_values else None
+ 
+-    return (largest_negative, smallest_positive)
++    return (a, b)

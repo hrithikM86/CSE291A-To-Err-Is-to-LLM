@@ -1,0 +1,10 @@
+def right_angle_triangle(a: int, b: int, c: int) -> bool:
+    # Check if all sides are positive integers
+    if a <= 0 or b <= 0 or c <= 0:
+        return False
+    
+    # Sort the sides to simplify the right-angled triangle check
+    sides = sorted([a, b, c])
+    
+    # Check if the sides form a right-angled triangle
+    return sides[0] * sides[0] + sides[1] * sides[1] == sides[2] * sides[2]

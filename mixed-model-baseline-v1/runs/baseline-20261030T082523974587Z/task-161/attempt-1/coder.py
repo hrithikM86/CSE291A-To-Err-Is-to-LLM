@@ -1,0 +1,18 @@
+def solve(s: str) -> str:
+    result = []
+    has_letters = False
+
+    for c in s:
+        if c.isalpha():
+            if c.islower():
+                result.append(c.upper())
+            else:
+                result.append(c.lower())
+            has_letters = True
+        else:
+            result.append(c)
+
+    if not has_letters:
+        result.reverse()
+
+    return ''.join(result)

@@ -1,0 +1,26 @@
+--- baseline_final.py
++++ final.py
+@@ -1,16 +1,13 @@
+ def sort_third(l: list) -> list:
+-    if not l:  # Input Validation
++    if not l:
+         return []
+ 
+-    # Index Identification
+-    indices = [i for i in range(len(l)) if i % 3 == 0]
++    indices_to_sort = [i for i in range(len(l)) if i % 3 == 0]
++    values_to_sort = [l[i] for i in indices_to_sort]
++    sorted_values = sorted(values_to_sort)
+ 
+-    # Selection and Sorting
+-    sorted_elements = sorted([l[i] for i in indices])
+-
+-    # Reconstruction
+-    result = l.copy()
+-    for i, val in zip(indices, sorted_elements):
+-        result[i] = val
++    result = l[:]
++    for i, value in zip(indices_to_sort, sorted_values):
++        result[i] = value
+ 
+     return result

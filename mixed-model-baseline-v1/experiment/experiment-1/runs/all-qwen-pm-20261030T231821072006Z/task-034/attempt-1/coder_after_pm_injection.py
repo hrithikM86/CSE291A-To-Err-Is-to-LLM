@@ -1,0 +1,11 @@
+def unique(l: list) -> list:
+    if not l:
+        return []
+    
+    # Remove duplicates using a set
+    unique_elements = set(l)
+    
+    # Convert the set back to a list and sort it in descending order
+    sorted_unique_elements = sorted(unique_elements, reverse=True)
+    
+    return sorted_unique_elements

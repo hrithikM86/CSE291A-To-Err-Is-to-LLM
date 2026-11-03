@@ -1,0 +1,37 @@
+--- baseline_final.py
++++ final.py
+@@ -2,18 +2,24 @@
+     def to_float(value):
+         if isinstance(value, str):
+             value = value.replace(',', '.')
++            try:
++                return float(value)
++            except ValueError:
++                return None
++        elif isinstance(value, (int, float)):
+             return float(value)
+-        return float(value)
++        else:
++            return None
+ 
+-    if not (isinstance(a, (int, float, str)) and isinstance(b, (int, float, str))):
++    float_a = to_float(a)
++    float_b = to_float(b)
++
++    if float_a is None or float_b is None:
+         return None
+ 
+-    if isinstance(a, str):
+-        a = to_float(a)
+-    if isinstance(b, str):
+-        b = to_float(b)
+-
+-    if a == b:
++    if float_a == float_b:
+         return None
+-
+-    return a if a > b else b
++    elif float_a > float_b:
++        return a
++    else:
++        return b

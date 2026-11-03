@@ -1,0 +1,19 @@
+--- baseline_final.py
++++ final.py
+@@ -5,10 +5,10 @@
+         return x == 1
+     if x == 1 and n > 1:
+         return False
+-    if x == 0 and n == 1:
++    if x > 1 and n > 1:
++        power = 1
++        while power < x:
++            power *= n
++            if power == x:
++                return True
+         return False
+-
+-    k = 1
+-    while n**k < x:
+-        k += 1
+-    return n**k == x

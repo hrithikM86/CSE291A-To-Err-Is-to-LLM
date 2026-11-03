@@ -1,0 +1,146 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "drop",
+  "dry_run": false,
+  "task_id": "HumanEval/156",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-156/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef int_to_mini_roman(number):\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n\n    Examples:\n    >>> int_to_mini_roman(19) == 'xix'\n    >>> int_to_mini_roman(152) == 'clii'\n    >>> int_to_mini_roman(426) == 'cdxxvi'\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements:\n- **Input**: A positive integer `number` where `1 <= number <= 1000`.\n- **Output**: A string representing the Roman numeral equivalent of the input number in lowercase.\n- **Behavior**:\n  - Convert the integer to its Roman numeral representation.\n  - Return the Roman numeral in lowercase.\n- **Examples**:\n  - `int_to_mini_roman(19)` returns `'xix'`\n  - `int_to_mini_roman(152)` returns `'clii'`\n  - `int_to_mini_roman(426)` returns `'cdxxvi'`\n- **Edge Cases**:\n  - Ensure the input is within the valid range (1 to 1000).\n  - Handle edge cases like `1` and `1000` correctly.",
+      "output_sha256": "26c42b5adedc0a749eecab4c46b8c171c51836c15079dca1e8a0290842f2d999",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\ndef int_to_mini_roman(number):\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n\n    Examples:\n    >>> int_to_mini_roman(19) == 'xix'\n    >>> int_to_mini_roman(152) == 'clii'\n    >>> int_to_mini_roman(426) == 'cdxxvi'\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- **Input**: A positive integer `number` where `1 <= number <= 1000`.\n- **Output**: A string representing the Roman numeral equivalent of the input number in lowercase.\n- **Behavior**:\n  - Convert the integer to its Roman numeral representation.\n  - Return the Roman numeral in lowercase.\n- **Examples**:\n  - `int_to_mini_roman(19)` returns `'xix'`\n  - `int_to_mini_roman(152)` returns `'clii'`\n  - `int_to_mini_roman(426)` returns `'cdxxvi'`\n- **Edge Cases**:\n  - Ensure the input is within the valid range (1 to 1000).\n  - Handle edge cases like `1` and `1000` correctly."
+      },
+      "delivered_output": "Algorithm for `int_to_mini_roman(number)`:\n\n1. Define a dictionary `roman_map` with key-value pairs for Roman numerals, including special cases like 4, 9, 40, 90, 400, and 900.\n2. Initialize an empty string `result`.\n3. Iterate over the `roman_map` keys in descending order:\n   - While `number` is greater than or equal to the current key:\n     - Append the corresponding Roman numeral to `result`.\n     - Subtract the key value from `number`.\n4. Return `result` in lowercase.\n\nEdge Cases:\n- Ensure `number` is within the range 1 to 1000.\n- Handle the edge cases where `number` is 1 or 1000.\n\nComplexity:\n- Time: O(1) since the number of iterations is constant (at most 13).\n- Space: O(1) for the `roman_map` and `result` string.",
+      "output_sha256": "ea5998bb2b151eb2e4acbc1ac0480d8508e244c32a89babd5abcb857dcd81b9c",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "\ndef int_to_mini_roman(number):\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n\n    Examples:\n    >>> int_to_mini_roman(19) == 'xix'\n    >>> int_to_mini_roman(152) == 'clii'\n    >>> int_to_mini_roman(426) == 'cdxxvi'\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `int_to_mini_roman(number)`:\n\n1. Define a dictionary `roman_map` with key-value pairs for Roman numerals, including special cases like 4, 9, 40, 90, 400, and 900.\n2. Initialize an empty string `result`.\n3. Iterate over the `roman_map` keys in descending order:\n   - While `number` is greater than or equal to the current key:\n     - Append the corresponding Roman numeral to `result`.\n     - Subtract the key value from `number`.\n4. Return `result` in lowercase.\n\nEdge Cases:\n- Ensure `number` is within the range 1 to 1000.\n- Handle the edge cases where `number` is 1 or 1000.\n\nComplexity:\n- Time: O(1) since the number of iterations is constant (at most 13).\n- Space: O(1) for the `roman_map` and `result` string."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `int_to_mini_roman(number)`\n\n#### Function Signature\n```python\ndef int_to_mini_roman(number: int) -> str:\n    pass\n```\n\n#### Algorithm Steps\n1. **Define the Roman Numeral Map:**\n   - Create a dictionary `roman_map` with key-value pairs for Roman numerals, including special cases like 4, 9, 40, 90, 400, and 900.\n   - Example: `roman_map = {1000: 'm', 900: 'cm', 500: 'd', 400: 'cd', 100: 'c', 90: 'xc', 50: 'l', 40: 'xl', 10: 'x', 9: 'ix', 5: 'v', 4: 'iv', 1: 'i'}`\n\n2. **Initialize the Result String:**\n   - Initialize an empty string `result`.\n\n3. **Iterate Over the Roman Numeral Map:**\n   - Loop through the keys in `roman_map` in descending order.\n   - For each key, while `number` is greater than or equal to the key:\n     - Append the corresponding Roman numeral to `result`.\n     - Subtract the key value from `number`.\n\n4. **Return the Result:**\n   - Return `result` in lowercase.\n\n#### Boundary Conditions\n- Ensure `number` is within the range 1 to 1000.\n- Handle the edge cases where `number` is 1 or 1000.\n\n#### Example Test Cases\n- `int_to_mini_roman(19) == 'xix'`\n- `int_to_mini_roman(152) == 'clii'`\n- `int_to_mini_roman(426) == 'cdxxvi'`\n- `int_to_mini_roman(1) == 'i'`\n- `int_to_mini_roman(1000) == 'm'`\n\n#### Complexity\n- Time: O(1) since the number of iterations is constant (at most 13).\n- Space: O(1) for the `roman_map` and `result` string.",
+      "output_sha256": "b0797d4e0e41e5d5deb17ac3751ce3012e2e9511c3c5251f8305ff0cc5029697",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "\ndef int_to_mini_roman(number):\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n\n    Examples:\n    >>> int_to_mini_roman(19) == 'xix'\n    >>> int_to_mini_roman(152) == 'clii'\n    >>> int_to_mini_roman(426) == 'cdxxvi'\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `int_to_mini_roman(number)`\n\n#### Function Signature\n```python\ndef int_to_mini_roman(number: int) -> str:\n    pass\n```\n\n#### Algorithm Steps\n1. **Define the Roman Numeral Map:**\n   - Create a dictionary `roman_map` with key-value pairs for Roman numerals, including special cases like 4, 9, 40, 90, 400, and 900.\n   - Example: `roman_map = {1000: 'm', 900: 'cm', 500: 'd', 400: 'cd', 100: 'c', 90: 'xc', 50: 'l', 40: 'xl', 10: 'x', 9: 'ix', 5: 'v', 4: 'iv', 1: 'i'}`\n\n2. **Initialize the Result String:**\n   - Initialize an empty string `result`.\n\n3. **Iterate Over the Roman Numeral Map:**\n   - Loop through the keys in `roman_map` in descending order.\n   - For each key, while `number` is greater than or equal to the key:\n     - Append the corresponding Roman numeral to `result`.\n     - Subtract the key value from `number`.\n\n4. **Return the Result:**\n   - Return `result` in lowercase.\n\n#### Boundary Conditions\n- Ensure `number` is within the range 1 to 1000.\n- Handle the edge cases where `number` is 1 or 1000.\n\n#### Example Test Cases\n- `int_to_mini_roman(19) == 'xix'`\n- `int_to_mini_roman(152) == 'clii'`\n- `int_to_mini_roman(426) == 'cdxxvi'`\n- `int_to_mini_roman(1) == 'i'`\n- `int_to_mini_roman(1000) == 'm'`\n\n#### Complexity\n- Time: O(1) since the number of iterations is constant (at most 13).\n- Space: O(1) for the `roman_map` and `result` string."
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 13.43,
+      "prompt_tokens": 753,
+      "completion_tokens": 155,
+      "delivered_output": "```python\ndef int_to_mini_roman(number: int) -> str:\n    roman_map = {1000: 'm', 900: 'cm', 500: 'd', 400: 'cd', 100: 'c', 90: 'xc', 50: 'l', 40: 'xl', 10: 'x', 9: 'ix', 5: 'v', 4: 'iv', 1: 'i'}\n    result = ''\n    for key in sorted(roman_map.keys(), reverse=True):\n        while number >= key:\n            result += roman_map[key]\n            number -= key\n    return result.lower()\n```",
+      "output_sha256": "af2dbee14d7e19f36a86fb9591a1161024b46263ec9209eb893a32489d600af0",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "\ndef int_to_mini_roman(number):\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n\n    Examples:\n    >>> int_to_mini_roman(19) == 'xix'\n    >>> int_to_mini_roman(152) == 'clii'\n    >>> int_to_mini_roman(426) == 'cdxxvi'\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\ndef int_to_mini_roman(number: int) -> str:\n    roman_map = {1000: 'm', 900: 'cm', 500: 'd', 400: 'cd', 100: 'c', 90: 'xc', 50: 'l', 40: 'xl', 10: 'x', 9: 'ix', 5: 'v', 4: 'iv', 1: 'i'}\n    result = ''\n    for key in sorted(roman_map.keys(), reverse=True):\n        while number >= key:\n            result += roman_map[key]\n            number -= key\n    return result.lower()\n```"
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 18.939,
+      "prompt_tokens": 430,
+      "completion_tokens": 249,
+      "delivered_output": "```python\ndef int_to_mini_roman(number: int) -> str:\n    \"\"\"\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n\n    Examples:\n    >>> int_to_mini_roman(19) == 'xix'\n    >>> int_to_mini_roman(152) == 'clii'\n    >>> int_to_mini_roman(426) == 'cdxxvi'\n    \"\"\"\n    roman_map = {1000: 'm', 900: 'cm', 500: 'd', 400: 'cd', 100: 'c', 90: 'xc', 50: 'l', 40: 'xl', 10: 'x', 9: 'ix', 5: 'v', 4: 'iv', 1: 'i'}\n    result = ''\n    for key in sorted(roman_map.keys(), reverse=True):\n        while number >= key:\n            result += roman_map[key]\n            number -= key\n    return result.lower()\n```",
+      "output_sha256": "098b21ed627f662138eb6f19ad911427555d121175099a0b23621cc1d2a124e2",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1183,
+    "completion_tokens": 404,
+    "model_seconds": 32.369,
+    "tracking_overhead_seconds": 0.000928,
+    "recovery_wall_seconds": 32.44
+  }
+}

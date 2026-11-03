@@ -1,0 +1,146 @@
+{
+  "experiment": "mixed_pm_recovery",
+  "method": "r1",
+  "context": "drop",
+  "dry_run": false,
+  "task_id": "HumanEval/41",
+  "source_trace": "runs/pm-replay-20261030T190256124954Z/task-041/attempt-1/trace.json",
+  "faulty_stage": "project_manager",
+  "fault_source": "lineage",
+  "lineage_suspects": [
+    {
+      "producer": "project_manager",
+      "producer_node": "project_manager#1",
+      "consumer_node": "coder#1"
+    }
+  ],
+  "clean_copy_verified": true,
+  "invalidated": [
+    "project_manager",
+    "coder",
+    "test_engineer"
+  ],
+  "retained": [
+    "product_manager",
+    "architect"
+  ],
+  "stages": [
+    {
+      "stage": "product_manager",
+      "depends_on": [
+        "specification"
+      ],
+      "guidance": "Read the original function specification.\nWrite concise requirements: inputs, outputs, required behavior and edge cases.\nDo not change the function contract. Do not write implementation code.\nKeep the requirements under 180 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\n\ndef car_race_collision(n: int):\n    \"\"\"\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right;  simultaneously, a different set of n cars\n    are driving right to left.   The two sets of cars start out being very far from\n    each other.  All cars move in the same speed.  Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    \"\"\"\n",
+        "previous_stage": null,
+        "previous_artifact": null
+      },
+      "delivered_output": "Requirements:\n- The function `car_race_collision` takes an integer `n` as input.\n- It returns an integer representing the number of collisions that occur.\n- Each set of `n` cars drives towards each other from opposite directions.\n- All cars move at the same speed and continue their trajectory after a collision.\n- The function should handle `n` ranging from 0 to a reasonable upper limit (e.g., 1000).\n- Edge cases: If `n` is 0, return 0 as there are no cars and no collisions.",
+      "output_sha256": "87b2ad374eea796c30c1a6a4ab10483d0b63082a3cc8840f8637fd1b9cae0179",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "architect",
+      "depends_on": [
+        "specification",
+        "product_manager"
+      ],
+      "guidance": "Read the original specification and requirements.\nDesign an algorithm, including important edge cases and complexity.\nResolve disagreements in favor of the original specification.\nDo not write implementation code. Keep the design under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "reused",
+      "input": {
+        "original_specification": "\n\ndef car_race_collision(n: int):\n    \"\"\"\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right;  simultaneously, a different set of n cars\n    are driving right to left.   The two sets of cars start out being very far from\n    each other.  All cars move in the same speed.  Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    \"\"\"\n",
+        "previous_stage": "product_manager",
+        "previous_artifact": "Requirements:\n- The function `car_race_collision` takes an integer `n` as input.\n- It returns an integer representing the number of collisions that occur.\n- Each set of `n` cars drives towards each other from opposite directions.\n- All cars move at the same speed and continue their trajectory after a collision.\n- The function should handle `n` ranging from 0 to a reasonable upper limit (e.g., 1000).\n- Edge cases: If `n` is 0, return 0 as there are no cars and no collisions."
+      },
+      "delivered_output": "Algorithm for `car_race_collision(n: int)`:\n\n1. **Input Validation**: Check if `n` is within the valid range (0 to 1000). If not, return an error or handle it as per the requirement.\n2. **Edge Case Handling**: If `n` is 0, return 0 since there are no cars and no collisions.\n3. **Main Logic**: \n   - For each car moving left to right, there will be a corresponding car moving right to left that it will collide with.\n   - Therefore, the total number of collisions is simply `n`.\n\n**Complexity**:\n- Time Complexity: O(1) - The function performs a constant number of operations regardless of the value of `n`.\n- Space Complexity: O(1) - The function uses a constant amount of space.\n\nThis algorithm ensures that the function correctly handles the specified requirements and edge cases.",
+      "output_sha256": "08dc7efe9aab54ebcb96f60a0ecd01102ad29cde90b992495554164a65ceab07",
+      "matches_baseline_output": true,
+      "matches_attacked_output": true
+    },
+    {
+      "stage": "project_manager",
+      "depends_on": [
+        "specification",
+        "architect"
+      ],
+      "guidance": "Read the original specification and design.\nProduce a concrete implementation checklist for the coder.\nInclude the function signature, algorithm steps and boundary conditions.\nPreserve the original contract. Keep the checklist under 220 words.",
+      "model": "qwen2.5:7b",
+      "execution": "restored_clean",
+      "input": {
+        "original_specification": "\n\ndef car_race_collision(n: int):\n    \"\"\"\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right;  simultaneously, a different set of n cars\n    are driving right to left.   The two sets of cars start out being very far from\n    each other.  All cars move in the same speed.  Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    \"\"\"\n",
+        "previous_stage": "architect",
+        "previous_artifact": "Algorithm for `car_race_collision(n: int)`:\n\n1. **Input Validation**: Check if `n` is within the valid range (0 to 1000). If not, return an error or handle it as per the requirement.\n2. **Edge Case Handling**: If `n` is 0, return 0 since there are no cars and no collisions.\n3. **Main Logic**: \n   - For each car moving left to right, there will be a corresponding car moving right to left that it will collide with.\n   - Therefore, the total number of collisions is simply `n`.\n\n**Complexity**:\n- Time Complexity: O(1) - The function performs a constant number of operations regardless of the value of `n`.\n- Space Complexity: O(1) - The function uses a constant amount of space.\n\nThis algorithm ensures that the function correctly handles the specified requirements and edge cases."
+      },
+      "poison_in_input": false,
+      "evidence": "baseline trace output, hash matches producer node in lineage",
+      "delivered_output": "### Implementation Checklist for `car_race_collision(n: int)`\n\n1. **Function Signature**:\n   - Ensure the function is defined as `def car_race_collision(n: int) -> int:`\n\n2. **Input Validation**:\n   - Check if `n` is within the valid range (0 to 1000).\n   - If `n` is outside this range, raise a `ValueError` with an appropriate message.\n\n3. **Edge Case Handling**:\n   - If `n` is 0, return 0.\n\n4. **Main Logic**:\n   - For each car moving left to right, there will be a corresponding car moving right to left that it will collide with.\n   - Therefore, the total number of collisions is `n`.\n\n5. **Return Statement**:\n   - Return `n` as the result.\n\n6. **Boundary Conditions**:\n   - Ensure the function handles the minimum and maximum values of `n` (0 and 1000, respectively).\n   - Test with edge cases such as `n = 0`, `n = 1`, and `n = 1000`.\n\n7. **Testing**:\n   - Test the function with various values of `n` to ensure it behaves as expected.\n   - Include test cases for the minimum, maximum, and edge values.\n\n8. **Documentation**:\n   - Ensure the docstring is clear and matches the original specification.\n\n### Example Code Snippet\n\n```python\ndef car_race_collision(n: int) -> int:\n    \"\"\"\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right; simultaneously, a different set of n cars\n    are driving right to left. The two sets of cars start out being very far from\n    each other. All cars move in the same speed. Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    \"\"\"\n    if not 0 <= n <= 1000:\n        raise ValueError(\"n must be between 0 and 1000 inclusive.\")\n    \n    if n == 0:\n        return 0\n    \n    return n\n```\n\nThis checklist ensures a comprehensive and correct implementation of the `car_race_collision` function.",
+      "output_sha256": "de51e7506bd01a390772f114e70a1d314306c4f683288123a72ba9f2cf1aaa35",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "coder",
+      "depends_on": [
+        "specification",
+        "project_manager"
+      ],
+      "guidance": "Implement the function in the original specification,\nusing the preceding checklist as guidance. Preserve its exact function name\nand signature. Return a complete, standalone Python source file with needed\nimports. Return only Python code, without Markdown fences or commentary.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5-coder:7b",
+      "input": {
+        "original_specification": "\n\ndef car_race_collision(n: int):\n    \"\"\"\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right;  simultaneously, a different set of n cars\n    are driving right to left.   The two sets of cars start out being very far from\n    each other.  All cars move in the same speed.  Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    \"\"\"\n",
+        "previous_stage": "project_manager",
+        "previous_artifact": "### Implementation Checklist for `car_race_collision(n: int)`\n\n1. **Function Signature**:\n   - Ensure the function is defined as `def car_race_collision(n: int) -> int:`\n\n2. **Input Validation**:\n   - Check if `n` is within the valid range (0 to 1000).\n   - If `n` is outside this range, raise a `ValueError` with an appropriate message.\n\n3. **Edge Case Handling**:\n   - If `n` is 0, return 0.\n\n4. **Main Logic**:\n   - For each car moving left to right, there will be a corresponding car moving right to left that it will collide with.\n   - Therefore, the total number of collisions is `n`.\n\n5. **Return Statement**:\n   - Return `n` as the result.\n\n6. **Boundary Conditions**:\n   - Ensure the function handles the minimum and maximum values of `n` (0 and 1000, respectively).\n   - Test with edge cases such as `n = 0`, `n = 1`, and `n = 1000`.\n\n7. **Testing**:\n   - Test the function with various values of `n` to ensure it behaves as expected.\n   - Include test cases for the minimum, maximum, and edge values.\n\n8. **Documentation**:\n   - Ensure the docstring is clear and matches the original specification.\n\n### Example Code Snippet\n\n```python\ndef car_race_collision(n: int) -> int:\n    \"\"\"\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right; simultaneously, a different set of n cars\n    are driving right to left. The two sets of cars start out being very far from\n    each other. All cars move in the same speed. Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    \"\"\"\n    if not 0 <= n <= 1000:\n        raise ValueError(\"n must be between 0 and 1000 inclusive.\")\n    \n    if n == 0:\n        return 0\n    \n    return n\n```\n\nThis checklist ensures a comprehensive and correct implementation of the `car_race_collision` function."
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 34.378,
+      "prompt_tokens": 857,
+      "completion_tokens": 198,
+      "delivered_output": "```python\ndef car_race_collision(n: int) -> int:\n    \"\"\"\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right; simultaneously, a different set of n cars\n    are driving right to left. The two sets of cars start out being very far from\n    each other. All cars move in the same speed. Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    \"\"\"\n    if not 0 <= n <= 1000:\n        raise ValueError(\"n must be between 0 and 1000 inclusive.\")\n    \n    if n == 0:\n        return 0\n    \n    return n\n```",
+      "output_sha256": "8709ebb2a557ccb3d37a89c4ab02e54d0f54242ff73e557d5102e3aae71a7b7f",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    },
+    {
+      "stage": "test_engineer",
+      "depends_on": [
+        "specification",
+        "coder"
+      ],
+      "guidance": "Review the preceding Python code against\nthe original function specification. Mentally check representative and boundary\ncases, and correct defects you identify. Preserve the exact function name\nand signature. Return the complete final Python source, including imports,\neven if no changes are needed. Return only Python code, without Markdown\nfences, test harnesses or commentary. Do not claim you executed tests.\nDo not read files, use the network, install packages or execute tools.",
+      "model": "qwen2.5:7b",
+      "input": {
+        "original_specification": "\n\ndef car_race_collision(n: int):\n    \"\"\"\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right;  simultaneously, a different set of n cars\n    are driving right to left.   The two sets of cars start out being very far from\n    each other.  All cars move in the same speed.  Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    \"\"\"\n",
+        "previous_stage": "coder",
+        "previous_artifact": "```python\ndef car_race_collision(n: int) -> int:\n    \"\"\"\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right; simultaneously, a different set of n cars\n    are driving right to left. The two sets of cars start out being very far from\n    each other. All cars move in the same speed. Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    \"\"\"\n    if not 0 <= n <= 1000:\n        raise ValueError(\"n must be between 0 and 1000 inclusive.\")\n    \n    if n == 0:\n        return 0\n    \n    return n\n```"
+      },
+      "poison_in_input": false,
+      "execution": "rerun",
+      "elapsed_seconds": 32.017,
+      "prompt_tokens": 529,
+      "completion_tokens": 200,
+      "delivered_output": "```python\ndef car_race_collision(n: int) -> int:\n    \"\"\"\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right; simultaneously, a different set of n cars\n    are driving right to left. The two sets of cars start out being very far from\n    each other. All cars move in the same speed. Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n    This function outputs the number of such collisions.\n    \"\"\"\n    if not 0 <= n <= 1000:\n        raise ValueError(\"n must be between 0 and 1000 inclusive.\")\n    \n    if n == 0:\n        return 0\n    \n    return n * n\n```",
+      "output_sha256": "f05427d285ecc63060adb7f3cf6254002a725c5ea373dd7fba8acec53557d0e4",
+      "matches_baseline_output": true,
+      "matches_attacked_output": false
+    }
+  ],
+  "status": "completed",
+  "metrics": {
+    "llm_calls": 2,
+    "recomputed_stages": 2,
+    "restored_stages": 1,
+    "retained_stages": 2,
+    "stages_with_poison_in_input": 0,
+    "prompt_tokens": 1386,
+    "completion_tokens": 398,
+    "model_seconds": 66.395,
+    "tracking_overhead_seconds": 0.000774,
+    "recovery_wall_seconds": 66.443
+  }
+}

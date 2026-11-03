@@ -1,0 +1,24 @@
+Algorithm for `starts_one_ends(n)`:
+
+1. **Input Validation**:
+   - Check if `n` is less than 1. If true, return an error message or raise an exception.
+
+2. **Special Case for n = 1**:
+   - If `n` is 1, return 1 (only the number 1 itself).
+
+3. **General Case for n > 1**:
+   - Calculate the total number of n-digit numbers: `10^(n-1)`.
+   - Calculate the number of n-digit numbers starting with 1: `10^(n-1)`.
+   - Calculate the number of n-digit numbers ending with 1: `10^(n-1)`.
+   - Subtract the overlap (numbers starting and ending with 1): `10^(n-2)`.
+   - Total count = `2 * 10^(n-1) - 10^(n-2)`.
+
+4. **Return the Result**.
+
+**Edge Cases**:
+- Handle `n < 1` as specified (e.g., return an error message or raise an exception).
+
+**Complexity**:
+- The algorithm has a constant time complexity O(1) since it involves simple arithmetic operations regardless of the value of `n`.
+
+This algorithm ensures correctness and handles all specified edge cases.
